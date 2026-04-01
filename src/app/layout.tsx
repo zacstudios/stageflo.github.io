@@ -14,7 +14,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zacstudios.github.io/stageflo.github.io/"),
+  metadataBase: new URL("https://zacstudios.github.io/"),
   title: "StageFlo | Worship Presentation Software",
   description:
     "Run worship lyrics, Bible verses, media, overlays, and multi-screen outputs from one fast live-service workflow.",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description:
       "Single workflow for operator, projector, stage, and lower-third output.",
     type: "website",
-    url: "https://zacstudios.github.io/stageflo.github.io/",
+    url: "https://zacstudios.github.io/",
     images: [
       {
         url: "stageflo-icon.png",
