@@ -1,3 +1,7 @@
+const RELEASE_BASE_URL = "https://github.com/zacstudios/zacstudios.github.io/releases/download/v1.0.0-desktop";
+const MAC_DOWNLOAD_URL = `${RELEASE_BASE_URL}/stageflo-1.0.0.dmg`;
+const WINDOWS_DOWNLOAD_URL = `${RELEASE_BASE_URL}/stageflo-1.0.0-setup.exe`;
+
 const featureCards = [
   {
     title: "Library to Live in Seconds",
@@ -34,14 +38,14 @@ const downloadCards = [
   {
     title: "Download for macOS",
     body: "Use the latest StageFlo universal DMG hosted directly on stageflo.app. macOS auto-update files are published from the desktop app pipeline.",
-    href: "/downloads/mac/",
-    label: "Open Mac Downloads",
+    href: MAC_DOWNLOAD_URL,
+    label: "Download Mac DMG",
   },
   {
     title: "Download for Windows",
     body: "Use the latest StageFlo setup EXE hosted directly on stageflo.app. Windows installers are copied from the private main branch build pipeline.",
-    href: "/downloads/windows/",
-    label: "Open Windows Downloads",
+    href: WINDOWS_DOWNLOAD_URL,
+    label: "Download Windows EXE",
   },
   {
     title: "Updater Feed",
@@ -105,13 +109,13 @@ export default function Home() {
           <div className="cta-row">
             <a
               className="button button-primary"
-              href="/downloads/mac/"
+              href={MAC_DOWNLOAD_URL}
             >
               Download for macOS
             </a>
             <a
               className="button button-secondary"
-              href="/downloads/windows/"
+              href={WINDOWS_DOWNLOAD_URL}
             >
               Download for Windows
             </a>
@@ -180,8 +184,8 @@ export default function Home() {
                 <a
                   href={
                     platform === "macOS"
-                      ? "/downloads/mac/"
-                      : "/downloads/windows/"
+                      ? MAC_DOWNLOAD_URL
+                      : WINDOWS_DOWNLOAD_URL
                   }
                 >
                   Open Downloads
