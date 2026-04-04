@@ -28,17 +28,12 @@ const installSteps = {
     "Run the installer and follow prompts.",
     "Launch StageFlo from Start Menu.",
   ],
-  Linux: [
-    "Linux builds are not published on stageflo.app yet.",
-    "Install using your preferred package flow.",
-    "Launch StageFlo and set presentation displays.",
-  ],
 };
 
 const downloadCards = [
   {
     title: "Download for macOS",
-    body: "Use the latest StageFlo DMG or ZIP hosted directly on stageflo.app. macOS auto-update files are published from the desktop app pipeline.",
+    body: "Use the latest StageFlo universal DMG hosted directly on stageflo.app. macOS auto-update files are published from the desktop app pipeline.",
     href: "/downloads/mac/",
     label: "Open Mac Downloads",
   },
@@ -186,9 +181,7 @@ export default function Home() {
                   href={
                     platform === "macOS"
                       ? "/downloads/mac/"
-                      : platform === "Windows"
-                        ? "/downloads/windows/"
-                        : "https://github.com/zacstudios/stageflo/releases/latest"
+                      : "/downloads/windows/"
                   }
                 >
                   Open Downloads
