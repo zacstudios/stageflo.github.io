@@ -37,3 +37,4 @@ This outputs static files to `out/`.
 - No custom domain configured.
 - Download links point to StageFlo releases:
 	- https://github.com/zacstudios/stageflo/releases/latest
+# Restored working homepage
