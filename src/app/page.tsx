@@ -9,6 +9,7 @@ const SONGS_XML_HI_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-hi.xml`;
 const BIBLE_XML_RESOURCES_URL = "https://biblelist.netlify.app";
 const MALAYALAM_BIBLE_XML_URL = "https://raw.githubusercontent.com/Beblia/Holy-Bible-XML-Format/master/MalayalamBible.xml";
 const ENGLISH_KJV_BIBLE_XML_URL = "https://sourceforge.net/projects/zefania-sharp/files/Bibles/ENG/King%20James/King%20James%20Version/SF_2009-01-23_ENG_KJV_%28KING%20JAMES%20VERSION%29.zip/download";
+const ENGLISH_NIV_BIBLE_XML_URL = "https://raw.githubusercontent.com/Beblia/Holy-Bible-XML-Format/master/EnglishNIVBible.xml";
 
 const testimonials = [
   {
@@ -109,6 +110,12 @@ const downloadCards = [
     body: "King James Version in Zefania XML package format for Bible import workflows.",
     href: ENGLISH_KJV_BIBLE_XML_URL,
     label: "Download English KJV Bible",
+  },
+  {
+    title: "English NIV Bible XML",
+    body: "New International Version XML file compatible with StageFlo Bible import workflows.",
+    href: ENGLISH_NIV_BIBLE_XML_URL,
+    label: "Download English NIV Bible XML",
   },
 ];
 
