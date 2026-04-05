@@ -3,7 +3,9 @@ import Link from "next/link";
 const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
 const MAC_DOWNLOAD_URL = `${RELEASE_BASE_URL}/stageflo-1.0.0.dmg`;
 const WINDOWS_DOWNLOAD_URL = `${RELEASE_BASE_URL}/stageflo-1.0.0-setup.exe`;
-const SONGS_XML_ALL_URL = `${RELEASE_BASE_URL}/stageflo-songs-openlyrics.xml.zip`;
+const SONGS_XML_ML_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
+const SONGS_XML_TA_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ta.xml`;
+const SONGS_XML_HI_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-hi.xml`;
 
 const testimonials = [
   {
@@ -88,16 +90,22 @@ const downloadCards = [
     label: "View Update Feed Info",
   },
   {
-    title: "Songs XML (All Languages)",
-    body: "OpenLyrics XML package for app import. Includes all available song language lines in one download.",
-    href: SONGS_XML_ALL_URL,
-    label: "Download OpenLyrics XML",
+    title: "Songs XML (Malayalam Primary)",
+    body: "OpenLyrics XML package for Malayalam-primary songs with translation lines retained where available.",
+    href: SONGS_XML_ML_URL,
+    label: "Download Malayalam XML",
   },
   {
-    title: "Songs XML (Primary Language Packs)",
-    body: "Primary-language OpenLyrics packs for Malayalam, Tamil, and Hindi workflows with English translation lines retained.",
-    href: "/downloads/",
-    label: "Choose Language Packs",
+    title: "Songs XML (Tamil Primary)",
+    body: "OpenLyrics XML package for Tamil-primary songs with translation lines retained where available.",
+    href: SONGS_XML_TA_URL,
+    label: "Download Tamil XML",
+  },
+  {
+    title: "Songs XML (Hindi Primary)",
+    body: "OpenLyrics XML package for Hindi-primary songs with translation lines retained where available.",
+    href: SONGS_XML_HI_URL,
+    label: "Download Hindi XML",
   },
 ];
 
