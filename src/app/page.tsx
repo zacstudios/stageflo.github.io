@@ -6,6 +6,7 @@ const WINDOWS_DOWNLOAD_URL = `${RELEASE_BASE_URL}/stageflo-1.0.0-setup.exe`;
 const SONGS_XML_ML_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
 const SONGS_XML_TA_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ta.xml`;
 const SONGS_XML_HI_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-hi.xml`;
+const SONGS_XML_ALL_URL = "https://raw.githubusercontent.com/zacstudios/stageflo/main/songs-by-primary-language/songs-openlyrics-All%20Songs.xml";
 const BIBLE_XML_RESOURCES_URL = "https://biblelist.netlify.app";
 const MALAYALAM_BIBLE_XML_URL = "https://raw.githubusercontent.com/Beblia/Holy-Bible-XML-Format/master/MalayalamBible.xml";
 const ENGLISH_KJV_BIBLE_XML_URL = "https://sourceforge.net/projects/zefania-sharp/files/Bibles/ENG/King%20James/King%20James%20Version/SF_2009-01-23_ENG_KJV_%28KING%20JAMES%20VERSION%29.zip/download";
@@ -99,6 +100,12 @@ const downloadCards = [
     body: "OpenLyrics XML package for Hindi songs with translation lines retained where available.",
     href: SONGS_XML_HI_URL,
     label: "Download Hindi XML",
+  },
+  {
+    title: "Songs XML (All Songs)",
+    body: "Combined OpenLyrics XML package containing all songs in one file.",
+    href: SONGS_XML_ALL_URL,
+    label: "Download All Songs XML",
   },
   {
     title: "Malayalam Bible XML",
