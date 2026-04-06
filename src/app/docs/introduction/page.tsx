@@ -17,6 +17,22 @@ export const metadata: Metadata = {
   title: "StageFlo Docs | Introduction",
   description:
     "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+  alternates: {
+    canonical: "/docs/introduction/",
+  },
+  openGraph: {
+    title: "StageFlo Docs | Introduction",
+    description:
+      "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+    url: "/docs/introduction/",
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StageFlo Docs | Introduction",
+    description:
+      "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+  },
 };
 
 export default function DocsIntroductionPage() {

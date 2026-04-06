@@ -1,3 +1,27 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "StageFlo Feedback and Bug Reports",
+  description:
+    "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+  alternates: {
+    canonical: "/feedback/",
+  },
+  openGraph: {
+    title: "StageFlo Feedback and Bug Reports",
+    description:
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+    url: "/feedback/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StageFlo Feedback and Bug Reports",
+    description:
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+  },
+};
+
 export default function Feedback() {
   return (
     <div className="site-shell">

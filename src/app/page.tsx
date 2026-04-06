@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
@@ -234,9 +235,54 @@ const languageBadges = [
   "Portuguese",
 ];
 
+export const metadata: Metadata = {
+  title: "StageFlo | Worship Presentation Software",
+  description:
+    "Run worship lyrics, Bible verses, media, overlays, and multi-screen outputs from one fast live-service workflow.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "StageFlo | Worship Presentation Software",
+    description:
+      "Single workflow for operator, projector, stage, and lower-third output.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StageFlo | Worship Presentation Software",
+    description:
+      "Single workflow for operator, projector, stage, and lower-third output.",
+  },
+};
+
+const softwareAppStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "StageFlo",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "macOS, Windows, Linux",
+  description:
+    "Open-source worship presentation software for songs, scripture, media, overlays, and multi-screen outputs.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  url: "https://stageflo.app/",
+  downloadUrl: [MAC_DOWNLOAD_URL, WINDOWS_DOWNLOAD_URL],
+};
+
 export default function Home() {
   return (
     <div className="site-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareAppStructuredData),
+        }}
+      />
       <header className="top-nav">
         <a className="brand" href="#home" aria-label="StageFlo home">
           <img src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: '0.55rem', background: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)' }} />

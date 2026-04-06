@@ -15,23 +15,30 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stageflo.app/"),
-  title: "StageFlo | Worship Presentation Software",
+  title: {
+    default: "StageFlo | Worship Presentation Software",
+    template: "%s | StageFlo",
+  },
   description:
     "Run worship lyrics, Bible verses, media, overlays, and multi-screen outputs from one fast live-service workflow.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "StageFlo | Worship Presentation Software",
-    description:
-      "Single workflow for operator, projector, stage, and lower-third output.",
     type: "website",
-    url: "https://stageflo.app/",
+    siteName: "StageFlo",
     images: [
       {
-        url: "stageflo-icon.png",
+        url: "/stageflo-icon.png",
         width: 512,
         height: 512,
         alt: "StageFlo icon",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/stageflo-icon.png"],
   },
 };
 
