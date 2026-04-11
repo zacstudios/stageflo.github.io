@@ -95,13 +95,13 @@ export default function DocsIntroductionPage() {
           </section>
 
           <section className={styles.docCard} id="mobile-singer-view">
-            <h2>Mobile Singer View (On Stage)</h2>
+            <h2>Mobile Stageview (On Stage)</h2>
             <p>
-              StageFlo includes a mobile-friendly singer view designed for phones and tablets on stage.
+              StageFlo includes a mobile-friendly stageview designed for phones and tablets on stage.
               Singers can see current and next lyrics without needing a dedicated monitor for every person.
             </p>
             <div className={styles.callout}>
-              Use the remote/singer URL from settings, open it on mobile devices connected to the same network,
+              Use the /stage URL from settings, open it on mobile devices connected to the same network,
               and keep performers synchronized with the live slide flow.
             </div>
             <div className={styles.quickGrid}>
