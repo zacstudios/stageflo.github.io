@@ -207,8 +207,21 @@ export default function GatedDownloadLink({
                 <button type="button" className="button button-secondary" onClick={resetAndClose} disabled={submitState === "submitting"}>
                   Cancel
                 </button>
-                <button type="submit" className="button button-primary" disabled={submitState === "submitting" || !endpointAvailable}>
-                  {submitState === "submitting" ? "Submitting..." : submitState === "success" ? "Done" : "Submit & Download"}
+                <button
+                  type="submit"
+                  className="button button-primary download-gate-submit"
+                  disabled={submitState === "submitting" || !endpointAvailable}
+                >
+                  <span className="download-gate-submit-copy">
+                    {submitState === "submitting"
+                      ? "Submitting..."
+                      : submitState === "success"
+                        ? "Download Ready"
+                        : "Continue to Download"}
+                  </span>
+                  <span className="download-gate-submit-arrow" aria-hidden="true">
+                    {submitState === "submitting" ? "..." : submitState === "success" ? "✓" : "→"}
+                  </span>
                 </button>
               </div>
             </form>
