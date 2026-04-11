@@ -251,6 +251,11 @@ const parseManifest = (manifestText: string): LatestReleaseInfo | null => {
   return { version, url };
 };
 
+const toMacDmgUrl = (url: string, version: string): string => {
+  if (url.toLowerCase().endsWith('.dmg')) return url;
+  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}.dmg`;
+};
+
 const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleaseInfo | null> => {
   try {
     const manifestPath = path.join(process.cwd(), "public", "updates", fileName);
@@ -293,6 +298,7 @@ export default async function Home() {
     version: CURRENT_VERSION,
     url: MAC_DOWNLOAD_URL,
   };
+  const latestMacDownloadUrl = toMacDmgUrl(latestMac.url, latestMac.version);
   const latestWindows = windowsManifest ?? {
     version: CURRENT_VERSION,
     url: WINDOWS_DOWNLOAD_URL,
@@ -312,7 +318,7 @@ export default async function Home() {
       priceCurrency: "USD",
     },
     url: "https://stageflo.app/",
-    downloadUrl: [latestMac.url, latestWindows.url],
+    downloadUrl: [latestMacDownloadUrl, latestWindows.url],
   };
 
   return (
@@ -351,7 +357,7 @@ export default async function Home() {
           <div className="cta-row">
             <a
               className="button button-primary"
-              href={latestMac.url}
+              href={latestMacDownloadUrl}
             >
               Download macOS v{latestMac.version}
             </a>
@@ -598,7 +604,7 @@ export default async function Home() {
                 <a
                   href={
                     platform === "macOS"
-                      ? latestMac.url
+                      ? latestMacDownloadUrl
                       : latestWindows.url
                   }
                 >

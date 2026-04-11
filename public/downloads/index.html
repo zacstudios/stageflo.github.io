@@ -196,6 +196,14 @@
         return `${size.toFixed(i === 0 ? 0 : 1)} ${units[i]}`
       }
 
+      function getPublicDownloadUrl(platform, manifest) {
+        if (!manifest?.url) return null
+        if (platform !== 'mac') return manifest.url
+        if (manifest.url.toLowerCase().endsWith('.dmg')) return manifest.url
+        const version = manifest.version || '1.5.0'
+        return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}.dmg`
+      }
+
       async function load(platform) {
         const file = platform === 'mac' ? '/updates/latest-mac.yml' : '/updates/latest.yml'
         const summary = document.getElementById(`${platform}-summary`)
@@ -209,8 +217,9 @@
           const dateText = manifest.releaseDate ? new Date(manifest.releaseDate).toLocaleString() : 'date unknown'
           summary.textContent = `v${manifest.version || 'unknown'} • ${formatBytes(manifest.size)} • ${dateText}`
 
-          if (manifest.url) {
-            link.href = manifest.url
+          const publicUrl = getPublicDownloadUrl(platform, manifest)
+          if (publicUrl) {
+            link.href = publicUrl
             link.textContent = platform === 'mac' ? 'Download Latest macOS Build' : 'Download Latest Windows Build'
           }
 
