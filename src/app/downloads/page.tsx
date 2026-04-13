@@ -71,8 +71,7 @@ export default async function DownloadsPage() {
           <div className="section-head">
             <h2>Desktop Installers</h2>
             <p>
-              Use the installer button for first-time setup. If you are recovering an in-app update,
-              use the direct download button for your platform.
+              Use the installer button for first-time setup on your platform.
             </p>
           </div>
           <div className="install-grid downloads-platform-grid">
@@ -91,9 +90,6 @@ export default async function DownloadsPage() {
                 >
                   Get macOS Installer
                 </GatedDownloadLink>
-                <Link className="button button-secondary" href="/downloads/mac/">
-                  Direct Update Download
-                </Link>
               </div>
             </article>
 
@@ -101,7 +97,7 @@ export default async function DownloadsPage() {
               <p className="downloads-card-tag">Windows</p>
               <h3>Windows Setup Installer</h3>
               <p>
-                Best for first-time installs on Windows systems. The direct recovery page stays public for update fallback use.
+                Best for first-time installs on Windows systems.
               </p>
               <div className="cta-row downloads-card-actions">
                 <GatedDownloadLink
@@ -112,9 +108,6 @@ export default async function DownloadsPage() {
                 >
                   Get Windows Installer
                 </GatedDownloadLink>
-                <Link className="button button-secondary" href="/downloads/windows/">
-                  Direct Update Download
-                </Link>
               </div>
             </article>
           </div>
