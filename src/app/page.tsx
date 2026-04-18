@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import GatedDownloadLink from "./components/gatedDownloadLink";
 
-const CURRENT_VERSION = "1.5.0";
+const CURRENT_VERSION = "1.6.0";
 const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
 const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
 const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/updates-v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
@@ -332,7 +333,7 @@ export default async function Home() {
       />
       <header className="top-nav">
         <a className="brand" href="#home" aria-label="StageFlo home">
-          <img src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: '0.55rem', background: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)' }} />
+          <Image src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: '0.55rem', background: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)' }} />
           <span>StageFlo</span>
         </a>
         <nav>
@@ -454,11 +455,11 @@ export default async function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img
+              <Image
                 src="/screenshots/operator-workspace.png"
                 alt="StageFlo overview thumbnail"
-                loading="lazy"
-                decoding="async"
+                width={1280}
+                height={720}
               />
               <span>Open Product Walkthrough</span>
             </a>
@@ -514,7 +515,7 @@ export default async function Home() {
                 className="card reveal"
               >
                 <p className="testimonial-quote">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <p className="testimonial-author">{testimonial.author}</p>
                 <p className="testimonial-role">{testimonial.role}</p>
@@ -584,7 +585,7 @@ export default async function Home() {
           <div className="shot-grid">
             {screenshotCards.map((shot) => (
               <figure key={shot.src} className="shot reveal">
-                <img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+                <Image src={shot.src} alt={shot.alt} width={1600} height={900} />
                 <figcaption>
                   <h3>{shot.title}</h3>
                   <p>{shot.body}</p>

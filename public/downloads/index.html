@@ -200,7 +200,7 @@
         if (!manifest?.url) return null
         if (platform !== 'mac') return manifest.url
         if (manifest.url.toLowerCase().endsWith('.dmg')) return manifest.url
-        const version = manifest.version || '1.5.0'
+        const version = manifest.version || '1.6.0'
         return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}.dmg`
       }
 
