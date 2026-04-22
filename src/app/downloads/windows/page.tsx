@@ -4,6 +4,7 @@ import {
   CURRENT_VERSION,
   WINDOWS_DOWNLOAD_URL,
   readLatestReleaseManifest,
+  toWindowsSetupUrl,
 } from "../../lib/downloads";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default async function WindowsDownloadsPage() {
   const windowsManifest = await readLatestReleaseManifest("latest.yml");
   const latestWindows = windowsManifest ?? { version: CURRENT_VERSION, url: WINDOWS_DOWNLOAD_URL };
+  const latestWindowsDownloadUrl = toWindowsSetupUrl(latestWindows.url, latestWindows.version);
 
   return (
     <div className="site-shell">
@@ -28,7 +30,7 @@ export default async function WindowsDownloadsPage() {
             This page stays public for updater fallback and recovery installs. It does not use the lead-capture form.
           </p>
           <div className="cta-row">
-            <a className="button button-primary" href={latestWindows.url}>
+            <a className="button button-primary" href={latestWindowsDownloadUrl}>
               Download Windows v{latestWindows.version}
             </a>
             <Link className="button button-secondary" href="/downloads/">

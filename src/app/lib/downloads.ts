@@ -4,7 +4,7 @@ import path from "node:path";
 export const CURRENT_VERSION = "1.65.0";
 export const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
 export const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
-export const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
+export const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 export const SONGS_XML_ML_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
 export const SONGS_XML_TA_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ta.xml`;
 export const SONGS_XML_HI_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-hi.xml`;
@@ -88,6 +88,12 @@ export const parseManifest = (manifestText: string): LatestReleaseInfo | null =>
 export const toMacDmgUrl = (url: string, version: string): string => {
   if (url.toLowerCase().endsWith(".dmg")) return url;
   return `https://github.com/zacstudios/Stageflo.app/releases/download/v${version}/stageflo-${version}.dmg`;
+};
+
+export const toWindowsSetupUrl = (url: string, version: string): string => {
+  if (/^https?:\/\//i.test(url)) return url;
+  const normalized = url.replace(/^\/+/, "");
+  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/${normalized}`;
 };
 
 export const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleaseInfo | null> => {

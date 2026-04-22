@@ -9,6 +9,7 @@ import {
   readLatestReleaseManifest,
   resourceDownloadCards,
   toMacDmgUrl,
+  toWindowsSetupUrl,
 } from "../lib/downloads";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default async function DownloadsPage() {
   };
 
   const latestMacDownloadUrl = toMacDmgUrl(latestMac.url, latestMac.version);
+  const latestWindowsDownloadUrl = toWindowsSetupUrl(latestWindows.url, latestWindows.version);
 
   return (
     <div className="site-shell">
@@ -103,7 +105,7 @@ export default async function DownloadsPage() {
               <div className="cta-row downloads-card-actions">
                 <GatedDownloadLink
                   className="button button-primary"
-                  href={latestWindows.url}
+                  href={latestWindowsDownloadUrl}
                   source="desktop"
                   formTitle="Download StageFlo for Windows"
                 >

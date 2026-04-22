@@ -258,6 +258,12 @@ const toMacDmgUrl = (url: string, version: string): string => {
   return `https://github.com/zacstudios/Stageflo.app/releases/download/v${version}/stageflo-${version}.dmg`;
 };
 
+const toWindowsSetupUrl = (url: string, version: string): string => {
+  if (/^https?:\/\//i.test(url)) return url;
+  const normalized = url.replace(/^\/+/, '');
+  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/${normalized}`;
+};
+
 const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleaseInfo | null> => {
   try {
     const manifestPath = path.join(process.cwd(), "public", "updates", fileName);
@@ -305,6 +311,7 @@ export default async function Home() {
     version: CURRENT_VERSION,
     url: WINDOWS_DOWNLOAD_URL,
   };
+  const latestWindowsDownloadUrl = toWindowsSetupUrl(latestWindows.url, latestWindows.version);
 
   const softwareAppStructuredData = {
     "@context": "https://schema.org",
@@ -320,7 +327,7 @@ export default async function Home() {
       priceCurrency: "USD",
     },
     url: "https://stageflo.app/",
-    downloadUrl: [latestMacDownloadUrl, latestWindows.url],
+    downloadUrl: [latestMacDownloadUrl, latestWindowsDownloadUrl],
   };
 
   return (
@@ -367,7 +374,7 @@ export default async function Home() {
             </GatedDownloadLink>
             <GatedDownloadLink
               className="button button-secondary"
-              href={latestWindows.url}
+              href={latestWindowsDownloadUrl}
               source="desktop"
               formTitle="Download StageFlo for Windows"
             >
@@ -613,7 +620,7 @@ export default async function Home() {
                   href={
                     platform === "macOS"
                       ? latestMacDownloadUrl
-                      : latestWindows.url
+                      : latestWindowsDownloadUrl
                   }
                   source="desktop"
                   formTitle={`Download StageFlo for ${platform}`}
