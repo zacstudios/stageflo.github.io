@@ -5,10 +5,10 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import GatedDownloadLink from "./components/gatedDownloadLink";
 
-const CURRENT_VERSION = "1.6.0";
+const CURRENT_VERSION = "1.65.0";
 const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
-const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
-const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/updates-v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
+const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
+const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 const SONGS_XML_ML_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
 const SONGS_XML_TA_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ta.xml`;
 const SONGS_XML_HI_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-hi.xml`;
@@ -255,7 +255,7 @@ const parseManifest = (manifestText: string): LatestReleaseInfo | null => {
 
 const toMacDmgUrl = (url: string, version: string): string => {
   if (url.toLowerCase().endsWith('.dmg')) return url;
-  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}.dmg`;
+  return `https://github.com/zacstudios/Stageflo.app/releases/download/v${version}/stageflo-${version}.dmg`;
 };
 
 const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleaseInfo | null> => {

@@ -1,8 +1,11 @@
-version: 1.6.0
+version: 1.65.0
 files:
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v1.6.0/StageFlo-1.6.0-universal-mac.zip
-    sha512: Ww3DGFeP8vMQ3Lj2RU7+rXU3/27W/wgG7xhyeqZM0KyeJhnZ1nxdAcEjywRKHwbPdRBjaaLFUExALUmdI6eqgg==
-    size: 248723966
-path: https://github.com/zacstudios/stageflo.github.io/releases/download/v1.6.0/StageFlo-1.6.0-universal-mac.zip
-sha512: Ww3DGFeP8vMQ3Lj2RU7+rXU3/27W/wgG7xhyeqZM0KyeJhnZ1nxdAcEjywRKHwbPdRBjaaLFUExALUmdI6eqgg==
-releaseDate: '2026-04-18T10:35:44.574Z'
+  - url: https://github.com/zacstudios/Stageflo.app/releases/download/v1.65.0/StageFlo-1.65.0-universal-mac.zip
+    sha512: R3aXJ1CDlAa2yoDkhBSm1ciw6pCp2tSVTU7fMrUbDalRyu65n+0c6wei71O2oEdyZcA/lPzGil16QL+IYqpzBw==
+    size: 288250262
+  - url: https://github.com/zacstudios/Stageflo.app/releases/download/v1.65.0/stageflo-1.65.0.dmg
+    sha512: 6MciE+QkXLag7H643YRX/aKvnzx3JqikR29FDeu7CzzLDil+OQBK15xIf1DvoO/hDgX+w3edyfmd4Oni28LGrA==
+    size: 298296068
+path: https://github.com/zacstudios/Stageflo.app/releases/download/v1.65.0/StageFlo-1.65.0-universal-mac.zip
+sha512: R3aXJ1CDlAa2yoDkhBSm1ciw6pCp2tSVTU7fMrUbDalRyu65n+0c6wei71O2oEdyZcA/lPzGil16QL+IYqpzBw==
+releaseDate: '2026-04-22T15:02:15.057Z'
