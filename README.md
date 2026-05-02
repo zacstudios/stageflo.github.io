@@ -36,31 +36,51 @@ This outputs static files to `out/`.
 
 This site is static on GitHub Pages, so downloads can only be gated with a client-side form that posts to an external endpoint.
 
-### Quick Setup With Formspree
+### Recommended Setup With Supabase
 
-The site currently defaults to this Formspree endpoint:
+The preferred setup is a Supabase Edge Function that receives the lead form payload and writes to a `download_leads` table.
 
-```text
-https://formspree.io/f/xpqovjbo
-```
+Setup steps:
 
-Optional override steps:
+1. Create a Supabase project.
+2. Apply [supabase/migrations/20260502193000_create_download_leads.sql](supabase/migrations/20260502193000_create_download_leads.sql).
+3. Deploy [supabase/functions/capture-download-lead/index.ts](supabase/functions/capture-download-lead/index.ts).
+4. Add GitHub repository secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` with your deployed function URL.
+5. Push to `main` to trigger deploy.
 
-1. Create your own Formspree form and copy endpoint URL.
-2. Add repository secret `NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT` with that URL.
-3. Push to `main` to trigger deploy.
-
-Formspree endpoint format:
+Expected function URL format:
 
 ```text
-https://formspree.io/f/xxxxxxxx
+https://<project-ref>.functions.supabase.co/capture-download-lead
 ```
 
-The deploy workflow already injects this secret into the build via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+The GitHub Pages deploy workflow already injects `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` into the site build via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+CLI shortcut from this repo:
+
+```bash
+SUPABASE_ACCESS_TOKEN=... \
+SUPABASE_PROJECT_REF=... \
+SUPABASE_DB_PASSWORD=... \
+npm run setup:supabase
+```
+
+For a brand new project, provide `SUPABASE_ORG_ID` and optionally `SUPABASE_REGION` / `SUPABASE_PROJECT_NAME` instead of `SUPABASE_PROJECT_REF`.
+
+The helper script will:
+
+1. Create or link the Supabase project.
+2. Push the SQL migration.
+3. Deploy `capture-download-lead` with `--no-verify-jwt` so the public website can call it.
+4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
+
+### Legacy Generic Endpoint Override
+
+If needed, the site still supports `NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT` as a generic fallback for non-Supabase providers.
 
 ### Other Endpoint Options
 
-You can also use Basin, Google Apps Script, Supabase Edge Function, or your own API.
+You can also use Basin, Google Apps Script, or your own API.
 
 Expected request payload:
 
@@ -77,7 +97,7 @@ Expected request payload:
 }
 ```
 
-If `NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT` is not set, the gate appears but downloads are blocked until the endpoint is configured.
+If neither `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` nor `NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT` is set, the gate appears but downloads are blocked until the endpoint is configured.
 
 ## Notes
 

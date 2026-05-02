@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "lint:prod": "eslint --max-warnings=0",
+    "setup:supabase": "bash scripts/setup-supabase.sh",
     "typecheck": "tsc --noEmit",
     "verify:prod": "npm run lint:prod && npm run typecheck && npm run build"
   },

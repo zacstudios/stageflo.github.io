@@ -13,8 +13,10 @@ type GatedDownloadLinkProps = {
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-const DEFAULT_FORMSPREE_ENDPOINT = "https://formspree.io/f/xpqovjbo";
-const ENDPOINT_URL = process.env.NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT?.trim() || DEFAULT_FORMSPREE_ENDPOINT;
+const ENDPOINT_URL =
+  process.env.NEXT_PUBLIC_SUPABASE_FUNCTION_URL?.trim() ||
+  process.env.NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT?.trim() ||
+  "";
 
 export default function GatedDownloadLink({
   href,
@@ -28,6 +30,7 @@ export default function GatedDownloadLink({
   const [email, setEmail] = useState("");
   const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [consent, setConsent] = useState(false);
+  const [company, setCompany] = useState("");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isMounted, setIsMounted] = useState(false);
@@ -73,6 +76,12 @@ export default function GatedDownloadLink({
       return;
     }
 
+    if (company.trim()) {
+      setSubmitState("error");
+      setErrorMessage("We could not submit your details right now. Please try again.");
+      return;
+    }
+
     setSubmitState("submitting");
     setErrorMessage("");
 
@@ -85,6 +94,7 @@ export default function GatedDownloadLink({
       downloadUrl: href,
       page: typeof window !== "undefined" ? window.location.href : "",
       submittedAt: new Date().toISOString(),
+      userAgent: typeof window !== "undefined" ? window.navigator.userAgent : "",
     };
 
     try {
@@ -152,7 +162,7 @@ export default function GatedDownloadLink({
 
             {!endpointAvailable ? (
               <p className="download-gate-error">
-                Form endpoint is missing. Set NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT in your site environment.
+                Form endpoint is missing. Set NEXT_PUBLIC_SUPABASE_FUNCTION_URL in your site environment.
               </p>
             ) : null}
 
@@ -182,6 +192,17 @@ export default function GatedDownloadLink({
                 autoComplete="email"
                 maxLength={120}
                 disabled={submitState === "submitting"}
+              />
+
+              <input
+                type="text"
+                name="company"
+                value={company}
+                onChange={(event) => setCompany(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }}
               />
 
               <label className="download-gate-checkbox">
