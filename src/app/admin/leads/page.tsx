@@ -199,13 +199,24 @@ export default function LeadsAdminPage() {
                     <td>{formatDate(lead.email_last_attempt_at)}</td>
                     <td className="admin-error-cell">{lead.email_error || "-"}</td>
                     <td>
-                      <button
-                        className="button button-secondary"
-                        onClick={() => retryLead(lead)}
-                        disabled={retryingId === lead.id || lead.email_status === "sent"}
-                      >
-                        {retryingId === lead.id ? "Retrying..." : lead.email_status === "sent" ? "Sent" : "Retry"}
-                      </button>
+                      {lead.email_status === "sent" ? (
+                        <button
+                          className="button button-danger"
+                          onClick={() => retryLead(lead)}
+                          disabled={retryingId === lead.id}
+                          title="Email already sent — click to force resend"
+                        >
+                          {retryingId === lead.id ? "Sending..." : "Force Resend"}
+                        </button>
+                      ) : (
+                        <button
+                          className="button button-secondary"
+                          onClick={() => retryLead(lead)}
+                          disabled={retryingId === lead.id}
+                        >
+                          {retryingId === lead.id ? "Retrying..." : "Retry"}
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))

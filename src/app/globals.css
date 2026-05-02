@@ -191,6 +191,18 @@ button {
   color: var(--accent-light);
 }
 
+.button-danger {
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  background: rgba(127, 29, 29, 0.4);
+  color: #fca5a5;
+}
+
+.button-danger:hover:not(:disabled) {
+  border-color: rgba(239, 68, 68, 0.7);
+  background: rgba(185, 28, 28, 0.5);
+  color: #fee2e2;
+}
+
 .download-gate-overlay {
   position: fixed;
   inset: 0;
