@@ -9,24 +9,6 @@ const CURRENT_VERSION = "1.65.0";
 const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
 const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 
-const testimonials = [
-  {
-    text: "StageFlo transformed our worship tech workflow. It's free, powerful, and just works.",
-    author: "Marcus W.",
-    role: "Worship Director",
-  },
-  {
-    text: "The remote singer view is a game-changer. Our team feels more connected during every service.",
-    author: "Sarah K.",
-    role: "Tech Lead",
-  },
-  {
-    text: "No subscriptions, no lock-in, pure functionality. This is worship software the right way.",
-    author: "David L.",
-    role: "Church Tech Lead",
-  },
-];
-
 const featureGroups = [
   {
     title: "Content Creation",
@@ -422,26 +404,6 @@ export default async function Home() {
               </div>
             </div>
           ))}
-        </section>
-
-        <section className="testimonials section-block">
-          <div className="section-head">
-            <h2>What Teams Are Saying</h2>
-          </div>
-          <div id="reviews" className="testimonial-grid">
-            {testimonials.map((testimonial, index) => (
-              <article
-                key={`${testimonial.author}-${index}`}
-                className="card reveal"
-              >
-                <p className="testimonial-quote">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-                <p className="testimonial-author">{testimonial.author}</p>
-                <p className="testimonial-role">{testimonial.role}</p>
-              </article>
-            ))}
-          </div>
         </section>
 
         <section className="comparison" id="compare">
