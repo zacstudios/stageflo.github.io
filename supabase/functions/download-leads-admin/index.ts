@@ -201,6 +201,63 @@ Deno.serve(async (request) => {
 
   if (request.method === "GET") {
     const url = new URL(request.url);
+    const action = url.searchParams.get("action") ?? "";
+
+    // ── Check Resend delivery status for all stored message IDs ──
+    if (action === "check-resend") {
+      const resendApiKey = Deno.env.get("RESEND_API_KEY");
+      if (!resendApiKey) {
+        return json({ error: "RESEND_API_KEY not configured" }, 500);
+      }
+
+      const { data: rows, error: dbErr } = await supabase
+        .from("download_leads")
+        .select("id,email,email_status,email_provider_message_id")
+        .neq("email_provider_message_id", "")
+        .order("created_at", { ascending: false });
+
+      if (dbErr) {
+        return json({ error: "Failed to load leads from DB" }, 500);
+      }
+
+      const results = [];
+      for (const row of rows ?? []) {
+        try {
+          const res = await fetch(`https://api.resend.com/emails/${row.email_provider_message_id}`, {
+            headers: { Authorization: `Bearer ${resendApiKey}` },
+          });
+          const body = await res.json().catch(() => ({}));
+          results.push({
+            email: row.email,
+            resend_id: row.email_provider_message_id,
+            db_status: row.email_status,
+            resend_status: body?.last_event ?? body?.status ?? "unknown",
+            resend_events: Array.isArray(body?.events) ? body.events.map((e: Record<string, unknown>) => e?.name ?? e) : [],
+            resend_http_status: res.status,
+            from: body?.from ?? null,
+            to: body?.to ?? null,
+            subject: body?.subject ?? null,
+          });
+        } catch (err) {
+          results.push({
+            email: row.email,
+            resend_id: row.email_provider_message_id,
+            db_status: row.email_status,
+            resend_status: "fetch_error",
+            error: String(err),
+          });
+        }
+      }
+
+      const summary: Record<string, number> = {};
+      for (const r of results) {
+        const k = String(r.resend_status);
+        summary[k] = (summary[k] ?? 0) + 1;
+      }
+
+      return json({ ok: true, total: results.length, summary, results });
+    }
+
     const limitParam = Number(url.searchParams.get("limit") ?? "50");
     const limit = Number.isFinite(limitParam) ? Math.min(Math.max(limitParam, 1), 200) : 50;
     const statusFilter = (url.searchParams.get("status") ?? "").trim();
