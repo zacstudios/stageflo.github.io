@@ -75,15 +75,25 @@ if [[ -n "${RESEND_FROM_EMAIL:-}" ]]; then
   function_secret_args+=("RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL}")
 fi
 
+if [[ -n "${ADMIN_API_KEY:-}" ]]; then
+  function_secret_args+=("ADMIN_API_KEY=${ADMIN_API_KEY}")
+fi
+
 if [[ ${#function_secret_args[@]} -gt 0 ]]; then
   echo "Setting function secrets..."
   supabase secrets set --project-ref "$PROJECT_REF" "${function_secret_args[@]}"
 else
-  echo "No optional secrets to set (Resend not configured — skipping)."
+  echo "No optional secrets to set (Resend/Admin key not configured — skipping)."
 fi
 
 echo "Deploying capture-download-lead Edge Function..."
 supabase functions deploy capture-download-lead \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
+echo "Deploying download-leads-admin Edge Function..."
+supabase functions deploy download-leads-admin \
   --project-ref "$PROJECT_REF" \
   --no-verify-jwt \
   --use-api
@@ -98,3 +108,7 @@ gh secret set NEXT_PUBLIC_SUPABASE_FUNCTION_URL \
 echo "Supabase setup complete."
 echo "Project ref: $PROJECT_REF"
 echo "Function URL: $function_url"
+
+if [[ -z "${ADMIN_API_KEY:-}" ]]; then
+  echo "Note: ADMIN_API_KEY was not provided. /admin/leads will not work until you set this secret and redeploy."
+fi

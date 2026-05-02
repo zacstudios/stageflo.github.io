@@ -12,6 +12,14 @@ type LeadPayload = {
   userAgent?: string;
 };
 
+type SendEmailResult = {
+  ok: boolean;
+  status: "sent" | "failed" | "skipped";
+  provider: "resend";
+  providerMessageId: string;
+  errorMessage: string;
+};
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -30,12 +38,18 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>) {
+async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>): Promise<SendEmailResult> {
   const resendApiKey = Deno.env.get("RESEND_API_KEY");
   const resendFrom = Deno.env.get("RESEND_FROM_EMAIL");
 
   if (!resendApiKey || !resendFrom) {
-    return;
+    return {
+      ok: false,
+      status: "skipped",
+      provider: "resend",
+      providerMessageId: "",
+      errorMessage: "Resend is not configured",
+    };
   }
 
   const response = await fetch("https://api.resend.com/emails", {
@@ -58,9 +72,25 @@ async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "
     }),
   });
 
+  const data = await response.json().catch(() => ({}));
+
   if (!response.ok) {
-    throw new Error(`Resend email failed with status ${response.status}`);
+    return {
+      ok: false,
+      status: "failed",
+      provider: "resend",
+      providerMessageId: "",
+      errorMessage: `Resend email failed with status ${response.status}`,
+    };
   }
+
+  return {
+    ok: true,
+    status: "sent",
+    provider: "resend",
+    providerMessageId: typeof data?.id === "string" ? data.id : "",
+    errorMessage: "",
+  };
 }
 
 Deno.serve(async (request) => {
@@ -120,7 +150,7 @@ Deno.serve(async (request) => {
     auth: { persistSession: false },
   });
 
-  const { error } = await supabase
+  const { data: insertedLead, error } = await supabase
     .from("download_leads")
     .insert({
       name,
@@ -133,17 +163,31 @@ Deno.serve(async (request) => {
       submitted_at: submittedAt,
       user_agent: userAgent,
       referrer,
-    });
+      email_status: "pending",
+      email_provider: "resend",
+    })
+    .select("id")
+    .single();
 
   if (error) {
     return json({ error: "Failed to store lead" }, 500);
   }
 
-  try {
-    await sendThankYouEmail({ email, name, downloadUrl });
-  } catch {
-    return json({ ok: true, emailQueued: false });
-  }
+  const emailResult = await sendThankYouEmail({ email, name, downloadUrl });
+  const attemptAt = new Date().toISOString();
 
-  return json({ ok: true, emailQueued: true });
+  await supabase
+    .from("download_leads")
+    .update({
+      email_status: emailResult.status,
+      email_attempt_count: 1,
+      email_last_attempt_at: attemptAt,
+      email_sent_at: emailResult.ok ? attemptAt : null,
+      email_error: emailResult.errorMessage,
+      email_provider: emailResult.provider,
+      email_provider_message_id: emailResult.providerMessageId,
+    })
+    .eq("id", insertedLead.id);
+
+  return json({ ok: true, emailQueued: emailResult.ok, emailStatus: emailResult.status });
 });
