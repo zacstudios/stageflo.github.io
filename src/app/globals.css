@@ -997,6 +997,99 @@ button {
   max-width: 58rem;
 }
 
+/* ── Pillar cards (3-up feature grid) ── */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.pillar-card {
+  padding: 1.6rem 1.4rem;
+  border: 1px solid rgba(124, 58, 237, 0.28);
+  border-radius: 1.1rem;
+  background: rgba(18, 26, 47, 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(196, 181, 253, 0.06);
+}
+
+.pillar-icon {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 0.85rem;
+}
+
+.pillar-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.pillar-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* ── New features grid (2-col feature highlights) ── */
+.new-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.new-feature-card {
+  padding: 1.2rem 1.2rem 1.4rem;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 1rem;
+  background: rgba(18, 26, 47, 0.72);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(196, 181, 253, 0.05);
+}
+
+.new-feature-card h4 {
+  font-size: 0.97rem;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  color: var(--accent-light);
+}
+
+.new-feature-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+/* ── Bottom CTA ── */
+.bottom-cta {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: 1.4rem;
+  background: linear-gradient(140deg, rgba(124, 58, 237, 0.12), rgba(109, 40, 217, 0.06));
+}
+
+.bottom-cta h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin-bottom: 0.75rem;
+}
+
+.bottom-cta .lead {
+  margin: 0 auto 1.8rem;
+}
+
+.bottom-cta .cta-row {
+  justify-content: center;
+}
+
+@media (max-width: 780px) {
+  .pillar-grid,
+  .new-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 footer {
   margin-top: 3.6rem;
   padding-top: 2rem;
