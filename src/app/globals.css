@@ -203,6 +203,92 @@ button {
   color: #fee2e2;
 }
 
+.offline-page {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.offline-shell {
+  width: min(100%, 46rem);
+  padding: 2rem;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, rgba(18, 26, 47, 0.92), rgba(12, 16, 30, 0.96));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+}
+
+.offline-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--accent-light);
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.offline-shell h1 {
+  margin-top: 1rem;
+  max-width: 16ch;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+}
+
+.offline-lead {
+  margin-top: 1.2rem;
+  max-width: 52ch;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.offline-website-note {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.offline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.75rem;
+}
+
+.offline-card {
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 1rem;
+  background: rgba(7, 10, 20, 0.45);
+}
+
+.offline-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.offline-list {
+  margin-top: 0.75rem;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+  .offline-shell {
+    padding: 1.35rem;
+    border-radius: 1.2rem;
+  }
+}
+
 .download-gate-overlay {
   position: fixed;
   inset: 0;
@@ -995,99 +1081,6 @@ button {
 
 .downloads-direct-hero {
   max-width: 58rem;
-}
-
-/* ── Pillar cards (3-up feature grid) ── */
-.pillar-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
-}
-
-.pillar-card {
-  padding: 1.6rem 1.4rem;
-  border: 1px solid rgba(124, 58, 237, 0.28);
-  border-radius: 1.1rem;
-  background: rgba(18, 26, 47, 0.72);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(196, 181, 253, 0.06);
-}
-
-.pillar-icon {
-  display: block;
-  font-size: 1.8rem;
-  margin-bottom: 0.85rem;
-}
-
-.pillar-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--ink);
-}
-
-.pillar-card p {
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-/* ── New features grid (2-col feature highlights) ── */
-.new-features-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.new-feature-card {
-  padding: 1.2rem 1.2rem 1.4rem;
-  border: 1px solid rgba(124, 58, 237, 0.22);
-  border-radius: 1rem;
-  background: rgba(18, 26, 47, 0.72);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(196, 181, 253, 0.05);
-}
-
-.new-feature-card h4 {
-  font-size: 0.97rem;
-  font-weight: 700;
-  margin-bottom: 0.45rem;
-  color: var(--accent-light);
-}
-
-.new-feature-card p {
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-/* ── Bottom CTA ── */
-.bottom-cta {
-  text-align: center;
-  padding: 3.5rem 1rem;
-  border: 1px solid rgba(124, 58, 237, 0.25);
-  border-radius: 1.4rem;
-  background: linear-gradient(140deg, rgba(124, 58, 237, 0.12), rgba(109, 40, 217, 0.06));
-}
-
-.bottom-cta h2 {
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  margin-bottom: 0.75rem;
-}
-
-.bottom-cta .lead {
-  margin: 0 auto 1.8rem;
-}
-
-.bottom-cta .cta-row {
-  justify-content: center;
-}
-
-@media (max-width: 780px) {
-  .pillar-grid,
-  .new-features-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 footer {

@@ -32,10 +32,6 @@ const STAGEFLO_FEEDBACK_URL = "https://stageflo.app/feedback/";
 const STAGEFLO_BUG_REPORT_URL = "https://github.com/zacstudios/Stageflo.app/issues/new?template=bug_report.md&title=Bug%3A+";
 const STAGEFLO_FEATURE_REQUEST_URL = "https://github.com/zacstudios/Stageflo.app/issues/new?template=feature_request.md&title=Feature%3A+";
 
-const CURRENT_VERSION = "2.0.0";
-const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
-const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
-
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -80,11 +76,8 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
 
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
                     <tr>
-                      <td style="padding-right:10px;">
-                        <a href="${MAC_DOWNLOAD_URL}" style="display:inline-block;padding:12px 20px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">&#xF8FF; Download for Mac</a>
-                      </td>
                       <td>
-                        <a href="${WINDOWS_DOWNLOAD_URL}" style="display:inline-block;padding:12px 20px;border-radius:999px;background:#1e3a5f;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">&#x229E; Download for Windows</a>
+                        <a href="${safeDownloadUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">Download StageFlo</a>
                       </td>
                     </tr>
                   </table>

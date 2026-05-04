@@ -32,6 +32,25 @@ This outputs static files to `out/`.
 2. GitHub Actions runs `.github/workflows/deploy.yml`.
 3. The generated `out/` artifact is deployed to GitHub Pages.
 
+## Tunnel Offline Fallback
+
+This repo now includes a static offline page at `/offline/` for StageFlo public links.
+
+If you want `*.stageflo.app` tunnel URLs to redirect there when the desktop app or Cloudflare tunnel is down, use a Cloudflare Worker rather than a plain Redirect Rule. Redirect Rules run before the origin response is known, so they cannot reliably react to tunnel outage responses.
+
+Included example worker:
+
+- `scripts/cloudflare-tunnel-offline-worker.mjs`
+
+Recommended Cloudflare setup:
+
+1. Create a Worker using `scripts/cloudflare-tunnel-offline-worker.mjs`.
+2. Set Worker env var `OFFLINE_PAGE_URL=https://stageflo.app/offline/`.
+3. Attach a route such as `*.stageflo.app/*`.
+4. Keep `stageflo.app/*` served normally so the offline page itself never loops.
+
+The worker passes through healthy requests and issues a `302` redirect to `/offline/` when the tunnel returns a common origin-down status (`502`, `503`, `504`, `530`) or the fetch itself fails.
+
 ## Download Lead Capture (GitHub Pages)
 
 This site is static on GitHub Pages, so downloads can only be gated with a client-side form that posts to an external endpoint.

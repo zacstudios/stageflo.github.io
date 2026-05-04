@@ -1,0 +1,12 @@
+name = "stageflo-tunnel-offline"
+main = "scripts/cloudflare-tunnel-offline-worker.mjs"
+compatibility_date = "2026-05-04"
+workers_dev = false
+
+routes = [
+  { pattern = "stageflo.app/offline*", zone_name = "stageflo.app" },
+  { pattern = "*.stageflo.app/*", zone_name = "stageflo.app" },
+]
+
+[vars]
+OFFLINE_PAGE_URL = "https://stageflo.app/offline/"

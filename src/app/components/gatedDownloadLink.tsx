@@ -1,11 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-
-const CURRENT_VERSION = "2.0.0";
-const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
-const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 
 type GatedDownloadLinkProps = {
   href: string;
@@ -38,7 +34,6 @@ export default function GatedDownloadLink({
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isMounted, setIsMounted] = useState(false);
-  const hiddenLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -116,10 +111,11 @@ export default function GatedDownloadLink({
       }
 
       setSubmitState("success");
-      // Trigger download via hidden anchor to avoid popup blocker (window.open after async is blocked)
-      if (hiddenLinkRef.current) {
-        hiddenLinkRef.current.click();
-      }
+      window.open(href, "_blank", "noopener,noreferrer");
+
+      window.setTimeout(() => {
+        resetAndClose();
+      }, 900);
     } catch {
       setSubmitState("error");
       setErrorMessage("We could not submit your details right now. Please try again.");
@@ -128,8 +124,6 @@ export default function GatedDownloadLink({
 
   return (
     <>
-      {/* Hidden anchor used to trigger download after async form submission (avoids popup blocker) */}
-      <a ref={hiddenLinkRef} href={href} download aria-hidden="true" tabIndex={-1} style={{ display: "none" }} />
       <a
         href={href}
         className={className ?? "download-gate-inline-link"}
@@ -236,15 +230,7 @@ export default function GatedDownloadLink({
               </label>
 
               {submitState === "error" ? <p className="download-gate-error">{errorMessage}</p> : null}
-              {submitState === "success" ? (
-                <div className="download-gate-success">
-                  <p style={{ marginBottom: "12px" }}>Done! Click your platform to download:</p>
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                    <a href={MAC_DOWNLOAD_URL} download style={{ display: "inline-block", padding: "10px 18px", borderRadius: "999px", background: "#7c3aed", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: "14px" }}>Download for Mac</a>
-                    <a href={WINDOWS_DOWNLOAD_URL} download style={{ display: "inline-block", padding: "10px 18px", borderRadius: "999px", background: "#1e3a5f", color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: "14px" }}>Download for Windows</a>
-                  </div>
-                </div>
-              ) : null}
+              {submitState === "success" ? <p className="download-gate-success">Success. Your download is starting.</p> : null}
 
               <div className="download-gate-actions">
                 <button type="button" className="button button-secondary" onClick={resetAndClose} disabled={submitState === "submitting"}>
