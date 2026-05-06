@@ -11,6 +11,13 @@ const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/release
 
 const pillars = [
   {
+    icon: "✦",
+    accent: true,
+    title: "AI Semantic Search",
+    desc: "Search your Bible and song library by meaning, not just exact words. Works offline in English, Malayalam, Hindi, Tamil, Telugu and more.",
+    badge: "New in 2.0",
+  },
+  {
     icon: "🎵",
     title: "Songs & Scripture",
     desc: "Instant search across your song library and Bible. Present lyrics and verses in seconds.",
@@ -27,16 +34,31 @@ const pillars = [
   },
 ];
 
+const aiFeatures = [
+  { icon: "🔍", text: "Search by meaning — \"women at the well\" finds John 4 without exact words" },
+  { icon: "🌏", text: "Multilingual — works across English, Malayalam, Hindi, Tamil, Telugu" },
+  { icon: "📴", text: "Fully offline — 117 MB model runs in-process, no Ollama or internet needed" },
+  { icon: "⚡", text: "~20 ms per query after warm-up, results cached locally for instant re-searches" },
+  { icon: "📖", text: "Bible and song library both indexed automatically in the background" },
+  { icon: "🤖", text: "AI tab auto-activates in Song Library when keyword search returns nothing" },
+];
+
 const newFeatures = [
   {
+    label: "Offline AI Search",
+    badge: "New",
+    desc: "Semantic search powered by multilingual-e5-small via ONNX — no cloud, no Ollama. Just type what you're looking for.",
+  },
+  {
     label: "Public Link for Stage View & Remote",
-    desc: "One click generates a live public URL (via Cloudflare) for your stage view and remote controller — shareable anywhere, no account needed. QR codes included.",
+    desc: "One click generates a live public URL (via Cloudflare) for your stage view and remote controller — shareable anywhere, no account needed.",
   },
   { label: "Remote Controller", desc: "Control slides from any phone or tablet on the same network — or from anywhere via the public link." },
   { label: "OBS Lower-Thirds", desc: "Push song titles and speaker names directly into your stream." },
   { label: "Zefania XML Bible Import", desc: "Import any Zefania-format Bible XML directly in the app — no external tools." },
   { label: "Live Text Edit", desc: "Fix a typo mid-service without leaving the live view." },
   { label: "Template System", desc: "Design once, apply across every slide and service." },
+  { label: "Output Lock", desc: "Lock output windows to prevent accidental exposure. Press Cmd+L to lock, Cmd+R to restore." },
 ];
 
 const screenshotCards = [
@@ -181,10 +203,13 @@ export default async function Home() {
 
         {/* ── Hero ── */}
         <section className="hero" id="home">
-          <p className="eyebrow">Free · Open-source · v{latestMac.version}</p>
+          <div className="hero-badges">
+            <p className="eyebrow">Free · Open-source · v{latestMac.version}</p>
+            <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
+          </div>
           <h1>Worship software built for your whole team.</h1>
           <p className="lead">
-            Songs, scripture, media, stage display, and OBS lower-thirds — all from one fast workflow. Free forever, for every church.
+            Songs, scripture, media, stage display, and OBS lower-thirds — all from one fast workflow. Now with offline AI semantic search. Free forever, for every church.
           </p>
           <div className="cta-row">
             <GatedDownloadLink
@@ -206,16 +231,46 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── 3 Pillars ── */}
+        {/* ── Feature Pillars ── */}
         <section className="pillars section-block" id="features">
           <div className="pillar-grid">
             {pillars.map((p) => (
-              <article key={p.title} className="pillar-card reveal">
-                <span className="pillar-icon" aria-hidden="true">{p.icon}</span>
+              <article key={p.title} className={`pillar-card reveal${p.accent ? " pillar-card-accent" : ""}`}>
+                <div className="pillar-card-top">
+                  <span className="pillar-icon" aria-hidden="true">{p.icon}</span>
+                  {p.badge && <span className="pillar-badge">{p.badge}</span>}
+                </div>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        {/* ── AI Spotlight ── */}
+        <section className="ai-spotlight section-block" id="ai-search">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow eyebrow-ai">New in 2.0</span>
+              <h2>Search by meaning, not just words.</h2>
+              <p className="lead">
+                Type a theme, story, or feeling — StageFlo finds the right passages and songs across every language you work in. No internet required.
+              </p>
+            </div>
+            <div className="ai-query-examples">
+              <div className="ai-query-chip">women at the well → <span>John 4:1–26</span></div>
+              <div className="ai-query-chip">prodigal son → <span>Luke 15:11–32</span></div>
+              <div className="ai-query-chip">ദൈവ സ്നേഹം → <span>Malayalam songs</span></div>
+              <div className="ai-query-chip">grace and mercy → <span>Songs + Psalms</span></div>
+            </div>
+            <ul className="ai-feature-list">
+              {aiFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -237,16 +292,20 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── New in 2.0 ── */}
+        {/* ── What's New in 2.0 ── */}
         <section className="new-features section-block" id="whats-new">
           <div className="section-head">
             <p className="eyebrow">What&rsquo;s new in 2.0</p>
             <h2>More power, less complexity.</h2>
+            <p>Eight new capabilities — from offline AI search to live remote control — shipped in a single free update.</p>
           </div>
           <div className="new-features-grid">
             {newFeatures.map((f) => (
-              <article key={f.label} className="new-feature-card reveal">
-                <h4>{f.label}</h4>
+              <article key={f.label} className={`new-feature-card reveal${f.badge ? " new-feature-card-highlight" : ""}`}>
+                <div className="new-feature-card-top">
+                  <h4>{f.label}</h4>
+                  {f.badge && <span className="new-feature-badge">{f.badge}</span>}
+                </div>
                 <p>{f.desc}</p>
               </article>
             ))}
