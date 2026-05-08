@@ -222,25 +222,33 @@ Deno.serve(async (request) => {
 
   const { data: insertedLead, error } = await supabase
     .from("download_leads")
-    .insert({
-      name,
-      email,
-      marketing_opt_in: Boolean(payload.marketingOptIn),
-      consent: true,
-      source,
-      download_url: downloadUrl,
-      page,
-      submitted_at: submittedAt,
-      user_agent: userAgent,
-      referrer,
-      email_status: "pending",
-      email_provider: "resend",
-    })
+    .upsert(
+      {
+        name,
+        email,
+        marketing_opt_in: Boolean(payload.marketingOptIn),
+        consent: true,
+        source,
+        download_url: downloadUrl,
+        page,
+        submitted_at: submittedAt,
+        user_agent: userAgent,
+        referrer,
+        email_status: "pending",
+        email_provider: "resend",
+      },
+      { onConflict: "email", ignoreDuplicates: true }
+    )
     .select("id")
-    .single();
+    .maybeSingle();
 
   if (error) {
     return json({ error: "Failed to store lead" }, 500);
+  }
+
+  // Email already registered — return download URL without resending welcome email
+  if (!insertedLead) {
+    return json({ ok: true, emailQueued: false, emailStatus: "already_registered" });
   }
 
   const emailResult = await sendThankYouEmail({ email, name, downloadUrl });
