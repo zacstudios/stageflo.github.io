@@ -170,27 +170,35 @@ function buildAnnouncementEmailHtml(lead: Pick<LeadRow, "name">) {
                 </tr>
               </table>
 
+              <!-- ── Reinstall notice ── -->
+              <div style="margin:0 0 20px;padding:14px 16px;border-radius:10px;background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.3);">
+                <p style="margin:0 0 4px;font-size:13px;font-weight:700;color:#fef08a;">&#128260; &nbsp;Already using StageFlo?</p>
+                <p style="margin:0;font-size:13px;line-height:1.65;color:#94a3b8;">
+                  StageFlo doesn&rsquo;t auto-update yet &mdash; please <strong style="color:#cbd5e1;">download and reinstall</strong> to get version 2.0 and all the new features above.
+                </p>
+              </div>
+
               <!-- ── Download CTA ── -->
               <p style="margin:0 0 14px;font-size:15px;font-weight:700;color:#f1f5f9;">
-                Get the update &mdash; it&rsquo;s free
+                &#11015;&#65039; &nbsp;Get 2.0 &mdash; it&rsquo;s free
               </p>
               <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 6px;">
                 <tr>
                   <td style="padding-right:10px;">
                     <a href="${STAGEFLO_MAC_DOWNLOAD_URL}"
                        style="display:inline-block;padding:11px 20px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:13px;">
-                      Download for Mac
+                      &#63743; &nbsp;Download for Mac
                     </a>
                   </td>
                   <td>
                     <a href="${STAGEFLO_WIN_DOWNLOAD_URL}"
                        style="display:inline-block;padding:11px 20px;border-radius:999px;background:rgba(124,58,237,0.22);border:1px solid rgba(196,181,253,0.35);color:#e9d5ff;text-decoration:none;font-weight:700;font-size:13px;">
-                      Download for Windows
+                      &#128442; &nbsp;Download for Windows
                     </a>
                   </td>
                 </tr>
               </table>
-              <p style="margin:0 0 24px;font-size:12px;color:#64748b;">
+              <p style="margin:8px 0 24px;font-size:12px;color:#64748b;">
                 Or visit <a href="${STAGEFLO_HOME_URL}" style="color:#c4b5fd;text-decoration:none;">stageflo.app</a>
               </p>
 
