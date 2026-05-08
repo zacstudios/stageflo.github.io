@@ -18,6 +18,13 @@ const pillars = [
     badge: "New in 2.0",
   },
   {
+    icon: "📡",
+    accentTeal: true,
+    title: "Remote Stage View",
+    desc: "One click generates a public internet link for your stage display and remote controller — share it with musicians anywhere, no account needed.",
+    badge: "New in 2.0",
+  },
+  {
     icon: "🎵",
     title: "Songs & Scripture",
     desc: "Instant search across your song library and Bible. Present lyrics and verses in seconds.",
@@ -43,6 +50,15 @@ const aiFeatures = [
   { icon: "🤖", text: "AI tab auto-activates in Song Library when keyword search returns nothing" },
 ];
 
+const remoteFeatures = [
+  { icon: "🔗", text: "One click — StageFlo generates a public URL via Cloudflare Tunnel instantly" },
+  { icon: "🌍", text: "Works over the internet — send the link to musicians or speakers anywhere" },
+  { icon: "📱", text: "Stage display shows current slide, next slide, and notes on any phone or tablet" },
+  { icon: "🎛️", text: "Remote controller lets anyone advance slides or mute output from their device" },
+  { icon: "🔒", text: "No account, no port-forwarding, no static IP — tunnel is created on demand" },
+  { icon: "⚡", text: "Low-latency sync — stage view updates within milliseconds of each slide change" },
+];
+
 const newFeatures = [
   {
     label: "Offline AI Search",
@@ -50,10 +66,14 @@ const newFeatures = [
     desc: "Semantic search powered by multilingual-e5-small via ONNX — no cloud, no Ollama. Just type what you're looking for.",
   },
   {
-    label: "Public Link for Stage View & Remote",
+    label: "Remote Stage View over Internet",
+    badge: "New",
     desc: "One click generates a live public URL (via Cloudflare) for your stage view and remote controller — shareable anywhere, no account needed.",
   },
-  { label: "Remote Controller", desc: "Control slides from any phone or tablet on the same network — or from anywhere via the public link." },
+  {
+    label: "Remote Controller",
+    desc: "Control slides from any phone or tablet on the same network — or from anywhere via the public link.",
+  },
   { label: "OBS Lower-Thirds", desc: "Push song titles and speaker names directly into your stream." },
   { label: "Zefania XML Bible Import", desc: "Import any Zefania-format Bible XML directly in the app — no external tools." },
   { label: "Live Text Edit", desc: "Fix a typo mid-service without leaving the live view." },
@@ -205,11 +225,12 @@ export default async function Home() {
         <section className="hero" id="home">
           <div className="hero-badges">
             <p className="eyebrow">Free · Open-source · v{latestMac.version}</p>
-            <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
+              <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
+            <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
           </div>
           <h1>Worship software built for your whole team.</h1>
           <p className="lead">
-            Songs, scripture, media, stage display, and OBS lower-thirds — all from one fast workflow. Now with offline AI semantic search. Free forever, for every church.
+            Songs, scripture, media, stage display, and OBS lower-thirds — all from one fast workflow. Now with offline AI semantic search and remote stage view over the internet. Free forever, for every church.
           </p>
           <div className="cta-row">
             <GatedDownloadLink
@@ -235,7 +256,7 @@ export default async function Home() {
         <section className="pillars section-block" id="features">
           <div className="pillar-grid">
             {pillars.map((p) => (
-              <article key={p.title} className={`pillar-card reveal${p.accent ? " pillar-card-accent" : ""}`}>
+              <article key={p.title} className={`pillar-card reveal${p.accent ? " pillar-card-accent" : ""}${p.accentTeal ? " pillar-card-accent-teal" : ""}`}>
                 <div className="pillar-card-top">
                   <span className="pillar-icon" aria-hidden="true">{p.icon}</span>
                   {p.badge && <span className="pillar-badge">{p.badge}</span>}
@@ -265,6 +286,27 @@ export default async function Home() {
             </div>
             <ul className="ai-feature-list">
               {aiFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Remote Stage View Spotlight ── */}
+        <section className="remote-spotlight section-block" id="remote-stage">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow eyebrow-remote">New in 2.0</span>
+              <h2>Your stage, anywhere in the world.</h2>
+              <p className="lead">
+                StageFlo generates a secure public internet link for your stage display and remote controller in one click — no account, no port-forwarding, no static IP. Send it to musicians before the service starts.
+              </p>
+            </div>
+            <ul className="remote-feature-list">
+              {remoteFeatures.map((f) => (
                 <li key={f.text}>
                   <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
                   <span>{f.text}</span>
