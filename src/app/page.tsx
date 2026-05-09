@@ -188,7 +188,7 @@ export default async function Home() {
     applicationCategory: "MultimediaApplication",
     operatingSystem: "macOS, Windows, Linux",
     description:
-      "Open-source worship presentation software for songs, scripture, media, overlays, and multi-screen outputs.",
+      "StageFlo by Zac Studios Ltd for songs, scripture, media, overlays, and multi-screen outputs.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -215,6 +215,7 @@ export default async function Home() {
           <a href="#features">Features</a>
           <a href="#screenshots">Screenshots</a>
           <Link href="/docs/introduction/">Docs</Link>
+          <Link href="/supporters/">Supporters</Link>
           <a href="/feedback/">Feedback</a>
         </nav>
       </header>
@@ -224,7 +225,7 @@ export default async function Home() {
         {/* ── Hero ── */}
         <section className="hero" id="home">
           <div className="hero-badges">
-            <p className="eyebrow">Free · Open-source · v{latestMac.version}</p>
+            <p className="eyebrow">StageFlo by Zac Studios Ltd · v{latestMac.version}</p>
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
           </div>
@@ -381,11 +382,22 @@ export default async function Home() {
       </main>
 
       <footer>
-        <p>StageFlo &mdash; Free worship presentation software.</p>
+        <div className="footer-company">
+          <Image
+            src="/brand/zac-studios-logo.png"
+            alt="Zac Studios Ltd"
+            width={150}
+            height={46}
+            className="company-logo"
+          />
+          <p>StageFlo by Zac Studios Ltd.</p>
+        </div>
         <small>
           <a href="/feedback/">Feedback</a>
           {" · "}
           <Link href="/docs/introduction/">Docs</Link>
+          {" · "}
+          <Link href="/supporters/">Supporters</Link>
           {" · "}
           <a href="https://github.com/zacstudios/Stageflo.app" target="_blank" rel="noopener noreferrer">GitHub</a>
           {" · "}

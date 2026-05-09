@@ -5,14 +5,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "StageFlo Feedback and Bug Reports",
   description:
-    "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+    "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
   alternates: {
     canonical: "/feedback/",
   },
   openGraph: {
     title: "StageFlo Feedback and Bug Reports",
     description:
-      "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
     url: "/feedback/",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StageFlo Feedback and Bug Reports",
     description:
-      "Report StageFlo bugs, request features, and share feedback with the StageFlo community.",
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
   },
 };
 
@@ -110,7 +110,7 @@ export default function Feedback() {
             <article className="install-card reveal">
               <h3>Join Discussions</h3>
               <p style={{ color: "var(--muted)", lineHeight: "1.55" }}>
-                Connect with the community, ask questions, and share ideas in the project repository.
+                Connect with the StageFlo team and users, ask questions, and share ideas in the project repository.
               </p>
               <a
                 href="https://github.com/zacstudios/Stageflo.app"
@@ -155,8 +155,21 @@ export default function Feedback() {
       </main>
 
       <footer>
-        <p>StageFlo</p>
-        <small>Open-source worship presentation software for live services.</small>
+        <div className="footer-company">
+          <Image
+            src="/brand/zac-studios-logo.png"
+            alt="Zac Studios Ltd"
+            width={150}
+            height={46}
+            className="company-logo"
+          />
+          <p>StageFlo by Zac Studios Ltd.</p>
+        </div>
+        <small>
+          <a href="https://github.com/zacstudios/Stageflo.app" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {" · "}
+          <a href="mailto:zac@stageflo.app">zac@stageflo.app</a>
+        </small>
       </footer>
     </div>
   );
