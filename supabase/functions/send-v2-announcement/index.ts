@@ -38,9 +38,9 @@ const corsHeaders = {
 
 const STAGEFLO_HOME_URL = "https://stageflo.app/";
 const STAGEFLO_MAC_DOWNLOAD_URL =
-  "https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.0/stageflo-2.0.0.dmg";
+  "https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.1/stageflo-2.0.1.dmg";
 const STAGEFLO_WIN_DOWNLOAD_URL =
-  "https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.0/stageflo-2.0.0-setup.exe";
+  "https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.1/stageflo-2.0.1-setup.exe";
 const STAGEFLO_FEEDBACK_URL = "https://stageflo.app/feedback/";
 
 function json(body: unknown, status = 200) {

@@ -5,7 +5,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import GatedDownloadLink from "./components/gatedDownloadLink";
 
-const CURRENT_VERSION = "1.65.0";
+const CURRENT_VERSION = "2.0.1";
 const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
 const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 
