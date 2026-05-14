@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const CURRENT_VERSION = "2.0.1";
-export const RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
+export const CURRENT_VERSION = "2.0.2";
+export const RELEASE_BASE_URL = "https://github.com/zacstudios/stageflo.github.io/releases/latest/download";
 export const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
 export const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 export const SONGS_XML_ML_URL = `${RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
