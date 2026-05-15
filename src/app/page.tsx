@@ -143,24 +143,40 @@ const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleas
 };
 
 export const metadata: Metadata = {
-  title: "StageFlo | Worship Presentation Software",
+  title: "StageFlo | Free Worship Presentation Software for Churches",
   description:
-    "Run worship lyrics, Bible verses, media, overlays, and multi-screen outputs from one fast live-service workflow.",
+    "Free worship presentation software for Mac and Windows. Run songs, Bible verses, media, multi-screen output, OBS lower-thirds, and remote stage view — all from one fast workflow. Free forever for every church.",
+  keywords: [
+    "worship presentation software",
+    "church presentation software",
+    "free worship software",
+    "lyric projection software",
+    "ProPresenter alternative",
+    "EasyWorship alternative",
+    "OpenLP alternative",
+    "Bible presentation software",
+    "stage display software",
+    "OBS lower thirds worship",
+    "multilingual worship software",
+    "offline worship software",
+    "church software Mac",
+    "church software Windows",
+  ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "StageFlo | Worship Presentation Software",
+    title: "StageFlo | Free Worship Presentation Software",
     description:
-      "Single workflow for operator, projector, stage, and lower-third output.",
+      "Songs, scripture, media, stage display, OBS lower-thirds, and remote stage view — one free app for your whole worship team.",
     url: "/",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo | Worship Presentation Software",
+    title: "StageFlo | Free Worship Presentation Software",
     description:
-      "Single workflow for operator, projector, stage, and lower-third output.",
+      "Songs, scripture, media, stage display, OBS lower-thirds, and remote stage view — one free app for your whole worship team.",
   },
 };
 
@@ -186,9 +202,9 @@ export default async function Home() {
     "@type": "SoftwareApplication",
     name: "StageFlo",
     applicationCategory: "MultimediaApplication",
-    operatingSystem: "macOS, Windows, Linux",
+    operatingSystem: "macOS, Windows",
     description:
-      "StageFlo by Zac Studios Ltd for songs, scripture, media, overlays, and multi-screen outputs.",
+      "Free worship presentation software for churches. Run songs, Bible verses, media, stage display, OBS lower-thirds, and remote stage view from one fast workflow.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -196,6 +212,75 @@ export default async function Home() {
     },
     url: "https://stageflo.app/",
     downloadUrl: [latestMacDownloadUrl, latestWindowsDownloadUrl],
+    softwareVersion: CURRENT_VERSION,
+    author: {
+      "@type": "Organization",
+      name: "Zac Studios Ltd",
+      url: "https://stageflo.app/",
+    },
+  };
+
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Is StageFlo free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. StageFlo is free forever for every church — no subscription, no feature gating, no account required for core use.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What platforms does StageFlo support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "StageFlo runs on macOS (Apple Silicon and Intel) and Windows 10/11.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Does StageFlo work offline?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. StageFlo works fully offline, including its AI semantic search feature which runs a local ONNX model in-process — no internet connection required during a service.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What languages does StageFlo support?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "StageFlo supports multilingual services. The AI search works across English, Malayalam, Hindi, Tamil, Telugu, and more. You can run bilingual or multilingual services with different languages on different screens.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does the remote stage view work?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "With one click, StageFlo generates a public internet URL via Cloudflare Tunnel for your stage display and remote controller. Share it with musicians or speakers anywhere — no account, no port-forwarding, no static IP needed.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I use StageFlo for OBS streaming?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. StageFlo has a built-in OBS lower-thirds output, letting you push song titles and speaker names directly into your livestream.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is StageFlo different from ProPresenter or EasyWorship?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "StageFlo is completely free (no subscription), includes offline AI semantic search for Bible and songs, and offers one-click internet-accessible stage view via Cloudflare Tunnel — features not available in ProPresenter or EasyWorship without additional cost or setup.",
+        },
+      },
+    ],
   };
 
   return (
@@ -204,6 +289,12 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(softwareAppStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
         }}
       />
       <header className="top-nav">
@@ -351,6 +442,21 @@ export default async function Home() {
                 </div>
                 <p>{f.desc}</p>
               </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="faq section-block" id="faq">
+          <div className="section-head">
+            <h2>Frequently asked questions</h2>
+          </div>
+          <div className="faq-list">
+            {faqStructuredData.mainEntity.map((item) => (
+              <details key={item.name} className="faq-item">
+                <summary>{item.name}</summary>
+                <p>{item.acceptedAnswer.text}</p>
+              </details>
             ))}
           </div>
         </section>

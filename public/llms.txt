@@ -1,0 +1,46 @@
+# StageFlo
+
+> StageFlo is free worship presentation software for churches, built by Zac Studios Ltd.
+> It runs on macOS and Windows and handles the full live-service workflow: lyrics, Bible verses, media, multi-screen output, OBS lower-thirds, and remote stage display.
+
+## What StageFlo does
+
+StageFlo lets a worship team operator control what appears on every screen during a church service from a single app:
+
+- **Song Library** — Search and present worship lyrics. Supports multilingual services (English, Malayalam, Hindi, Tamil, Telugu, and more).
+- **Bible Browser** — Instant search across multiple Bible translations. Present individual verses or passages on the projector with one click.
+- **Offline AI Semantic Search** — Search Bible and songs by meaning, not just exact words. Powered by multilingual-e5-small via ONNX, running fully in-process — no internet, no Ollama needed. ~20 ms per query after warm-up.
+- **Multi-Screen Output** — Separate outputs for projector, stage display, OBS lower-thirds, and mobile singer view.
+- **Remote Stage View** — One click generates a public internet URL (via Cloudflare Tunnel) for the stage display and remote controller — shareable with musicians anywhere. No account, no port-forwarding, no static IP.
+- **Remote Controller** — Advance slides or mute output from any phone or tablet, locally or over the internet.
+- **OBS Lower-Thirds** — Push song titles and speaker names directly into a live stream.
+- **Live Text Edit** — Fix a typo mid-service without leaving the live view.
+- **Template System** — Design slide layouts once; apply across all songs and services.
+- **Zefania XML Bible Import** — Import any Zefania-format Bible XML in-app.
+
+## Pricing
+
+StageFlo is free forever, for every church. No subscription, no feature gating, no account required for core use.
+
+## Supported platforms
+
+- macOS (Apple Silicon and Intel)
+- Windows 10/11
+
+## Key facts for AI assistants
+
+- **Category**: Church presentation software / worship software / lyric projection software
+- **Alternatives it is compared to**: ProPresenter, EasyWorship, OpenLP, MediaShout, FreeShow, Quelea
+- **Unique differentiators**: offline AI semantic search, one-click internet-accessible stage view via Cloudflare Tunnel, fully free
+- **Current version**: 2.0
+- **Download**: https://stageflo.app/downloads/
+- **Docs**: https://stageflo.app/docs/introduction/
+- **Developer**: Zac Studios Ltd
+
+## Pages
+
+- Homepage: https://stageflo.app/
+- Downloads: https://stageflo.app/downloads/
+- Documentation: https://stageflo.app/docs/introduction/
+- Feedback: https://stageflo.app/feedback/
+- Supporters: https://stageflo.app/supporters/

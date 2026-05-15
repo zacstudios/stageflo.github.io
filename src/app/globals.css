@@ -74,6 +74,55 @@ button {
   margin-top: 4.8rem;
 }
 
+/* ── FAQ ── */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border: 1px solid rgba(196, 181, 253, 0.15);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(124, 58, 237, 0.04);
+}
+
+.faq-item summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 1.5rem;
+  color: var(--text-primary, #f5f3ff);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: rgba(196, 181, 253, 0.6);
+  font-weight: 400;
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  margin-top: 0.65rem;
+  color: var(--text-secondary, rgba(245, 243, 255, 0.7));
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
 .top-nav {
   position: sticky;
   top: 0.7rem;
