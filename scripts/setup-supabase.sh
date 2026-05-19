@@ -92,6 +92,18 @@ supabase functions deploy capture-download-lead \
   --no-verify-jwt \
   --use-api
 
+echo "Deploying capture-app-usage Edge Function..."
+supabase functions deploy capture-app-usage \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
+echo "Deploying usage-admin Edge Function..."
+supabase functions deploy usage-admin \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
 echo "Deploying download-leads-admin Edge Function..."
 supabase functions deploy download-leads-admin \
   --project-ref "$PROJECT_REF" \

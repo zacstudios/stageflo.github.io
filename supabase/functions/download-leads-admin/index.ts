@@ -20,6 +20,19 @@ type LeadRecord = {
   email_attempt_count: number;
 };
 
+type AppInstallRecord = {
+  install_id: string;
+  last_version: string;
+  last_seen_at: string;
+};
+
+type UsageSummary = {
+  totalInstalls: number;
+  active7d: number;
+  active30d: number;
+  versionCounts: Array<{ version: string; installs: number }>;
+};
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-admin-key",
@@ -58,6 +71,38 @@ function getEnv() {
 function isAuthorized(request: Request, adminApiKey: string) {
   const key = request.headers.get("x-admin-key")?.trim();
   return Boolean(key) && key === adminApiKey;
+}
+
+function buildUsageSummary(rows: AppInstallRecord[]): UsageSummary {
+  const now = Date.now();
+  const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+  const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+
+  let active7d = 0;
+  let active30d = 0;
+  const versionCounts = new Map<string, number>();
+
+  for (const row of rows) {
+    const parsedTime = Date.parse(row.last_seen_at);
+    const version = row.last_version?.trim() || "unknown";
+
+    versionCounts.set(version, (versionCounts.get(version) ?? 0) + 1);
+
+    if (!Number.isNaN(parsedTime)) {
+      const ageMs = now - parsedTime;
+      if (ageMs <= thirtyDaysMs) active30d += 1;
+      if (ageMs <= sevenDaysMs) active7d += 1;
+    }
+  }
+
+  return {
+    totalInstalls: rows.length,
+    active7d,
+    active30d,
+    versionCounts: Array.from(versionCounts.entries())
+      .map(([version, installs]) => ({ version, installs }))
+      .sort((a, b) => b.installs - a.installs || b.version.localeCompare(a.version)),
+  };
 }
 
 function escapeHtml(value: string) {
@@ -226,7 +271,21 @@ Deno.serve(async (request) => {
       return json({ error: "Failed to load leads" }, 500);
     }
 
-    return json({ ok: true, leads: data ?? [] });
+    const { data: installRows, error: usageError } = await supabase
+      .from("app_installations")
+      .select("install_id,last_version,last_seen_at")
+      .limit(10000)
+      .returns<AppInstallRecord[]>();
+
+    if (usageError) {
+      return json({ error: "Failed to load usage summary" }, 500);
+    }
+
+    return json({
+      ok: true,
+      leads: data ?? [],
+      usage: buildUsageSummary(installRows ?? []),
+    });
   }
 
   if (request.method !== "POST") {

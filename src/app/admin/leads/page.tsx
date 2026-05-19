@@ -20,6 +20,13 @@ type LeadRow = {
   email_provider_message_id: string;
 };
 
+type UsageSummary = {
+  totalInstalls: number;
+  active7d: number;
+  active30d: number;
+  versionCounts: Array<{ version: string; installs: number }>;
+};
+
 type LoadState = "idle" | "loading" | "error";
 
 const CAPTURE_ENDPOINT = process.env.NEXT_PUBLIC_SUPABASE_FUNCTION_URL?.trim() || "";
@@ -39,6 +46,7 @@ export default function LeadsAdminPage() {
   const [statusFilter, setStatusFilter] = useState<"" | EmailStatus>("");
   const [query, setQuery] = useState("");
   const [leads, setLeads] = useState<LeadRow[]>([]);
+  const [usage, setUsage] = useState<UsageSummary | null>(null);
   const [loadState, setLoadState] = useState<LoadState>("idle");
   const [error, setError] = useState("");
   const [retryingId, setRetryingId] = useState("");
@@ -80,6 +88,23 @@ export default function LeadsAdminPage() {
       }
 
       setLeads(Array.isArray(data?.leads) ? data.leads : []);
+      setUsage(
+        data?.usage && typeof data.usage === "object"
+          ? {
+              totalInstalls: Number(data.usage.totalInstalls ?? 0),
+              active7d: Number(data.usage.active7d ?? 0),
+              active30d: Number(data.usage.active30d ?? 0),
+              versionCounts: Array.isArray(data.usage.versionCounts)
+                ? data.usage.versionCounts
+                    .map((row: { version?: unknown; installs?: unknown }) => ({
+                      version: typeof row.version === "string" ? row.version : "unknown",
+                      installs: Number(row.installs ?? 0),
+                    }))
+                    .filter((row: { version: string; installs: number }) => Number.isFinite(row.installs))
+                : [],
+            }
+          : null
+      );
       setLoadState("idle");
     } catch (loadError) {
       setLoadState("error");
@@ -125,6 +150,9 @@ export default function LeadsAdminPage() {
       <section className="admin-panel">
         <h1>Email Delivery Admin</h1>
         <p>View download leads and retry failed or skipped thank-you emails.</p>
+        <p>
+          Need install/version analytics? <a href="/admin/usage">Open usage dashboard</a>.
+        </p>
 
         <div className="admin-controls">
           <label>
@@ -164,6 +192,48 @@ export default function LeadsAdminPage() {
             {loadState === "loading" ? "Loading..." : "Load Leads"}
           </button>
         </div>
+
+        {usage ? (
+          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Total Installs</th>
+                  <th>Active (7d)</th>
+                  <th>Active (30d)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{usage.totalInstalls}</td>
+                  <td>{usage.active7d}</td>
+                  <td>{usage.active30d}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ) : null}
+
+        {usage && usage.versionCounts.length > 0 ? (
+          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Installs</th>
+                </tr>
+              </thead>
+              <tbody>
+                {usage.versionCounts.map((row) => (
+                  <tr key={row.version}>
+                    <td>{row.version}</td>
+                    <td>{row.installs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
 
         {error ? <p className="admin-error">{error}</p> : null}
 

@@ -51,6 +51,20 @@ Recommended Cloudflare setup:
 
 The worker passes through healthy requests and issues a `302` redirect to `/offline/` when the tunnel returns a common origin-down status (`502`, `503`, `504`, `530`) or the fetch itself fails.
 
+## Desktop Install Tracking
+
+The StageFlo desktop app reports anonymous install and launch activity to Supabase so you can see how many unique installs are active and which app versions are currently in use.
+
+Setup steps:
+
+1. Apply [supabase/migrations/20260519143000_create_app_installations.sql](supabase/migrations/20260519143000_create_app_installations.sql).
+2. Deploy [supabase/functions/capture-app-usage/index.ts](supabase/functions/capture-app-usage/index.ts).
+3. Deploy [supabase/functions/usage-admin/index.ts](supabase/functions/usage-admin/index.ts) for usage dashboard queries.
+4. Rebuild or release the desktop app so it points at the new usage endpoint.
+
+The desktop app stores a persistent anonymous install ID in user data and reports the current version on every packaged launch. The latest active version for each install is written to `app_installations.last_version`.
+Telemetry also includes tunnel metadata (`tunnel_mode`, `tunnel_active`, `tunnel_hostname`) so you can analyze named/quick tunnel adoption.
+
 ## Download Lead Capture (GitHub Pages)
 
 This site is static on GitHub Pages, so downloads can only be gated with a client-side form that posts to an external endpoint.
@@ -90,7 +104,7 @@ The helper script will:
 
 1. Create or link the Supabase project.
 2. Push the SQL migration.
-3. Deploy `capture-download-lead` with `--no-verify-jwt` so the public website can call it.
+3. Deploy `capture-download-lead`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
 4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
 
 ### Legacy Generic Endpoint Override
