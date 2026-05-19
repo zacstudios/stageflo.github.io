@@ -48,6 +48,11 @@ function formatDate(value: string | null) {
   return date.toLocaleString();
 }
 
+function formatPercent(value: number) {
+  if (!Number.isFinite(value)) return "0%";
+  return `${Math.round(value)}%`;
+}
+
 export default function UsageAdminPage() {
   const [adminKey, setAdminKey] = useState("");
   const [days, setDays] = useState("30");
@@ -66,6 +71,15 @@ export default function UsageAdminPage() {
   const maxDaily = useMemo(() => {
     if (!summary || summary.dailyActive.length === 0) return 1;
     return Math.max(1, ...summary.dailyActive.map((item) => item.installs));
+  }, [summary]);
+
+  const topVersion = useMemo(() => summary?.versionCounts[0] ?? null, [summary]);
+  const topPlatform = useMemo(() => summary?.platformCounts[0] ?? null, [summary]);
+  const topTunnelMode = useMemo(() => summary?.tunnelModeCounts[0] ?? null, [summary]);
+
+  const tunnelCoveragePercent = useMemo(() => {
+    if (!summary || summary.totalInstalls <= 0) return 0;
+    return (summary.tunnelActiveCount / summary.totalInstalls) * 100;
   }, [summary]);
 
   const loadUsage = async () => {
@@ -117,207 +131,218 @@ export default function UsageAdminPage() {
 
   return (
     <main className="admin-page-wrap">
-      <section className="admin-panel">
-        <h1>App Usage Dashboard</h1>
-        <p>Track active installs, versions, platforms, and recent activity trends.</p>
-        <p>
-          Need email lead tools? <a href="/admin/leads">Open leads admin</a>.
-        </p>
-
-        <div className="admin-controls">
-          <label>
-            Admin API Key
-            <input
-              type="password"
-              value={adminKey}
-              onChange={(event) => setAdminKey(event.target.value)}
-              placeholder="Enter ADMIN_API_KEY"
-            />
-          </label>
-
-          <label>
-            Days in Trend
-            <input type="number" min={1} max={120} value={days} onChange={(event) => setDays(event.target.value)} />
-          </label>
-
-          <label>
-            Platform Filter
-            <input
-              type="text"
-              value={platform}
-              onChange={(event) => setPlatform(event.target.value)}
-              placeholder="darwin, win32, linux"
-            />
-          </label>
-
-          <label>
-            Tunnel Mode
-            <input
-              type="text"
-              value={tunnelMode}
-              onChange={(event) => setTunnelMode(event.target.value)}
-              placeholder="named, quick, none"
-            />
-          </label>
+      <section className="admin-panel usage-admin-panel">
+        <div className="usage-hero">
+          <div>
+            <h1>App Usage Dashboard</h1>
+            <p>Modern analytics for installs, activity, version spread, and tunnel adoption.</p>
+          </div>
+          <a className="button button-secondary" href="/admin/leads">
+            Open Leads Admin
+          </a>
         </div>
 
-        <div className="admin-controls">
-          <label>
-            Version Filter
-            <input
-              type="text"
-              value={version}
-              onChange={(event) => setVersion(event.target.value)}
-              placeholder="2.0.4"
-            />
-          </label>
+        <div className="usage-filter-card">
+          <div className="admin-controls usage-controls">
+            <label>
+              Admin API Key
+              <input
+                type="password"
+                value={adminKey}
+                onChange={(event) => setAdminKey(event.target.value)}
+                placeholder="Enter ADMIN_API_KEY"
+              />
+            </label>
 
-          <label>
-            Search
-            <input
-              type="text"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="install id, version, arch"
-            />
-          </label>
+            <label>
+              Days in Trend
+              <input type="number" min={1} max={120} value={days} onChange={(event) => setDays(event.target.value)} />
+            </label>
+
+            <label>
+              Platform
+              <input
+                type="text"
+                value={platform}
+                onChange={(event) => setPlatform(event.target.value)}
+                placeholder="darwin, win32, linux"
+              />
+            </label>
+
+            <label>
+              Tunnel Mode
+              <input
+                type="text"
+                value={tunnelMode}
+                onChange={(event) => setTunnelMode(event.target.value)}
+                placeholder="named, quick, none"
+              />
+            </label>
+
+            <label>
+              Version
+              <input
+                type="text"
+                value={version}
+                onChange={(event) => setVersion(event.target.value)}
+                placeholder="2.0.4"
+              />
+            </label>
+
+            <label>
+              Search
+              <input
+                type="text"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="install id, version, arch"
+              />
+            </label>
+          </div>
+
+          <div className="admin-actions">
+            <button className="button button-primary" onClick={loadUsage} disabled={!canLoad || loadState === "loading"}>
+              {loadState === "loading" ? "Loading..." : "Load Usage"}
+            </button>
+          </div>
         </div>
 
-        <div className="admin-actions">
-          <button className="button button-primary" onClick={loadUsage} disabled={!canLoad || loadState === "loading"}>
-            {loadState === "loading" ? "Loading..." : "Load Usage"}
-          </button>
-        </div>
-
-        {sampled ? <p className="admin-error">Showing a sampled set (limit reached). Narrow filters for exact counts.</p> : null}
+        {sampled ? <p className="admin-error">Showing sampled rows (limit reached). Narrow filters for exact totals.</p> : null}
         {error ? <p className="admin-error">{error}</p> : null}
 
         {summary ? (
-          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
-            <table className="admin-table" style={{ minWidth: "680px" }}>
-              <thead>
-                <tr>
-                  <th>Total Installs</th>
-                  <th>Active 24h</th>
-                  <th>Active 7d</th>
-                  <th>Active 30d</th>
-                  <th>Launches (sum)</th>
-                  <th>Avg launches/install</th>
-                  <th>Tunnel Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{summary.totalInstalls}</td>
-                  <td>{summary.active24h}</td>
-                  <td>{summary.active7d}</td>
-                  <td>{summary.active30d}</td>
-                  <td>{summary.launchCountSum}</td>
-                  <td>{summary.averageLaunchesPerInstall}</td>
-                  <td>{summary.tunnelActiveCount}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        ) : null}
+          <>
+            <div className="usage-kpi-grid">
+              <article className="usage-kpi-card usage-kpi-strong">
+                <span className="usage-kpi-label">Total Installs</span>
+                <strong className="usage-kpi-value">{summary.totalInstalls}</strong>
+              </article>
+              <article className="usage-kpi-card">
+                <span className="usage-kpi-label">Active 24h</span>
+                <strong className="usage-kpi-value">{summary.active24h}</strong>
+              </article>
+              <article className="usage-kpi-card">
+                <span className="usage-kpi-label">Active 7d</span>
+                <strong className="usage-kpi-value">{summary.active7d}</strong>
+              </article>
+              <article className="usage-kpi-card">
+                <span className="usage-kpi-label">Active 30d</span>
+                <strong className="usage-kpi-value">{summary.active30d}</strong>
+              </article>
+              <article className="usage-kpi-card">
+                <span className="usage-kpi-label">Total Launches</span>
+                <strong className="usage-kpi-value">{summary.launchCountSum}</strong>
+              </article>
+              <article className="usage-kpi-card">
+                <span className="usage-kpi-label">Tunnel Adoption</span>
+                <strong className="usage-kpi-value">{formatPercent(tunnelCoveragePercent)}</strong>
+              </article>
+            </div>
 
-        {summary && summary.dailyActive.length > 0 ? (
-          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
-            <table className="admin-table" style={{ minWidth: "680px" }}>
-              <thead>
-                <tr>
-                  <th>Day</th>
-                  <th>Active Installs</th>
-                  <th>Trend</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summary.dailyActive.map((row) => (
-                  <tr key={row.day}>
-                    <td>{row.day}</td>
-                    <td>{row.installs}</td>
-                    <td>
+            <div className="usage-insights-grid">
+              <section className="usage-panel-card">
+                <h3>Daily Activity</h3>
+                <p>Active installs by day for the selected window.</p>
+                <div className="usage-mini-chart">
+                  {summary.dailyActive.map((row) => (
+                    <div key={row.day} className="usage-mini-bar-wrap" title={`${row.day}: ${row.installs}`}>
                       <div
-                        style={{
-                          height: "8px",
-                          width: `${Math.max(2, Math.round((row.installs / maxDaily) * 100))}%`,
-                          background: "linear-gradient(90deg, #7c3aed, #22d3ee)",
-                          borderRadius: "999px",
-                        }}
+                        className="usage-mini-bar"
+                        style={{ height: `${Math.max(6, Math.round((row.installs / maxDaily) * 100))}%` }}
                       />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
+                    </div>
+                  ))}
+                </div>
+                <div className="usage-mini-chart-labels">
+                  <span>{summary.dailyActive[0]?.day ?? "-"}</span>
+                  <span>{summary.dailyActive[summary.dailyActive.length - 1]?.day ?? "-"}</span>
+                </div>
+              </section>
 
-        {summary && summary.versionCounts.length > 0 ? (
-          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
-            <table className="admin-table" style={{ minWidth: "680px" }}>
-              <thead>
-                <tr>
-                  <th>Version</th>
-                  <th>Installs</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summary.versionCounts.map((row) => (
-                  <tr key={row.version}>
-                    <td>{row.version}</td>
-                    <td>{row.installs}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
+              <section className="usage-panel-card">
+                <h3>Top Signals</h3>
+                <p>Fast read of what is currently dominant.</p>
+                <ul className="usage-highlights">
+                  <li>
+                    <span>Top Version</span>
+                    <strong>{topVersion ? `${topVersion.version} (${topVersion.installs})` : "-"}</strong>
+                  </li>
+                  <li>
+                    <span>Top Platform</span>
+                    <strong>{topPlatform ? `${topPlatform.platform} (${topPlatform.installs})` : "-"}</strong>
+                  </li>
+                  <li>
+                    <span>Top Tunnel Mode</span>
+                    <strong>{topTunnelMode ? `${topTunnelMode.mode} (${topTunnelMode.installs})` : "-"}</strong>
+                  </li>
+                  <li>
+                    <span>Avg Launches / Install</span>
+                    <strong>{summary.averageLaunchesPerInstall}</strong>
+                  </li>
+                </ul>
+              </section>
+            </div>
 
-        {summary && summary.platformCounts.length > 0 ? (
-          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
-            <table className="admin-table" style={{ minWidth: "680px" }}>
-              <thead>
-                <tr>
-                  <th>Platform</th>
-                  <th>Installs</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summary.platformCounts.map((row) => (
-                  <tr key={row.platform}>
-                    <td>{row.platform}</td>
-                    <td>{row.installs}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : null}
+            <div className="usage-distribution-grid">
+              <section className="usage-panel-card">
+                <h3>Version Distribution</h3>
+                <div className="usage-distribution-list">
+                  {summary.versionCounts.slice(0, 8).map((row) => (
+                    <div key={row.version} className="usage-distribution-row">
+                      <span>{row.version}</span>
+                      <div className="usage-distribution-track">
+                        <div
+                          className="usage-distribution-fill usage-fill-version"
+                          style={{ width: `${(row.installs / Math.max(1, summary.totalInstalls)) * 100}%` }}
+                        />
+                      </div>
+                      <strong>{row.installs}</strong>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-        {summary && summary.tunnelModeCounts.length > 0 ? (
-          <div className="admin-table-wrap" style={{ marginBottom: "1rem" }}>
-            <table className="admin-table" style={{ minWidth: "680px" }}>
-              <thead>
-                <tr>
-                  <th>Tunnel Mode</th>
-                  <th>Installs</th>
-                </tr>
-              </thead>
-              <tbody>
-                {summary.tunnelModeCounts.map((row) => (
-                  <tr key={row.mode}>
-                    <td>{row.mode}</td>
-                    <td>{row.installs}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              <section className="usage-panel-card">
+                <h3>Platform Distribution</h3>
+                <div className="usage-distribution-list">
+                  {summary.platformCounts.map((row) => (
+                    <div key={row.platform} className="usage-distribution-row">
+                      <span>{row.platform}</span>
+                      <div className="usage-distribution-track">
+                        <div
+                          className="usage-distribution-fill usage-fill-platform"
+                          style={{ width: `${(row.installs / Math.max(1, summary.totalInstalls)) * 100}%` }}
+                        />
+                      </div>
+                      <strong>{row.installs}</strong>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="usage-panel-card">
+                <h3>Tunnel Distribution</h3>
+                <div className="usage-distribution-list">
+                  {summary.tunnelModeCounts.map((row) => (
+                    <div key={row.mode} className="usage-distribution-row">
+                      <span>{row.mode}</span>
+                      <div className="usage-distribution-track">
+                        <div
+                          className="usage-distribution-fill usage-fill-tunnel"
+                          style={{ width: `${(row.installs / Math.max(1, summary.totalInstalls)) * 100}%` }}
+                        />
+                      </div>
+                      <strong>{row.installs}</strong>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+          </>
         ) : null}
 
         <div className="admin-table-wrap">
-          <table className="admin-table">
+          <table className="admin-table usage-installs-table">
             <thead>
               <tr>
                 <th>Install ID</th>
@@ -348,7 +373,11 @@ export default function UsageAdminPage() {
                     <td>{row.launch_count}</td>
                     <td>{row.platform || "-"}</td>
                     <td>{row.arch || "-"}</td>
-                    <td>{row.tunnel_mode ? `${row.tunnel_mode}${row.tunnel_active ? " (active)" : ""}` : row.tunnel_active ? "active" : "none"}</td>
+                    <td>
+                      <span className={`usage-tunnel-badge ${row.tunnel_active ? "active" : "inactive"}`}>
+                        {row.tunnel_mode ? row.tunnel_mode : "none"}
+                      </span>
+                    </td>
                     <td>{row.tunnel_hostname || "-"}</td>
                   </tr>
                 ))
