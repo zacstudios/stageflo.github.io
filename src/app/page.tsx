@@ -215,7 +215,7 @@ export default async function Home() {
     softwareVersion: CURRENT_VERSION,
     author: {
       "@type": "Organization",
-      name: "Zac Studios Ltd",
+      name: "Zac Studios",
       url: "https://stageflo.app/",
     },
   };
@@ -316,7 +316,7 @@ export default async function Home() {
         {/* ── Hero ── */}
         <section className="hero" id="home">
           <div className="hero-badges">
-            <p className="eyebrow">StageFlo by Zac Studios Ltd · v{latestMac.version}</p>
+            <p className="eyebrow">StageFlo by Zac Studios · v{latestMac.version}</p>
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
           </div>
@@ -491,12 +491,12 @@ export default async function Home() {
         <div className="footer-company">
           <Image
             src="/brand/zac-studios-logo.png"
-            alt="Zac Studios Ltd"
+            alt="Zac Studios"
             width={150}
             height={46}
             className="company-logo"
           />
-          <p>StageFlo by Zac Studios Ltd.</p>
+          <p>StageFlo by Zac Studios.</p>
         </div>
         <small>
           <a href="/feedback/">Feedback</a>

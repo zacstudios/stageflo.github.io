@@ -5,14 +5,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "StageFlo Feedback and Bug Reports",
   description:
-    "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
+    "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios.",
   alternates: {
     canonical: "/feedback/",
   },
   openGraph: {
     title: "StageFlo Feedback and Bug Reports",
     description:
-      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios.",
     url: "/feedback/",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StageFlo Feedback and Bug Reports",
     description:
-      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios Ltd.",
+      "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios.",
   },
 };
 
@@ -158,12 +158,12 @@ export default function Feedback() {
         <div className="footer-company">
           <Image
             src="/brand/zac-studios-logo.png"
-            alt="Zac Studios Ltd"
+            alt="Zac Studios"
             width={150}
             height={46}
             className="company-logo"
           />
-          <p>StageFlo by Zac Studios Ltd.</p>
+          <p>StageFlo by Zac Studios.</p>
         </div>
         <small>
           <a href="https://github.com/zacstudios/Stageflo.app" target="_blank" rel="noopener noreferrer">GitHub</a>

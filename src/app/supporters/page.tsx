@@ -8,14 +8,14 @@ const ONE_TIME_SUPPORT_URL = "https://buy.stripe.com/5kQ14n1NM56kf7F8PC0Fi02";
 export const metadata: Metadata = {
   title: "StageFlo Supporters",
   description:
-    "Support StageFlo by Zac Studios Ltd through recurring or one-time contributions and help fund new releases.",
+    "Support StageFlo by Zac Studios through recurring or one-time contributions and help fund new releases.",
   alternates: {
     canonical: "/supporters/",
   },
   openGraph: {
     title: "StageFlo Supporters",
     description:
-      "Support StageFlo by Zac Studios Ltd through recurring or one-time contributions.",
+      "Support StageFlo by Zac Studios through recurring or one-time contributions.",
     url: "/supporters/",
     type: "website",
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StageFlo Supporters",
     description:
-      "Support StageFlo by Zac Studios Ltd through recurring or one-time contributions.",
+      "Support StageFlo by Zac Studios through recurring or one-time contributions.",
   },
 };
 
@@ -51,7 +51,7 @@ export default function SupportersPage() {
           </div>
           <h1>Help us build StageFlo for churches worldwide.</h1>
           <p className="lead">
-            StageFlo is developed by Zac Studios Ltd. Your support helps us deliver faster updates,
+            StageFlo is developed by Zac Studios. Your support helps us deliver faster updates,
             better reliability, and long-term product support for worship teams.
           </p>
         </section>
@@ -80,7 +80,7 @@ export default function SupportersPage() {
 
         <section className="section-block" style={{ marginTop: "2.2rem" }}>
           <p style={{ color: "var(--muted)", textAlign: "center" }}>
-            Thank you for supporting StageFlo by Zac Studios Ltd.
+            Thank you for supporting StageFlo by Zac Studios.
           </p>
           <div className="cta-row" style={{ justifyContent: "center" }}>
             <Link className="button button-secondary" href="/">
@@ -94,12 +94,12 @@ export default function SupportersPage() {
         <div className="footer-company">
           <Image
             src="/brand/zac-studios-logo.png"
-            alt="Zac Studios Ltd"
+            alt="Zac Studios"
             width={150}
             height={46}
             className="company-logo"
           />
-          <p>StageFlo by Zac Studios Ltd.</p>
+          <p>StageFlo by Zac Studios.</p>
         </div>
         <small>
           <Link href="/feedback/">Feedback</Link>
