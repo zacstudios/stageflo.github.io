@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const CURRENT_VERSION = "2.0.6";
+export const CURRENT_VERSION = "2.0.7";
 export const RELEASE_BASE_URL = "https://github.com/zacstudios/stageflo.github.io/releases/latest/download";
 export const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
 export const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
