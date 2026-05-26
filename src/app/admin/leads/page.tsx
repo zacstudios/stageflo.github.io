@@ -34,6 +34,17 @@ type UsageSummary = {
   versionCounts: Array<{ version: string; installs: number }>;
 };
 
+type EmailEvent = {
+  id: string;
+  lead_id: string;
+  event_name: string;
+  status: "pending" | "sent" | "failed" | "skipped";
+  attempted_at: string;
+  provider: string;
+  provider_message_id: string;
+  error_message: string;
+};
+
 type LoadState = "idle" | "loading" | "error";
 
 const CAPTURE_ENDPOINT = process.env.NEXT_PUBLIC_SUPABASE_FUNCTION_URL?.trim() || "";
@@ -48,11 +59,19 @@ function formatDate(value: string | null) {
   return date.toLocaleString();
 }
 
+function formatEventName(eventName: string) {
+  if (!eventName) return "event";
+  return eventName
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
 export default function LeadsAdminPage() {
   const [adminKey, setAdminKey] = useState("");
   const [statusFilter, setStatusFilter] = useState<"" | EmailStatus>("");
   const [query, setQuery] = useState("");
   const [leads, setLeads] = useState<LeadRow[]>([]);
+  const [eventsByLead, setEventsByLead] = useState<Record<string, EmailEvent[]>>({});
   const [usage, setUsage] = useState<UsageSummary | null>(null);
   const [loadState, setLoadState] = useState<LoadState>("idle");
   const [error, setError] = useState("");
@@ -95,6 +114,53 @@ export default function LeadsAdminPage() {
       }
 
       setLeads(Array.isArray(data?.leads) ? data.leads : []);
+      setEventsByLead(
+        data?.eventsByLead && typeof data.eventsByLead === "object"
+          ? Object.fromEntries(
+              Object.entries(data.eventsByLead as Record<string, unknown>).map(([leadId, events]) => [
+                leadId,
+                Array.isArray(events)
+                  ? events
+                      .map((event) => ({
+                        id: typeof (event as { id?: unknown }).id === "string" ? (event as { id: string }).id : "",
+                        lead_id:
+                          typeof (event as { lead_id?: unknown }).lead_id === "string"
+                            ? (event as { lead_id: string }).lead_id
+                            : leadId,
+                        event_name:
+                          typeof (event as { event_name?: unknown }).event_name === "string"
+                            ? (event as { event_name: string }).event_name
+                            : "event",
+                        status:
+                          (event as { status?: unknown }).status === "pending" ||
+                          (event as { status?: unknown }).status === "sent" ||
+                          (event as { status?: unknown }).status === "failed" ||
+                          (event as { status?: unknown }).status === "skipped"
+                            ? ((event as { status: EmailEvent["status"] }).status)
+                            : "failed",
+                        attempted_at:
+                          typeof (event as { attempted_at?: unknown }).attempted_at === "string"
+                            ? (event as { attempted_at: string }).attempted_at
+                            : "",
+                        provider:
+                          typeof (event as { provider?: unknown }).provider === "string"
+                            ? (event as { provider: string }).provider
+                            : "",
+                        provider_message_id:
+                          typeof (event as { provider_message_id?: unknown }).provider_message_id === "string"
+                            ? (event as { provider_message_id: string }).provider_message_id
+                            : "",
+                        error_message:
+                          typeof (event as { error_message?: unknown }).error_message === "string"
+                            ? (event as { error_message: string }).error_message
+                            : "",
+                      }))
+                      .filter((event) => Boolean(event.id))
+                  : [],
+              ])
+            )
+          : {}
+      );
       setUsage(
         data?.usage && typeof data.usage === "object"
           ? {
@@ -262,6 +328,7 @@ export default function LeadsAdminPage() {
                 <th>Onb Attempts</th>
                 <th>Onb Last Attempt</th>
                 <th>Onb Error</th>
+                <th>Recent Events</th>
                 <th>Error</th>
                 <th>Action</th>
               </tr>
@@ -269,7 +336,7 @@ export default function LeadsAdminPage() {
             <tbody>
               {leads.length === 0 ? (
                 <tr>
-                  <td colSpan={15}>No leads loaded.</td>
+                  <td colSpan={16}>No leads loaded.</td>
                 </tr>
               ) : (
                 leads.map((lead) => (
@@ -289,6 +356,20 @@ export default function LeadsAdminPage() {
                     <td>{lead.onboarding_attempt_count ?? 0}</td>
                     <td>{formatDate(lead.onboarding_last_attempt_at)}</td>
                     <td className="admin-error-cell">{lead.onboarding_last_error || "-"}</td>
+                    <td>
+                      {(eventsByLead[lead.id] ?? []).length === 0 ? (
+                        <span>-</span>
+                      ) : (
+                        <div style={{ display: "grid", gap: "0.35rem", minWidth: "240px" }}>
+                          {(eventsByLead[lead.id] ?? []).slice(0, 3).map((event) => (
+                            <div key={event.id} style={{ fontSize: "0.8rem", lineHeight: 1.35 }}>
+                              <strong>{formatEventName(event.event_name)}</strong> ({event.status})<br />
+                              <span>{formatDate(event.attempted_at)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </td>
                     <td className="admin-error-cell">{lead.email_error || "-"}</td>
                     <td>
                       {lead.email_status === "sent" ? (

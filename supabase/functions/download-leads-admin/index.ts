@@ -20,6 +20,19 @@ type LeadRecord = {
   email_attempt_count: number;
 };
 
+type EmailEventStatus = "pending" | "sent" | "failed" | "skipped";
+
+type EmailEventRecord = {
+  id: string;
+  lead_id: string;
+  event_name: string;
+  status: EmailEventStatus;
+  attempted_at: string;
+  provider: string;
+  provider_message_id: string;
+  error_message: string;
+};
+
 type AppInstallRecord = {
   install_id: string;
   last_version: string;
@@ -281,10 +294,38 @@ Deno.serve(async (request) => {
       return json({ error: "Failed to load usage summary" }, 500);
     }
 
+    const leadIds = (data ?? []).map((row) => String(row.id));
+    let eventsByLead: Record<string, EmailEventRecord[]> = {};
+
+    if (leadIds.length > 0) {
+      const { data: events, error: eventsError } = await supabase
+        .from("email_events")
+        .select("id,lead_id,event_name,status,attempted_at,provider,provider_message_id,error_message")
+        .in("lead_id", leadIds)
+        .order("attempted_at", { ascending: false })
+        .limit(1000)
+        .returns<EmailEventRecord[]>();
+
+      if (eventsError) {
+        return json({ error: "Failed to load email events" }, 500);
+      }
+
+      for (const event of events ?? []) {
+        const key = String(event.lead_id);
+        if (!eventsByLead[key]) {
+          eventsByLead[key] = [];
+        }
+        if (eventsByLead[key].length < 5) {
+          eventsByLead[key].push(event);
+        }
+      }
+    }
+
     return json({
       ok: true,
       leads: data ?? [],
       usage: buildUsageSummary(installRows ?? []),
+      eventsByLead,
     });
   }
 
@@ -336,6 +377,23 @@ Deno.serve(async (request) => {
   if (updateError) {
     return json({ error: "Failed to update retry status" }, 500);
   }
+
+  await supabase
+    .from("email_events")
+    .insert({
+      lead_id: lead.id,
+      email: lead.email,
+      event_family: "resend",
+      event_name: "welcome_resend",
+      status: emailResult.status,
+      provider: emailResult.provider,
+      provider_message_id: emailResult.providerMessageId,
+      error_message: emailResult.errorMessage,
+      attempted_at: attemptAt,
+      metadata: {
+        source: "download-leads-admin",
+      },
+    });
 
   return json({
     ok: true,

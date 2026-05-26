@@ -267,5 +267,22 @@ Deno.serve(async (request) => {
     })
     .eq("id", insertedLead.id);
 
+  await supabase
+    .from("email_events")
+    .insert({
+      lead_id: insertedLead.id,
+      email,
+      event_family: "welcome",
+      event_name: "welcome_email",
+      status: emailResult.status,
+      provider: emailResult.provider,
+      provider_message_id: emailResult.providerMessageId,
+      error_message: emailResult.errorMessage,
+      attempted_at: attemptAt,
+      metadata: {
+        source,
+      },
+    });
+
   return json({ ok: true, emailQueued: emailResult.ok, emailStatus: emailResult.status });
 });
