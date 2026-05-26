@@ -92,6 +92,12 @@ supabase functions deploy capture-download-lead \
   --no-verify-jwt \
   --use-api
 
+echo "Deploying capture-feedback Edge Function..."
+supabase functions deploy capture-feedback \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
 echo "Deploying capture-app-usage Edge Function..."
 supabase functions deploy capture-app-usage \
   --project-ref "$PROJECT_REF" \
@@ -127,6 +133,7 @@ echo "Supabase setup complete."
 echo "Project ref: $PROJECT_REF"
 echo "Function URL: $function_url"
 echo "Onboarding runner URL: https://${PROJECT_REF}.functions.supabase.co/send-onboarding-sequence"
+echo "Feedback URL: https://${PROJECT_REF}.functions.supabase.co/capture-feedback"
 
 if [[ -z "${ADMIN_API_KEY:-}" ]]; then
   echo "Note: ADMIN_API_KEY was not provided. /admin/leads will not work until you set this secret and redeploy."

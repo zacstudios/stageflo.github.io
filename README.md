@@ -78,15 +78,23 @@ Setup steps:
 1. Create a Supabase project.
 2. Apply [supabase/migrations/20260502193000_create_download_leads.sql](supabase/migrations/20260502193000_create_download_leads.sql).
 3. Apply [supabase/migrations/20260526120000_add_onboarding_sequence_tracking.sql](supabase/migrations/20260526120000_add_onboarding_sequence_tracking.sql) to track onboarding email progress.
-4. Deploy [supabase/functions/capture-download-lead/index.ts](supabase/functions/capture-download-lead/index.ts).
-5. Deploy [supabase/functions/send-onboarding-sequence/index.ts](supabase/functions/send-onboarding-sequence/index.ts).
-6. Add GitHub repository secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` with your deployed function URL.
-7. Push to `main` to trigger deploy.
+4. Apply [supabase/migrations/20260526153000_create_feedback_submissions.sql](supabase/migrations/20260526153000_create_feedback_submissions.sql) to store website feedback submissions.
+5. Deploy [supabase/functions/capture-download-lead/index.ts](supabase/functions/capture-download-lead/index.ts).
+6. Deploy [supabase/functions/capture-feedback/index.ts](supabase/functions/capture-feedback/index.ts).
+7. Deploy [supabase/functions/send-onboarding-sequence/index.ts](supabase/functions/send-onboarding-sequence/index.ts).
+8. Add GitHub repository secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` with your deployed function URL.
+9. Push to `main` to trigger deploy.
 
 Expected function URL format:
 
 ```text
 https://<project-ref>.functions.supabase.co/capture-download-lead
+```
+
+Feedback endpoint format:
+
+```text
+https://<project-ref>.functions.supabase.co/capture-feedback
 ```
 
 The GitHub Pages deploy workflow already injects `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` into the site build via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
@@ -106,7 +114,7 @@ The helper script will:
 
 1. Create or link the Supabase project.
 2. Push the SQL migration.
-3. Deploy `capture-download-lead`, `send-onboarding-sequence`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
+3. Deploy `capture-download-lead`, `capture-feedback`, `send-onboarding-sequence`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
 4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
 
 ### Onboarding Email Automation (Resend)
@@ -144,6 +152,8 @@ The workflow runs hourly and can also be triggered manually with:
 ### Legacy Generic Endpoint Override
 
 If needed, the site still supports `NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT` as a generic fallback for non-Supabase providers.
+
+For feedback intake, you can optionally set `NEXT_PUBLIC_FEEDBACK_ENDPOINT` to a custom endpoint. If unset, the site derives `/capture-feedback` from `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
 
 ### Other Endpoint Options
 

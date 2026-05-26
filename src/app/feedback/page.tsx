@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import FeedbackForm from "../components/feedbackForm";
 
 export const metadata: Metadata = {
   title: "StageFlo Feedback and Bug Reports",
@@ -44,50 +45,14 @@ export default function Feedback() {
         <section className="hero" id="feedback">
           <h1>Feedback & Bug Reports</h1>
           <p className="lead">
-            Help us improve StageFlo by reporting bugs, suggesting features, or sharing your experience.
+            Help us improve StageFlo by reporting bugs, suggesting features, or sharing your experience without needing a GitHub login.
           </p>
         </section>
 
-        <section className="install" style={{ marginTop: "2.5rem" }}>
+        <FeedbackForm />
+
+        <section className="install" style={{ marginTop: "2rem" }}>
           <div className="install-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-            <article className="install-card reveal">
-              <h3>Report a Bug</h3>
-              <p style={{ color: "var(--muted)", lineHeight: "1.55" }}>
-                Found an issue or unexpected behavior? Open a bug report on GitHub with details about what went wrong.
-              </p>
-              <a
-                href="https://github.com/zacstudios/Stageflo.app/issues/new?template=bug_report.md&title=Bug%3A+"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  marginTop: "0.9rem",
-                  color: "var(--accent-strong)",
-                }}
-              >
-                Report Bug →
-              </a>
-            </article>
-
-            <article className="install-card reveal">
-              <h3>Suggest a Feature</h3>
-              <p style={{ color: "var(--muted)", lineHeight: "1.55" }}>
-                Have an idea to make StageFlo better? Share feature requests and enhancements on GitHub.
-              </p>
-              <a
-                href="https://github.com/zacstudios/Stageflo.app/issues/new?template=feature_request.md&title=Feature%3A+"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  marginTop: "0.9rem",
-                  color: "var(--accent-strong)",
-                }}
-              >
-                Suggest Feature →
-              </a>
-            </article>
-
             <article className="install-card reveal">
               <h3>View Known Issues</h3>
               <p style={{ color: "var(--muted)", lineHeight: "1.55" }}>
@@ -135,8 +100,8 @@ export default function Feedback() {
           </div>
           <ul style={{ color: "var(--muted)", lineHeight: "1.8", paddingLeft: "1.5rem" }}>
             <li><strong>Be specific:</strong> Include details about your OS, StageFlo version, and steps to reproduce.</li>
-            <li><strong>One issue per report:</strong> Keep bug reports and feature requests focused and clear.</li>
-            <li><strong>Check existing issues:</strong> Your report may already be logged—search before submitting.</li>
+            <li><strong>One issue per report:</strong> Keep each submission focused and clear.</li>
+            <li><strong>Include impact:</strong> Tell us how this affects your service workflow.</li>
             <li><strong>Attach logs or screenshots:</strong> Visual context helps us understand and fix problems faster.</li>
             <li><strong>Be constructive:</strong> Help us improve by explaining the impact and use case.</li>
           </ul>
