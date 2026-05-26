@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Feedback() {
   return (
-    <div className="site-shell">
+    <div className="site-shell feedback-page">
       <header className="top-nav">
         <Link className="brand" href="/" aria-label="StageFlo home">
           <Image src="/stageflo-icon.png" alt="StageFlo" width={30} height={30} />
@@ -41,8 +41,9 @@ export default function Feedback() {
         </nav>
       </header>
 
-      <main>
-        <section className="hero" id="feedback">
+      <main className="feedback-main">
+        <section className="hero feedback-hero" id="feedback">
+          <span className="eyebrow">StageFlo Feedback</span>
           <h1>Feedback & Bug Reports</h1>
           <p className="lead">
             Help us improve StageFlo by reporting bugs, suggesting features, or sharing your experience without needing a GitHub login.
@@ -51,8 +52,8 @@ export default function Feedback() {
 
         <FeedbackForm />
 
-        <section className="install" style={{ marginTop: "2rem" }}>
-          <div className="install-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+        <section className="install feedback-resources">
+          <div className="install-grid feedback-resources-grid">
             <article className="install-card reveal">
               <h3>View Known Issues</h3>
               <p style={{ color: "var(--muted)", lineHeight: "1.55" }}>
@@ -62,11 +63,7 @@ export default function Feedback() {
                 href="https://github.com/zacstudios/Stageflo.app/issues"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  marginTop: "0.9rem",
-                  color: "var(--accent-strong)",
-                }}
+                className="feedback-link"
               >
                 View Issues →
               </a>
@@ -81,11 +78,7 @@ export default function Feedback() {
                 href="https://github.com/zacstudios/Stageflo.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  marginTop: "0.9rem",
-                  color: "var(--accent-strong)",
-                }}
+                className="feedback-link"
               >
                 Visit Repository →
               </a>
@@ -93,12 +86,12 @@ export default function Feedback() {
           </div>
         </section>
 
-        <section className="community" style={{ marginTop: "3.5rem" }}>
+        <section className="community feedback-guidelines">
           <div className="section-head">
             <h2>Guidelines for Feedback</h2>
             <p>To help us address your feedback effectively:</p>
           </div>
-          <ul style={{ color: "var(--muted)", lineHeight: "1.8", paddingLeft: "1.5rem" }}>
+          <ul className="feedback-guidelines-list">
             <li><strong>Be specific:</strong> Include details about your OS, StageFlo version, and steps to reproduce.</li>
             <li><strong>One issue per report:</strong> Keep each submission focused and clear.</li>
             <li><strong>Include impact:</strong> Tell us how this affects your service workflow.</li>
@@ -107,11 +100,11 @@ export default function Feedback() {
           </ul>
         </section>
 
-        <section style={{ marginTop: "2rem", paddingTop: "2rem", borderTop: "1px solid var(--line)" }}>
-          <p style={{ color: "var(--muted)", textAlign: "center" }}>
+        <section className="feedback-thanks">
+          <p>
             Thank you for helping make StageFlo better for worship teams everywhere.
           </p>
-          <div className="cta-row" style={{ justifyContent: "center", marginTop: "1.5rem" }}>
+          <div className="cta-row feedback-thanks-actions">
             <Link href="/" className="button button-secondary">
               Back to Home
             </Link>

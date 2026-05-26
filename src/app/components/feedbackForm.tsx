@@ -122,60 +122,89 @@ export default function FeedbackForm() {
     }
   };
 
+  const summaryLabel = type === "feature" ? "Feature Idea" : type === "bug" ? "Issue Summary" : "Feedback";
+
   return (
-    <section className="install" style={{ marginTop: "2.5rem" }}>
-      <article className="install-card reveal" style={{ maxWidth: "860px", margin: "0 auto" }}>
-        <h3 style={{ marginBottom: "0.6rem" }}>Send Feedback</h3>
-        <p style={{ color: "var(--muted)", lineHeight: "1.55", marginBottom: "1.1rem" }}>
-          No GitHub login needed. Submit bugs, feature ideas, or general feedback directly.
-        </p>
+    <section className="feedback-form-section">
+      <article className="feedback-form-card install-card reveal">
+        <div className="feedback-form-head">
+          <h2>Send Feedback</h2>
+          <p>No GitHub login needed. Submit bugs, feature ideas, or general feedback directly.</p>
+        </div>
 
         {!endpointAvailable ? (
-          <p style={{ color: "#ef4444", marginBottom: "0.9rem" }}>
+          <p className="feedback-alert feedback-alert-error">
             Feedback endpoint is missing. Set NEXT_PUBLIC_FEEDBACK_ENDPOINT or NEXT_PUBLIC_SUPABASE_FUNCTION_URL.
           </p>
         ) : null}
 
-        <form onSubmit={onSubmit} style={{ display: "grid", gap: "0.8rem" }}>
-          <label htmlFor="feedback-type">Feedback Type</label>
-          <select
-            id="feedback-type"
-            value={type}
-            onChange={(event) => setType(normalizeType(event.target.value))}
-            disabled={submitState === "submitting"}
-          >
-            <option value="general">General Feedback</option>
-            <option value="bug">Bug Report</option>
-            <option value="feature">Feature Request</option>
-          </select>
+        <form className="feedback-form" onSubmit={onSubmit}>
+          <fieldset className="feedback-type-group" disabled={submitState === "submitting"}>
+            <legend>Feedback Type</legend>
+            <div className="feedback-type-options" role="radiogroup" aria-label="Feedback type">
+              <button
+                type="button"
+                className={`feedback-type-chip${type === "general" ? " is-active" : ""}`}
+                onClick={() => setType("general")}
+                role="radio"
+                aria-checked={type === "general"}
+              >
+                General
+              </button>
+              <button
+                type="button"
+                className={`feedback-type-chip${type === "bug" ? " is-active" : ""}`}
+                onClick={() => setType("bug")}
+                role="radio"
+                aria-checked={type === "bug"}
+              >
+                Bug
+              </button>
+              <button
+                type="button"
+                className={`feedback-type-chip${type === "feature" ? " is-active" : ""}`}
+                onClick={() => setType("feature")}
+                role="radio"
+                aria-checked={type === "feature"}
+              >
+                Feature
+              </button>
+            </div>
+          </fieldset>
 
-          <label htmlFor="feedback-name">Name</label>
-          <input
-            id="feedback-name"
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            minLength={2}
-            maxLength={80}
-            required
-            autoComplete="name"
-            disabled={submitState === "submitting"}
-          />
+          <div className="feedback-form-row">
+            <div className="feedback-field">
+              <label htmlFor="feedback-name">Name</label>
+              <input
+                id="feedback-name"
+                type="text"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                minLength={2}
+                maxLength={80}
+                required
+                autoComplete="name"
+                disabled={submitState === "submitting"}
+              />
+            </div>
 
-          <label htmlFor="feedback-email">Email</label>
-          <input
-            id="feedback-email"
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            maxLength={120}
-            required
-            autoComplete="email"
-            disabled={submitState === "submitting"}
-          />
+            <div className="feedback-field">
+              <label htmlFor="feedback-email">Email</label>
+              <input
+                id="feedback-email"
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                maxLength={120}
+                required
+                autoComplete="email"
+                disabled={submitState === "submitting"}
+              />
+            </div>
+          </div>
 
-          <div style={{ display: "grid", gap: "0.8rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-            <div style={{ display: "grid", gap: "0.4rem" }}>
+          <div className="feedback-form-row">
+            <div className="feedback-field">
               <label htmlFor="feedback-platform">Platform</label>
               <input
                 id="feedback-platform"
@@ -188,7 +217,7 @@ export default function FeedbackForm() {
               />
             </div>
 
-            <div style={{ display: "grid", gap: "0.4rem" }}>
+            <div className="feedback-field">
               <label htmlFor="feedback-version">App Version</label>
               <input
                 id="feedback-version"
@@ -203,53 +232,61 @@ export default function FeedbackForm() {
           </div>
 
           {type === "bug" ? (
-            <>
-              <label htmlFor="feedback-steps">Steps to Reproduce</label>
-              <textarea
-                id="feedback-steps"
-                value={stepsToReproduce}
-                onChange={(event) => setStepsToReproduce(event.target.value)}
-                rows={4}
-                maxLength={4000}
-                placeholder="1) Go to... 2) Click... 3) Observe..."
-                disabled={submitState === "submitting"}
-              />
+            <div className="feedback-bug-grid">
+              <div className="feedback-field">
+                <label htmlFor="feedback-steps">Steps to Reproduce</label>
+                <textarea
+                  id="feedback-steps"
+                  value={stepsToReproduce}
+                  onChange={(event) => setStepsToReproduce(event.target.value)}
+                  rows={4}
+                  maxLength={4000}
+                  placeholder="1) Go to... 2) Click... 3) Observe..."
+                  disabled={submitState === "submitting"}
+                />
+              </div>
 
-              <label htmlFor="feedback-expected">Expected Behavior</label>
-              <textarea
-                id="feedback-expected"
-                value={expectedBehavior}
-                onChange={(event) => setExpectedBehavior(event.target.value)}
-                rows={3}
-                maxLength={4000}
-                disabled={submitState === "submitting"}
-              />
+              <div className="feedback-form-row feedback-form-row-compact">
+                <div className="feedback-field">
+                  <label htmlFor="feedback-expected">Expected Behavior</label>
+                  <textarea
+                    id="feedback-expected"
+                    value={expectedBehavior}
+                    onChange={(event) => setExpectedBehavior(event.target.value)}
+                    rows={3}
+                    maxLength={4000}
+                    disabled={submitState === "submitting"}
+                  />
+                </div>
 
-              <label htmlFor="feedback-actual">Actual Behavior</label>
-              <textarea
-                id="feedback-actual"
-                value={actualBehavior}
-                onChange={(event) => setActualBehavior(event.target.value)}
-                rows={3}
-                maxLength={4000}
-                disabled={submitState === "submitting"}
-              />
-            </>
+                <div className="feedback-field">
+                  <label htmlFor="feedback-actual">Actual Behavior</label>
+                  <textarea
+                    id="feedback-actual"
+                    value={actualBehavior}
+                    onChange={(event) => setActualBehavior(event.target.value)}
+                    rows={3}
+                    maxLength={4000}
+                    disabled={submitState === "submitting"}
+                  />
+                </div>
+              </div>
+            </div>
           ) : null}
 
-          <label htmlFor="feedback-message">
-            {type === "feature" ? "Feature Idea" : type === "bug" ? "Issue Summary" : "Feedback"}
-          </label>
-          <textarea
-            id="feedback-message"
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            rows={5}
-            minLength={10}
-            maxLength={4000}
-            required
-            disabled={submitState === "submitting"}
-          />
+          <div className="feedback-field">
+            <label htmlFor="feedback-message">{summaryLabel}</label>
+            <textarea
+              id="feedback-message"
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+              rows={5}
+              minLength={10}
+              maxLength={4000}
+              required
+              disabled={submitState === "submitting"}
+            />
+          </div>
 
           <input
             type="text"
@@ -261,14 +298,13 @@ export default function FeedbackForm() {
             style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }}
           />
 
-          <label style={{ display: "flex", alignItems: "flex-start", gap: "0.55rem", color: "var(--muted)" }}>
+          <label className="feedback-consent">
             <input
               type="checkbox"
               checked={consent}
               onChange={(event) => setConsent(event.target.checked)}
               required
               disabled={submitState === "submitting"}
-              style={{ marginTop: "0.24rem" }}
             />
             <span>
               I agree that StageFlo can store this feedback to respond and improve the product as described in
@@ -276,10 +312,10 @@ export default function FeedbackForm() {
             </span>
           </label>
 
-          {submitState === "error" ? <p style={{ color: "#ef4444" }}>{errorMessage}</p> : null}
-          {submitState === "success" ? <p style={{ color: "#22c55e" }}>Thanks. Your feedback was submitted.</p> : null}
+          {submitState === "error" ? <p className="feedback-alert feedback-alert-error">{errorMessage}</p> : null}
+          {submitState === "success" ? <p className="feedback-alert feedback-alert-success">Thanks. Your feedback was submitted.</p> : null}
 
-          <div className="cta-row" style={{ marginTop: "0.4rem" }}>
+          <div className="feedback-actions cta-row">
             <button
               type="submit"
               className="button button-primary"
