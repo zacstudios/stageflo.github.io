@@ -36,8 +36,8 @@ const STAGEFLO_FEATURE_REQUEST_URL = "https://stageflo.app/feedback/?type=featur
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const STEP_2_DELAY_MS = 1 * DAY_MS;
-const STEP_3_DELAY_MS = 3 * DAY_MS;
-const STEP_4_DELAY_MS = 6 * DAY_MS;
+const STEP_3_DELAY_AFTER_STEP_2_MS = 2 * DAY_MS;
+const STEP_4_DELAY_AFTER_STEP_3_MS = 3 * DAY_MS;
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: corsHeaders });
@@ -206,11 +206,29 @@ function getDueStep(row: LeadRow, nowMs: number): OnboardingStep | null {
     return 2;
   }
 
-  if (row.onboarding_step_2_sent_at && !row.onboarding_step_3_sent_at && nowMs >= createdAtMs + STEP_3_DELAY_MS) {
+  const step2SentAtMs = row.onboarding_step_2_sent_at
+    ? Date.parse(row.onboarding_step_2_sent_at)
+    : Number.NaN;
+
+  if (
+    row.onboarding_step_2_sent_at &&
+    !row.onboarding_step_3_sent_at &&
+    !Number.isNaN(step2SentAtMs) &&
+    nowMs >= step2SentAtMs + STEP_3_DELAY_AFTER_STEP_2_MS
+  ) {
     return 3;
   }
 
-  if (row.onboarding_step_3_sent_at && !row.onboarding_step_4_sent_at && nowMs >= createdAtMs + STEP_4_DELAY_MS) {
+  const step3SentAtMs = row.onboarding_step_3_sent_at
+    ? Date.parse(row.onboarding_step_3_sent_at)
+    : Number.NaN;
+
+  if (
+    row.onboarding_step_3_sent_at &&
+    !row.onboarding_step_4_sent_at &&
+    !Number.isNaN(step3SentAtMs) &&
+    nowMs >= step3SentAtMs + STEP_4_DELAY_AFTER_STEP_3_MS
+  ) {
     return 4;
   }
 
