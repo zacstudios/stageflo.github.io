@@ -67,14 +67,14 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
                   <p style="margin:0 0 8px;">
                     <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#ede9fe;border:1px solid #c4b5fd;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4c1d95;font-weight:700;">StageFlo Download</span>
                   </p>
-                  <h1 style="margin:8px 0 0;font-size:24px;line-height:1.2;color:#ffffff;">Your download is ready</h1>
+                  <h1 style="margin:8px 0 0;font-size:24px;line-height:1.2;color:#ffffff;">Welcome to StageFlo</h1>
                 </td>
               </tr>
 
               <tr>
                 <td style="padding:24px;background:#ffffff;">
                   <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#111827;">Hi ${safeName},</p>
-                  <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#374151;">Thanks for trying StageFlo. We are excited to help your team run smoother services with lyrics, media, scripture, and stage displays from one place.</p>
+                  <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#374151;">Thanks for trying StageFlo. Start with one simple flow: create your plan, add songs and scripture, then run a full preview before service.</p>
 
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
                     <tr>
@@ -139,7 +139,7 @@ async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "
     body: JSON.stringify({
       from: resendFrom,
       to: [payload.email],
-      subject: "Your StageFlo download",
+      subject: "Welcome to StageFlo: your download is ready",
       html: buildThankYouEmailHtml(payload),
     }),
   });
