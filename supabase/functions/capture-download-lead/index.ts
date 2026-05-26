@@ -57,22 +57,24 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
   const safeDownloadUrl = escapeHtml(payload.downloadUrl);
 
   return `
-    <div style="margin:0;padding:0;background:#0c101e;font-family:Arial,sans-serif;color:#f1f5f9;">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0c101e;padding:28px 12px;">
+    <div style="margin:0;padding:0;background:#eef2ff;font-family:Arial,sans-serif;color:#111827;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2ff;padding:28px 12px;">
         <tr>
           <td align="center">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;background:#121a2f;border:1px solid rgba(124,58,237,0.45);border-radius:14px;overflow:hidden;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;background:#ffffff;border:1px solid #ddd6fe;border-radius:14px;overflow:hidden;">
               <tr>
                 <td style="padding:20px 24px;background:linear-gradient(135deg,#9333ea 0%,#7c3aed 48%,#5b21b6 100%);">
-                  <p style="margin:0;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#ddd6fe;">StageFlo Download</p>
+                  <p style="margin:0 0 8px;">
+                    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#ede9fe;border:1px solid #c4b5fd;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4c1d95;font-weight:700;">StageFlo Download</span>
+                  </p>
                   <h1 style="margin:8px 0 0;font-size:24px;line-height:1.2;color:#ffffff;">Your download is ready</h1>
                 </td>
               </tr>
 
               <tr>
-                <td style="padding:24px;">
-                  <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#f1f5f9;">Hi ${safeName},</p>
-                  <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#cbd5e1;">Thanks for trying StageFlo. We are excited to help your team run smoother services with lyrics, media, scripture, and stage displays from one place.</p>
+                <td style="padding:24px;background:#ffffff;">
+                  <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#111827;">Hi ${safeName},</p>
+                  <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#374151;">Thanks for trying StageFlo. We are excited to help your team run smoother services with lyrics, media, scripture, and stage displays from one place.</p>
 
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
                     <tr>
@@ -82,27 +84,27 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
                     </tr>
                   </table>
 
-                  <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.28);">
-                    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#ddd6fe;font-weight:700;">Help shape StageFlo</p>
-                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#cbd5e1;">If you spot a bug or have an idea, we want to hear it. Your feedback drives our roadmap.</p>
+                  <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;">
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#5b21b6;font-weight:700;">Help shape StageFlo</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If you spot a bug or have an idea, we want to hear it. Your feedback drives our roadmap.</p>
                     <p style="margin:0;font-size:14px;line-height:1.8;">
-                      <a href="${STAGEFLO_BUG_REPORT_URL}" style="color:#c4b5fd;text-decoration:none;font-weight:700;">Report a Bug</a>
-                      <span style="color:#64748b;"> | </span>
-                      <a href="${STAGEFLO_FEATURE_REQUEST_URL}" style="color:#c4b5fd;text-decoration:none;font-weight:700;">Request a Feature</a>
-                      <span style="color:#64748b;"> | </span>
-                      <a href="${STAGEFLO_FEEDBACK_URL}" style="color:#c4b5fd;text-decoration:none;font-weight:700;">Feedback Hub</a>
+                      <a href="${STAGEFLO_BUG_REPORT_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Report a Bug</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_FEATURE_REQUEST_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Request a Feature</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_FEEDBACK_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Feedback Hub</a>
                     </p>
                   </div>
 
-                  <p style="margin:0;font-size:13px;line-height:1.6;color:#94a3b8;">You are receiving this because you requested a StageFlo download. We only use your email for product updates, support, and preferences you selected.</p>
+                  <p style="margin:0;font-size:13px;line-height:1.6;color:#4b5563;">You are receiving this because you requested a StageFlo download. We only use your email for product updates, support, and preferences you selected.</p>
                 </td>
               </tr>
 
               <tr>
-                <td style="padding:16px 24px;border-top:1px solid rgba(124,58,237,0.22);background:#0f1424;">
-                  <p style="margin:0;font-size:12px;color:#94a3b8;">StageFlo Team</p>
+                <td style="padding:16px 24px;border-top:1px solid #e2e8f0;background:#f8fafc;">
+                  <p style="margin:0;font-size:12px;color:#4b5563;">StageFlo Team</p>
                   <p style="margin:6px 0 0;font-size:12px;">
-                    <a href="${STAGEFLO_HOME_URL}" style="color:#c4b5fd;text-decoration:none;">stageflo.app</a>
+                    <a href="${STAGEFLO_HOME_URL}" style="color:#6d28d9;text-decoration:none;">stageflo.app</a>
                   </p>
                 </td>
               </tr>
