@@ -124,6 +124,36 @@ export default function FeedbackForm() {
 
   const summaryLabel = type === "feature" ? "Feature Idea" : type === "bug" ? "Issue Summary" : "Feedback";
   const typeTitle = type === "bug" ? "Bug Report" : type === "feature" ? "Feature Request" : "General Feedback";
+  const typeHelpTitle =
+    type === "bug"
+      ? "What helps us fix bugs faster"
+      : type === "feature"
+        ? "What makes feature requests actionable"
+        : "What makes general feedback useful";
+  const typeHelpItems =
+    type === "bug"
+      ? [
+          "Tell us what you clicked right before the issue.",
+          "Share expected vs actual behavior clearly.",
+          "Include OS and app version if possible.",
+        ]
+      : type === "feature"
+        ? [
+            "Describe the problem this feature would solve.",
+            "Share who would use it and how often.",
+            "Give an example workflow from your service.",
+          ]
+        : [
+            "Share what is working well or feels confusing.",
+            "Tell us where in your service flow this happens.",
+            "Include one concrete suggestion if possible.",
+          ];
+  const typeResponseNote =
+    type === "feature"
+      ? "Popular requests are reviewed weekly with roadmap planning."
+      : type === "general"
+        ? "General feedback is reviewed weekly for UX and quality improvements."
+        : "Most reports get a first response within 24 hours.";
 
   return (
     <section className="feedback-form-section">
@@ -133,7 +163,7 @@ export default function FeedbackForm() {
           <p>No GitHub login needed. Submit bugs, feature ideas, or general feedback directly.</p>
           <div className="feedback-type-context" aria-live="polite">
             <span className="feedback-type-context-badge">{typeTitle}</span>
-            <span className="feedback-type-context-note">Most reports get a first response within 24 hours.</span>
+            <span className="feedback-type-context-note">{typeResponseNote}</span>
           </div>
         </div>
 
@@ -236,17 +266,17 @@ export default function FeedbackForm() {
             </div>
           </div>
 
+          <div className={`feedback-type-tip feedback-type-tip-${type}`} role="note">
+            <h3>{typeHelpTitle}</h3>
+            <ul>
+              {typeHelpItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
           {type === "bug" ? (
             <div className="feedback-bug-grid">
-              <div className="feedback-bug-tip" role="note">
-                <h3>What helps us fix bugs faster</h3>
-                <ul>
-                  <li>Tell us what you clicked right before the issue.</li>
-                  <li>Share expected vs actual behavior clearly.</li>
-                  <li>Include OS and app version if possible.</li>
-                </ul>
-              </div>
-
               <div className="feedback-field">
                 <label htmlFor="feedback-steps">Steps to Reproduce</label>
                 <textarea
