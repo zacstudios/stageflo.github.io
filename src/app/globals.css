@@ -870,6 +870,18 @@ button {
   max-width: 880px;
   margin: 0 auto;
   padding: 1.35rem;
+  border-color: rgba(167, 139, 250, 0.34);
+  background:
+    radial-gradient(circle at 100% 0, rgba(147, 51, 234, 0.2), transparent 40%),
+    linear-gradient(180deg, rgba(18, 26, 47, 0.9), rgba(12, 17, 31, 0.94));
+}
+
+.feedback-form-card-bug {
+  border-color: rgba(251, 146, 60, 0.35);
+  background:
+    radial-gradient(circle at 100% 0, rgba(251, 146, 60, 0.16), transparent 38%),
+    radial-gradient(circle at 0 0, rgba(147, 51, 234, 0.16), transparent 40%),
+    linear-gradient(180deg, rgba(18, 26, 47, 0.92), rgba(12, 17, 31, 0.96));
 }
 
 .feedback-form-head h2 {
@@ -880,6 +892,40 @@ button {
   margin-top: 0.45rem;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.feedback-type-context {
+  margin-top: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.feedback-type-context-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.72rem;
+  border: 1px solid rgba(196, 181, 253, 0.45);
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.2);
+  color: #f5f3ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.feedback-type-context-note {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.72rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.55);
+  color: #cbd5e1;
+  font-size: 0.8rem;
 }
 
 .feedback-form {
@@ -941,6 +987,31 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.feedback-bug-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.feedback-bug-tip {
+  border: 1px solid rgba(251, 146, 60, 0.34);
+  border-radius: 0.85rem;
+  padding: 0.85rem 0.9rem;
+  background: rgba(154, 52, 18, 0.14);
+}
+
+.feedback-bug-tip h3 {
+  font-size: 0.92rem;
+  color: #fdba74;
+}
+
+.feedback-bug-tip ul {
+  margin-top: 0.45rem;
+  padding-left: 1.1rem;
+  color: #fed7aa;
+  line-height: 1.6;
+  font-size: 0.88rem;
+}
+
 .feedback-field {
   display: grid;
   gap: 0.45rem;
@@ -965,6 +1036,12 @@ button {
 .feedback-field textarea {
   resize: vertical;
   min-height: 7.2rem;
+}
+
+.feedback-helper-text {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: #94a3b8;
 }
 
 .feedback-field input:focus-visible,

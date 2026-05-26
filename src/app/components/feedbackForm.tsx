@@ -123,13 +123,18 @@ export default function FeedbackForm() {
   };
 
   const summaryLabel = type === "feature" ? "Feature Idea" : type === "bug" ? "Issue Summary" : "Feedback";
+  const typeTitle = type === "bug" ? "Bug Report" : type === "feature" ? "Feature Request" : "General Feedback";
 
   return (
     <section className="feedback-form-section">
-      <article className="feedback-form-card install-card reveal">
+      <article className={`feedback-form-card feedback-form-card-${type} install-card reveal`}>
         <div className="feedback-form-head">
           <h2>Send Feedback</h2>
           <p>No GitHub login needed. Submit bugs, feature ideas, or general feedback directly.</p>
+          <div className="feedback-type-context" aria-live="polite">
+            <span className="feedback-type-context-badge">{typeTitle}</span>
+            <span className="feedback-type-context-note">Most reports get a first response within 24 hours.</span>
+          </div>
         </div>
 
         {!endpointAvailable ? (
@@ -233,6 +238,15 @@ export default function FeedbackForm() {
 
           {type === "bug" ? (
             <div className="feedback-bug-grid">
+              <div className="feedback-bug-tip" role="note">
+                <h3>What helps us fix bugs faster</h3>
+                <ul>
+                  <li>Tell us what you clicked right before the issue.</li>
+                  <li>Share expected vs actual behavior clearly.</li>
+                  <li>Include OS and app version if possible.</li>
+                </ul>
+              </div>
+
               <div className="feedback-field">
                 <label htmlFor="feedback-steps">Steps to Reproduce</label>
                 <textarea
@@ -286,6 +300,7 @@ export default function FeedbackForm() {
               required
               disabled={submitState === "submitting"}
             />
+            <p className="feedback-helper-text">{message.length}/4000 characters</p>
           </div>
 
           <input
