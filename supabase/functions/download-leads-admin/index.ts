@@ -253,7 +253,7 @@ Deno.serve(async (request) => {
 
     let query = supabase
       .from("download_leads")
-      .select("id,created_at,name,email,source,download_url,page,email_status,email_attempt_count,email_last_attempt_at,email_sent_at,email_error,email_provider_message_id")
+      .select("id,created_at,name,email,source,download_url,page,email_status,email_attempt_count,email_last_attempt_at,email_sent_at,email_error,email_provider_message_id,onboarding_step_2_sent_at,onboarding_step_3_sent_at,onboarding_step_4_sent_at,onboarding_sequence_completed_at,onboarding_attempt_count,onboarding_last_attempt_at,onboarding_last_error")
       .order("created_at", { ascending: false })
       .limit(limit);
 

@@ -77,9 +77,11 @@ Setup steps:
 
 1. Create a Supabase project.
 2. Apply [supabase/migrations/20260502193000_create_download_leads.sql](supabase/migrations/20260502193000_create_download_leads.sql).
-3. Deploy [supabase/functions/capture-download-lead/index.ts](supabase/functions/capture-download-lead/index.ts).
-4. Add GitHub repository secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` with your deployed function URL.
-5. Push to `main` to trigger deploy.
+3. Apply [supabase/migrations/20260526120000_add_onboarding_sequence_tracking.sql](supabase/migrations/20260526120000_add_onboarding_sequence_tracking.sql) to track onboarding email progress.
+4. Deploy [supabase/functions/capture-download-lead/index.ts](supabase/functions/capture-download-lead/index.ts).
+5. Deploy [supabase/functions/send-onboarding-sequence/index.ts](supabase/functions/send-onboarding-sequence/index.ts).
+6. Add GitHub repository secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` with your deployed function URL.
+7. Push to `main` to trigger deploy.
 
 Expected function URL format:
 
@@ -104,8 +106,40 @@ The helper script will:
 
 1. Create or link the Supabase project.
 2. Push the SQL migration.
-3. Deploy `capture-download-lead`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
+3. Deploy `capture-download-lead`, `send-onboarding-sequence`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
 4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
+
+### Onboarding Email Automation (Resend)
+
+`capture-download-lead` sends the first welcome email immediately. The remaining onboarding emails (day 2, day 4, day 7) are sent by `send-onboarding-sequence`.
+
+Run it manually (dry run):
+
+```bash
+curl "https://<project-ref>.functions.supabase.co/send-onboarding-sequence?dry_run=true&batch=100" \
+	-H "x-admin-key: <ADMIN_API_KEY>"
+```
+
+Run it live:
+
+```bash
+curl -X POST "https://<project-ref>.functions.supabase.co/send-onboarding-sequence?batch=100" \
+	-H "x-admin-key: <ADMIN_API_KEY>"
+```
+
+Recommended automation: schedule this endpoint hourly using Supabase Scheduled Functions, GitHub Actions cron, or your preferred scheduler.
+
+GitHub Actions cron is included in [.github/workflows/run-onboarding-sequence.yml](.github/workflows/run-onboarding-sequence.yml).
+
+Required repository secrets for the workflow:
+
+- `NEXT_PUBLIC_SUPABASE_FUNCTION_URL` (already used by site build; ends with `/capture-download-lead`)
+- `ADMIN_API_KEY` (used by the onboarding function auth)
+
+The workflow runs hourly and can also be triggered manually with:
+
+- `dry_run=true` to preview eligible leads without sending
+- `batch=<number>` to control max sends per run
 
 ### Legacy Generic Endpoint Override
 

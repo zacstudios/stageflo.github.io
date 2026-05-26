@@ -1,0 +1,105 @@
+name: Run Onboarding Sequence
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run in dry-run mode (no emails sent)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      batch:
+        description: "Maximum leads to process"
+        required: false
+        default: "100"
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: onboarding-sequence
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run-onboarding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Resolve endpoint and mode
+        id: cfg
+        shell: bash
+        env:
+          NEXT_PUBLIC_SUPABASE_FUNCTION_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_FUNCTION_URL }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          INPUT_BATCH: ${{ github.event.inputs.batch }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${NEXT_PUBLIC_SUPABASE_FUNCTION_URL:-}" ]]; then
+            echo "Missing secret NEXT_PUBLIC_SUPABASE_FUNCTION_URL" >&2
+            exit 1
+          fi
+
+          base_url="${NEXT_PUBLIC_SUPABASE_FUNCTION_URL%/capture-download-lead}"
+          endpoint="${base_url}/send-onboarding-sequence"
+
+          dry_run="false"
+          batch="100"
+
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            if [[ "${INPUT_DRY_RUN:-}" == "true" ]]; then
+              dry_run="true"
+            fi
+            if [[ -n "${INPUT_BATCH:-}" ]]; then
+              batch="${INPUT_BATCH}"
+            fi
+          fi
+
+          if ! [[ "$batch" =~ ^[0-9]+$ ]]; then
+            echo "Invalid batch input: $batch" >&2
+            exit 1
+          fi
+
+          echo "endpoint=$endpoint" >> "$GITHUB_OUTPUT"
+          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
+          echo "batch=$batch" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger onboarding sequence
+        shell: bash
+        env:
+          ADMIN_API_KEY: ${{ fromJson(toJson(secrets)).ADMIN_API_KEY }}
+          ENDPOINT: ${{ steps.cfg.outputs.endpoint }}
+          DRY_RUN: ${{ steps.cfg.outputs.dry_run }}
+          BATCH: ${{ steps.cfg.outputs.batch }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${ADMIN_API_KEY:-}" ]]; then
+            echo "Missing secret ADMIN_API_KEY" >&2
+            exit 1
+          fi
+
+          if [[ "$DRY_RUN" == "true" ]]; then
+            url="${ENDPOINT}?dry_run=true&batch=${BATCH}"
+            method="GET"
+          else
+            url="${ENDPOINT}?batch=${BATCH}"
+            method="POST"
+          fi
+
+          echo "Calling onboarding runner"
+          echo "mode=${DRY_RUN} batch=${BATCH} endpoint=${ENDPOINT}"
+
+          curl --fail-with-body --show-error --silent \
+            -X "$method" "$url" \
+            -H "x-admin-key: ${ADMIN_API_KEY}" \
+            -H "content-type: application/json"

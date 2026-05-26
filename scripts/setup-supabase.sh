@@ -110,6 +110,12 @@ supabase functions deploy download-leads-admin \
   --no-verify-jwt \
   --use-api
 
+echo "Deploying send-onboarding-sequence Edge Function..."
+supabase functions deploy send-onboarding-sequence \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
 function_url="https://${PROJECT_REF}.functions.supabase.co/capture-download-lead"
 
 echo "Updating GitHub Pages secret NEXT_PUBLIC_SUPABASE_FUNCTION_URL..."
@@ -120,6 +126,7 @@ gh secret set NEXT_PUBLIC_SUPABASE_FUNCTION_URL \
 echo "Supabase setup complete."
 echo "Project ref: $PROJECT_REF"
 echo "Function URL: $function_url"
+echo "Onboarding runner URL: https://${PROJECT_REF}.functions.supabase.co/send-onboarding-sequence"
 
 if [[ -z "${ADMIN_API_KEY:-}" ]]; then
   echo "Note: ADMIN_API_KEY was not provided. /admin/leads will not work until you set this secret and redeploy."

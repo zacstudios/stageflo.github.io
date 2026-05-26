@@ -18,6 +18,13 @@ type LeadRow = {
   email_sent_at: string | null;
   email_error: string;
   email_provider_message_id: string;
+  onboarding_step_2_sent_at: string | null;
+  onboarding_step_3_sent_at: string | null;
+  onboarding_step_4_sent_at: string | null;
+  onboarding_sequence_completed_at: string | null;
+  onboarding_attempt_count: number;
+  onboarding_last_attempt_at: string | null;
+  onboarding_last_error: string;
 };
 
 type UsageSummary = {
@@ -150,6 +157,7 @@ export default function LeadsAdminPage() {
       <section className="admin-panel">
         <h1>Email Delivery Admin</h1>
         <p>View download leads and retry failed or skipped thank-you emails.</p>
+        <p>Onboarding sequence tracking: Day 2, Day 4, Day 7, and completion status.</p>
         <p>
           Need install/version analytics? <a href="/admin/usage">Open usage dashboard</a>.
         </p>
@@ -247,6 +255,13 @@ export default function LeadsAdminPage() {
                 <th>Status</th>
                 <th>Attempts</th>
                 <th>Last Attempt</th>
+                <th>Day 2</th>
+                <th>Day 4</th>
+                <th>Day 7</th>
+                <th>Onboarding Done</th>
+                <th>Onb Attempts</th>
+                <th>Onb Last Attempt</th>
+                <th>Onb Error</th>
                 <th>Error</th>
                 <th>Action</th>
               </tr>
@@ -254,7 +269,7 @@ export default function LeadsAdminPage() {
             <tbody>
               {leads.length === 0 ? (
                 <tr>
-                  <td colSpan={8}>No leads loaded.</td>
+                  <td colSpan={15}>No leads loaded.</td>
                 </tr>
               ) : (
                 leads.map((lead) => (
@@ -267,6 +282,13 @@ export default function LeadsAdminPage() {
                     </td>
                     <td>{lead.email_attempt_count}</td>
                     <td>{formatDate(lead.email_last_attempt_at)}</td>
+                    <td>{formatDate(lead.onboarding_step_2_sent_at)}</td>
+                    <td>{formatDate(lead.onboarding_step_3_sent_at)}</td>
+                    <td>{formatDate(lead.onboarding_step_4_sent_at)}</td>
+                    <td>{formatDate(lead.onboarding_sequence_completed_at)}</td>
+                    <td>{lead.onboarding_attempt_count ?? 0}</td>
+                    <td>{formatDate(lead.onboarding_last_attempt_at)}</td>
+                    <td className="admin-error-cell">{lead.onboarding_last_error || "-"}</td>
                     <td className="admin-error-cell">{lead.email_error || "-"}</td>
                     <td>
                       {lead.email_status === "sent" ? (
