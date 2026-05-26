@@ -79,7 +79,7 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
                     <tr>
                       <td>
-                        <a href="${safeDownloadUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">Download StageFlo</a>
+                        <a href="${safeDownloadUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">Start Setup Flow</a>
                       </td>
                     </tr>
                   </table>
