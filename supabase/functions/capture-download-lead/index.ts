@@ -29,8 +29,8 @@ const corsHeaders = {
 
 const STAGEFLO_HOME_URL = "https://stageflo.app/";
 const STAGEFLO_FEEDBACK_URL = "https://stageflo.app/feedback/";
-const STAGEFLO_BUG_REPORT_URL = "https://github.com/zacstudios/Stageflo.app/issues/new?template=bug_report.md&title=Bug%3A+";
-const STAGEFLO_FEATURE_REQUEST_URL = "https://github.com/zacstudios/Stageflo.app/issues/new?template=feature_request.md&title=Feature%3A+";
+const STAGEFLO_BUG_REPORT_URL = "https://stageflo.app/feedback/?type=bug";
+const STAGEFLO_FEATURE_REQUEST_URL = "https://stageflo.app/feedback/?type=feature";
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
