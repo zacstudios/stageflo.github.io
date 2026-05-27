@@ -66,7 +66,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.
 
   <!-- By Zac Studios -->
   <text x="178" y="148" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
-    font-size="15" fill="rgba(196,181,253,0.55)" letter-spacing="0">by Zac Studios Ltd</text>
+    font-size="15" fill="rgba(196,181,253,0.55)" letter-spacing="0">by Zac Studios</text>
 
   <!-- Main headline -->
   <text x="72" y="270" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
@@ -91,7 +91,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.
   <rect x="270" y="462" width="185" height="38" rx="19" fill="rgba(20,184,166,0.15)"
     stroke="rgba(94,234,212,0.3)" stroke-width="1.5"/>
   <text x="362" y="486" font-family="system-ui, sans-serif" font-size="14" font-weight="600"
-    fill="#5eead4" text-anchor="middle">📡 Remote Stage View</text>
+    fill="#5eead4" text-anchor="middle"> Remote Stage View</text>
 
   <!-- Pill 3: Free -->
   <rect x="468" y="462" width="120" height="38" rx="19" fill="rgba(34,197,94,0.12)"
