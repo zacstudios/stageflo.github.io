@@ -308,6 +308,36 @@ export default function DocsIntroductionPage() {
               <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
               <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
             </ul>
+
+            <div className={styles.callout}>
+              <strong>Install blocked by macOS or Windows?</strong> Use these quick steps to open StageFlo safely.
+            </div>
+
+            <h3>macOS: &quot;StageFlo can&apos;t be opened&quot; or &quot;Apple could not verify&quot;</h3>
+            <ol>
+              <li>Download StageFlo and move it to <code>Applications</code>.</li>
+              <li>Try opening it once from Applications (this may show a warning).</li>
+              <li>Open <strong>System Settings → Privacy &amp; Security</strong>.</li>
+              <li>Scroll to Security and click <strong>Open Anyway</strong> for StageFlo.</li>
+              <li>Open StageFlo again and click <strong>Open</strong> when prompted.</li>
+            </ol>
+            <p>
+              Alternative method: in Finder, Control-click StageFlo in Applications, choose <strong>Open</strong>,
+              then click <strong>Open</strong> again.
+            </p>
+
+            <h3>Windows: SmartScreen &quot;Windows protected your PC&quot;</h3>
+            <ol>
+              <li>Run the StageFlo installer.</li>
+              <li>When SmartScreen appears, click <strong>More info</strong>.</li>
+              <li>Click <strong>Run anyway</strong>.</li>
+              <li>If asked by User Account Control, click <strong>Yes</strong>.</li>
+              <li>Complete setup, then launch StageFlo from Start Menu.</li>
+            </ol>
+            <p>
+              If your organization blocks unsigned apps, ask your IT admin to allow StageFlo.
+            </p>
+
             <div className={styles.linkRow}>
               <a className={styles.ghostLink} href="https://github.com/zacstudios/Stageflo.app/issues" target="_blank" rel="noopener noreferrer">
                 Known Issues

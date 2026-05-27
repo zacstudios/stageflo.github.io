@@ -77,6 +77,11 @@
   font-size: 1.05rem;
 }
 
+.docCard h3 {
+  margin-top: 0.9rem;
+  font-size: 0.98rem;
+}
+
 .docCard ul,
 .docCard ol {
   margin: 0.5rem 0 0 1.2rem;
