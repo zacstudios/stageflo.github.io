@@ -17,6 +17,7 @@ const docSections = [
   { id: "settings-shortcuts", label: "Keyboard Shortcuts" },
   { id: "outputs", label: "Outputs and Displays" },
   { id: "first-service", label: "Run Your First Service" },
+  { id: "installation-troubleshooting", label: "Installation Troubleshooting" },
   { id: "troubleshooting", label: "Troubleshooting" },
 ] as const;
 
@@ -304,18 +305,9 @@ export default function DocsIntroductionPage() {
             </ol>
           </section>
 
-          {/* ── Troubleshooting ── */}
-          <section className={docCardClassName} id="troubleshooting">
-            <SectionHeading sectionId="troubleshooting" title="Troubleshooting" />
-            <ul>
-              <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
-              <li>Output on wrong screen — re-assign displays in Settings → Screens and reopen the output windows.</li>
-              <li>Cloudflare tunnel fails to start — check internet connectivity; the tunnel requires outbound access to <code>trycloudflare.com</code>.</li>
-              <li>Media file missing — re-import the file; StageFlo references local paths so moved files need re-linking.</li>
-              <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
-              <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
-            </ul>
-
+          {/* ── Installation Troubleshooting ── */}
+          <section className={docCardClassName} id="installation-troubleshooting">
+            <SectionHeading sectionId="installation-troubleshooting" title="Installation Troubleshooting" />
             <div className={styles.callout}>
               <strong>Install blocked by macOS or Windows?</strong> Use these quick steps to open StageFlo safely.
             </div>
@@ -344,6 +336,19 @@ export default function DocsIntroductionPage() {
             <p>
               If your organization blocks unsigned apps, ask your IT admin to allow StageFlo.
             </p>
+          </section>
+
+          {/* ── Troubleshooting ── */}
+          <section className={docCardClassName} id="troubleshooting">
+            <SectionHeading sectionId="troubleshooting" title="Troubleshooting" />
+            <ul>
+              <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
+              <li>Output on wrong screen — re-assign displays in Settings → Screens and reopen the output windows.</li>
+              <li>Cloudflare tunnel fails to start — check internet connectivity; the tunnel requires outbound access to <code>trycloudflare.com</code>.</li>
+              <li>Media file missing — re-import the file; StageFlo references local paths so moved files need re-linking.</li>
+              <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
+              <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
+            </ul>
 
             <div className={styles.linkRow}>
               <a className={styles.ghostLink} href="https://github.com/zacstudios/Stageflo.app/issues" target="_blank" rel="noopener noreferrer">

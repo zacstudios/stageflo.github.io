@@ -29,7 +29,7 @@ const corsHeaders = {
 
 const STAGEFLO_HOME_URL = "https://stageflo.app/";
 const STAGEFLO_DOCS_URL = "https://stageflo.app/docs/introduction/";
-const STAGEFLO_TROUBLESHOOTING_URL = "https://stageflo.app/docs/introduction/#troubleshooting";
+const STAGEFLO_TROUBLESHOOTING_URL = "https://stageflo.app/docs/introduction/#installation-troubleshooting";
 const STAGEFLO_FEEDBACK_URL = "https://stageflo.app/feedback/";
 const STAGEFLO_BUG_REPORT_URL = "https://stageflo.app/feedback/?type=bug";
 const STAGEFLO_FEATURE_REQUEST_URL = "https://stageflo.app/feedback/?type=feature";
