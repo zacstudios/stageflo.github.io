@@ -13,10 +13,33 @@ type GatedDownloadLinkProps = {
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-const ENDPOINT_URL =
-  process.env.NEXT_PUBLIC_SUPABASE_FUNCTION_URL?.trim() ||
-  process.env.NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT?.trim() ||
-  "";
+function getEndpointUrl() {
+  const explicit = process.env.NEXT_PUBLIC_DOWNLOAD_LEAD_ENDPOINT?.trim() ?? "";
+  if (explicit) return explicit;
+
+  const base = process.env.NEXT_PUBLIC_SUPABASE_FUNCTION_URL?.trim() ?? "";
+  if (!base) return "";
+
+  if (base.endsWith("/capture-download-lead")) {
+    return base;
+  }
+
+  if (base.endsWith("/capture-download-lead/")) {
+    return base.slice(0, -1);
+  }
+
+  if (base.includes(".functions.supabase.co")) {
+    return `${base.replace(/\/+$/, "")}/capture-download-lead`;
+  }
+
+  return base;
+}
+
+const ENDPOINT_URL = getEndpointUrl();
+
+async function wait(ms: number) {
+  await new Promise((resolve) => window.setTimeout(resolve, ms));
+}
 
 export default function GatedDownloadLink({
   href,
@@ -98,16 +121,46 @@ export default function GatedDownloadLink({
     };
 
     try {
-      const response = await fetch(ENDPOINT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let response: Response | null = null;
+      let lastError: unknown = null;
+
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), 12000);
+
+        try {
+          response = await fetch(ENDPOINT_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+          });
+        } catch (error) {
+          lastError = error;
+        } finally {
+          window.clearTimeout(timeout);
+        }
+
+        const shouldRetry = !response || response.status >= 500 || response.status === 429;
+        if (!shouldRetry) break;
+
+        if (attempt < 1) {
+          await wait(500);
+        }
+      }
+
+      if (!response) {
+        throw lastError instanceof Error ? lastError : new Error("Network request failed");
+      }
 
       if (!response.ok) {
-        throw new Error(`Submission failed with status ${response.status}`);
+        const data = await response.json().catch(() => ({}));
+        const message = typeof (data as { error?: unknown }).error === "string"
+          ? (data as { error: string }).error
+          : "Submission failed";
+        throw new Error(`${message} (status ${response.status})`);
       }
 
       setSubmitState("success");
@@ -118,7 +171,7 @@ export default function GatedDownloadLink({
       }, 900);
     } catch {
       setSubmitState("error");
-      setErrorMessage("We could not submit your details right now. Please try again.");
+      setErrorMessage("We could not submit your details right now. Please try again, or continue to download.");
     }
   };
 
@@ -236,6 +289,18 @@ export default function GatedDownloadLink({
                 <button type="button" className="button button-secondary" onClick={resetAndClose} disabled={submitState === "submitting"}>
                   Cancel
                 </button>
+                {submitState === "error" ? (
+                  <button
+                    type="button"
+                    className="button button-secondary"
+                    onClick={() => {
+                      window.open(href, "_blank", "noopener,noreferrer");
+                      resetAndClose();
+                    }}
+                  >
+                    Download Anyway
+                  </button>
+                ) : null}
                 <button
                   type="submit"
                   className="button button-primary download-gate-submit"
