@@ -30,6 +30,8 @@ const corsHeaders = {
 };
 
 const STAGEFLO_HOME_URL = "https://stageflo.app/";
+const STAGEFLO_DOCS_URL = "https://stageflo.app/docs/introduction/";
+const STAGEFLO_TROUBLESHOOTING_URL = "https://stageflo.app/docs/introduction/#troubleshooting";
 const STAGEFLO_FEEDBACK_URL = "https://stageflo.app/feedback/";
 const STAGEFLO_BUG_REPORT_URL = "https://stageflo.app/feedback/?type=bug";
 const STAGEFLO_FEATURE_REQUEST_URL = "https://stageflo.app/feedback/?type=feature";
@@ -90,6 +92,10 @@ function buildEmailShell(title: string, safeName: string, bodyHtml: string, ctaT
                       <a href="${STAGEFLO_FEATURE_REQUEST_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Request a Feature</a>
                       <span style="color:#94a3b8;"> | </span>
                       <a href="${STAGEFLO_FEEDBACK_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Feedback Hub</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_TROUBLESHOOTING_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Troubleshooting</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_DOCS_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Docs</a>
                     </p>
                   </div>
 
