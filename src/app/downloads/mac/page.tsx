@@ -13,6 +13,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/downloads/mac/",
   },
+  openGraph: {
+    title: "Downloads for macOS | StageFlo",
+    description: "Direct macOS download page for StageFlo installer recovery and manual installs.",
+    url: "/downloads/mac/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo macOS Downloads",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Downloads for macOS | StageFlo",
+    description: "Direct macOS download page for StageFlo installer recovery and manual installs.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default async function MacDownloadsPage() {

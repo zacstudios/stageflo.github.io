@@ -6,6 +6,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy/",
   },
+  openGraph: {
+    title: "Privacy Policy | StageFlo",
+    description: "How StageFlo collects and uses personal data for downloads.",
+    url: "/privacy/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | StageFlo",
+    description: "How StageFlo collects and uses personal data for downloads.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function PrivacyPage() {

@@ -12,6 +12,28 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  openGraph: {
+    title: "App Offline | StageFlo",
+    description:
+      "Fallback page shown when a StageFlo public tunnel is unavailable.",
+    url: "/offline/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo App Offline",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "App Offline | StageFlo",
+    description:
+      "Fallback page shown when a StageFlo public tunnel is unavailable.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function OfflinePage() {

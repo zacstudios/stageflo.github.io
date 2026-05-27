@@ -37,12 +37,21 @@ export const metadata: Metadata = {
       "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
     url: "/docs/introduction/",
     type: "article",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Docs | Introduction",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "StageFlo Docs | Introduction",
     description:
       "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+    images: ["/og-image.png"],
   },
 };
 

@@ -13,6 +13,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/downloads/windows/",
   },
+  openGraph: {
+    title: "Downloads for Windows | StageFlo",
+    description: "Direct Windows download page for StageFlo installer recovery and manual installs.",
+    url: "/downloads/windows/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Windows Downloads",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Downloads for Windows | StageFlo",
+    description: "Direct Windows download page for StageFlo installer recovery and manual installs.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default async function WindowsDownloadsPage() {

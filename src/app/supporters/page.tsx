@@ -18,12 +18,21 @@ export const metadata: Metadata = {
       "Support StageFlo by Zac Studios through recurring or one-time contributions.",
     url: "/supporters/",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Supporters",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "StageFlo Supporters",
     description:
       "Support StageFlo by Zac Studios through recurring or one-time contributions.",
+    images: ["/og-image.png"],
   },
 };
 

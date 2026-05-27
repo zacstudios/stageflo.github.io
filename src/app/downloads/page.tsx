@@ -18,6 +18,26 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/downloads/",
   },
+  openGraph: {
+    title: "Downloads | StageFlo",
+    description: "Download StageFlo desktop installers and import-ready worship resources.",
+    url: "/downloads/",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Downloads",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Downloads | StageFlo",
+    description: "Download StageFlo desktop installers and import-ready worship resources.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default async function DownloadsPage() {

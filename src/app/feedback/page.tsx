@@ -16,12 +16,21 @@ export const metadata: Metadata = {
       "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios.",
     url: "/feedback/",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "StageFlo Feedback and Bug Reports",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "StageFlo Feedback and Bug Reports",
     description:
       "Report StageFlo bugs, request features, and share feedback with the StageFlo team at Zac Studios.",
+    images: ["/og-image.png"],
   },
 };
 

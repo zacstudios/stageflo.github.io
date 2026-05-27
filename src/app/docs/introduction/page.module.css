@@ -49,6 +49,10 @@
   gap: 1.1rem;
 }
 
+.content > section[id] {
+  scroll-margin-top: 6.9rem;
+}
+
 .docHero,
 .docCard {
   border: 1px solid rgba(124, 58, 237, 0.24);
@@ -234,6 +238,10 @@
 }
 
 @media (max-width: 700px) {
+  .content > section[id] {
+    scroll-margin-top: 5.2rem;
+  }
+
   .sectionHeading {
     flex-wrap: wrap;
   }
