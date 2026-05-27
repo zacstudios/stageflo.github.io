@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
+import SectionHeading from "./sectionHeading";
 
 const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
@@ -89,7 +90,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           <section className={styles.docCard} id="core-workflow">
-            <h2>Core Workflow</h2>
+            <SectionHeading sectionId="core-workflow" title="Core Workflow" />
             <p>Most teams use this sequence every week:</p>
             <ol>
               <li>Build a service plan with songs, scriptures, media, and custom slides.</li>
@@ -102,7 +103,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Remote Control ── */}
           <section className={styles.docCard} id="settings-remote">
-            <h2>Settings — Remote Control</h2>
+            <SectionHeading sectionId="settings-remote" title="Settings — Remote Control" />
             <p>
               Found in Settings → Remote. Control slides from any phone, tablet, or browser and show a
               stage monitor on any screen.
@@ -134,7 +135,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Display Settings ── */}
           <section className={styles.docCard} id="settings-display">
-            <h2>Settings — Display</h2>
+            <SectionHeading sectionId="settings-display" title="Settings — Display" />
             <p>Controls typography and slide layout for all outputs. Found in Settings → Display.</p>
             <ul>
               <li><strong>Font</strong> — Choose the typeface used across all slide text.</li>
@@ -151,7 +152,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Stage Display ── */}
           <section className={styles.docCard} id="settings-stage">
-            <h2>Settings — Stage Display</h2>
+            <SectionHeading sectionId="settings-stage" title="Settings — Stage Display" />
             <p>
               Configures the confidence monitor shown to speakers and musicians on stage. Found in
               Settings → Display → Stage Display.
@@ -170,7 +171,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Lower Third ── */}
           <section className={styles.docCard} id="settings-lowerthird">
-            <h2>Settings — Lower Third</h2>
+            <SectionHeading sectionId="settings-lowerthird" title="Settings — Lower Third" />
             <p>
               Configures the lower-third overlay for live streaming. Found in Settings → Display →
               Lower Third. Use the static URL in OBS as a browser source.
@@ -192,7 +193,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Screens & Outputs ── */}
           <section className={styles.docCard} id="settings-screens">
-            <h2>Settings — Screens &amp; Outputs</h2>
+            <SectionHeading sectionId="settings-screens" title="Settings — Screens & Outputs" />
             <p>Routes content to audience and stage displays. Found in Settings → Display → Screens.</p>
             <div className={styles.quickGrid}>
               <article className={styles.quickCard}>
@@ -224,7 +225,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Bible ── */}
           <section className={styles.docCard} id="settings-bible">
-            <h2>Settings — Bible</h2>
+            <SectionHeading sectionId="settings-bible" title="Settings — Bible" />
             <p>
               Manage Bible translations used in presentations. Found in Settings → Bible.
             </p>
@@ -241,7 +242,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Songs ── */}
           <section className={styles.docCard} id="settings-songs">
-            <h2>Settings — Songs</h2>
+            <SectionHeading sectionId="settings-songs" title="Settings — Songs" />
             <p>Import, export, and manage your song database. Found in Settings → Songs.</p>
             <ul>
               <li><strong>Song Pack</strong> — Import a pre-built song pack (OpenLyrics XML format) to populate your library instantly. Language packs for Malayalam, Tamil, Hindi, and others are available.</li>
@@ -253,7 +254,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Keyboard Shortcuts ── */}
           <section className={styles.docCard} id="settings-shortcuts">
-            <h2>Settings — Keyboard Shortcuts</h2>
+            <SectionHeading sectionId="settings-shortcuts" title="Settings — Keyboard Shortcuts" />
             <p>
               Customise key bindings for live control. Found in Settings → Keyboard Shortcuts. Click the
               + icon on any action to capture a new key combo.
@@ -273,7 +274,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Outputs ── */}
           <section className={styles.docCard} id="outputs">
-            <h2>Outputs and Displays</h2>
+            <SectionHeading sectionId="outputs" title="Outputs and Displays" />
             <ul>
               <li><strong>Projector</strong> — Full-screen congregation output for lyrics, scripture, and media.</li>
               <li><strong>Stage Display</strong> — Confidence monitor for speakers and musicians with current + next slide context.</li>
@@ -285,7 +286,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── First Service ── */}
           <section className={styles.docCard} id="first-service">
-            <h2>Run Your First Service</h2>
+            <SectionHeading sectionId="first-service" title="Run Your First Service" />
             <ol>
               <li>Install StageFlo from the downloads page and launch the app.</li>
               <li>In Settings → Songs, import a song pack or add songs manually.</li>
@@ -299,7 +300,7 @@ export default function DocsIntroductionPage() {
 
           {/* ── Troubleshooting ── */}
           <section className={styles.docCard} id="troubleshooting">
-            <h2>Troubleshooting</h2>
+            <SectionHeading sectionId="troubleshooting" title="Troubleshooting" />
             <ul>
               <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
               <li>Output on wrong screen — re-assign displays in Settings → Screens and reopen the output windows.</li>

@@ -77,6 +77,46 @@
   font-size: 1.05rem;
 }
 
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.sectionHeading h2 {
+  margin-bottom: 0;
+}
+
+.copyLinkButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.9rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 999px;
+  background: rgba(12, 16, 29, 0.72);
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.copyLinkButton:hover {
+  border-color: rgba(196, 181, 253, 0.5);
+  color: #ede9fe;
+  transform: translateY(-1px);
+}
+
+.copyLinkButton:focus-visible {
+  outline: 2px solid rgba(147, 51, 234, 0.7);
+  outline-offset: 2px;
+}
+
 .docCard h3 {
   margin-top: 0.9rem;
   font-size: 0.98rem;
@@ -162,6 +202,10 @@
 }
 
 @media (max-width: 700px) {
+  .sectionHeading {
+    flex-wrap: wrap;
+  }
+
   .quickGrid {
     grid-template-columns: 1fr;
   }
