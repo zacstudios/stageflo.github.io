@@ -149,10 +149,10 @@ export default function DocsIntroductionPage() {
               <article className={styles.quickCard}>
                 <h3>Public Link (Cloudflare)</h3>
                 <p>
-                  Generates a live public URL via Cloudflare Quick Tunnels — no account needed. One click
-                  creates a <code>trycloudflare.com</code> address for both the remote controller and
-                  stage view. QR codes are provided for both. Use this when devices are on different
-                  networks or for off-site team access.
+                  Generates a live public URL for both remote controller and stage view. StageFlo first
+                  attempts a permanent <code>.stageflo.app</code> hostname (supports custom slug), then
+                  falls back to a temporary <code>trycloudflare.com</code> URL if needed. QR codes are
+                  provided for both links.
                 </p>
               </article>
             </div>
@@ -183,7 +183,9 @@ export default function DocsIntroductionPage() {
               <article className={styles.quickCard}>
                 <h3>Custom/Public Link Notes</h3>
                 <ul>
-                  <li>Generated public links normally use <code>trycloudflare.com</code>.</li>
+                  <li>Preferred mode uses a permanent <code>.stageflo.app</code> hostname.</li>
+                  <li>You can set a custom slug for your permanent public link.</li>
+                  <li>If permanent link setup fails, StageFlo can use a temporary <code>trycloudflare.com</code> fallback.</li>
                   <li>Treat this link as a live control surface during service time.</li>
                   <li>Always use PIN protection before sharing outside trusted teams.</li>
                 </ul>
@@ -412,7 +414,7 @@ export default function DocsIntroductionPage() {
             <ul>
               <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
               <li>Output on wrong screen — re-assign displays in Settings → Screens and reopen the output windows.</li>
-              <li>Cloudflare tunnel fails to start — check internet connectivity; the tunnel requires outbound access to <code>trycloudflare.com</code>.</li>
+              <li>Cloudflare tunnel fails to start — check internet connectivity; allow outbound access to Cloudflare tunnel endpoints. If permanent hostname setup fails, use fallback temporary link.</li>
               <li>Media file missing — re-import the file; StageFlo references local paths so moved files need re-linking.</li>
               <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
               <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
