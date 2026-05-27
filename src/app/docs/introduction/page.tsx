@@ -7,7 +7,9 @@ import SectionHeading from "./sectionHeading";
 const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
   { id: "core-workflow", label: "Core Workflow" },
+  { id: "ai-semantic-search", label: "AI Semantic Search" },
   { id: "settings-remote", label: "Remote Control" },
+  { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
   { id: "settings-display", label: "Display Settings" },
   { id: "settings-stage", label: "Stage Display" },
   { id: "settings-lowerthird", label: "Lower Third" },
@@ -15,6 +17,7 @@ const docSections = [
   { id: "settings-bible", label: "Bible" },
   { id: "settings-songs", label: "Songs" },
   { id: "settings-shortcuts", label: "Keyboard Shortcuts" },
+  { id: "service-safety-tools", label: "Service Safety Tools" },
   { id: "outputs", label: "Outputs and Displays" },
   { id: "first-service", label: "Run Your First Service" },
   { id: "installation-troubleshooting", label: "Installation Troubleshooting" },
@@ -108,6 +111,25 @@ export default function DocsIntroductionPage() {
             </ol>
           </section>
 
+          {/* ── AI Semantic Search ── */}
+          <section className={docCardClassName} id="ai-semantic-search">
+            <SectionHeading sectionId="ai-semantic-search" title="AI Semantic Search" />
+            <p>
+              StageFlo can search by meaning, not only exact words. This helps teams find songs and
+              scripture quickly even when they remember ideas, stories, or themes instead of exact text.
+            </p>
+            <ul>
+              <li><strong>Meaning-first search</strong> — queries like “women at the well” can find John 4 without exact phrase matching.</li>
+              <li><strong>Multilingual support</strong> — works across English, Malayalam, Hindi, Tamil, Telugu, and more.</li>
+              <li><strong>Fully offline</strong> — semantic model runs locally in-app; no cloud dependency during service.</li>
+              <li><strong>Bible + songs</strong> — results can include both scripture and song matches in one workflow.</li>
+            </ul>
+            <div className={styles.callout}>
+              If keyword search returns nothing, open the AI tab in Song Library and search by topic,
+              mood, story, or theme.
+            </div>
+          </section>
+
           {/* ── Remote Control ── */}
           <section className={docCardClassName} id="settings-remote">
             <SectionHeading sectionId="settings-remote" title="Settings — Remote Control" />
@@ -137,6 +159,39 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               <strong>PIN Protection</strong> — Set a PIN in Remote → Security to restrict access to the
               controller. Leave blank for open access on trusted local networks.
+            </div>
+          </section>
+
+          {/* ── Remote Stage View over Internet ── */}
+          <section className={docCardClassName} id="remote-stage-view-over-internet">
+            <SectionHeading sectionId="remote-stage-view-over-internet" title="Remote Stage View over Internet" />
+            <p>
+              Use this when your musicians or speakers are outside your local network. StageFlo can
+              generate a public link via Cloudflare Tunnel so remote users can access both stage view and
+              controller securely.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>How to Share</h3>
+                <ol>
+                  <li>Open Settings → Remote.</li>
+                  <li>Enable Public Link mode.</li>
+                  <li>Copy the generated base URL.</li>
+                  <li>Share <code>/stage</code> for singers and <code>/remote</code> for control.</li>
+                </ol>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>Custom/Public Link Notes</h3>
+                <ul>
+                  <li>Generated public links normally use <code>trycloudflare.com</code>.</li>
+                  <li>Treat this link as a live control surface during service time.</li>
+                  <li>Always use PIN protection before sharing outside trusted teams.</li>
+                </ul>
+              </article>
+            </div>
+            <div className={styles.callout}>
+              Best practice: share <code>/stage</code> broadly, but share <code>/remote</code> only with
+              operators who should control slides.
             </div>
           </section>
 
@@ -276,6 +331,19 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               Toggle the Keyboard Shortcuts enable switch to temporarily disable all bindings — useful
               when typing in text fields during a live service.
+            </div>
+          </section>
+
+          {/* ── Service Safety Tools ── */}
+          <section className={docCardClassName} id="service-safety-tools">
+            <SectionHeading sectionId="service-safety-tools" title="Service Safety Tools" />
+            <ul>
+              <li><strong>Live Text Edit</strong> — fix typos without leaving live mode.</li>
+              <li><strong>Template System</strong> — design once and reuse styling across slides and services.</li>
+              <li><strong>Output Lock</strong> — lock output windows to avoid accidental screen changes during service.</li>
+            </ul>
+            <div className={styles.callout}>
+              Output Lock quick keys: <strong>Cmd+L</strong> to lock, <strong>Cmd+R</strong> to restore.
             </div>
           </section>
 
