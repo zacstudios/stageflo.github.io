@@ -43,6 +43,8 @@ export const metadata: Metadata = {
 };
 
 export default function DocsIntroductionPage() {
+  const docCardClassName = `${styles.docCard} reveal`;
+
   return (
     <div className="site-shell">
       <header className="top-nav">
@@ -71,7 +73,7 @@ export default function DocsIntroductionPage() {
         </aside>
 
         <article className={styles.content}>
-          <section className={styles.docHero} id="what-is-stageflo">
+          <section className={`${styles.docHero} reveal`} id="what-is-stageflo">
             <p className="eyebrow">Documentation</p>
             <h1>Introduction to StageFlo</h1>
             <p>
@@ -79,6 +81,10 @@ export default function DocsIntroductionPage() {
               projector and stage outputs. Built for real service flow — fast prep, simple control,
               and confidence on stage.
             </p>
+            <div className="hero-badges" aria-label="Docs highlights">
+              <span className="eyebrow">Quick Setup</span>
+              <span className="eyebrow">Shareable Section Links</span>
+            </div>
             <div className={styles.linkRow}>
               <a className={styles.ghostLink} href="https://github.com/zacstudios/Stageflo.app#readme" target="_blank" rel="noopener noreferrer">
                 Full README
@@ -89,7 +95,7 @@ export default function DocsIntroductionPage() {
             </div>
           </section>
 
-          <section className={styles.docCard} id="core-workflow">
+          <section className={docCardClassName} id="core-workflow">
             <SectionHeading sectionId="core-workflow" title="Core Workflow" />
             <p>Most teams use this sequence every week:</p>
             <ol>
@@ -102,7 +108,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Remote Control ── */}
-          <section className={styles.docCard} id="settings-remote">
+          <section className={docCardClassName} id="settings-remote">
             <SectionHeading sectionId="settings-remote" title="Settings — Remote Control" />
             <p>
               Found in Settings → Remote. Control slides from any phone, tablet, or browser and show a
@@ -134,7 +140,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Display Settings ── */}
-          <section className={styles.docCard} id="settings-display">
+          <section className={docCardClassName} id="settings-display">
             <SectionHeading sectionId="settings-display" title="Settings — Display" />
             <p>Controls typography and slide layout for all outputs. Found in Settings → Display.</p>
             <ul>
@@ -151,7 +157,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Stage Display ── */}
-          <section className={styles.docCard} id="settings-stage">
+          <section className={docCardClassName} id="settings-stage">
             <SectionHeading sectionId="settings-stage" title="Settings — Stage Display" />
             <p>
               Configures the confidence monitor shown to speakers and musicians on stage. Found in
@@ -170,7 +176,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Lower Third ── */}
-          <section className={styles.docCard} id="settings-lowerthird">
+          <section className={docCardClassName} id="settings-lowerthird">
             <SectionHeading sectionId="settings-lowerthird" title="Settings — Lower Third" />
             <p>
               Configures the lower-third overlay for live streaming. Found in Settings → Display →
@@ -192,7 +198,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Screens & Outputs ── */}
-          <section className={styles.docCard} id="settings-screens">
+          <section className={docCardClassName} id="settings-screens">
             <SectionHeading sectionId="settings-screens" title="Settings — Screens & Outputs" />
             <p>Routes content to audience and stage displays. Found in Settings → Display → Screens.</p>
             <div className={styles.quickGrid}>
@@ -224,7 +230,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Bible ── */}
-          <section className={styles.docCard} id="settings-bible">
+          <section className={docCardClassName} id="settings-bible">
             <SectionHeading sectionId="settings-bible" title="Settings — Bible" />
             <p>
               Manage Bible translations used in presentations. Found in Settings → Bible.
@@ -241,7 +247,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Songs ── */}
-          <section className={styles.docCard} id="settings-songs">
+          <section className={docCardClassName} id="settings-songs">
             <SectionHeading sectionId="settings-songs" title="Settings — Songs" />
             <p>Import, export, and manage your song database. Found in Settings → Songs.</p>
             <ul>
@@ -253,7 +259,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Keyboard Shortcuts ── */}
-          <section className={styles.docCard} id="settings-shortcuts">
+          <section className={docCardClassName} id="settings-shortcuts">
             <SectionHeading sectionId="settings-shortcuts" title="Settings — Keyboard Shortcuts" />
             <p>
               Customise key bindings for live control. Found in Settings → Keyboard Shortcuts. Click the
@@ -273,7 +279,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Outputs ── */}
-          <section className={styles.docCard} id="outputs">
+          <section className={docCardClassName} id="outputs">
             <SectionHeading sectionId="outputs" title="Outputs and Displays" />
             <ul>
               <li><strong>Projector</strong> — Full-screen congregation output for lyrics, scripture, and media.</li>
@@ -285,7 +291,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── First Service ── */}
-          <section className={styles.docCard} id="first-service">
+          <section className={docCardClassName} id="first-service">
             <SectionHeading sectionId="first-service" title="Run Your First Service" />
             <ol>
               <li>Install StageFlo from the downloads page and launch the app.</li>
@@ -299,7 +305,7 @@ export default function DocsIntroductionPage() {
           </section>
 
           {/* ── Troubleshooting ── */}
-          <section className={styles.docCard} id="troubleshooting">
+          <section className={docCardClassName} id="troubleshooting">
             <SectionHeading sectionId="troubleshooting" title="Troubleshooting" />
             <ul>
               <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
