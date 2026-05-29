@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import GatedDownloadLink from "../components/gatedDownloadLink";
+import TopNav from "../components/topNav";
 import {
   CURRENT_VERSION,
   MAC_DOWNLOAD_URL,
@@ -60,18 +60,15 @@ export default async function DownloadsPage() {
 
   return (
     <div className="site-shell">
-      <header className="top-nav">
-        <Link className="brand" href="/" aria-label="StageFlo home">
-          <Image src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: "0.55rem", background: "rgba(124, 58, 237, 0.35)", boxShadow: "0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)" }} />
-          <span>StageFlo</span>
-        </Link>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/docs/introduction/">Docs</Link>
-          <a href="#desktop">Desktop</a>
-          <a href="#resources">Resources</a>
-        </nav>
-      </header>
+      <TopNav
+        brandLabel="StageFlo"
+        links={[
+          { label: "Home", href: "/" },
+          { label: "Docs", href: "/docs/introduction/" },
+          { label: "Desktop", href: "#desktop" },
+          { label: "Resources", href: "#resources" },
+        ]}
+      />
 
       <main className="page-main">
         <section className="hero downloads-hero" id="top">

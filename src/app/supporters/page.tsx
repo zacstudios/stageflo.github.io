@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import StripePricingTable from "../components/stripePricingTable";
+import TopNav from "../components/topNav";
 
 const ONE_TIME_SUPPORT_URL = "https://buy.stripe.com/5kQ14n1NM56kf7F8PC0Fi02";
 
@@ -39,19 +40,16 @@ export const metadata: Metadata = {
 export default function SupportersPage() {
   return (
     <div className="site-shell">
-      <header className="top-nav">
-        <Link className="brand" href="/" aria-label="StageFlo home">
-          <Image src="/stageflo-icon.png" alt="StageFlo" width={30} height={30} />
-          <span>StageFlo</span>
-        </Link>
-        <nav>
-          <Link href="/#features">Features</Link>
-          <Link href="/#screenshots">Screenshots</Link>
-          <Link href="/docs/introduction/">Docs</Link>
-          <Link href="/feedback/">Feedback</Link>
-          <Link href="/">Home</Link>
-        </nav>
-      </header>
+      <TopNav
+        brandLabel="StageFlo"
+        links={[
+          { label: "Features", href: "/#features" },
+          { label: "Screenshots", href: "/#screenshots" },
+          { label: "Docs", href: "/docs/introduction/" },
+          { label: "Feedback", href: "/feedback/" },
+          { label: "Home", href: "/" },
+        ]}
+      />
 
       <main className="page-main">
         <section className="hero" id="supporters">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import GatedDownloadLink from "./components/gatedDownloadLink";
+import TopNav from "./components/topNav";
 
 const CURRENT_VERSION = "2.0.1";
 const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
@@ -306,19 +307,17 @@ export default async function Home() {
           __html: JSON.stringify(faqStructuredData),
         }}
       />
-      <header className="top-nav">
-        <a className="brand" href="#home" aria-label="StageFlo home">
-          <Image src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: '0.55rem', background: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)' }} />
-          <span>StageFlo</span>
-        </a>
-        <nav>
-          <a href="#features">Features</a>
-          <a href="#screenshots">Screenshots</a>
-          <Link href="/docs/introduction/">Docs</Link>
-          <Link href="/supporters/">Supporters</Link>
-          <a href="/feedback/">Feedback</a>
-        </nav>
-      </header>
+      <TopNav
+        brandLabel="StageFlo"
+        brandHref="#home"
+        links={[
+          { label: "Features", href: "#features" },
+          { label: "Screenshots", href: "#screenshots" },
+          { label: "Docs", href: "/docs/introduction/" },
+          { label: "Supporters", href: "/supporters/" },
+          { label: "Feedback", href: "/feedback/" },
+        ]}
+      />
 
       <main className="page-main">
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import TopNav from "../../components/topNav";
 import styles from "./page.module.css";
 import SectionHeading from "./sectionHeading";
 
@@ -60,18 +60,15 @@ export default function DocsIntroductionPage() {
 
   return (
     <div className="site-shell">
-      <header className="top-nav">
-        <Link className="brand" href="/" aria-label="StageFlo home">
-          <Image src="/stageflo-icon.png" alt="StageFlo" width={28} height={28} style={{ borderRadius: '0.55rem', background: 'rgba(124, 58, 237, 0.35)', boxShadow: '0 0 0 1.5px rgba(196, 181, 253, 0.5), 0 2px 10px rgba(124, 58, 237, 0.4)' }} />
-          <span>StageFlo Docs</span>
-        </Link>
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/downloads/">Downloads</Link>
-          <Link href="/feedback/">Feedback</Link>
-          <a href="https://github.com/zacstudios/Stageflo.app" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </nav>
-      </header>
+      <TopNav
+        brandLabel="StageFlo Docs"
+        links={[
+          { label: "Home", href: "/" },
+          { label: "Downloads", href: "/downloads/" },
+          { label: "Feedback", href: "/feedback/" },
+          { label: "GitHub", href: "https://github.com/zacstudios/Stageflo.app", external: true },
+        ]}
+      />
 
       <main className={styles.docsMain}>
         <aside className={styles.sidebar}>

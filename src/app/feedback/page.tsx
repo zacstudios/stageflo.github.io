@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import FeedbackForm from "../components/feedbackForm";
+import TopNav from "../components/topNav";
 
 export const metadata: Metadata = {
   title: "StageFlo Feedback and Bug Reports",
@@ -37,18 +38,15 @@ export const metadata: Metadata = {
 export default function Feedback() {
   return (
     <div className="site-shell feedback-page">
-      <header className="top-nav">
-        <Link className="brand" href="/" aria-label="StageFlo home">
-          <Image src="/stageflo-icon.png" alt="StageFlo" width={30} height={30} />
-          <span>StageFlo</span>
-        </Link>
-        <nav>
-          <Link href="/#features">Features</Link>
-          <Link href="/#screenshots">Screenshots</Link>
-          <Link href="/#install">Install</Link>
-          <Link href="/">Home</Link>
-        </nav>
-      </header>
+      <TopNav
+        brandLabel="StageFlo"
+        links={[
+          { label: "Features", href: "/#features" },
+          { label: "Screenshots", href: "/#screenshots" },
+          { label: "Install", href: "/#install" },
+          { label: "Home", href: "/" },
+        ]}
+      />
 
       <main className="feedback-main">
         <section className="hero feedback-hero" id="feedback">

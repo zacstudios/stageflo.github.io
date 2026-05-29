@@ -123,7 +123,6 @@ export default function FeedbackForm() {
   };
 
   const summaryLabel = type === "feature" ? "Feature Idea" : type === "bug" ? "Issue Summary" : "Feedback";
-  const typeTitle = type === "bug" ? "Bug Report" : type === "feature" ? "Feature Request" : "General Feedback";
   const typeHelpTitle =
     type === "bug"
       ? "What helps us fix bugs faster"
@@ -148,23 +147,12 @@ export default function FeedbackForm() {
             "Tell us where in your service flow this happens.",
             "Include one concrete suggestion if possible.",
           ];
-  const typeResponseNote =
-    type === "feature"
-      ? "Popular requests are reviewed weekly with roadmap planning."
-      : type === "general"
-        ? "General feedback is reviewed weekly for UX and quality improvements."
-        : "Most reports get a first response within 24 hours.";
-
   return (
     <section className="feedback-form-section">
       <article className={`feedback-form-card feedback-form-card-${type} install-card reveal`}>
         <div className="feedback-form-head">
           <h2>Send Feedback</h2>
-          <p>No GitHub login needed. Submit bugs, feature ideas, or general feedback directly.</p>
-          <div className="feedback-type-context" aria-live="polite">
-            <span className="feedback-type-context-badge">{typeTitle}</span>
-            <span className="feedback-type-context-note">{typeResponseNote}</span>
-          </div>
+          <p>Share bugs, feature requests, or quick product feedback. No GitHub account required.</p>
         </div>
 
         {!endpointAvailable ? (
