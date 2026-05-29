@@ -26,11 +26,40 @@ const corsHeaders = {
   "Content-Type": "application/json",
 };
 
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const MAX_REQUESTS_PER_IP_PER_WINDOW = 20;
+const MAX_REQUESTS_PER_EMAIL_PER_WINDOW = 4;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
     headers: corsHeaders,
   });
+}
+
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for") ?? "";
+  const firstForwarded = forwarded.split(",")[0]?.trim();
+  if (firstForwarded) return firstForwarded;
+  return request.headers.get("cf-connecting-ip")?.trim() || "unknown";
+}
+
+function isRateLimited(key: string, limit: number, windowMs = RATE_LIMIT_WINDOW_MS): boolean {
+  const now = Date.now();
+  const current = rateLimitBuckets.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitBuckets.set(key, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+
+  current.count += 1;
+  if (current.count > limit) {
+    return true;
+  }
+
+  return false;
 }
 
 function isValidEmail(email: string) {
@@ -56,6 +85,11 @@ Deno.serve(async (request) => {
 
   if (!supabaseUrl || !serviceRoleKey) {
     return json({ error: "Supabase service configuration is missing" }, 500);
+  }
+
+  const clientIp = getClientIp(request);
+  if (isRateLimited(`ip:${clientIp}`, MAX_REQUESTS_PER_IP_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
   }
 
   let payload: FeedbackPayload;
@@ -89,6 +123,10 @@ Deno.serve(async (request) => {
 
   if (!isValidEmail(email)) {
     return json({ error: "Email address is invalid" }, 400);
+  }
+
+  if (isRateLimited(`email:${email}`, MAX_REQUESTS_PER_EMAIL_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
   }
 
   if (message.length < 10 || message.length > 4000) {

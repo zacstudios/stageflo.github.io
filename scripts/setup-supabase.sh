@@ -79,6 +79,10 @@ if [[ -n "${ADMIN_API_KEY:-}" ]]; then
   function_secret_args+=("ADMIN_API_KEY=${ADMIN_API_KEY}")
 fi
 
+if [[ -n "${TUNNEL_REGISTER_TOKEN:-}" ]]; then
+  function_secret_args+=("TUNNEL_REGISTER_TOKEN=${TUNNEL_REGISTER_TOKEN}")
+fi
+
 if [[ ${#function_secret_args[@]} -gt 0 ]]; then
   echo "Setting function secrets..."
   supabase secrets set --project-ref "$PROJECT_REF" "${function_secret_args[@]}"

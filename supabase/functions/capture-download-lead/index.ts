@@ -27,6 +27,11 @@ const corsHeaders = {
   "Content-Type": "application/json",
 };
 
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const MAX_REQUESTS_PER_IP_PER_WINDOW = 30;
+const MAX_REQUESTS_PER_EMAIL_PER_WINDOW = 5;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+
 const STAGEFLO_HOME_URL = "https://stageflo.app/";
 const STAGEFLO_DOCS_URL = "https://stageflo.app/docs/introduction/";
 const STAGEFLO_TROUBLESHOOTING_URL = "https://stageflo.app/docs/introduction/#installation-troubleshooting";
@@ -39,6 +44,30 @@ function json(body: unknown, status = 200) {
     status,
     headers: corsHeaders,
   });
+}
+
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for") ?? "";
+  const firstForwarded = forwarded.split(",")[0]?.trim();
+  if (firstForwarded) return firstForwarded;
+  return request.headers.get("cf-connecting-ip")?.trim() || "unknown";
+}
+
+function isRateLimited(key: string, limit: number, windowMs = RATE_LIMIT_WINDOW_MS): boolean {
+  const now = Date.now();
+  const current = rateLimitBuckets.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitBuckets.set(key, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+
+  current.count += 1;
+  if (current.count > limit) {
+    return true;
+  }
+
+  return false;
 }
 
 function isValidEmail(email: string) {
@@ -187,6 +216,11 @@ Deno.serve(async (request) => {
     return json({ error: "Supabase service configuration is missing" }, 500);
   }
 
+  const clientIp = getClientIp(request);
+  if (isRateLimited(`ip:${clientIp}`, MAX_REQUESTS_PER_IP_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
+  }
+
   let payload: LeadPayload;
 
   try {
@@ -210,6 +244,10 @@ Deno.serve(async (request) => {
 
   if (!isValidEmail(email)) {
     return json({ error: "Email address is invalid" }, 400);
+  }
+
+  if (isRateLimited(`email:${email}`, MAX_REQUESTS_PER_EMAIL_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
   }
 
   if (source !== "desktop" && source !== "resource") {
@@ -256,7 +294,7 @@ Deno.serve(async (request) => {
 
   // Email already registered — return download URL without resending welcome email
   if (!insertedLead) {
-    return json({ ok: true, emailQueued: false, emailStatus: "already_registered" });
+    return json({ ok: true, accepted: true, emailQueued: true, emailStatus: "accepted" });
   }
 
   const emailResult = await sendThankYouEmail({ email, name, downloadUrl });
@@ -292,5 +330,5 @@ Deno.serve(async (request) => {
       },
     });
 
-  return json({ ok: true, emailQueued: emailResult.ok, emailStatus: emailResult.status });
+  return json({ ok: true, accepted: true, emailQueued: true, emailStatus: "accepted" });
 });

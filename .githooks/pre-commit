@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Allow explicit bypass for emergency commits.
+if [[ "${SKIP_SECRET_SCAN:-}" == "1" ]]; then
+  exit 0
+fi
+
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  exit 0
+fi
+
+staged_diff="$(git diff --cached --unified=0 --no-color -- .)"
+if [[ -z "$staged_diff" ]]; then
+  exit 0
+fi
+
+# Scan only added lines in staged hunks for high-risk secret patterns.
+pattern='(ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN (RSA|EC|OPENSSH|PRIVATE) KEY-----|postgres(ql)?://[^[:space:]]+|SUPABASE_SERVICE_ROLE_KEY[[:space:]]*=[[:space:]]*[^[:space:]]{10,}|SUPABASE_ACCESS_TOKEN[[:space:]]*=[[:space:]]*[^[:space:]]{10,}|SUPABASE_DB_PASSWORD[[:space:]]*=[[:space:]]*[^[:space:]]{8,}|RESEND_API_KEY[[:space:]]*=[[:space:]]*re_[A-Za-z0-9_]{10,})'
+
+matches="$(printf '%s\n' "$staged_diff" | grep -En "^\+[^+].*${pattern}" || true)"
+
+if [[ -n "$matches" ]]; then
+  echo "Potential secret detected in staged changes. Commit blocked." >&2
+  echo >&2
+  echo "$matches" >&2
+  echo >&2
+  echo "If this is a known false positive, rerun with SKIP_SECRET_SCAN=1 git commit ..." >&2
+  exit 1
+fi
+
+exit 0

@@ -32,6 +32,22 @@ This outputs static files to `out/`.
 2. GitHub Actions runs `.github/workflows/deploy.yml`.
 3. The generated `out/` artifact is deployed to GitHub Pages.
 
+## Secret Scanning
+
+This repo runs an automated secret scan on pushes and pull requests using gitleaks.
+
+Workflow:
+
+- `.github/workflows/secret-scan.yml`
+
+If a secret-like value is committed, the workflow fails so it can be removed before merge.
+
+Local pre-commit scan:
+
+1. Run `npm run hooks:install` once per clone.
+2. The hook scans staged additions and blocks commits that look like secrets.
+3. Optional manual check: `npm run security:scan:staged`.
+
 ## Tunnel Offline Fallback
 
 This repo now includes a static offline page at `/offline/` for StageFlo public links.
@@ -116,6 +132,12 @@ The helper script will:
 2. Push the SQL migration.
 3. Deploy `capture-download-lead`, `capture-feedback`, `send-onboarding-sequence`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
 4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
+
+Optional hardening for `tunnel-register`:
+
+- Set `TUNNEL_REGISTER_TOKEN` as a Supabase function secret.
+- When set, callers must send `x-tunnel-token: <TUNNEL_REGISTER_TOKEN>`.
+- If unset, existing behavior remains unchanged for backward compatibility.
 
 ### Onboarding Email Automation (Resend)
 

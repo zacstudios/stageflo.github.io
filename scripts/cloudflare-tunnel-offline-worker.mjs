@@ -195,8 +195,8 @@ function offlineResponse(host, path) {
   });
 }
 
-export default {
-  async fetch(request, env) {
+const worker = {
+  async fetch(request) {
     const url = new URL(request.url);
 
     if (url.hostname === 'stageflo.app' && url.pathname.startsWith('/offline')) {
@@ -221,3 +221,5 @@ export default {
     return offlineResponse(url.hostname, `${url.pathname}${url.search}`);
   },
 };
+
+export default worker;

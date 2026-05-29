@@ -21,10 +21,15 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "content-type, x-device-id",
+  "Access-Control-Allow-Headers": "content-type, x-device-id, x-tunnel-token",
   "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
   "Content-Type": "application/json",
 };
+
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const MAX_REQUESTS_PER_IP_PER_WINDOW = 40;
+const MAX_MUTATIONS_PER_DEVICE_PER_WINDOW = 10;
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 
 // ── Biblical adjectives + nouns for friendly slug generation ─────────────────
 const ADJECTIVES = [
@@ -90,6 +95,30 @@ function checkSlugGuards(slug: string): string | null {
 
 function json(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: corsHeaders });
+}
+
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for") ?? "";
+  const firstForwarded = forwarded.split(",")[0]?.trim();
+  if (firstForwarded) return firstForwarded;
+  return request.headers.get("cf-connecting-ip")?.trim() || "unknown";
+}
+
+function isRateLimited(key: string, limit: number, windowMs = RATE_LIMIT_WINDOW_MS): boolean {
+  const now = Date.now();
+  const current = rateLimitBuckets.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitBuckets.set(key, { count: 1, resetAt: now + windowMs });
+    return false;
+  }
+
+  current.count += 1;
+  if (current.count > limit) {
+    return true;
+  }
+
+  return false;
 }
 
 // ── Cloudflare API helpers ───────────────────────────────────────────────────
@@ -237,6 +266,20 @@ Deno.serve(async (request) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const clientIp = getClientIp(request);
+  if (isRateLimited(`ip:${clientIp}`, MAX_REQUESTS_PER_IP_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
+  }
+
+  // Backward-compatible hardening: if configured, require shared token.
+  const tunnelRegisterToken = Deno.env.get("TUNNEL_REGISTER_TOKEN")?.trim();
+  if (tunnelRegisterToken) {
+    const incomingToken = request.headers.get("x-tunnel-token")?.trim() ?? "";
+    if (incomingToken !== tunnelRegisterToken) {
+      return json({ error: "Unauthorized" }, 401);
+    }
+  }
+
   // ── GET: Check slug availability ──────────────────────────────────────────
   if (request.method === "GET") {
     const url = new URL(request.url);
@@ -264,6 +307,10 @@ Deno.serve(async (request) => {
   const deviceId = request.headers.get("x-device-id")?.trim();
   if (!deviceId || !/^[0-9a-f-]{36}$/i.test(deviceId)) {
     return json({ error: "Missing or invalid x-device-id header" }, 400);
+  }
+
+  if (isRateLimited(`device:${deviceId}:${request.method}`, MAX_MUTATIONS_PER_DEVICE_PER_WINDOW)) {
+    return json({ error: "Too many requests" }, 429);
   }
 
   const cfToken = Deno.env.get("CF_API_TOKEN");
@@ -329,7 +376,7 @@ Deno.serve(async (request) => {
 
   if (existingErr) {
     console.error("DB select error (existing):", JSON.stringify(existingErr));
-    return json({ error: "Database error", detail: existingErr.message, code: existingErr.code }, 500);
+    return json({ error: "Database error" }, 500);
   }
 
   if (existing) {
@@ -359,7 +406,7 @@ Deno.serve(async (request) => {
       .maybeSingle();
     if (takenErr) {
       console.error("DB select error (slug check):", JSON.stringify(takenErr));
-      return json({ error: "Database error", detail: takenErr.message, code: takenErr.code }, 500);
+      return json({ error: "Database error" }, 500);
     }
     if (taken) {
       return json({ error: "That subdomain is already taken, please choose another" }, 409);
@@ -390,7 +437,7 @@ Deno.serve(async (request) => {
   } catch (err) {
     const detail = err instanceof Error ? err.message : String(err);
     console.error("CF tunnel create error:", detail);
-    return json({ error: "Failed to provision tunnel", detail }, 502);
+    return json({ error: "Failed to provision tunnel" }, 502);
   }
 
   // ── 4. Create DNS record ──────────────────────────────────────────────────
@@ -401,7 +448,7 @@ Deno.serve(async (request) => {
     console.error("CF DNS create error:", detail);
     // Roll back the tunnel we just created
     await deleteCfTunnel(cfAccountId, cfToken, tunnelId);
-    return json({ error: "Failed to create DNS record", detail }, 502);
+    return json({ error: "Failed to create DNS record" }, 502);
   }
 
   // ── 5. Persist in DB ─────────────────────────────────────────────────────
@@ -417,7 +464,7 @@ Deno.serve(async (request) => {
     console.error("DB insert error:", JSON.stringify(dbErr));
     // Best-effort rollback
     await deleteCfTunnel(cfAccountId, cfToken, tunnelId);
-    return json({ error: "Database error", detail: dbErr.message, code: dbErr.code }, 500);
+    return json({ error: "Database error" }, 500);
   }
 
   return json({

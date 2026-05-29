@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:prod": "eslint --max-warnings=0",
+    "hooks:install": "git config core.hooksPath .githooks && chmod +x .githooks/pre-commit",
+    "security:scan:staged": ".githooks/pre-commit",
     "setup:supabase": "bash scripts/setup-supabase.sh",
     "typecheck": "tsc --noEmit",
     "verify:prod": "npm run lint:prod && npm run typecheck && npm run build"

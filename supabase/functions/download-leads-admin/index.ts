@@ -303,7 +303,7 @@ Deno.serve(async (request) => {
     }
 
     const leadIds = (data ?? []).map((row) => String(row.id));
-    let eventsByLead: Record<string, EmailEventRecord[]> = {};
+    const eventsByLead: Record<string, EmailEventRecord[]> = {};
 
     if (leadIds.length > 0) {
       const { data: events, error: eventsError } = await supabase
