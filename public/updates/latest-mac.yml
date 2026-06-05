@@ -1,11 +1,11 @@
-version: 2.0.9
+version: 2.1.0
 files:
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.9/StageFlo-2.0.9-universal-mac.zip
-    sha512: K8uw5KYYH2ObKtGzavjrogjOE7HyS47M1hemtdriw6kjv/+7VAkxV5SHtB6X6LHymfo1XhmnaBcngKyNTzFAiA==
-    size: 323951794
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.9/stageflo-2.0.9.dmg
-    sha512: cCIYVqcMhSzgzqioYkanGaINnusf9/L3Q6CjVEetOkQfUlSO9kA07a6d8kJazlTftp3FGkQYXxHwI/VXEuLhKw==
-    size: 334859223
-path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.0.9/StageFlo-2.0.9-universal-mac.zip
-sha512: K8uw5KYYH2ObKtGzavjrogjOE7HyS47M1hemtdriw6kjv/+7VAkxV5SHtB6X6LHymfo1XhmnaBcngKyNTzFAiA==
-releaseDate: '2026-06-03T13:29:20.986Z'
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.0/StageFlo-2.1.0-universal-mac.zip
+    sha512: wJ/cv5LX0tHur1JDD5PrW0GGSwD2+HJ1k/HEZO9JQLpLhfiRv12jvTQ2SKs/RiGWHZs+M7Z1ISv+8mcwUyasEQ==
+    size: 323966664
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.0/stageflo-2.1.0.dmg
+    sha512: eQgPIdvcZf8P/1fHVs0VdLnFkyr9VQNsKh8TlSu+QkndyRbJkh+1NA2XleI7/dPHaIc0IzCpydiqJIkA8FL6Vg==
+    size: 334829544
+path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.0/StageFlo-2.1.0-universal-mac.zip
+sha512: wJ/cv5LX0tHur1JDD5PrW0GGSwD2+HJ1k/HEZO9JQLpLhfiRv12jvTQ2SKs/RiGWHZs+M7Z1ISv+8mcwUyasEQ==
+releaseDate: '2026-06-05T19:07:52.216Z'
