@@ -11,6 +11,7 @@ const docSections = [
   { id: "library-backups", label: "Library & Backups" },
   { id: "ai-semantic-search", label: "AI Semantic Search" },
   { id: "settings-remote", label: "Remote Control" },
+  { id: "bitfocus-presenter-remotes", label: "Bitfocus & Presenter Remotes" },
   { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
   { id: "settings-display", label: "Display Settings" },
   { id: "settings-stage", label: "Stage Display" },
@@ -245,6 +246,57 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
               automatic active-slide scrolling briefly, then resumes following the live slide.
+            </div>
+          </section>
+
+          <section className={docCardClassName} id="bitfocus-presenter-remotes">
+            <SectionHeading sectionId="bitfocus-presenter-remotes" title="Bitfocus & Presenter Remotes" />
+            <p>
+              StageFlo can also be driven from Bitfocus Companion, Stream Deck through Companion, or a
+              standard PowerPoint-style presenter stick.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>Bitfocus Companion</h3>
+                <p>
+                  In Companion, add the <strong>Generic HTTP Requests</strong> connection. Create one
+                  button per command and use <code>GET</code> requests to the StageFlo computer on port{" "}
+                  <code>50111</code>.
+                </p>
+                <ul>
+                  <li><code>/remote/companion/next</code> — next slide</li>
+                  <li><code>/remote/companion/prev</code> — previous slide</li>
+                  <li><code>/remote/companion/go-live</code> — send preview live to projector</li>
+                  <li><code>/remote/companion/go-live-stage</code> — send preview live to stage</li>
+                  <li><code>/remote/companion/black</code> — black screen</li>
+                  <li><code>/remote/companion/clear</code> — clear screen</li>
+                  <li><code>/remote/companion/close-outputs</code> — close projector and stage outputs</li>
+                </ul>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>Presenter Stick</h3>
+                <p>
+                  Most USB or Bluetooth presenter sticks act like a keyboard. Keep the StageFlo main
+                  window focused and use the clicker normally.
+                </p>
+                <ul>
+                  <li><strong>Next</strong> — <code>Space</code>, <code>ArrowRight</code>, <code>ArrowDown</code>, or <code>PageDown</code></li>
+                  <li><strong>Previous</strong> — <code>ArrowLeft</code>, <code>ArrowUp</code>, or <code>PageUp</code></li>
+                  <li><strong>Go live</strong> — <code>G</code> or <code>Enter</code></li>
+                  <li><strong>Black screen</strong> — <code>B</code> or <code>.</code>, matching PowerPoint-style blank/black behavior</li>
+                  <li><strong>Clear screen</strong> — <code>C</code> or <code>Escape</code></li>
+                </ul>
+              </article>
+            </div>
+            <div className={styles.callout}>
+              Full Companion URL example:{" "}
+              <code>http://192.168.1.25:50111/remote/companion/next</code>. Replace the IP address with
+              the StageFlo computer shown in Settings → Remote.
+            </div>
+            <div className={styles.callout}>
+              If Remote PIN protection is enabled, add <code>?pin=1234</code> to the URL or send an{" "}
+              <code>X-StageFlow-Pin</code> header from Companion. Keep the remote port on a trusted local
+              network unless you intentionally enable StageFlo&apos;s public remote link.
             </div>
           </section>
 
