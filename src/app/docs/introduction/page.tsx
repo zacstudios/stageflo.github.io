@@ -6,7 +6,9 @@ import SectionHeading from "./sectionHeading";
 
 const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
+  { id: "whats-new", label: "What Is New" },
   { id: "core-workflow", label: "Core Workflow" },
+  { id: "library-backups", label: "Library & Backups" },
   { id: "ai-semantic-search", label: "AI Semantic Search" },
   { id: "settings-remote", label: "Remote Control" },
   { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
@@ -16,6 +18,9 @@ const docSections = [
   { id: "settings-screens", label: "Screens & Outputs" },
   { id: "settings-bible", label: "Bible" },
   { id: "settings-songs", label: "Songs" },
+  { id: "song-editing", label: "Song Editing" },
+  { id: "chords", label: "Chords" },
+  { id: "media-web-links", label: "Media & Web Links" },
   { id: "settings-shortcuts", label: "Keyboard Shortcuts" },
   { id: "service-safety-tools", label: "Service Safety Tools" },
   { id: "outputs", label: "Outputs and Displays" },
@@ -89,7 +94,7 @@ export default function DocsIntroductionPage() {
             <p>
               StageFlo is a live worship presentation app for songs, scripture, media, and synchronized
               projector and stage outputs. Built for real service flow — fast prep, simple control,
-              and confidence on stage.
+              shared libraries, and confidence on stage.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
               <span className="eyebrow">Quick Setup</span>
@@ -105,6 +110,23 @@ export default function DocsIntroductionPage() {
             </div>
           </section>
 
+          <section className={docCardClassName} id="whats-new">
+            <SectionHeading sectionId="whats-new" title="What Is New" />
+            <p>
+              Recent StageFlo builds focus on shared libraries, safer backup/export workflows,
+              faster song entry, and more reliable remote operation during live services.
+            </p>
+            <ul>
+              <li><strong>Shared library folders</strong> — keep your StageFlo library on Google Drive, OneDrive, or a network drive and move between PCs.</li>
+              <li><strong>Library safety checks</strong> — StageFlo validates selected folders, warns when the library is already in use, and avoids opening an unreachable database.</li>
+              <li><strong>Portable exports and full backups</strong> — export a plan with its required assets or back up the full library, including managed media.</li>
+              <li><strong>Smarter scripture and song workflows</strong> — add Bible verse ranges, use improved Bible/song search, and split pasted lyrics into sections automatically.</li>
+              <li><strong>Chord display</strong> — store ChordPro-style chord markers while keeping audience slides clean.</li>
+              <li><strong>Remote improvements</strong> — remote slide lists can be manually scrolled, then resume auto-follow after a short pause.</li>
+              <li><strong>YouTube removed</strong> — YouTube embedding was removed because sign-in, bot checks, and playback controls were unreliable inside Electron.</li>
+            </ul>
+          </section>
+
           <section className={docCardClassName} id="core-workflow">
             <SectionHeading sectionId="core-workflow" title="Core Workflow" />
             <p>Most teams use this sequence every week:</p>
@@ -115,6 +137,59 @@ export default function DocsIntroductionPage() {
               <li>Go live to projector and stage displays.</li>
               <li>Control slides with keyboard shortcuts or the remote controller.</li>
             </ol>
+          </section>
+
+          <section className={docCardClassName} id="library-backups">
+            <SectionHeading sectionId="library-backups" title="Library & Backups" />
+            <p>
+              Found in Settings → Backup &amp; Restore. This is where you choose the active library folder,
+              consolidate media, export plans, and create full backups.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>Library Folder</h3>
+                <p>
+                  StageFlo can store plans, songs, custom slides, and managed media in a folder you choose.
+                  You can place that folder in Google Drive, OneDrive, Dropbox, an external drive, or a
+                  network share so another PC can use the same library after sync completes.
+                </p>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>One PC at a Time</h3>
+                <p>
+                  Shared folders are designed for moving between machines, not for live multi-user editing.
+                  StageFlo uses a library lock and warns or blocks opening when another app instance appears
+                  to be using the same library, which helps prevent cloud-sync conflicts.
+                </p>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>Changing Libraries</h3>
+                <p>
+                  Choosing a new library shows progress while StageFlo validates the folder and prepares the
+                  database. If the folder already contains a StageFlo library, StageFlo can use it after the
+                  current app exits cleanly. Restart the app to open the selected library.
+                </p>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>Recovery</h3>
+                <p>
+                  If the database is missing, invalid, or unreachable, StageFlo should show a recoverable
+                  error instead of crashing. Reconnect the drive or cloud folder, choose another valid library,
+                  or return to the default local library.
+                </p>
+              </article>
+            </div>
+            <h3>Export Types</h3>
+            <ul>
+              <li><strong>Portable Plan Export (.sfplan)</strong> — exports the selected plan plus everything needed to open that plan on another PC, including songs, custom slides, and referenced media/assets.</li>
+              <li><strong>Full Library Backup (.sfbackup)</strong> — exports the whole library: settings, Bible data, plans, songs, custom slides, media metadata, and managed media such as backgrounds and overlays.</li>
+              <li><strong>Consolidate Existing Media</strong> — copies old local file references into the selected library folder so another PC can use them from the shared library.</li>
+            </ul>
+            <div className={styles.callout}>
+              Large media files can make backups slow and heavy. For large libraries, keep the active
+              library in a synced folder and use full backups as restore points rather than exporting them
+              after every service.
+            </div>
           </section>
 
           {/* ── AI Semantic Search ── */}
@@ -129,6 +204,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Multilingual support</strong> — works across English, Malayalam, Hindi, Tamil, Telugu, and more.</li>
               <li><strong>Fully offline</strong> — semantic model runs locally in-app; no cloud dependency during service.</li>
               <li><strong>Bible + songs</strong> — results can include both scripture and song matches in one workflow.</li>
+              <li><strong>Keyword fallback</strong> — Bible and song search indexes are rebuilt in the background so title, lyric, and scripture searches stay fast.</li>
             </ul>
             <div className={styles.callout}>
               If keyword search returns nothing, open the AI tab in Song Library and search by topic,
@@ -165,6 +241,10 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               <strong>PIN Protection</strong> — Set a PIN in Remote → Security to restrict access to the
               controller. Leave blank for open access on trusted local networks.
+            </div>
+            <div className={styles.callout}>
+              The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
+              automatic active-slide scrolling briefly, then resumes following the live slide.
             </div>
           </section>
 
@@ -236,6 +316,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Show Next Slide</strong> — Preview the upcoming slide (disabled in Compact).</li>
               <li><strong>Show Stage Timer</strong> — Display a running stage timer.</li>
               <li><strong>Show Info Panel</strong> — Show operator notes and additional context.</li>
+              <li><strong>Show Chords</strong> — Show chord rows on stage and remote confidence views when songs contain chord markers.</li>
             </ul>
           </section>
 
@@ -303,6 +384,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Download a Translation</strong> — Browse available translations, select a version, and download it directly into StageFlo. No external files needed.</li>
               <li><strong>Import XML</strong> — Import a Zefania-format or compatible Bible XML file. Useful for languages not available in the built-in library.</li>
               <li><strong>Installed Translations</strong> — View and delete installed translations to manage storage.</li>
+              <li><strong>Verse Ranges</strong> — Add a full chapter, one verse such as John 1:1, or a range such as John 1:1-6.</li>
             </ul>
             <div className={styles.callout}>
               For multilingual services, install multiple translations. You can switch the active Bible
@@ -318,8 +400,74 @@ export default function DocsIntroductionPage() {
               <li><strong>Song Pack</strong> — Import a pre-built song pack (OpenLyrics XML format) to populate your library instantly. Language packs for Malayalam, Tamil, Hindi, and others are available.</li>
               <li><strong>Import Songs</strong> — Import individual songs or bulk XML files from your file system.</li>
               <li><strong>Export Songs</strong> — Export your entire library as an XML file for backup or sharing with another StageFlo installation.</li>
+              <li><strong>Online Lyrics Search</strong> — Search online from the song library and import lyrics when a suitable source is found.</li>
               <li><strong>Delete All Songs</strong> — Clears the entire database. Use before re-importing a clean pack.</li>
             </ul>
+            <div className={styles.callout}>
+              Imported online lyrics can preserve section labels such as Verse, Chorus, Bridge, and
+              parenthesized labels like (Chorus) when the source text includes them.
+            </div>
+          </section>
+
+          <section className={docCardClassName} id="song-editing">
+            <SectionHeading sectionId="song-editing" title="Song Editing" />
+            <p>
+              The song editor is built for fast copy-paste entry when you already have a full song text.
+            </p>
+            <ul>
+              <li><strong>Smart Split</strong> — Paste a full song into Primary Lyrics or Transliteration and StageFlo can split it into verse/chorus sections.</li>
+              <li><strong>Number Cleanup</strong> — Leading verse numbers such as “1”, “2”, “3” are removed from pasted verse text.</li>
+              <li><strong>Transliteration Matching</strong> — Pasting transliteration can fill existing verse boxes instead of creating duplicate sections.</li>
+              <li><strong>Undo</strong> — Cmd+Z on macOS and Ctrl+Z on Windows restore recent song-editor text changes.</li>
+              <li><strong>Slide Number Loading</strong> — Press slide numbers as hotkeys. Use 1-9 for single digits and type multi-digit numbers for slides 10 and above.</li>
+            </ul>
+          </section>
+
+          <section className={docCardClassName} id="chords">
+            <SectionHeading sectionId="chords" title="Chords" />
+            <p>
+              StageFlo supports ChordPro-style chord markers inside song lyrics or transliteration, while
+              keeping congregation slides clean.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>How to Enter</h3>
+                <p>
+                  Add chords inline with square brackets, for example <code>[G]Lord I [D]lift</code>.
+                  StageFlo reads the markers as chord data and strips them from normal audience lyrics.
+                </p>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>Where Chords Show</h3>
+                <p>
+                  Chords can show on Stage Display and Remote confidence views when Settings → Display →
+                  Stage Display → Show Chords is enabled. Projector and lower-third outputs show clean lyrics.
+                </p>
+              </article>
+            </div>
+            <div className={styles.callout}>
+              Chord imports from third-party databases are not bundled. Add or edit chords directly in the
+              song text so your own library stays clear and predictable.
+            </div>
+          </section>
+
+          <section className={docCardClassName} id="media-web-links">
+            <SectionHeading sectionId="media-web-links" title="Media & Web Links" />
+            <p>
+              Media, backgrounds, overlays, and web slides are managed through the library so services can
+              move cleanly between machines.
+            </p>
+            <ul>
+              <li><strong>Managed Media</strong> — Media added to custom slides, backgrounds, and overlays is copied into the active library folder.</li>
+              <li><strong>Portable Plans</strong> — Portable plan exports include referenced media and custom presentations needed by that plan.</li>
+              <li><strong>Full Backups</strong> — Full library backups include managed media, backgrounds, overlays, plans, songs, and custom slides.</li>
+              <li><strong>Web Link Slides</strong> — Web slides can load normal embeddable webpages when the site allows framing.</li>
+              <li><strong>YouTube Removed</strong> — YouTube-specific media integration was removed because embedded playback can be blocked by sign-in, bot checks, CSP restrictions, and unreliable controls.</li>
+            </ul>
+            <div className={styles.callout}>
+              Some websites block being shown inside another app or browser frame. If a web link does not
+              load, test a different page or use a captured media file instead.
+            </div>
           </section>
 
           {/* ── Keyboard Shortcuts ── */}
@@ -376,6 +524,7 @@ export default function DocsIntroductionPage() {
               <li>In Settings → Bible, download or import a translation.</li>
               <li>Build a service plan with 2–3 songs and one scripture passage.</li>
               <li>Open Settings → Display → Screens and assign your projector and stage outputs.</li>
+              <li>Choose a library folder in Settings → Backup &amp; Restore if you want the same library available on another PC.</li>
               <li>Open Remote settings, copy the stage URL, and open it on a mobile device for the singer view.</li>
               <li>Practice Next/Previous controls with keyboard shortcuts before going live.</li>
             </ol>
@@ -421,7 +570,10 @@ export default function DocsIntroductionPage() {
               <li>Remote page doesn&apos;t load — confirm app and device are on the same local network, or switch to Public Link mode in Remote settings.</li>
               <li>Output on wrong screen — re-assign displays in Settings → Screens and reopen the output windows.</li>
               <li>Cloudflare tunnel fails to start — check internet connectivity; allow outbound access to Cloudflare tunnel endpoints. If permanent hostname setup fails, use fallback temporary link.</li>
-              <li>Media file missing — re-import the file; StageFlo references local paths so moved files need re-linking.</li>
+              <li>Shared library will not open — reconnect the cloud/network drive, wait for sync to finish, or choose the default local library from Settings → Backup &amp; Restore.</li>
+              <li>Another PC is using the library — close StageFlo on the other machine before opening the shared library here.</li>
+              <li>Media file missing — consolidate existing media or re-import the file so StageFlo can copy it into the active library.</li>
+              <li>Web link slide is blank — the website may block embedding. Use a different embeddable page or add the content as media.</li>
               <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
               <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
             </ul>
