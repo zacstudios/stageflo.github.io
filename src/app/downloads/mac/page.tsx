@@ -10,14 +10,14 @@ import {
 export const metadata: Metadata = {
   title: "Download StageFlo for macOS",
   description:
-    "Download StageFlo for macOS, free worship presentation software for Indian and multilingual church presentation computers.",
+    "Download StageFlo for macOS, free multilingual worship presentation software for church presentation computers.",
   alternates: {
     canonical: "/downloads/mac/",
   },
   openGraph: {
     title: "Download StageFlo for macOS",
     description:
-      "Free worship presentation software for Indian and multilingual church presentation computers.",
+      "Free multilingual worship presentation software for church presentation computers.",
     url: "/downloads/mac/",
     type: "website",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Download StageFlo for macOS",
     description:
-      "Free worship presentation software for Indian and multilingual church presentation computers.",
+      "Free multilingual worship presentation software for church presentation computers.",
     images: ["/og-image.png"],
   },
 };
@@ -51,7 +51,7 @@ export default async function MacDownloadsPage() {
           <h1>Download StageFlo for Mac</h1>
           <p className="lead">
             Install StageFlo on macOS for worship lyrics, Bible verse projection, media,
-            stage display, OBS lower-thirds, and remote control during Indian and multilingual church services.
+            stage display, OBS lower-thirds, and remote control during multilingual church services.
           </p>
           <div className="cta-row">
             <a className="button button-primary" href={latestMacDownloadUrl}>

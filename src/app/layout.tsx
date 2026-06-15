@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | StageFlo",
   },
   description:
-    "Free worship presentation software for Indian and multilingual churches. Run songs, Bible verses, media, overlays, and multi-screen outputs.",
+    "Free multilingual worship presentation software for churches. Run songs, Bible verses, media, overlays, and multi-screen outputs.",
   alternates: {
     canonical: "/",
   },
@@ -71,7 +71,7 @@ export default function RootLayout({
     name: "StageFlo",
     url: "https://stageflo.app/",
     description:
-      "StageFlo is free worship presentation software for Indian churches, multilingual worship teams, and live services.",
+      "StageFlo is free multilingual worship presentation software for churches, worship teams, and live services.",
     publisher: {
       "@type": "Organization",
       name: "Zac Studios",

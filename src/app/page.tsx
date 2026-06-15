@@ -38,13 +38,13 @@ const pillars = [
   {
     icon: "🌐",
     title: "Multi-Language Ready",
-    desc: "Run Indian and multilingual worship services with English, Malayalam, Hindi, Tamil, Telugu, and bilingual slide layouts.",
+    desc: "Run multilingual worship services with native-language, translated, and bilingual slide layouts for global congregations.",
   },
 ];
 
 const aiFeatures = [
   { icon: "🔍", text: "Search by meaning — \"women at the well\" finds John 4 without exact words" },
-  { icon: "🌏", text: "Indian language support — English, Malayalam, Hindi, Tamil, Telugu, and more" },
+  { icon: "🌏", text: "Multilingual support — English, Malayalam, Hindi, Tamil, Telugu, and more" },
   { icon: "📴", text: "Fully offline — 117 MB model runs in-process, no Ollama or internet needed" },
   { icon: "⚡", text: "~20 ms per query after warm-up, results cached locally for instant re-searches" },
   { icon: "📖", text: "Bible and song library both indexed automatically in the background" },
@@ -84,16 +84,16 @@ const newFeatures = [
 
 const churchUseCases = [
   {
-    title: "Indian church worship slides",
-    body: "Prepare worship lyrics, Bible readings, notices, sermon media, and custom slides for Indian churches and diaspora congregations.",
+    title: "Multilingual church worship slides",
+    body: "Prepare worship lyrics, Bible readings, notices, sermon media, and custom slides for congregations using more than one language.",
   },
   {
     title: "Multilingual Bible verse projection",
-    body: "Present scripture in English, Malayalam, Hindi, Tamil, Telugu, or bilingual formats while keeping text readable on projector and stage displays.",
+    body: "Present scripture in English, Malayalam, Hindi, Tamil, Telugu, and other languages while keeping text readable on projector and stage displays.",
   },
   {
     title: "Bilingual lyrics for mixed congregations",
-    body: "Show native-language lyrics, transliteration, and English support for worship teams serving second-generation and multilingual congregations.",
+    body: "Show native-language lyrics, transliteration, translations, and English support for second-generation, diaspora, and multicultural worship teams.",
   },
   {
     title: "Livestream lower thirds",
@@ -178,18 +178,22 @@ const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleas
 };
 
 export const metadata: Metadata = {
-  title: "StageFlo | Worship Software for Indian & Multilingual Churches",
+  title: "StageFlo | Multilingual Worship Presentation Software",
   description:
-    "Free worship presentation software for Indian and multilingual churches. Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides on Mac and Windows.",
+    "Free multilingual worship presentation software for churches. Run songs, Bible verses, media, and bilingual slides in English, Malayalam, Hindi, Tamil, Telugu, and more.",
   keywords: [
+    "multilingual worship presentation software",
+    "multilingual church presentation software",
+    "bilingual worship slides",
+    "multi language worship software",
+    "international church presentation software",
+    "diaspora church worship software",
     "Indian church presentation software",
     "Indian worship presentation software",
-    "multilingual church presentation software",
     "Malayalam worship software",
     "Hindi worship software",
     "Tamil worship software",
     "Telugu worship software",
-    "bilingual worship slides",
     "worship presentation software",
     "church presentation software",
     "free worship software",
@@ -209,9 +213,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "StageFlo | Worship Software for Indian & Multilingual Churches",
+    title: "StageFlo | Multilingual Worship Presentation Software",
     description:
-      "English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides — one free app for songs, scripture, media, stage display, and livestreams.",
+      "Run worship slides in English, Malayalam, Hindi, Tamil, Telugu, and more — one free app for songs, scripture, media, stage display, and livestreams.",
     url: "/",
     type: "website",
     images: [
@@ -225,9 +229,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo | Worship Software for Indian & Multilingual Churches",
+    title: "StageFlo | Multilingual Worship Presentation Software",
     description:
-      "English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides — one free app for songs, scripture, media, stage display, and livestreams.",
+      "Run worship slides in English, Malayalam, Hindi, Tamil, Telugu, and more — one free app for songs, scripture, media, stage display, and livestreams.",
     images: ["/og-image.png"],
   },
 };
@@ -256,12 +260,12 @@ export default async function Home() {
     applicationCategory: "MultimediaApplication",
     operatingSystem: "macOS, Windows",
     description:
-      "Free worship presentation software for Indian and multilingual churches. Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides from one fast workflow.",
+      "Free multilingual worship presentation software for churches. Run worship lyrics, Bible verses, media, stage display, and bilingual slides from one fast workflow.",
     featureList: [
       "Worship lyrics presentation",
       "Bible verse projection",
-      "Indian church worship slides",
-      "Malayalam, Hindi, Tamil, and Telugu worship support",
+      "Multilingual church worship slides",
+      "Malayalam, Hindi, Tamil, Telugu, and global language support",
       "Bilingual lyrics and scripture",
       "Multi-screen projector and stage display",
       "OBS lower-thirds output",
@@ -323,10 +327,10 @@ export default async function Home() {
       },
       {
         "@type": "Question",
-        name: "Is StageFlo useful for Indian churches?",
+        name: "Is StageFlo useful for Indian and diaspora churches?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. StageFlo is built to support Indian and diaspora church workflows, including Malayalam, Hindi, Tamil, Telugu, English, bilingual lyrics, scripture projection, stage display, and livestream lower-thirds.",
+          text: "Yes. StageFlo supports Indian and diaspora church workflows as part of its wider multilingual focus, including Malayalam, Hindi, Tamil, Telugu, English, bilingual lyrics, scripture projection, stage display, and livestream lower-thirds.",
         },
       },
       {
@@ -391,9 +395,9 @@ export default async function Home() {
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
           </div>
-          <h1>Worship software for Indian and multilingual churches.</h1>
+          <h1>Multilingual worship software for every church.</h1>
           <p className="lead">
-            Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides from one fast workflow. Songs, scripture, media, stage display, and OBS lower-thirds — free forever for every church.
+            Run worship slides in English, Malayalam, Hindi, Tamil, Telugu, and more from one fast workflow. Songs, scripture, media, stage display, and OBS lower-thirds — free forever for every church.
           </p>
           <div className="cta-row">
             <GatedDownloadLink
@@ -520,11 +524,11 @@ export default async function Home() {
         {/* ── Church Use Cases ── */}
         <section className="section-block" id="church-presentation-software">
           <div className="section-head">
-            <p className="eyebrow">Indian church presentation software</p>
-            <h2>Built for multilingual worship services.</h2>
+            <p className="eyebrow">Multilingual church presentation software</p>
+            <h2>Built for churches that worship in more than one language.</h2>
             <p>
-              StageFlo helps Indian churches and multilingual worship teams prepare lyrics,
-              Bible verses, media, stage confidence views, and livestream overlays from one free app.
+              StageFlo helps multilingual, multicultural, Indian, diaspora, and international
+              worship teams prepare lyrics, Bible verses, media, stage confidence views, and livestream overlays from one free app.
             </p>
           </div>
           <div className="new-features-grid">

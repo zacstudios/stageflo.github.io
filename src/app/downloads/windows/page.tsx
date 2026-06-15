@@ -10,14 +10,14 @@ import {
 export const metadata: Metadata = {
   title: "Download StageFlo for Windows",
   description:
-    "Download StageFlo for Windows, free worship presentation software for Indian and multilingual church presentation PCs.",
+    "Download StageFlo for Windows, free multilingual worship presentation software for church presentation PCs.",
   alternates: {
     canonical: "/downloads/windows/",
   },
   openGraph: {
     title: "Download StageFlo for Windows",
     description:
-      "Free worship presentation software for Indian and multilingual Windows church presentation PCs.",
+      "Free multilingual worship presentation software for Windows church presentation PCs.",
     url: "/downloads/windows/",
     type: "website",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Download StageFlo for Windows",
     description:
-      "Free worship presentation software for Indian and multilingual Windows church presentation PCs.",
+      "Free multilingual worship presentation software for Windows church presentation PCs.",
     images: ["/og-image.png"],
   },
 };
@@ -51,7 +51,7 @@ export default async function WindowsDownloadsPage() {
           <h1>Download StageFlo for Windows</h1>
           <p className="lead">
             Install StageFlo on Windows for worship lyrics, Bible verse projection, media,
-            stage display, OBS lower-thirds, and remote control during Indian and multilingual church services.
+            stage display, OBS lower-thirds, and remote control during multilingual church services.
           </p>
           <div className="cta-row">
             <a className="button button-primary" href={latestWindowsDownloadUrl}>
