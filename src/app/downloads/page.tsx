@@ -13,14 +13,16 @@ import {
 } from "../lib/downloads";
 
 export const metadata: Metadata = {
-  title: "Downloads",
-  description: "Download StageFlo desktop installers and import-ready worship resources.",
+  title: "Download StageFlo for Mac and Windows",
+  description:
+    "Download StageFlo, free worship presentation software for Indian and multilingual churches on macOS and Windows.",
   alternates: {
     canonical: "/downloads/",
   },
   openGraph: {
-    title: "Downloads | StageFlo",
-    description: "Download StageFlo desktop installers and import-ready worship resources.",
+    title: "Download StageFlo for Mac and Windows",
+    description:
+      "Free worship presentation software for Indian and multilingual churches on macOS and Windows.",
     url: "/downloads/",
     type: "website",
     images: [
@@ -34,8 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Downloads | StageFlo",
-    description: "Download StageFlo desktop installers and import-ready worship resources.",
+    title: "Download StageFlo for Mac and Windows",
+    description:
+      "Free worship presentation software for Indian and multilingual churches on macOS and Windows.",
     images: ["/og-image.png"],
   },
 };
@@ -73,9 +76,11 @@ export default async function DownloadsPage() {
       <main className="page-main">
         <section className="hero downloads-hero" id="top">
           <p className="eyebrow">Downloads</p>
-          <h1>Choose StageFlo Installer or Import Resources</h1>
+          <h1>Download StageFlo Worship Presentation Software</h1>
           <p className="lead">
-            Desktop installers are lead-gated for release follow-up and support. Update feeds remain separate so app auto-updates keep working normally.
+            Get the free StageFlo desktop app for macOS or Windows. Use it to run worship
+            lyrics, Bible verses, media, projector output, stage display, and OBS lower-thirds
+            for Indian churches and multilingual services.
           </p>
           <div className="cta-row">
             <a className="button button-primary" href="#desktop">
@@ -89,9 +94,10 @@ export default async function DownloadsPage() {
 
         <section className="section-block" id="desktop">
           <div className="section-head">
-            <h2>Desktop Installers</h2>
+            <h2>Desktop installers for multilingual church presentation teams</h2>
             <p>
-              Use the installer button for first-time setup on your platform.
+              Use the installer button for first-time setup on your platform. StageFlo is free
+              worship software for Indian churches, multilingual worship teams, and live-service operators.
             </p>
           </div>
           <div className="install-grid downloads-platform-grid">
@@ -99,7 +105,8 @@ export default async function DownloadsPage() {
               <p className="downloads-card-tag">macOS</p>
               <h3>Universal macOS Build</h3>
               <p>
-                Recommended for normal installs. You will get the latest stable desktop build and follow-up release communication.
+                Recommended for Mac church presentation computers. You will get the latest stable
+                desktop build for English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides.
               </p>
               <div className="cta-row downloads-card-actions">
                 <GatedDownloadLink
@@ -117,7 +124,8 @@ export default async function DownloadsPage() {
               <p className="downloads-card-tag">Windows</p>
               <h3>Windows Setup Installer</h3>
               <p>
-                Best for first-time installs on Windows systems.
+                Best for first-time installs on Windows presentation PCs used for multilingual worship slides,
+                Bible readings, stage display, and livestream lower-thirds.
               </p>
               <div className="cta-row downloads-card-actions">
                 <GatedDownloadLink

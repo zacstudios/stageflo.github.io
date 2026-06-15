@@ -8,14 +8,16 @@ import {
 } from "../../lib/downloads";
 
 export const metadata: Metadata = {
-  title: "Downloads for macOS",
-  description: "Direct macOS download page for StageFlo installer recovery and manual installs.",
+  title: "Download StageFlo for macOS",
+  description:
+    "Download StageFlo for macOS, free worship presentation software for Indian and multilingual church presentation computers.",
   alternates: {
     canonical: "/downloads/mac/",
   },
   openGraph: {
-    title: "Downloads for macOS | StageFlo",
-    description: "Direct macOS download page for StageFlo installer recovery and manual installs.",
+    title: "Download StageFlo for macOS",
+    description:
+      "Free worship presentation software for Indian and multilingual church presentation computers.",
     url: "/downloads/mac/",
     type: "website",
     images: [
@@ -29,8 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Downloads for macOS | StageFlo",
-    description: "Direct macOS download page for StageFlo installer recovery and manual installs.",
+    title: "Download StageFlo for macOS",
+    description:
+      "Free worship presentation software for Indian and multilingual church presentation computers.",
     images: ["/og-image.png"],
   },
 };
@@ -44,10 +47,11 @@ export default async function MacDownloadsPage() {
     <div className="site-shell">
       <main className="page-main">
         <section className="hero downloads-hero downloads-direct-hero">
-          <p className="eyebrow">Direct macOS Download</p>
-          <h1>Manual macOS Installer Access</h1>
+          <p className="eyebrow">macOS Download</p>
+          <h1>Download StageFlo for Mac</h1>
           <p className="lead">
-            This page stays public for updater fallback and recovery installs. It does not use the lead-capture form.
+            Install StageFlo on macOS for worship lyrics, Bible verse projection, media,
+            stage display, OBS lower-thirds, and remote control during Indian and multilingual church services.
           </p>
           <div className="cta-row">
             <a className="button button-primary" href={latestMacDownloadUrl}>

@@ -8,14 +8,16 @@ import {
 } from "../../lib/downloads";
 
 export const metadata: Metadata = {
-  title: "Downloads for Windows",
-  description: "Direct Windows download page for StageFlo installer recovery and manual installs.",
+  title: "Download StageFlo for Windows",
+  description:
+    "Download StageFlo for Windows, free worship presentation software for Indian and multilingual church presentation PCs.",
   alternates: {
     canonical: "/downloads/windows/",
   },
   openGraph: {
-    title: "Downloads for Windows | StageFlo",
-    description: "Direct Windows download page for StageFlo installer recovery and manual installs.",
+    title: "Download StageFlo for Windows",
+    description:
+      "Free worship presentation software for Indian and multilingual Windows church presentation PCs.",
     url: "/downloads/windows/",
     type: "website",
     images: [
@@ -29,8 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Downloads for Windows | StageFlo",
-    description: "Direct Windows download page for StageFlo installer recovery and manual installs.",
+    title: "Download StageFlo for Windows",
+    description:
+      "Free worship presentation software for Indian and multilingual Windows church presentation PCs.",
     images: ["/og-image.png"],
   },
 };
@@ -44,10 +47,11 @@ export default async function WindowsDownloadsPage() {
     <div className="site-shell">
       <main className="page-main">
         <section className="hero downloads-hero downloads-direct-hero">
-          <p className="eyebrow">Direct Windows Download</p>
-          <h1>Manual Windows Installer Access</h1>
+          <p className="eyebrow">Windows Download</p>
+          <h1>Download StageFlo for Windows</h1>
           <p className="lead">
-            This page stays public for updater fallback and recovery installs. It does not use the lead-capture form.
+            Install StageFlo on Windows for worship lyrics, Bible verse projection, media,
+            stage display, OBS lower-thirds, and remote control during Indian and multilingual church services.
           </p>
           <div className="cta-row">
             <a className="button button-primary" href={latestWindowsDownloadUrl}>

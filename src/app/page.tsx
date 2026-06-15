@@ -15,7 +15,7 @@ const pillars = [
     icon: "✦",
     accent: true,
     title: "AI Semantic Search",
-    desc: "Search your Bible and song library by meaning, not just exact words. Works offline in English, Malayalam, Hindi, Tamil, Telugu and more.",
+    desc: "Search your Bible and song library by meaning, not just exact words. Works offline across English, Malayalam, Hindi, Tamil, Telugu and more.",
     badge: "New in 2.0",
   },
   {
@@ -38,13 +38,13 @@ const pillars = [
   {
     icon: "🌐",
     title: "Multi-Language Ready",
-    desc: "Run bilingual or multilingual services. English on screen, Tamil for captions, native on stage.",
+    desc: "Run Indian and multilingual worship services with English, Malayalam, Hindi, Tamil, Telugu, and bilingual slide layouts.",
   },
 ];
 
 const aiFeatures = [
   { icon: "🔍", text: "Search by meaning — \"women at the well\" finds John 4 without exact words" },
-  { icon: "🌏", text: "Multilingual — works across English, Malayalam, Hindi, Tamil, Telugu" },
+  { icon: "🌏", text: "Indian language support — English, Malayalam, Hindi, Tamil, Telugu, and more" },
   { icon: "📴", text: "Fully offline — 117 MB model runs in-process, no Ollama or internet needed" },
   { icon: "⚡", text: "~20 ms per query after warm-up, results cached locally for instant re-searches" },
   { icon: "📖", text: "Bible and song library both indexed automatically in the background" },
@@ -80,6 +80,40 @@ const newFeatures = [
   { label: "Live Text Edit", desc: "Fix a typo mid-service without leaving the live view." },
   { label: "Template System", desc: "Design once, apply across every slide and service." },
   { label: "Output Lock", desc: "Lock output windows to prevent accidental exposure. Press Cmd+L to lock, Cmd+R to restore." },
+];
+
+const churchUseCases = [
+  {
+    title: "Indian church worship slides",
+    body: "Prepare worship lyrics, Bible readings, notices, sermon media, and custom slides for Indian churches and diaspora congregations.",
+  },
+  {
+    title: "Multilingual Bible verse projection",
+    body: "Present scripture in English, Malayalam, Hindi, Tamil, Telugu, or bilingual formats while keeping text readable on projector and stage displays.",
+  },
+  {
+    title: "Bilingual lyrics for mixed congregations",
+    body: "Show native-language lyrics, transliteration, and English support for worship teams serving second-generation and multilingual congregations.",
+  },
+  {
+    title: "Livestream lower thirds",
+    body: "Send song titles, speaker names, and lower-third overlays into OBS for multilingual livestreams without building a separate graphics workflow.",
+  },
+];
+
+const comparisonPoints = [
+  {
+    title: "A free ProPresenter alternative for smaller teams",
+    body: "StageFlo focuses on the worship workflows churches use every week: songs, scripture, media, stage display, and fast live control, without a subscription barrier.",
+  },
+  {
+    title: "An OpenLP alternative with modern live controls",
+    body: "Teams that want a simpler desktop app can use StageFlo for drag-and-drop planning, visual slide editing, remote control, and multi-screen output.",
+  },
+  {
+    title: "An EasyWorship alternative for Mac and Windows",
+    body: "StageFlo runs on macOS and Windows, supports offline service operation, and keeps downloads free for every church.",
+  },
 ];
 
 const screenshotCards = [
@@ -144,10 +178,18 @@ const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleas
 };
 
 export const metadata: Metadata = {
-  title: "StageFlo | Free Worship Presentation Software for Churches",
+  title: "StageFlo | Worship Software for Indian & Multilingual Churches",
   description:
-    "Free worship presentation software for Mac and Windows. Run songs, Bible verses, media, multi-screen output, OBS lower-thirds, and remote stage view — all from one fast workflow. Free forever for every church.",
+    "Free worship presentation software for Indian and multilingual churches. Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides on Mac and Windows.",
   keywords: [
+    "Indian church presentation software",
+    "Indian worship presentation software",
+    "multilingual church presentation software",
+    "Malayalam worship software",
+    "Hindi worship software",
+    "Tamil worship software",
+    "Telugu worship software",
+    "bilingual worship slides",
     "worship presentation software",
     "church presentation software",
     "free worship software",
@@ -167,9 +209,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "StageFlo | Free Worship Presentation Software",
+    title: "StageFlo | Worship Software for Indian & Multilingual Churches",
     description:
-      "Songs, scripture, media, stage display, OBS lower-thirds, and remote stage view — one free app for your whole worship team.",
+      "English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides — one free app for songs, scripture, media, stage display, and livestreams.",
     url: "/",
     type: "website",
     images: [
@@ -183,9 +225,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo | Free Worship Presentation Software",
+    title: "StageFlo | Worship Software for Indian & Multilingual Churches",
     description:
-      "Songs, scripture, media, stage display, OBS lower-thirds, and remote stage view — one free app for your whole worship team.",
+      "English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides — one free app for songs, scripture, media, stage display, and livestreams.",
     images: ["/og-image.png"],
   },
 };
@@ -214,7 +256,20 @@ export default async function Home() {
     applicationCategory: "MultimediaApplication",
     operatingSystem: "macOS, Windows",
     description:
-      "Free worship presentation software for churches. Run songs, Bible verses, media, stage display, OBS lower-thirds, and remote stage view from one fast workflow.",
+      "Free worship presentation software for Indian and multilingual churches. Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides from one fast workflow.",
+    featureList: [
+      "Worship lyrics presentation",
+      "Bible verse projection",
+      "Indian church worship slides",
+      "Malayalam, Hindi, Tamil, and Telugu worship support",
+      "Bilingual lyrics and scripture",
+      "Multi-screen projector and stage display",
+      "OBS lower-thirds output",
+      "Offline AI semantic search",
+      "Remote stage view",
+      "Multilingual worship slides",
+    ],
+    screenshot: screenshotCards.map((shot) => `https://stageflo.app${shot.src}`),
     offers: {
       "@type": "Offer",
       price: "0",
@@ -263,7 +318,15 @@ export default async function Home() {
         name: "What languages does StageFlo support?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "StageFlo supports multilingual services. The AI search works across English, Malayalam, Hindi, Tamil, Telugu, and more. You can run bilingual or multilingual services with different languages on different screens.",
+          text: "StageFlo supports multilingual church services. The AI search works across English, Malayalam, Hindi, Tamil, Telugu, and more. You can run bilingual or multilingual worship with different languages on projector, stage, and livestream outputs.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is StageFlo useful for Indian churches?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. StageFlo is built to support Indian and diaspora church workflows, including Malayalam, Hindi, Tamil, Telugu, English, bilingual lyrics, scripture projection, stage display, and livestream lower-thirds.",
         },
       },
       {
@@ -328,9 +391,9 @@ export default async function Home() {
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
           </div>
-          <h1>Worship software built for your whole team.</h1>
+          <h1>Worship software for Indian and multilingual churches.</h1>
           <p className="lead">
-            Songs, scripture, media, stage display, and OBS lower-thirds — all from one fast workflow. Now with offline AI semantic search and remote stage view over the internet. Free forever, for every church.
+            Run English, Malayalam, Hindi, Tamil, Telugu, and bilingual worship slides from one fast workflow. Songs, scripture, media, stage display, and OBS lower-thirds — free forever for every church.
           </p>
           <div className="cta-row">
             <GatedDownloadLink
@@ -449,6 +512,46 @@ export default async function Home() {
                   {f.badge && <span className="new-feature-badge">{f.badge}</span>}
                 </div>
                 <p>{f.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Church Use Cases ── */}
+        <section className="section-block" id="church-presentation-software">
+          <div className="section-head">
+            <p className="eyebrow">Indian church presentation software</p>
+            <h2>Built for multilingual worship services.</h2>
+            <p>
+              StageFlo helps Indian churches and multilingual worship teams prepare lyrics,
+              Bible verses, media, stage confidence views, and livestream overlays from one free app.
+            </p>
+          </div>
+          <div className="new-features-grid">
+            {churchUseCases.map((item) => (
+              <article key={item.title} className="new-feature-card reveal">
+                <h4>{item.title}</h4>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Alternatives ── */}
+        <section className="section-block" id="propresenter-openlp-easyworship-alternative">
+          <div className="section-head">
+            <p className="eyebrow">Free worship software alternative</p>
+            <h2>Looking for a ProPresenter, OpenLP, or EasyWorship alternative?</h2>
+            <p>
+              StageFlo is designed for churches that need reliable worship projection software
+              without complicated setup or recurring software costs.
+            </p>
+          </div>
+          <div className="new-features-grid">
+            {comparisonPoints.map((item) => (
+              <article key={item.title} className="new-feature-card reveal">
+                <h4>{item.title}</h4>
+                <p>{item.body}</p>
               </article>
             ))}
           </div>

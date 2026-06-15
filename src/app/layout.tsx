@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | StageFlo",
   },
   description:
-    "Run worship lyrics, Bible verses, media, overlays, and multi-screen outputs from one fast live-service workflow.",
+    "Free worship presentation software for Indian and multilingual churches. Run songs, Bible verses, media, overlays, and multi-screen outputs.",
   alternates: {
     canonical: "/",
   },
@@ -55,9 +55,47 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Zac Studios",
+    url: "https://stageflo.app/",
+    logo: "https://stageflo.app/brand/zac-studios-logo.png",
+    email: "zac@stageflo.app",
+    sameAs: ["https://github.com/zacstudios/Stageflo.app"],
+  };
+
+  const websiteStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "StageFlo",
+    url: "https://stageflo.app/",
+    description:
+      "StageFlo is free worship presentation software for Indian churches, multilingual worship teams, and live services.",
+    publisher: {
+      "@type": "Organization",
+      name: "Zac Studios",
+      url: "https://stageflo.app/",
+    },
+  };
+
   return (
     <html lang="en" className={`${sora.variable} ${plexMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationStructuredData),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteStructuredData),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
