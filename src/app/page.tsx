@@ -40,6 +40,12 @@ const pillars = [
     title: "Multi-Language Ready",
     desc: "Run multilingual worship services with native-language, translated, and bilingual slide layouts for global congregations.",
   },
+  {
+    icon: "✨",
+    title: "Live Visuals",
+    desc: "Audio-reactive animated backgrounds that move with your music. Customise colours, speed, and intensity — or layer a photo or video underneath for unique effects.",
+    badge: "New in 2.1",
+  },
 ];
 
 const aiFeatures = [
@@ -60,7 +66,21 @@ const remoteFeatures = [
   { icon: "⚡", text: "Low-latency sync — stage view updates within milliseconds of each slide change" },
 ];
 
+const visualizerFeatures = [
+  { icon: "🎵", text: "10 presets — Aurora, Nebula, Bloom, Heaven, Liquid, and more — all reacting to live audio" },
+  { icon: "🎨", text: "4-colour customisation with speed, brightness, glow, saturation, and hue controls" },
+  { icon: "🖼️", text: "Background Mix — layer any photo or video under the visualizer and blend them together" },
+  { icon: "🎤", text: "Selectable audio input — works with any microphone or audio interface" },
+  { icon: "💾", text: "Settings saved automatically per service item — ready every week without re-configuring" },
+  { icon: "🖥️", text: "Full resolution output to projector and stage display" },
+];
+
 const newFeatures = [
+  {
+    label: "Live Visuals",
+    badge: "New",
+    desc: "10 audio-reactive visualizer presets with customisable colours, speed, glow, and intensity. Layer any background image or video underneath for unique mixed effects.",
+  },
   {
     label: "Offline AI Search",
     badge: "New",
@@ -272,6 +292,8 @@ export default async function Home() {
       "Offline AI semantic search",
       "Remote stage view",
       "Multilingual worship slides",
+      "Audio-reactive live visuals",
+      "Visualizer background mixing",
     ],
     screenshot: screenshotCards.map((shot) => `https://stageflo.app${shot.src}`),
     offers: {
@@ -394,6 +416,7 @@ export default async function Home() {
             <p className="eyebrow">StageFlo by Zac Studios · v{latestMac.version}</p>
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
+            <span className="eyebrow">✨ Live Visuals — New in 2.1</span>
           </div>
           <h1>Multilingual worship software for every church.</h1>
           <p className="lead">
@@ -483,6 +506,27 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* ── Live Visuals Spotlight ── */}
+        <section className="ai-spotlight section-block" id="live-visuals">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow">New in 2.1</span>
+              <h2>Bring your worship to life.</h2>
+              <p className="lead">
+                Transform your worship experience with built-in audio-reactive visuals. Choose from 10 stunning presets that move and breathe in sync with your music. Fine-tune colours, speed, glow, and intensity to match your atmosphere — or layer a photo or video underneath for something truly unique. Everything saves automatically, so your visuals are ready the moment you open your service.
+              </p>
+            </div>
+            <ul className="ai-feature-list">
+              {visualizerFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* ── Screenshots ── */}
         <section className="screenshots section-block" id="screenshots">
           <div className="section-head">
@@ -504,9 +548,9 @@ export default async function Home() {
         {/* ── What's New in 2.0 ── */}
         <section className="new-features section-block" id="whats-new">
           <div className="section-head">
-            <p className="eyebrow">What&rsquo;s new in 2.0</p>
+            <p className="eyebrow">What&rsquo;s new</p>
             <h2>More power, less complexity.</h2>
-            <p>Eight new capabilities — from offline AI search to live remote control — shipped in a single free update.</p>
+            <p>From offline AI search to audio-reactive live visuals — powerful new capabilities shipped as free updates.</p>
           </div>
           <div className="new-features-grid">
             {newFeatures.map((f) => (
