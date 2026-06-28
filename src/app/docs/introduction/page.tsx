@@ -23,6 +23,7 @@ const docSections = [
   { id: "chords", label: "Chords" },
   { id: "media-web-links", label: "Media & Web Links" },
   { id: "settings-shortcuts", label: "Keyboard Shortcuts" },
+  { id: "slide-transitions", label: "Slide Transitions" },
   { id: "service-safety-tools", label: "Service Safety Tools" },
   { id: "outputs", label: "Outputs and Displays" },
   { id: "first-service", label: "Run Your First Service" },
@@ -118,6 +119,8 @@ export default function DocsIntroductionPage() {
               faster song entry, and more reliable remote operation during live services.
             </p>
             <ul>
+              <li><strong>Slide transitions</strong> — eight text-layer transition types (Fade, Cut, Slide Left, Slide Right, Slide Up, Slide Down, Zoom In, Blur) selectable from a global picker in the workspace toolbar. Transitions animate in the audience preview panel as well as on live outputs.</li>
+              <li><strong>Plan item memory</strong> — saving a plan item now persists the transition type, active background or visualizer, overlay visibility and lock state, Bible verse range, Bible translation, and bible layout mode (auto vs. manual pagination). These settings restore automatically when the item is clicked in the playlist.</li>
               <li><strong>Shared library folders</strong> — keep your StageFlo library on Google Drive, OneDrive, or a network drive and move between PCs.</li>
               <li><strong>Library safety checks</strong> — StageFlo validates selected folders, warns when the library is already in use, and avoids opening an unreachable database.</li>
               <li><strong>Portable exports and full backups</strong> — export a plan with its required assets or back up the full library, including managed media.</li>
@@ -539,6 +542,41 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               Toggle the Keyboard Shortcuts enable switch to temporarily disable all bindings — useful
               when typing in text fields during a live service.
+            </div>
+          </section>
+
+          {/* ── Slide Transitions ── */}
+          <section className={docCardClassName} id="slide-transitions">
+            <SectionHeading sectionId="slide-transitions" title="Slide Transitions" />
+            <p>
+              Choose how text animates when advancing between slides. The transition picker is in the
+              workspace toolbar above the preview panel. The selected type applies globally and is visible
+              in the audience preview monitor as well as all live outputs.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>Transition Types</h3>
+                <ul>
+                  <li><strong>Cut</strong> — instant change with no animation.</li>
+                  <li><strong>Fade</strong> — text fades out then fades in.</li>
+                  <li><strong>Slide Left / Right</strong> — text slides horizontally as slides advance.</li>
+                  <li><strong>Slide Up / Down</strong> — text slides vertically.</li>
+                  <li><strong>Zoom In</strong> — text scales up on entry and scales out on exit.</li>
+                  <li><strong>Blur</strong> — text blurs out and blurs in.</li>
+                </ul>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>How It Works</h3>
+                <ul>
+                  <li>Transitions apply to the <strong>text layer only</strong> — backgrounds cross-fade or cut independently.</li>
+                  <li>The active transition is saved when you save a plan item, so each item can restore its own transition type when clicked.</li>
+                  <li>Select <strong>Cut</strong> for instant changes during fast-moving services, or <strong>Fade</strong> for a smooth congregational feel.</li>
+                </ul>
+              </article>
+            </div>
+            <div className={styles.callout}>
+              The transition picker is a global setting — changing it mid-service affects all subsequent
+              slides until changed again or a saved plan item restores its own setting.
             </div>
           </section>
 
