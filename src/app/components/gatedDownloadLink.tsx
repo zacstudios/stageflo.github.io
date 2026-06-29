@@ -217,16 +217,32 @@ export default function GatedDownloadLink({
             ) : null}
 
             {submitState === "success" ? (
-              <div className="download-confirmation" role="status" aria-live="polite">
-                <p className="download-gate-success">Success. Your download is starting.</p>
+              <div className="download-confirmation">
+                <div className="download-confirmation-status" role="status" aria-live="polite">
+                  <span className="download-confirmation-check" aria-hidden="true">✓</span>
+                  <div>
+                    <p className="download-confirmation-kicker">Download ready</p>
+                    <p>Your download is starting in a new tab. Keep this handy if your computer asks for permission.</p>
+                  </div>
+                </div>
                 <div className="download-confirmation-panel">
-                  <h4>Installation help</h4>
-                  <p>
-                    If macOS says StageFlo cannot be opened or Apple could not verify it, move StageFlo to Applications,
-                    open it once, then allow it from System Settings &gt; Privacy &amp; Security.
-                  </p>
-                  <p>If Windows SmartScreen appears, choose More info, then Run anyway to continue setup.</p>
-                  <a href={INSTALLATION_TROUBLESHOOTING_URL}>View full installation troubleshooting</a>
+                  <div className="download-confirmation-panel-header">
+                    <div>
+                      <p className="download-confirmation-kicker">Install notes</p>
+                      <h4>Quick permission steps</h4>
+                    </div>
+                    <a href={INSTALLATION_TROUBLESHOOTING_URL}>Full guide</a>
+                  </div>
+                  <div className="download-confirmation-steps">
+                    <section className="download-confirmation-card" aria-label="macOS installation help">
+                      <span aria-hidden="true">Mac</span>
+                      <p>Move StageFlo to Applications, open it once, then allow it in Privacy &amp; Security.</p>
+                    </section>
+                    <section className="download-confirmation-card" aria-label="Windows installation help">
+                      <span aria-hidden="true">Windows</span>
+                      <p>If SmartScreen appears, choose More info, then Run anyway.</p>
+                    </section>
+                  </div>
                 </div>
                 <div className="download-gate-actions download-confirmation-actions">
                   <button type="button" className="button button-secondary" onClick={resetAndClose}>
