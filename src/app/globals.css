@@ -501,11 +501,48 @@ button {
   font-size: 0.9rem;
 }
 
+.download-confirmation {
+  margin-top: 1rem;
+}
+
+.download-confirmation-panel {
+  margin-top: 0.85rem;
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.download-confirmation-panel h4 {
+  margin: 0 0 0.55rem;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+.download-confirmation-panel p {
+  margin: 0 0 0.65rem;
+  font-size: 0.92rem;
+}
+
+.download-confirmation-panel a {
+  color: var(--accent-light);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.download-confirmation-panel a:hover {
+  text-decoration: underline;
+}
+
 .download-gate-actions {
   margin-top: 0.55rem;
   display: grid;
   gap: 0.6rem;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.download-confirmation-actions {
+  margin-top: 0.85rem;
 }
 
 .download-gate-actions .button {

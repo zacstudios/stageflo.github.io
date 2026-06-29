@@ -36,6 +36,7 @@ function getEndpointUrl() {
 }
 
 const ENDPOINT_URL = getEndpointUrl();
+const INSTALLATION_TROUBLESHOOTING_URL = "/docs/introduction/#installation-troubleshooting";
 
 async function wait(ms: number) {
   await new Promise((resolve) => window.setTimeout(resolve, ms));
@@ -165,10 +166,6 @@ export default function GatedDownloadLink({
 
       setSubmitState("success");
       window.open(href, "_blank", "noopener,noreferrer");
-
-      window.setTimeout(() => {
-        resetAndClose();
-      }, 900);
     } catch {
       setSubmitState("error");
       setErrorMessage("We could not submit your details right now. Please try again, or continue to download.");
@@ -219,106 +216,130 @@ export default function GatedDownloadLink({
               </p>
             ) : null}
 
-            <form className="download-gate-form" onSubmit={onSubmit}>
-              <label htmlFor="download-name">Name</label>
-              <input
-                id="download-name"
-                name="name"
-                type="text"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-                autoComplete="name"
-                minLength={2}
-                maxLength={80}
-                disabled={submitState === "submitting"}
-              />
-
-              <label htmlFor="download-email">Email</label>
-              <input
-                id="download-email"
-                name="email"
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                autoComplete="email"
-                maxLength={120}
-                disabled={submitState === "submitting"}
-              />
-
-              <input
-                type="text"
-                name="company"
-                value={company}
-                onChange={(event) => setCompany(event.target.value)}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }}
-              />
-
-              <label className="download-gate-checkbox">
-                <input
-                  type="checkbox"
-                  checked={consent}
-                  onChange={(event) => setConsent(event.target.checked)}
-                  required
-                  disabled={submitState === "submitting"}
-                />
-                <span>
-                  I agree that StageFlo can store this information for download delivery and product updates, as described in
-                  <a href="/privacy/" target="_blank" rel="noopener noreferrer"> Privacy Policy</a>.
-                </span>
-              </label>
-
-              <label className="download-gate-checkbox">
-                <input
-                  type="checkbox"
-                  checked={marketingOptIn}
-                  onChange={(event) => setMarketingOptIn(event.target.checked)}
-                  disabled={submitState === "submitting"}
-                />
-                <span>I want occasional feature and release emails.</span>
-              </label>
-
-              {submitState === "error" ? <p className="download-gate-error">{errorMessage}</p> : null}
-              {submitState === "success" ? <p className="download-gate-success">Success. Your download is starting.</p> : null}
-
-              <div className="download-gate-actions">
-                <button type="button" className="button button-secondary" onClick={resetAndClose} disabled={submitState === "submitting"}>
-                  Cancel
-                </button>
-                {submitState === "error" ? (
+            {submitState === "success" ? (
+              <div className="download-confirmation" role="status" aria-live="polite">
+                <p className="download-gate-success">Success. Your download is starting.</p>
+                <div className="download-confirmation-panel">
+                  <h4>Installation help</h4>
+                  <p>
+                    If macOS says StageFlo cannot be opened or Apple could not verify it, move StageFlo to Applications,
+                    open it once, then allow it from System Settings &gt; Privacy &amp; Security.
+                  </p>
+                  <p>If Windows SmartScreen appears, choose More info, then Run anyway to continue setup.</p>
+                  <a href={INSTALLATION_TROUBLESHOOTING_URL}>View full installation troubleshooting</a>
+                </div>
+                <div className="download-gate-actions download-confirmation-actions">
+                  <button type="button" className="button button-secondary" onClick={resetAndClose}>
+                    Close
+                  </button>
                   <button
                     type="button"
-                    className="button button-secondary"
+                    className="button button-primary download-gate-submit"
                     onClick={() => {
                       window.open(href, "_blank", "noopener,noreferrer");
-                      resetAndClose();
                     }}
                   >
-                    Download Anyway
+                    Download Again
                   </button>
-                ) : null}
-                <button
-                  type="submit"
-                  className="button button-primary download-gate-submit"
-                  disabled={submitState === "submitting" || !endpointAvailable}
-                >
-                  <span className="download-gate-submit-copy">
-                    {submitState === "submitting"
-                      ? "Submitting..."
-                      : submitState === "success"
-                        ? "Download Ready"
-                        : "Continue to Download"}
-                  </span>
-                  <span className="download-gate-submit-arrow" aria-hidden="true">
-                    {submitState === "submitting" ? "..." : submitState === "success" ? "✓" : "→"}
-                  </span>
-                </button>
+                </div>
               </div>
-            </form>
+            ) : (
+              <form className="download-gate-form" onSubmit={onSubmit}>
+                <label htmlFor="download-name">Name</label>
+                <input
+                  id="download-name"
+                  name="name"
+                  type="text"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                  autoComplete="name"
+                  minLength={2}
+                  maxLength={80}
+                  disabled={submitState === "submitting"}
+                />
+
+                <label htmlFor="download-email">Email</label>
+                <input
+                  id="download-email"
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                  autoComplete="email"
+                  maxLength={120}
+                  disabled={submitState === "submitting"}
+                />
+
+                <input
+                  type="text"
+                  name="company"
+                  value={company}
+                  onChange={(event) => setCompany(event.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", opacity: 0, pointerEvents: "none" }}
+                />
+
+                <label className="download-gate-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(event) => setConsent(event.target.checked)}
+                    required
+                    disabled={submitState === "submitting"}
+                  />
+                  <span>
+                    I agree that StageFlo can store this information for download delivery and product updates, as described in
+                    <a href="/privacy/" target="_blank" rel="noopener noreferrer"> Privacy Policy</a>.
+                  </span>
+                </label>
+
+                <label className="download-gate-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={marketingOptIn}
+                    onChange={(event) => setMarketingOptIn(event.target.checked)}
+                    disabled={submitState === "submitting"}
+                  />
+                  <span>I want occasional feature and release emails.</span>
+                </label>
+
+                {submitState === "error" ? <p className="download-gate-error">{errorMessage}</p> : null}
+
+                <div className="download-gate-actions">
+                  <button type="button" className="button button-secondary" onClick={resetAndClose} disabled={submitState === "submitting"}>
+                    Cancel
+                  </button>
+                  {submitState === "error" ? (
+                    <button
+                      type="button"
+                      className="button button-secondary"
+                      onClick={() => {
+                        window.open(href, "_blank", "noopener,noreferrer");
+                        resetAndClose();
+                      }}
+                    >
+                      Download Anyway
+                    </button>
+                  ) : null}
+                  <button
+                    type="submit"
+                    className="button button-primary download-gate-submit"
+                    disabled={submitState === "submitting" || !endpointAvailable}
+                  >
+                    <span className="download-gate-submit-copy">
+                      {submitState === "submitting" ? "Submitting..." : "Continue to Download"}
+                    </span>
+                    <span className="download-gate-submit-arrow" aria-hidden="true">
+                      {submitState === "submitting" ? "..." : "→"}
+                    </span>
+                  </button>
+                </div>
+              </form>
+            )}
           </section>
         </div>
           , document.body)
