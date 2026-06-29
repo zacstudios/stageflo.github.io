@@ -115,6 +115,16 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
                     </tr>
                   </table>
 
+                  <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0;">
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#111827;font-weight:700;">Installation help</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If macOS says StageFlo cannot be opened or Apple could not verify it, move StageFlo to Applications, open it once, then allow it from System Settings &gt; Privacy &amp; Security.</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If Windows SmartScreen appears, choose More info, then Run anyway to continue setup.</p>
+                    <p style="margin:0;font-size:14px;line-height:1.65;color:#374151;">
+                      Full steps:
+                      <a href="${STAGEFLO_TROUBLESHOOTING_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Installation Troubleshooting</a>
+                    </p>
+                  </div>
+
                   <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;">
                     <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#5b21b6;font-weight:700;">Help shape StageFlo</p>
                     <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If you spot a bug or have an idea, we want to hear it. Your feedback drives our roadmap.</p>
