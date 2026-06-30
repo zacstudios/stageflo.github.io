@@ -119,6 +119,9 @@ export default function DocsIntroductionPage() {
               faster song entry, and more reliable remote operation during live services.
             </p>
             <ul>
+              <li><strong>Section labels in Manual mode</strong> — when using line-by-line manual slides for songs or scripture, the slide grid and list now show a header (e.g. &quot;Verse 1&quot;, &quot;Chorus&quot;, &quot;Bridge&quot;, or a Bible reference) above each group of slides, so it&apos;s easy to keep track of where you are in the song while operating.</li>
+              <li><strong>Force a one-line slide in Manual mode</strong> — add a blank line between two lyric lines in the song editor to start a new slide early at that point, even if the rest of the song is set to two or more lines per slide.</li>
+              <li><strong>Custom slide backgrounds no longer flash black</strong> — assigning a unique video background to a single slide previously showed a brief black flash before the video appeared; backgrounds now show a still preview frame while loading instead.</li>
               <li><strong>Slide transitions</strong> — eight text-layer transition types (Fade, Cut, Slide Left, Slide Right, Slide Up, Slide Down, Zoom In, Blur) selectable from a global picker in the workspace toolbar. Transitions animate in the audience preview panel as well as on live outputs.</li>
               <li><strong>Plan item memory</strong> — saving a plan item now persists the transition type, active background or visualizer, overlay visibility and lock state, Bible verse range, Bible translation, and bible layout mode (auto vs. manual pagination). These settings restore automatically when the item is clicked in the playlist.</li>
               <li><strong>Shared library folders</strong> — keep your StageFlo library on Google Drive, OneDrive, or a network drive and move between PCs.</li>
@@ -476,6 +479,11 @@ export default function DocsIntroductionPage() {
               <li><strong>Undo</strong> — Cmd+Z on macOS and Ctrl+Z on Windows restore recent song-editor text changes.</li>
               <li><strong>Slide Number Loading</strong> — Press slide numbers as hotkeys. Use 1-9 for single digits and type multi-digit numbers for slides 10 and above.</li>
             </ul>
+            <div className={styles.callout}>
+              In Manual line mode, leave a blank line between two lyric lines to force a slide break
+              there — useful for giving one impactful line its own slide without changing the
+              lines-per-slide setting for the rest of the song.
+            </div>
           </section>
 
           <section className={docCardClassName} id="chords">
