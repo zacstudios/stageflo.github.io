@@ -126,6 +126,12 @@ supabase functions deploy send-onboarding-sequence \
   --no-verify-jwt \
   --use-api
 
+echo "Deploying free-spots-count Edge Function..."
+supabase functions deploy free-spots-count \
+  --project-ref "$PROJECT_REF" \
+  --no-verify-jwt \
+  --use-api
+
 function_url="https://${PROJECT_REF}.functions.supabase.co/capture-download-lead"
 
 echo "Updating GitHub Pages secret NEXT_PUBLIC_SUPABASE_FUNCTION_URL..."

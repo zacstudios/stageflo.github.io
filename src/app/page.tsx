@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import FreeSpotsCounter from "./components/freeSpotsCounter";
 import GatedDownloadLink from "./components/gatedDownloadLink";
 import TopNav from "./components/topNav";
 
@@ -132,7 +133,7 @@ const comparisonPoints = [
   },
   {
     title: "An EasyWorship alternative for Mac and Windows",
-    body: "StageFlo runs on macOS and Windows, supports offline service operation, and keeps downloads free for every church.",
+    body: "StageFlo runs on macOS and Windows, supports offline service operation, and is free forever for the first 100 churches.",
   },
 ];
 
@@ -280,7 +281,7 @@ export default async function Home() {
     applicationCategory: "MultimediaApplication",
     operatingSystem: "macOS, Windows",
     description:
-      "Free multilingual worship presentation software for churches. Run worship lyrics, Bible verses, media, stage display, and bilingual slides from one fast workflow.",
+      "Free for the first 100 churches — multilingual worship presentation software. Run worship lyrics, Bible verses, media, stage display, and bilingual slides from one fast workflow.",
     featureList: [
       "Worship lyrics presentation",
       "Bible verse projection",
@@ -300,6 +301,8 @@ export default async function Home() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/LimitedAvailability",
+      description: "Free forever for the first 100 churches (early-adopter offer). Paid plans will follow.",
     },
     url: "https://stageflo.app/",
     downloadUrl: [latestMacDownloadUrl, latestWindowsDownloadUrl],
@@ -320,7 +323,7 @@ export default async function Home() {
         name: "Is StageFlo free?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. StageFlo is free forever for every church — no subscription, no feature gating, no account required for core use.",
+          text: "Yes — for the first 100 churches. StageFlo is in its early-adopter phase: the first 100 churches to join get StageFlo free forever, with no subscription, no feature gating, and no account required for core use. After that, paid plans for churches will be introduced, but early adopters keep free access for life.",
         },
       },
       {
@@ -376,7 +379,7 @@ export default async function Home() {
         name: "How is StageFlo different from ProPresenter or EasyWorship?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "StageFlo is completely free (no subscription), includes offline AI semantic search for Bible and songs, and offers one-click internet-accessible stage view via Cloudflare Tunnel — features not available in ProPresenter or EasyWorship without additional cost or setup.",
+          text: "StageFlo is free forever for the first 100 churches (early adopters keep it free for life; paid plans come later), includes offline AI semantic search for Bible and songs, and offers one-click internet-accessible stage view via Cloudflare Tunnel — features not available in ProPresenter or EasyWorship without additional cost or setup.",
         },
       },
     ],
@@ -420,7 +423,7 @@ export default async function Home() {
           </div>
           <h1>Multilingual worship software for every church.</h1>
           <p className="lead">
-            Run worship slides in English, Malayalam, Hindi, Tamil, Telugu, and more from one fast workflow. Songs, scripture, media, stage display, and OBS lower-thirds — free forever for every church.
+            Run worship slides in English, Malayalam, Hindi, Tamil, Telugu, and more from one fast workflow. Songs, scripture, media, stage display, and OBS lower-thirds — free forever for the first 100 churches.
           </p>
           <div className="cta-row">
             <GatedDownloadLink
@@ -440,6 +443,7 @@ export default async function Home() {
               Download for Windows
             </GatedDownloadLink>
           </div>
+          <FreeSpotsCounter />
         </section>
 
         {/* ── Feature Pillars ── */}

@@ -130,7 +130,7 @@ The helper script will:
 
 1. Create or link the Supabase project.
 2. Push the SQL migration.
-3. Deploy `capture-download-lead`, `capture-feedback`, `send-onboarding-sequence`, `capture-app-usage`, and `usage-admin` with `--no-verify-jwt` so the public website and desktop app can call them.
+3. Deploy `capture-download-lead`, `capture-feedback`, `send-onboarding-sequence`, `capture-app-usage`, `usage-admin`, and `free-spots-count` with `--no-verify-jwt` so the public website and desktop app can call them.
 4. Set function secrets and update the GitHub repo secret `NEXT_PUBLIC_SUPABASE_FUNCTION_URL`.
 
 Optional hardening for `tunnel-register`:

@@ -237,6 +237,19 @@ button {
   margin-top: 2rem;
 }
 
+.free-spots-counter {
+  display: inline-block;
+  margin-top: 1.1rem;
+  padding: 0.4rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  background: rgba(124, 58, 237, 0.12);
+  color: var(--accent-light);
+  font-size: 0.78rem;
+  font-family: var(--font-plex-mono), monospace;
+  letter-spacing: 0.05em;
+}
+
 .button {
   display: inline-flex;
   align-items: center;

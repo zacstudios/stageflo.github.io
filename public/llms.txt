@@ -1,6 +1,6 @@
 # StageFlo
 
-> StageFlo is free worship presentation software for churches, built by Zac Studios.
+> StageFlo is worship presentation software for churches, built by Zac Studios — free forever for the first 100 churches (early-adopter phase).
 > It runs on macOS and Windows and handles the full live-service workflow: lyrics, Bible verses, media, multi-screen output, OBS lower-thirds, and remote stage display.
 
 ## What StageFlo does
@@ -20,7 +20,7 @@ StageFlo lets a worship team operator control what appears on every screen durin
 
 ## Pricing
 
-StageFlo is free forever, for every church. No subscription, no feature gating, no account required for core use.
+StageFlo is currently in its early-adopter phase: it is free forever for the first 100 churches that join. Early adopters keep free access for life — no subscription, no feature gating, no account required for core use. Paid plans for churches will be introduced after the first 100 spots are claimed.
 
 ## Supported platforms
 
@@ -31,7 +31,7 @@ StageFlo is free forever, for every church. No subscription, no feature gating, 
 
 - **Category**: Church presentation software / worship software / lyric projection software
 - **Alternatives it is compared to**: ProPresenter, EasyWorship, OpenLP, MediaShout, FreeShow, Quelea
-- **Unique differentiators**: offline AI semantic search, one-click internet-accessible stage view via Cloudflare Tunnel, fully free
+- **Unique differentiators**: offline AI semantic search, one-click internet-accessible stage view via Cloudflare Tunnel, free forever for the first 100 churches (early-adopter offer)
 - **Current version**: 2.0
 - **Download**: https://stageflo.app/downloads/
 - **Docs**: https://stageflo.app/docs/introduction/
