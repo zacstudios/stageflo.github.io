@@ -1,8 +1,8 @@
 version: 2.1.21
 files:
   - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.21/stageflo-2.1.21-setup.exe
-    sha512: DLCjfIAPcw77K9kwVTx4T3aVdiHYy7S6IT1eMU8f4F1x0/kTIpQNgCRW71L2nK5txWjhi6WYcmhvUmtwpRwPUg==
-    size: 227868373
+    sha512: BEEAbjNuo/APc1MumWiLC9noaolnhm4njHobnUafPjmQqbs31LETJJ96ph+9yOYPA8mxSpOJ8otliXykA7fCqg==
+    size: 227868534
 path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.21/stageflo-2.1.21-setup.exe
-sha512: DLCjfIAPcw77K9kwVTx4T3aVdiHYy7S6IT1eMU8f4F1x0/kTIpQNgCRW71L2nK5txWjhi6WYcmhvUmtwpRwPUg==
-releaseDate: '2026-07-08T19:23:12.493Z'
+sha512: BEEAbjNuo/APc1MumWiLC9noaolnhm4njHobnUafPjmQqbs31LETJJ96ph+9yOYPA8mxSpOJ8otliXykA7fCqg==
+releaseDate: '2026-07-08T20:10:18.671Z'
