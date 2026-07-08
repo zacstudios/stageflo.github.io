@@ -137,9 +137,14 @@ export default function UsageAdminPage() {
             <h1>App Usage Dashboard</h1>
             <p>Modern analytics for installs, activity, version spread, and tunnel adoption.</p>
           </div>
-          <a className="button button-secondary" href="/admin/leads">
-            Open Leads Admin
-          </a>
+          <div style={{ display: "flex", gap: 8 }}>
+            <a className="button button-secondary" href="/admin/leads">
+              Open Leads Admin
+            </a>
+            <a className="button button-secondary" href="/admin/crashes">
+              Open Crash Reports
+            </a>
+          </div>
         </div>
 
         <div className="usage-filter-card">
