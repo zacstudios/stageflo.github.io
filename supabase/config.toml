@@ -103,3 +103,11 @@ enable_signup = false
 enable_confirmations = false
 template = "Your code is {{ .Code }}"
 max_frequency = "5s"
+
+# Public-ingest and admin functions do their own auth (payload validation /
+# x-admin-key); the desktop app and admin pages send no Supabase JWT.
+[functions.capture-app-crash]
+verify_jwt = false
+
+[functions.crash-admin]
+verify_jwt = false
