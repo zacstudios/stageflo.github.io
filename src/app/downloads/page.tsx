@@ -4,8 +4,10 @@ import GatedDownloadLink from "../components/gatedDownloadLink";
 import TopNav from "../components/topNav";
 import {
   CURRENT_VERSION,
-  MAC_DOWNLOAD_URL,
+  MAC_ARM64_DOWNLOAD_URL,
+  MAC_X64_DOWNLOAD_URL,
   WINDOWS_DOWNLOAD_URL,
+  readLatestMacReleaseManifest,
   readLatestReleaseManifest,
   resourceDownloadCards,
   toMacDmgUrl,
@@ -45,20 +47,22 @@ export const metadata: Metadata = {
 
 export default async function DownloadsPage() {
   const [macManifest, windowsManifest] = await Promise.all([
-    readLatestReleaseManifest("latest-mac.yml"),
+    readLatestMacReleaseManifest(),
     readLatestReleaseManifest("latest.yml"),
   ]);
 
   const latestMac = macManifest ?? {
     version: CURRENT_VERSION,
-    url: MAC_DOWNLOAD_URL,
+    arm64Url: MAC_ARM64_DOWNLOAD_URL,
+    x64Url: MAC_X64_DOWNLOAD_URL,
   };
   const latestWindows = windowsManifest ?? {
     version: CURRENT_VERSION,
     url: WINDOWS_DOWNLOAD_URL,
   };
 
-  const latestMacDownloadUrl = toMacDmgUrl(latestMac.url, latestMac.version);
+  const latestMacArm64DownloadUrl = toMacDmgUrl(latestMac.arm64Url, latestMac.version, "arm64");
+  const latestMacX64DownloadUrl = toMacDmgUrl(latestMac.x64Url, latestMac.version, "x64");
   const latestWindowsDownloadUrl = toWindowsSetupUrl(latestWindows.url, latestWindows.version);
 
   return (
@@ -103,19 +107,27 @@ export default async function DownloadsPage() {
           <div className="install-grid downloads-platform-grid">
             <article className="install-card reveal download-feature-card">
               <p className="downloads-card-tag">macOS</p>
-              <h3>Universal macOS Build</h3>
+              <h3>macOS Build</h3>
               <p>
-                Recommended for Mac church presentation computers. You will get the latest stable
-                desktop build for English, Malayalam, Hindi, Tamil, Telugu, and other bilingual worship slides.
+                Pick the build that matches your Mac&apos;s chip for the latest stable desktop build with
+                English, Malayalam, Hindi, Tamil, Telugu, and other bilingual worship slides.
               </p>
               <div className="cta-row downloads-card-actions">
                 <GatedDownloadLink
                   className="button button-primary"
-                  href={latestMacDownloadUrl}
+                  href={latestMacArm64DownloadUrl}
                   source="desktop"
-                  formTitle="Download StageFlo for macOS"
+                  formTitle="Download StageFlo for macOS (Apple Silicon)"
                 >
-                  Get macOS Installer
+                  Apple Silicon (M1–M4)
+                </GatedDownloadLink>
+                <GatedDownloadLink
+                  className="button button-secondary"
+                  href={latestMacX64DownloadUrl}
+                  source="desktop"
+                  formTitle="Download StageFlo for macOS (Intel)"
+                >
+                  Intel Mac
                 </GatedDownloadLink>
               </div>
             </article>

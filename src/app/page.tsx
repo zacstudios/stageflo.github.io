@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import FreeSpotsCounter from "./components/freeSpotsCounter";
 import GatedDownloadLink from "./components/gatedDownloadLink";
 import TopNav from "./components/topNav";
-
-const CURRENT_VERSION = "2.0.1";
-const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
-const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/Stageflo.app/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
+import {
+  CURRENT_VERSION,
+  MAC_ARM64_DOWNLOAD_URL,
+  MAC_X64_DOWNLOAD_URL,
+  WINDOWS_DOWNLOAD_URL,
+  readLatestMacReleaseManifest,
+  readLatestReleaseManifest,
+  toMacDmgUrl,
+  toWindowsSetupUrl,
+} from "./lib/downloads";
 
 const pillars = [
   {
@@ -164,40 +168,6 @@ const screenshotCards = [
   },
 ];
 
-type LatestReleaseInfo = {
-  version: string;
-  url: string;
-};
-
-const parseManifest = (manifestText: string): LatestReleaseInfo | null => {
-  const version = manifestText.match(/^version:\s*(.+)$/m)?.[1]?.trim();
-  const url = manifestText.match(/^\s*- url:\s*(.+)$/m)?.[1]?.trim();
-
-  if (!version || !url) return null;
-  return { version, url };
-};
-
-const toMacDmgUrl = (url: string, version: string): string => {
-  if (url.toLowerCase().endsWith('.dmg')) return url;
-  return `https://github.com/zacstudios/Stageflo.app/releases/download/v${version}/stageflo-${version}.dmg`;
-};
-
-const toWindowsSetupUrl = (url: string, version: string): string => {
-  if (/^https?:\/\//i.test(url)) return url;
-  const normalized = url.replace(/^\/+/, '');
-  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/${normalized}`;
-};
-
-const readLatestReleaseManifest = async (fileName: string): Promise<LatestReleaseInfo | null> => {
-  try {
-    const manifestPath = path.join(process.cwd(), "public", "updates", fileName);
-    const manifestText = await readFile(manifestPath, "utf8");
-    return parseManifest(manifestText);
-  } catch {
-    return null;
-  }
-};
-
 export const metadata: Metadata = {
   title: "StageFlo | Multilingual Worship Presentation Software",
   description:
@@ -259,15 +229,17 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const [macManifest, windowsManifest] = await Promise.all([
-    readLatestReleaseManifest("latest-mac.yml"),
+    readLatestMacReleaseManifest(),
     readLatestReleaseManifest("latest.yml"),
   ]);
 
   const latestMac = macManifest ?? {
     version: CURRENT_VERSION,
-    url: MAC_DOWNLOAD_URL,
+    arm64Url: MAC_ARM64_DOWNLOAD_URL,
+    x64Url: MAC_X64_DOWNLOAD_URL,
   };
-  const latestMacDownloadUrl = toMacDmgUrl(latestMac.url, latestMac.version);
+  const latestMacArm64DownloadUrl = toMacDmgUrl(latestMac.arm64Url, latestMac.version, "arm64");
+  const latestMacX64DownloadUrl = toMacDmgUrl(latestMac.x64Url, latestMac.version, "x64");
   const latestWindows = windowsManifest ?? {
     version: CURRENT_VERSION,
     url: WINDOWS_DOWNLOAD_URL,
@@ -305,7 +277,7 @@ export default async function Home() {
       description: "Free forever for the first 100 churches (early-adopter offer). Paid plans will follow.",
     },
     url: "https://stageflo.app/",
-    downloadUrl: [latestMacDownloadUrl, latestWindowsDownloadUrl],
+    downloadUrl: [latestMacArm64DownloadUrl, latestMacX64DownloadUrl, latestWindowsDownloadUrl],
     softwareVersion: CURRENT_VERSION,
     author: {
       "@type": "Organization",
@@ -428,9 +400,9 @@ export default async function Home() {
           <div className="cta-row">
             <GatedDownloadLink
               className="button button-primary"
-              href={latestMacDownloadUrl}
+              href={latestMacArm64DownloadUrl}
               source="desktop"
-              formTitle="Download StageFlo for macOS"
+              formTitle="Download StageFlo for macOS (Apple Silicon)"
             >
               Download for Mac
             </GatedDownloadLink>
@@ -443,6 +415,17 @@ export default async function Home() {
               Download for Windows
             </GatedDownloadLink>
           </div>
+          <p className="cta-mac-arch-note">
+            Mac button is for Apple Silicon (M1–M4). On an Intel Mac?{" "}
+            <GatedDownloadLink
+              className="download-gate-inline-link"
+              href={latestMacX64DownloadUrl}
+              source="desktop"
+              formTitle="Download StageFlo for macOS (Intel)"
+            >
+              Get the Intel build
+            </GatedDownloadLink>
+          </p>
           <FreeSpotsCounter />
         </section>
 
@@ -631,9 +614,9 @@ export default async function Home() {
           <div className="cta-row">
             <GatedDownloadLink
               className="button button-primary"
-              href={latestMacDownloadUrl}
+              href={latestMacArm64DownloadUrl}
               source="desktop"
-              formTitle="Download StageFlo for macOS"
+              formTitle="Download StageFlo for macOS (Apple Silicon)"
             >
               Download for Mac
             </GatedDownloadLink>
@@ -646,6 +629,17 @@ export default async function Home() {
               Download for Windows
             </GatedDownloadLink>
           </div>
+          <p className="cta-mac-arch-note">
+            Mac button is for Apple Silicon (M1–M4). On an Intel Mac?{" "}
+            <GatedDownloadLink
+              className="download-gate-inline-link"
+              href={latestMacX64DownloadUrl}
+              source="desktop"
+              formTitle="Download StageFlo for macOS (Intel)"
+            >
+              Get the Intel build
+            </GatedDownloadLink>
+          </p>
         </section>
 
       </main>

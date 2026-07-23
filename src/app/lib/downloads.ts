@@ -4,7 +4,8 @@ import path from "node:path";
 export const CURRENT_VERSION = "2.1.34";
 export const RELEASE_BASE_URL = "https://github.com/zacstudios/stageflo.github.io/releases/latest/download";
 export const SONGS_RELEASE_BASE_URL = "https://github.com/zacstudios/Stageflo.app/releases/download/v1.0.0-desktop";
-export const MAC_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}.dmg`;
+export const MAC_ARM64_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-arm64.dmg`;
+export const MAC_X64_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-x64.dmg`;
 export const WINDOWS_DOWNLOAD_URL = `https://github.com/zacstudios/stageflo.github.io/releases/download/v${CURRENT_VERSION}/stageflo-${CURRENT_VERSION}-setup.exe`;
 export const SONGS_XML_ML_URL = `${SONGS_RELEASE_BASE_URL}/songs-openlyrics-primary-ml.xml`;
 export const SONGS_XML_TA_URL = `${SONGS_RELEASE_BASE_URL}/songs-openlyrics-primary-ta.xml`;
@@ -78,6 +79,12 @@ export type LatestReleaseInfo = {
   url: string;
 };
 
+export type LatestMacReleaseInfo = {
+  version: string;
+  arm64Url: string;
+  x64Url: string;
+};
+
 export const parseManifest = (manifestText: string): LatestReleaseInfo | null => {
   const version = manifestText.match(/^version:\s*(.+)$/m)?.[1]?.trim();
   const url = manifestText.match(/^\s*- url:\s*(.+)$/m)?.[1]?.trim();
@@ -86,9 +93,29 @@ export const parseManifest = (manifestText: string): LatestReleaseInfo | null =>
   return { version, url };
 };
 
-export const toMacDmgUrl = (url: string, version: string): string => {
+// latest-mac.yml lists one `files` entry per architecture (arm64 + x64).
+// Pull out both so the site can offer separate Apple Silicon / Intel buttons.
+export const parseMacManifest = (manifestText: string): LatestMacReleaseInfo | null => {
+  const version = manifestText.match(/^version:\s*(.+)$/m)?.[1]?.trim();
+  const urls = [...manifestText.matchAll(/^\s*- url:\s*(.+)$/gm)].map((match) => match[1].trim());
+
+  if (!version || urls.length === 0) return null;
+
+  const arm64Url = urls.find((url) => /arm64/i.test(url));
+  const x64Url = urls.find((url) => !/arm64/i.test(url));
+
+  if (!arm64Url && !x64Url) return null;
+
+  return {
+    version,
+    arm64Url: arm64Url ?? x64Url!,
+    x64Url: x64Url ?? arm64Url!,
+  };
+};
+
+export const toMacDmgUrl = (url: string, version: string, arch: "arm64" | "x64"): string => {
   if (url.toLowerCase().endsWith(".dmg")) return url;
-  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}.dmg`;
+  return `https://github.com/zacstudios/stageflo.github.io/releases/download/v${version}/stageflo-${version}-${arch}.dmg`;
 };
 
 export const toWindowsSetupUrl = (url: string, version: string): string => {
@@ -102,6 +129,16 @@ export const readLatestReleaseManifest = async (fileName: string): Promise<Lates
     const manifestPath = path.join(process.cwd(), "public", "updates", fileName);
     const manifestText = await readFile(manifestPath, "utf8");
     return parseManifest(manifestText);
+  } catch {
+    return null;
+  }
+};
+
+export const readLatestMacReleaseManifest = async (): Promise<LatestMacReleaseInfo | null> => {
+  try {
+    const manifestPath = path.join(process.cwd(), "public", "updates", "latest-mac.yml");
+    const manifestText = await readFile(manifestPath, "utf8");
+    return parseMacManifest(manifestText);
   } catch {
     return null;
   }

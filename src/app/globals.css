@@ -993,6 +993,12 @@ button {
   font-size: 0.9rem;
 }
 
+.cta-mac-arch-note {
+  margin-top: 0.85rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .section-head {
   margin-bottom: 1.6rem;
   max-width: 74ch;
