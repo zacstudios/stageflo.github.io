@@ -1,17 +1,17 @@
 version: 2.1.39
 files:
   - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.zip
-    sha512: Dd1L+Cm+EKszRSwRvp2W/ZiJaPgufrwhTAblFKetStcCUbS6objmOoty9M6ZTBJ3lK1ROVakbbthHOxlDffZYQ==
-    size: 270945631
+    sha512: kCcFK5BYY5o8aF+9g6+1mQO5w0U/Kp5VqVmSs8Gs5sOZGUgqiQksNE8u/sgmU//qTB8Q+XvAzqyophhqtsqQLQ==
+    size: 270945375
   - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-arm64.zip
-    sha512: bNvA4dLhxEcOynAM9QtdMJQgEFZdgOq6XlKBuxmy+N4xx640WsUS9rC0OxEEqlNSg+G6hb3ihbCOckO7w2TDRw==
-    size: 262568673
+    sha512: n2QP6rDp39ALFte11mf6bckcvDWJaFixXzEr0fTBbcuVWwKvVG2qQBH+09nFS0/ac+slZZw59rR1DpZ0bmcliQ==
+    size: 262568417
   - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.dmg
-    sha512: SlLRajhCOh4IaN43sfAiIWgilJUedDV1xrxkkFErJ6d1kpqqlul689TVjBBCLk+5QOHCpKgww3CDJjf5Umq39Q==
-    size: 270992178
+    sha512: UdCpiouICIuGp8be8TM4kjGe+jFFva9AU2Gyebp7CzD+zGHhYVzZ3blJWNM3ZMkNs2O1b+IVsv3XXAQJuqz0cA==
+    size: 270992096
   - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-arm64.dmg
-    sha512: FUEnwJ3+WjRvqapof6+55CJvGLu8z0Lpy8sgVrYv78bcHZZZrBu0FTnzDcbZaoersxEaUVBu79T3eHquJH0f2g==
-    size: 262654606
+    sha512: OPnqtqf1/rbWmzHcOIsuvj33oVqh5iEGamy4Glv9P3yTizPDRHjKW5m4nh1Bv58mnmnIIqnkRt85Jh0QrT/5PQ==
+    size: 262654314
 path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.zip
-sha512: Dd1L+Cm+EKszRSwRvp2W/ZiJaPgufrwhTAblFKetStcCUbS6objmOoty9M6ZTBJ3lK1ROVakbbthHOxlDffZYQ==
-releaseDate: '2026-08-08T21:14:02.262Z'
+sha512: kCcFK5BYY5o8aF+9g6+1mQO5w0U/Kp5VqVmSs8Gs5sOZGUgqiQksNE8u/sgmU//qTB8Q+XvAzqyophhqtsqQLQ==
+releaseDate: '2026-08-08T21:49:45.445Z'
