@@ -1,17 +1,17 @@
-version: 2.1.39
+version: 2.1.40
 files:
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.zip
-    sha512: QunoXmCs1WBkx9V+ersrV4GbT+klapcUemv+UEUavmPHmazkdo8354OmuAhnzmwAHzK+ISsDbN0tRsQCAyOH7w==
-    size: 270945604
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-arm64.zip
-    sha512: BGuEvkwaLv4rycrAnLcOnpDXv0pPpvWrUIBbxhw4FlkUnGSc79xMWGz7wKwcGp7sF/TXaqjYa6L13Ss1l1rx7A==
-    size: 262568296
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.dmg
-    sha512: CyYFqkfsUq6oNGX2mH61/g2pWJkMFzr08GRJBOgQVfXa/Sm80b3LoCQCjNoDiRNFrFTFI6mwPVxYBKZNAccABA==
-    size: 270992106
-  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-arm64.dmg
-    sha512: 0GbwAyOduuWp1HGbfIgjRUFZyQpChBq5WFDj8HOvf5dybt4OiADvkDTYZtl4g74ZYamInSXjJ8m7IQdSsV+Xrg==
-    size: 262654369
-path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.39/stageflo-2.1.39-x64.zip
-sha512: QunoXmCs1WBkx9V+ersrV4GbT+klapcUemv+UEUavmPHmazkdo8354OmuAhnzmwAHzK+ISsDbN0tRsQCAyOH7w==
-releaseDate: '2026-08-08T22:25:37.695Z'
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.40/stageflo-2.1.40-x64.zip
+    sha512: RR8igeJ2po/IIAMjg40leJWuLhcqMoBta2YHKvUzp0tNkRHd7HU1bMD2MyLkY+LrZz/4W3lMBNM3r90nn+9Ovg==
+    size: 270946124
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.40/stageflo-2.1.40-arm64.zip
+    sha512: Hu4UTCmMrXHBkUyMcHI1XK/3KkA4LNgaQFVTHZWtZgE4Bk/u90strZ8VEIy6yt6RePJamvkqcXa5nOpvBY3Z/A==
+    size: 262569570
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.40/stageflo-2.1.40-x64.dmg
+    sha512: OGpR6KLn8YBNz5/T7Xxj1/DEvarexhlxMuHX/t8DeCQtMcuMWPB4JEi/UE0Vrmn641oM+7MFZHk/ueRy0nC51w==
+    size: 270992131
+  - url: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.40/stageflo-2.1.40-arm64.dmg
+    sha512: Ng02WhCZ8zTxSd1EbTvkpb1U+DmSThAG4WnKMxHdOqIoIVaKN1Tl6i8xN9Hc1GfaCUD88034IZ+YVNmZ4UIrZg==
+    size: 262654992
+path: https://github.com/zacstudios/stageflo.github.io/releases/download/v2.1.40/stageflo-2.1.40-x64.zip
+sha512: RR8igeJ2po/IIAMjg40leJWuLhcqMoBta2YHKvUzp0tNkRHd7HU1bMD2MyLkY+LrZz/4W3lMBNM3r90nn+9Ovg==
+releaseDate: '2026-08-10T23:59:18.140Z'
