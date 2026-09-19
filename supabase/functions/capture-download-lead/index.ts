@@ -161,7 +161,89 @@ function buildThankYouEmailHtml(payload: Required<Pick<LeadPayload, "name" | "do
   `;
 }
 
-async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>): Promise<SendEmailResult> {
+function buildRedownloadEmailHtml(payload: Required<Pick<LeadPayload, "name" | "downloadUrl">>) {
+  const safeName = escapeHtml(payload.name);
+  const safeDownloadUrl = escapeHtml(payload.downloadUrl);
+
+  return `
+    <div style="margin:0;padding:0;background:#eef2ff;font-family:Arial,sans-serif;color:#111827;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2ff;padding:28px 12px;">
+        <tr>
+          <td align="center">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:620px;background:#ffffff;border:1px solid #ddd6fe;border-radius:14px;overflow:hidden;">
+              <tr>
+                <td style="padding:20px 24px;background:linear-gradient(135deg,#9333ea 0%,#7c3aed 48%,#5b21b6 100%);">
+                  <p style="margin:0 0 8px;">
+                    <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#ede9fe;border:1px solid #c4b5fd;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#4c1d95;font-weight:700;">StageFlo Download</span>
+                  </p>
+                  <h1 style="margin:8px 0 0;font-size:24px;line-height:1.2;color:#ffffff;">Welcome back to StageFlo</h1>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:24px;background:#ffffff;">
+                  <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#111827;">Hi ${safeName},</p>
+                  <p style="margin:0 0 16px;font-size:15px;line-height:1.7;color:#374151;">Here is your StageFlo download link again, ready whenever you need it.</p>
+
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 20px;">
+                    <tr>
+                      <td>
+                        <a href="${safeDownloadUrl}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:#7c3aed;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;">Download StageFlo</a>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0;">
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#111827;font-weight:700;">Installation help</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If macOS says StageFlo cannot be opened or Apple could not verify it, move StageFlo to Applications, open it once, then allow it from System Settings &gt; Privacy &amp; Security.</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If Windows SmartScreen appears, choose More info, then Run anyway to continue setup.</p>
+                    <p style="margin:0;font-size:14px;line-height:1.65;color:#374151;">
+                      Full steps:
+                      <a href="${STAGEFLO_TROUBLESHOOTING_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Installation Troubleshooting</a>
+                    </p>
+                  </div>
+
+                  <div style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f5f3ff;border:1px solid #ddd6fe;">
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#5b21b6;font-weight:700;">Help shape StageFlo</p>
+                    <p style="margin:0 0 10px;font-size:14px;line-height:1.65;color:#374151;">If you spot a bug or have an idea, we want to hear it. Your feedback drives our roadmap.</p>
+                    <p style="margin:0;font-size:14px;line-height:1.8;">
+                      <a href="${STAGEFLO_BUG_REPORT_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Report a Bug</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_FEATURE_REQUEST_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Request a Feature</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_FEEDBACK_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Feedback Hub</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_TROUBLESHOOTING_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Troubleshooting</a>
+                      <span style="color:#94a3b8;"> | </span>
+                      <a href="${STAGEFLO_DOCS_URL}" style="color:#6d28d9;text-decoration:none;font-weight:700;">Docs</a>
+                    </p>
+                  </div>
+
+                  <p style="margin:0;font-size:13px;line-height:1.6;color:#4b5563;">You are receiving this because you requested a StageFlo download. We only use your email for product updates, support, and preferences you selected.</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:16px 24px;border-top:1px solid #e2e8f0;background:#f8fafc;">
+                  <p style="margin:0;font-size:12px;color:#4b5563;">StageFlo Team</p>
+                  <p style="margin:6px 0 0;font-size:12px;">
+                    <a href="${STAGEFLO_HOME_URL}" style="color:#6d28d9;text-decoration:none;">stageflo.app</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `;
+}
+
+async function sendEmailViaResend(
+  payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>,
+  subject: string,
+  html: string,
+): Promise<SendEmailResult> {
   const resendApiKey = Deno.env.get("RESEND_API_KEY");
   const resendFrom = Deno.env.get("RESEND_FROM_EMAIL");
 
@@ -184,8 +266,8 @@ async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "
     body: JSON.stringify({
       from: resendFrom,
       to: [payload.email],
-      subject: "Welcome to StageFlo: your download is ready",
-      html: buildThankYouEmailHtml(payload),
+      subject,
+      html,
     }),
   });
 
@@ -208,6 +290,14 @@ async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "
     providerMessageId: typeof data?.id === "string" ? data.id : "",
     errorMessage: "",
   };
+}
+
+async function sendThankYouEmail(payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>): Promise<SendEmailResult> {
+  return sendEmailViaResend(payload, "Welcome to StageFlo: your download is ready", buildThankYouEmailHtml(payload));
+}
+
+async function sendRedownloadEmail(payload: Required<Pick<LeadPayload, "email" | "name" | "downloadUrl">>): Promise<SendEmailResult> {
+  return sendEmailViaResend(payload, "Your StageFlo download link is ready again", buildRedownloadEmailHtml(payload));
 }
 
 Deno.serve(async (request) => {
@@ -278,33 +368,73 @@ Deno.serve(async (request) => {
 
   const { data: insertedLead, error } = await supabase
     .from("download_leads")
-    .upsert(
-      {
-        name,
-        email,
-        marketing_opt_in: Boolean(payload.marketingOptIn),
-        consent: true,
-        source,
+    .insert({
+      name,
+      email,
+      marketing_opt_in: Boolean(payload.marketingOptIn),
+      consent: true,
+      source,
+      download_url: downloadUrl,
+      page,
+      submitted_at: submittedAt,
+      user_agent: userAgent,
+      referrer,
+      email_status: "pending",
+      email_provider: "resend",
+    })
+    .select("id")
+    .maybeSingle();
+
+  // Email already registered — update the lead and send a redownload confirmation instead
+  if (error?.code === "23505") {
+    const { data: existingLead, error: lookupError } = await supabase
+      .from("download_leads")
+      .select("id, redownload_count")
+      .eq("email", email)
+      .maybeSingle();
+
+    if (lookupError || !existingLead) {
+      return json({ error: "Failed to store lead" }, 500);
+    }
+
+    const emailResult = await sendRedownloadEmail({ email, name, downloadUrl });
+    const attemptAt = new Date().toISOString();
+
+    await supabase
+      .from("download_leads")
+      .update({
         download_url: downloadUrl,
         page,
         submitted_at: submittedAt,
         user_agent: userAgent,
         referrer,
-        email_status: "pending",
-        email_provider: "resend",
-      },
-      { onConflict: "email", ignoreDuplicates: true }
-    )
-    .select("id")
-    .maybeSingle();
+        redownload_count: (existingLead.redownload_count ?? 0) + 1,
+        last_redownload_at: attemptAt,
+        last_redownload_email_status: emailResult.status,
+        last_redownload_error: emailResult.errorMessage,
+      })
+      .eq("id", existingLead.id);
 
-  if (error) {
-    return json({ error: "Failed to store lead" }, 500);
+    await supabase
+      .from("email_events")
+      .insert({
+        lead_id: existingLead.id,
+        email,
+        event_family: "redownload",
+        event_name: "redownload_email",
+        status: emailResult.status,
+        provider: emailResult.provider,
+        provider_message_id: emailResult.providerMessageId,
+        error_message: emailResult.errorMessage,
+        attempted_at: attemptAt,
+        metadata: { source },
+      });
+
+    return json({ ok: true, accepted: true, emailQueued: true, emailStatus: emailResult.status, repeat: true });
   }
 
-  // Email already registered — return download URL without resending welcome email
-  if (!insertedLead) {
-    return json({ ok: true, accepted: true, emailQueued: true, emailStatus: "accepted" });
+  if (error || !insertedLead) {
+    return json({ error: "Failed to store lead" }, 500);
   }
 
   const emailResult = await sendThankYouEmail({ email, name, downloadUrl });
