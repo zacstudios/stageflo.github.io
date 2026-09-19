@@ -17,6 +17,7 @@ type FeedbackPayload = {
   submittedAt?: string;
   userAgent?: string;
   company?: string;
+  source?: string;
 };
 
 const corsHeaders = {
@@ -71,6 +72,10 @@ function normalizeType(value: string): FeedbackType {
   return "general";
 }
 
+function normalizeSource(value: string): string {
+  return value === "app" ? "app" : "website";
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -116,6 +121,7 @@ Deno.serve(async (request) => {
   const page = (payload.page ?? "").trim();
   const submittedAt = payload.submittedAt ?? new Date().toISOString();
   const userAgent = (payload.userAgent ?? "").trim() || request.headers.get("user-agent") || "";
+  const source = normalizeSource((payload.source ?? "website").trim().toLowerCase());
 
   if (name.length < 2 || name.length > 80) {
     return json({ error: "Name must be between 2 and 80 characters" }, 400);
@@ -154,7 +160,7 @@ Deno.serve(async (request) => {
     .insert({
       type,
       status: "new",
-      source: "website",
+      source,
       name,
       email,
       message,
