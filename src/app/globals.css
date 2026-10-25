@@ -1622,6 +1622,53 @@ button {
   border: 1px solid rgba(71, 85, 105, 0.4);
 }
 
+/* What an install is doing right now: presenting (live on its projector), online, or offline. */
+.usage-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.usage-live-badge::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.usage-live-badge.presenting {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.45);
+}
+
+.usage-live-badge.online {
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.16);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.usage-live-badge.offline {
+  color: #94a3b8;
+  background: rgba(71, 85, 105, 0.2);
+  border: 1px solid rgba(71, 85, 105, 0.35);
+}
+
+.usage-kpi-live {
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.usage-kpi-presenting {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: linear-gradient(130deg, rgba(34, 197, 94, 0.12), rgba(12, 16, 29, 0.76));
+}
+
 .admin-panel h1 {
   font-size: 1.4rem;
 }

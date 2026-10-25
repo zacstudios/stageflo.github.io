@@ -16,6 +16,8 @@ type UsagePayload = {
   tunnelMode?: "named" | "quick" | null;
   tunnelActive?: boolean;
   tunnelHostname?: string;
+  /** Live on its projector at this report (sent from 2.1.71). */
+  presenting?: boolean;
   reportedAt?: string;
 };
 
@@ -85,6 +87,7 @@ Deno.serve(async (request) => {
   const tunnelMode = payload.tunnelMode === "named" || payload.tunnelMode === "quick" ? payload.tunnelMode : null;
   const tunnelActive = Boolean(payload.tunnelActive);
   const tunnelHostname = normalizeText(payload.tunnelHostname);
+  const isPresenting = payload.presenting === true;
   const reportedAt = normalizeText(payload.reportedAt) || new Date().toISOString();
   const launchCount = normalizeCount(payload.launchCount);
 
@@ -138,6 +141,7 @@ Deno.serve(async (request) => {
         tunnel_mode: tunnelMode,
         tunnel_active: tunnelActive,
         tunnel_hostname: tunnelHostname || null,
+        is_presenting: isPresenting,
       })
       .eq("id", existingRow.id);
 
@@ -172,6 +176,7 @@ Deno.serve(async (request) => {
     tunnel_mode: tunnelMode,
     tunnel_active: tunnelActive,
     tunnel_hostname: tunnelHostname || null,
+    is_presenting: isPresenting,
   });
 
   if (insertError) {

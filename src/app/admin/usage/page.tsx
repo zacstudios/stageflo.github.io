@@ -4,6 +4,10 @@ import { useMemo, useState } from "react";
 
 type UsageSummary = {
   totalInstalls: number;
+  /** Running now (a heartbeat in the last 11 minutes). Missing until usage-admin is redeployed. */
+  onlineNow?: number;
+  /** Running now and live on the projector (sent by StageFlo 2.1.71 and later). */
+  presentingNow?: number;
   active24h: number;
   active7d: number;
   active30d: number;
@@ -32,7 +36,10 @@ type InstallRow = {
   tunnel_mode: string | null;
   tunnel_active: boolean;
   tunnel_hostname: string | null;
+  live_status?: "presenting" | "online" | "offline";
 };
+
+const LIVE_STATUS_LABEL = { presenting: "presenting", online: "online", offline: "offline" } as const;
 
 type LoadState = "idle" | "loading" | "error";
 
@@ -222,6 +229,14 @@ export default function UsageAdminPage() {
                 <span className="usage-kpi-label">Total Installs</span>
                 <strong className="usage-kpi-value">{summary.totalInstalls}</strong>
               </article>
+              <article className="usage-kpi-card usage-kpi-live">
+                <span className="usage-kpi-label">Online Now</span>
+                <strong className="usage-kpi-value">{summary.onlineNow ?? "-"}</strong>
+              </article>
+              <article className="usage-kpi-card usage-kpi-presenting">
+                <span className="usage-kpi-label">Presenting Now</span>
+                <strong className="usage-kpi-value">{summary.presentingNow ?? "-"}</strong>
+              </article>
               <article className="usage-kpi-card">
                 <span className="usage-kpi-label">Active 24h</span>
                 <strong className="usage-kpi-value">{summary.active24h}</strong>
@@ -350,6 +365,7 @@ export default function UsageAdminPage() {
           <table className="admin-table usage-installs-table">
             <thead>
               <tr>
+                <th>Now</th>
                 <th>Install ID</th>
                 <th>First Seen</th>
                 <th>Last Seen</th>
@@ -365,11 +381,16 @@ export default function UsageAdminPage() {
             <tbody>
               {installs.length === 0 ? (
                 <tr>
-                  <td colSpan={10}>No installs loaded.</td>
+                  <td colSpan={11}>No installs loaded.</td>
                 </tr>
               ) : (
                 installs.map((row) => (
                   <tr key={row.install_id}>
+                    <td>
+                      <span className={`usage-live-badge ${row.live_status ?? "offline"}`}>
+                        {LIVE_STATUS_LABEL[row.live_status ?? "offline"]}
+                      </span>
+                    </td>
                     <td>{row.install_id}</td>
                     <td>{formatDate(row.first_seen_at)}</td>
                     <td>{formatDate(row.last_seen_at)}</td>

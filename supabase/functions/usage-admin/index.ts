@@ -16,10 +16,18 @@ type AppInstallation = {
   tunnel_mode: string | null;
   tunnel_active: boolean;
   tunnel_hostname: string | null;
+  is_presenting: boolean;
 };
+
+/** What an install is doing now: its last heartbeat says whether it is still running. */
+type LiveStatus = "presenting" | "online" | "offline";
 
 type UsageSummary = {
   totalInstalls: number;
+  /** Running now: a heartbeat within the last ONLINE_WINDOW_MS. */
+  onlineNow: number;
+  /** Running now and live on the projector. */
+  presentingNow: number;
   active24h: number;
   active7d: number;
   active30d: number;
@@ -77,6 +85,16 @@ function isAuthorized(request: Request, adminApiKey: string) {
   return Boolean(key) && key === adminApiKey;
 }
 
+// The app sends a heartbeat every 5 minutes (and at once when it starts or stops presenting), so
+// one missed heartbeat is allowed before an install counts as no longer running.
+const ONLINE_WINDOW_MS = 11 * 60 * 1000;
+
+function liveStatus(row: AppInstallation, now: number): LiveStatus {
+  const seen = Date.parse(row.last_seen_at);
+  if (Number.isNaN(seen) || now - seen > ONLINE_WINDOW_MS) return "offline";
+  return row.is_presenting ? "presenting" : "online";
+}
+
 function buildDailyActive(rows: AppInstallation[], days: number): Array<{ day: string; installs: number }> {
   const buckets = new Map<string, number>();
   const now = new Date();
@@ -108,6 +126,8 @@ function buildSummary(rows: AppInstallation[], days: number): UsageSummary {
   let active24h = 0;
   let active7d = 0;
   let active30d = 0;
+  let onlineNow = 0;
+  let presentingNow = 0;
   let launchCountSum = 0;
 
   const versionCounts = new Map<string, number>();
@@ -127,6 +147,10 @@ function buildSummary(rows: AppInstallation[], days: number): UsageSummary {
 
     launchCountSum += Number.isFinite(row.launch_count) ? row.launch_count : 0;
 
+    const status = liveStatus(row, now);
+    if (status !== "offline") onlineNow += 1;
+    if (status === "presenting") presentingNow += 1;
+
     const parsedTime = Date.parse(row.last_seen_at);
     if (Number.isNaN(parsedTime)) continue;
 
@@ -140,6 +164,8 @@ function buildSummary(rows: AppInstallation[], days: number): UsageSummary {
 
   return {
     totalInstalls,
+    onlineNow,
+    presentingNow,
     active24h,
     active7d,
     active30d,
@@ -194,7 +220,7 @@ Deno.serve(async (request) => {
   const { data, error } = await supabase
     .from("app_installations")
     .select(
-      "install_id,first_seen_at,last_seen_at,first_version,last_version,launch_count,platform,arch,electron_version,node_version,app_name,is_packaged,tunnel_mode,tunnel_active,tunnel_hostname"
+      "install_id,first_seen_at,last_seen_at,first_version,last_version,launch_count,platform,arch,electron_version,node_version,app_name,is_packaged,tunnel_mode,tunnel_active,tunnel_hostname,is_presenting"
     )
     .order("last_seen_at", { ascending: false })
     .limit(limit)
@@ -238,6 +264,6 @@ Deno.serve(async (request) => {
     totalRows: filteredRows.length,
     sampled: rows.length === limit,
     summary: buildSummary(filteredRows, days),
-    installs: filteredRows,
+    installs: filteredRows.map((row) => ({ ...row, live_status: liveStatus(row, Date.now()) })),
   });
 });
