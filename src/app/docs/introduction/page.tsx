@@ -2,28 +2,34 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import TopNav from "../../components/topNav";
 import styles from "./page.module.css";
+import Figure from "./figure";
 import SectionHeading from "./sectionHeading";
 
 const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
   { id: "whats-new", label: "What Is New" },
   { id: "core-workflow", label: "Core Workflow" },
+  { id: "songs-key-bpm", label: "Songs, Key & BPM" },
+  { id: "bible-browser", label: "Bible" },
+  { id: "backgrounds", label: "Backgrounds" },
+  { id: "visualizer", label: "Visualizer" },
+  { id: "slide-transitions", label: "Slide Transitions" },
   { id: "library-backups", label: "Library & Backups" },
   { id: "ai-semantic-search", label: "AI Semantic Search" },
   { id: "settings-remote", label: "Remote Control" },
+  { id: "music-director", label: "Music Director Page" },
   { id: "bitfocus-presenter-remotes", label: "Bitfocus & Presenter Remotes" },
   { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
   { id: "settings-display", label: "Display Settings" },
   { id: "settings-stage", label: "Stage Display" },
   { id: "settings-lowerthird", label: "Lower Third" },
   { id: "settings-screens", label: "Screens & Outputs" },
-  { id: "settings-bible", label: "Bible" },
-  { id: "settings-songs", label: "Songs" },
+  { id: "settings-bible", label: "Bible Settings" },
+  { id: "settings-songs", label: "Song Settings" },
   { id: "song-editing", label: "Song Editing" },
   { id: "chords", label: "Chords" },
   { id: "media-web-links", label: "Media & Web Links" },
-  { id: "settings-shortcuts", label: "Keyboard Shortcuts" },
-  { id: "slide-transitions", label: "Slide Transitions" },
+  { id: "settings-shortcuts", label: "Hotkeys" },
   { id: "service-safety-tools", label: "Service Safety Tools" },
   { id: "outputs", label: "Outputs and Displays" },
   { id: "first-service", label: "Run Your First Service" },
@@ -99,8 +105,8 @@ export default function DocsIntroductionPage() {
               shared libraries, and confidence on stage.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Quick Setup</span>
-              <span className="eyebrow">Shareable Section Links</span>
+              <span className="eyebrow">Version 2.1.72</span>
+              <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
               <a className={styles.ghostLink} href="https://github.com/zacstudios/Stageflo.app#readme" target="_blank" rel="noopener noreferrer">
@@ -114,23 +120,21 @@ export default function DocsIntroductionPage() {
 
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
-            <p>
-              Recent StageFlo builds focus on shared libraries, safer backup/export workflows,
-              faster song entry, and more reliable remote operation during live services.
-            </p>
+            <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.72</h3>
             <ul>
-              <li><strong>Section labels in Manual mode</strong> — when using line-by-line manual slides for songs or scripture, the slide grid and list now show a header (e.g. &quot;Verse 1&quot;, &quot;Chorus&quot;, &quot;Bridge&quot;, or a Bible reference) above each group of slides, so it&apos;s easy to keep track of where you are in the song while operating.</li>
-              <li><strong>Force a one-line slide in Manual mode</strong> — add a blank line between two lyric lines in the song editor to start a new slide early at that point, even if the rest of the song is set to two or more lines per slide.</li>
-              <li><strong>Custom slide backgrounds no longer flash black</strong> — assigning a unique video background to a single slide previously showed a brief black flash before the video appeared; backgrounds now show a still preview frame while loading instead.</li>
-              <li><strong>Slide transitions</strong> — eight text-layer transition types (Fade, Cut, Slide Left, Slide Right, Slide Up, Slide Down, Zoom In, Blur) selectable from a global picker in the workspace toolbar. Transitions animate in the audience preview panel as well as on live outputs.</li>
-              <li><strong>Plan item memory</strong> — saving a plan item now persists the transition type, active background or visualizer, overlay visibility and lock state, Bible verse range, Bible translation, and bible layout mode (auto vs. manual pagination). These settings restore automatically when the item is clicked in the playlist.</li>
-              <li><strong>Shared library folders</strong> — keep your StageFlo library on Google Drive, OneDrive, or a network drive and move between PCs.</li>
-              <li><strong>Library safety checks</strong> — StageFlo validates selected folders, warns when the library is already in use, and avoids opening an unreachable database.</li>
-              <li><strong>Portable exports and full backups</strong> — export a plan with its required assets or back up the full library, including managed media.</li>
-              <li><strong>Smarter scripture and song workflows</strong> — add Bible verse ranges, use improved Bible/song search, and split pasted lyrics into sections automatically.</li>
-              <li><strong>Chord display</strong> — store ChordPro-style chord markers while keeping audience slides clean.</li>
-              <li><strong>Remote improvements</strong> — remote slide lists can be manually scrolled, then resume auto-follow after a short pause.</li>
-              <li><strong>YouTube removed</strong> — YouTube embedding was removed because sign-in, bot checks, and playback controls were unreliable inside Electron.</li>
+              <li><strong>Drag a visualizer onto slides</strong> — drag a look from the Visualizer tab onto a slide, song, or Bible passage to use it as the background. It is saved with the song, passage, or plan item.</li>
+              <li><strong>A stronger beat pulse, with an off switch</strong> — the visualizer pulse is about three times stronger. The <strong>Pulse</strong> switch next to Tap turns the flashes off without losing your BPM.</li>
+              <li><strong>Better Tap</strong> — taps count when you press, three taps set the BPM, and <strong>T</strong> taps the beat from the keyboard.</li>
+              <li><strong>Adjust pictures and videos</strong> — right-click a background and choose <strong>Adjust look…</strong> for brightness, saturation, and blur.</li>
+              <li><strong>Song numbers on the phone remote</strong> — the remote finds a song by its CCLI or VerseVIEW number, just like the app.</li>
+            </ul>
+            <h3>2.1.71</h3>
+            <ul>
+              <li><strong>Tap the beat</strong> from the song&apos;s Key · BPM button or the music director page; three taps set the BPM.</li>
+              <li><strong>The visualizer keeps to the song&apos;s beat</strong> while a song with a BPM is live. Switch <strong>Follow song</strong> to <strong>Own BPM</strong> to keep it separate.</li>
+              <li><strong>Standby on the Go Live button</strong> — a blue outline while the audience screen is open but black or cleared. Click it to go live again.</li>
+              <li>StageFlo reopens maximized if it was maximized, and floating outputs reopen where you left them.</li>
             </ul>
           </section>
 
@@ -142,8 +146,127 @@ export default function DocsIntroductionPage() {
               <li>Style text and backgrounds in the editor.</li>
               <li>Preview transitions and timing in operator view.</li>
               <li>Go live to projector and stage displays.</li>
-              <li>Control slides with keyboard shortcuts or the remote controller.</li>
+              <li>Control slides with hotkeys or the phone remote.</li>
             </ol>
+            <Figure
+              src="/screenshots/docs/workspace.png"
+              alt="StageFlo workspace with the song library, slide grid, Sunday plan, and audience preview."
+              caption="The workspace: library on the left, slides in the middle, the service plan below, and the audience preview on the right."
+              width={2880}
+              height={1760}
+            />
+          </section>
+
+          <section className={docCardClassName} id="songs-key-bpm">
+            <SectionHeading sectionId="songs-key-bpm" title="Songs, Key & BPM" />
+            <p>
+              Open the Songs tab in the library to search by title, lyrics, or song number. Click a song to
+              preview it, then use <strong>Add to Plan</strong> or go live.
+            </p>
+            <ul>
+              <li><strong>Song numbers</strong> — type a CCLI or VerseVIEW number to put that song first. This works the same on the phone remote.</li>
+              <li><strong>Key and BPM</strong> — the <strong>Key · BPM</strong> button in the song header opens the key picker, BPM, and <strong>Tap</strong>. Changing the key transposes the chords on stage and on the music director page.</li>
+              <li><strong>Tap</strong> — tap on the beat to line up every beat pulse with the band. Three taps in time set the BPM; double presses are ignored and a pause of more than 2 seconds starts a new count.</li>
+              <li><strong>Per-service changes</strong> — a key or BPM chosen while a plan item is open is saved on that plan item, not on the library song.</li>
+            </ul>
+            <Figure
+              src="/screenshots/docs/songs.png"
+              alt="Song library with the Key and BPM panel open above the slides."
+              caption="The Key · BPM panel: key, BPM, and Tap for the open song."
+              width={2880}
+              height={1760}
+            />
+          </section>
+
+          <section className={docCardClassName} id="bible-browser">
+            <SectionHeading sectionId="bible-browser" title="Bible" />
+            <p>
+              Open the Bible tab to browse books and chapters or search. Type a reference such as
+              <code>John 3:16-18</code> or <code>Mark 14 8</code> and press Enter to put it live; a chapter on
+              its own or a word search opens in the preview instead.
+            </p>
+            <ul>
+              <li><strong>Parallel translations</strong> — show up to two more translations alongside the primary one.</li>
+              <li><strong>Cross references</strong> — related verses for the open passage appear under the preview.</li>
+              <li><strong>Verse ranges in plans</strong> — add a whole passage to the plan; it remembers its translation and layout.</li>
+            </ul>
+            <Figure
+              src="/screenshots/docs/bible.png"
+              alt="Psalm 23 open from the plan, with the audience preview and cross references."
+              caption="A Bible passage from the plan, with cross references under the preview."
+              width={2880}
+              height={1760}
+            />
+          </section>
+
+          <section className={docCardClassName} id="backgrounds">
+            <SectionHeading sectionId="backgrounds" title="Backgrounds" />
+            <p>
+              The Background tab holds your pictures and videos. Click <strong>Import</strong> to add files, then
+              click a background to put it behind the current song or passage.
+            </p>
+            <ul>
+              <li><strong>Adjust look…</strong> — right-click a background to change its brightness, saturation, and blur. The output follows as you drag, and the settings are kept in backups.</li>
+              <li><strong>Clear BG</strong> — removes the background from the current item.</li>
+              <li><strong>Readability</strong> — use Dim and the Shadow, Panel, or Bars text backing in the preview panel to keep lyrics readable over busy pictures.</li>
+            </ul>
+            <Figure
+              src="/screenshots/docs/backgrounds.png"
+              alt="Background tab with four backgrounds and the Adjust look panel open."
+              caption="Right-click a background and choose Adjust look… for brightness, saturation, and blur."
+              width={2880}
+              height={1760}
+            />
+          </section>
+
+          <section className={docCardClassName} id="visualizer">
+            <SectionHeading sectionId="visualizer" title="Visualizer" />
+            <p>
+              The Visualizer tab makes moving backgrounds that need no video files: Aurora, Nebula, Water,
+              Kaleido, and many more, each with palettes, motion, and symmetry settings.
+            </p>
+            <ul>
+              <li><strong>Use it</strong> — click a look to apply it, or drag it onto a slide, song, or Bible passage. <strong>Surprise</strong> picks a random look.</li>
+              <li><strong>Beat</strong> — set a BPM, press <strong>Tap</strong> on the beat (or the <strong>T</strong> key), and the visual pulses in time. While a song with a BPM is live, the visualizer follows the song&apos;s beat; switch <strong>Follow song</strong> to <strong>Own BPM</strong> to keep it separate.</li>
+              <li><strong>Pulse</strong> — switch the beat flashes off without losing the BPM or Autopilot.</li>
+              <li><strong>Mic</strong> — let the visual react to the sound in the room. With no BPM set, kicks and strong hits make it pulse; with a BPM, the pulse stays on the BPM and the mic drives the movement and glow.</li>
+              <li><strong>Favourites</strong> — save a look with the star tab and export or import looks to share them.</li>
+            </ul>
+            <Figure
+              src="/screenshots/docs/visualizer.png"
+              alt="Visualizer tab with the Aurora look applied to Amazing Grace."
+              caption="The Aurora look behind a song. Tap, Pulse, BPM, and Follow song sit in the toolbar."
+              width={2880}
+              height={1760}
+            />
+          </section>
+
+          <section className={docCardClassName} id="slide-transitions">
+            <SectionHeading sectionId="slide-transitions" title="Slide Transitions" />
+            <p>
+              Choose how text animates between slides from the transition picker in the workspace toolbar.
+              It applies to the audience preview and every live output.
+            </p>
+            <div className={styles.quickGrid}>
+              <article className={styles.quickCard}>
+                <h3>Transition Types</h3>
+                <ul>
+                  <li><strong>Cut</strong> — instant change.</li>
+                  <li><strong>Fade</strong>, <strong>Dissolve</strong>, <strong>Fade Up</strong>, <strong>Fade Down</strong> — soft changes.</li>
+                  <li><strong>Slide Left / Right / Up / Down</strong> — text slides in from a side.</li>
+                  <li><strong>Zoom In</strong>, <strong>Zoom Out</strong> — text scales in or out.</li>
+                  <li><strong>Flip</strong>, <strong>Bounce</strong>, <strong>Blur</strong> — livelier changes.</li>
+                </ul>
+              </article>
+              <article className={styles.quickCard}>
+                <h3>How It Works</h3>
+                <ul>
+                  <li>Transitions apply to the <strong>text layer</strong>; backgrounds change on their own.</li>
+                  <li>Saving a plan item keeps its transition, so each item can bring back its own.</li>
+                  <li>Use <strong>Cut</strong> for fast-moving moments and <strong>Fade</strong> for a calm feel.</li>
+                </ul>
+              </article>
+            </div>
           </section>
 
           <section className={docCardClassName} id="library-backups">
@@ -189,7 +312,8 @@ export default function DocsIntroductionPage() {
             <h3>Export Types</h3>
             <ul>
               <li><strong>Portable Plan Export (.sfplan)</strong> — exports the selected plan plus everything needed to open that plan on another PC, including songs, custom slides, and referenced media/assets.</li>
-              <li><strong>Full Library Backup (.sfbackup)</strong> — exports the whole library: settings, Bible data, plans, songs, custom slides, media metadata, and managed media such as backgrounds and overlays.</li>
+              <li><strong>Library Backup (.sfbackup)</strong> — plans, songs, Bible data, settings, custom slides, and media references. It does not include the media files themselves.</li>
+              <li><strong>Portable Library Backup (.sfportable)</strong> — everything in a Library Backup plus local media, backgrounds, and overlays, for moving to another PC.</li>
               <li><strong>Consolidate Existing Media</strong> — copies old local file references into the selected library folder so another PC can use them from the shared library.</li>
             </ul>
             <div className={styles.callout}>
@@ -197,6 +321,13 @@ export default function DocsIntroductionPage() {
               library in a synced folder and use full backups as restore points rather than exporting them
               after every service.
             </div>
+            <Figure
+              src="/screenshots/docs/settings-backup.png"
+              alt="Settings, Backup and Restore: library folder, library backup, and portable backup."
+              caption="Settings → Backup & Restore."
+              width={1920}
+              height={1400}
+            />
           </section>
 
           {/* ── AI Semantic Search ── */}
@@ -214,8 +345,8 @@ export default function DocsIntroductionPage() {
               <li><strong>Keyword fallback</strong> — Bible and song search indexes are rebuilt in the background so title, lyric, and scripture searches stay fast.</li>
             </ul>
             <div className={styles.callout}>
-              If keyword search returns nothing, open the AI tab in Song Library and search by topic,
-              mood, story, or theme.
+              Turn AI search on in Settings → Search. If keyword search returns nothing, open the AI tab in
+              the Song Library and search by topic, mood, story, or theme.
             </div>
           </section>
 
@@ -253,6 +384,53 @@ export default function DocsIntroductionPage() {
               The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
               automatic active-slide scrolling briefly, then resumes following the live slide.
             </div>
+            <Figure
+              src="/screenshots/docs/settings-remote.png"
+              alt="Settings, Remote: local server running with QR codes for the stage view and remote control."
+              caption="Settings → Remote. Scan a QR code to open the stage view or the remote on a phone."
+              width={1920}
+              height={1400}
+            />
+            <div className={styles.phoneRow}>
+              <Figure
+                src="/screenshots/docs/remote.png"
+                alt="Phone remote showing the live song with previous, Live, and next buttons."
+                caption="The remote's Control tab follows the live slide."
+                width={780}
+                height={1688}
+              />
+              <Figure
+                src="/screenshots/docs/remote-songs.png"
+                alt="Phone remote song search finding Amazing Grace by its song number."
+                caption="Search songs by title, lyrics, or song number."
+                width={780}
+                height={1688}
+              />
+            </div>
+          </section>
+
+          <section className={docCardClassName} id="music-director">
+            <SectionHeading sectionId="music-director" title="Music Director Page" />
+            <p>
+              The music director page gives your band leader the live song with chords, the plan, and the
+              key and BPM controls on their own phone. Open <code>/md</code> from the remote address and
+              enter the music director PIN, set in Settings → Remote → Music Director.
+            </p>
+            <ul>
+              <li><strong>Key and BPM</strong> — change the key or BPM for the live song or for songs later in the plan.</li>
+              <li><strong>Tap</strong> — tap the beat so every screen&apos;s pulse lines up with the band.</li>
+              <li><strong>Separate access</strong> — the music director PIN cannot control slides, and the operator&apos;s remote PIN does not open this page.</li>
+              <li>If the operator locks key and BPM, the music director&apos;s taps still line up the beat but leave the BPM alone.</li>
+            </ul>
+            <div className={styles.phoneRow}>
+              <Figure
+                src="/screenshots/docs/music-director.png"
+                alt="Music director page showing Amazing Grace with chords, key, BPM, and Tap."
+                caption="The live song with chords, key, BPM, and Tap."
+                width={780}
+                height={1688}
+              />
+            </div>
           </section>
 
           <section className={docCardClassName} id="bitfocus-presenter-remotes">
@@ -277,6 +455,9 @@ export default function DocsIntroductionPage() {
                   <li><code>/remote/companion/black</code> — black screen</li>
                   <li><code>/remote/companion/clear</code> — clear screen</li>
                   <li><code>/remote/companion/close-outputs</code> — close projector and stage outputs</li>
+                  <li><code>/remote/companion/close-projector</code> — close the projector output only</li>
+                  <li><code>/remote/companion/close-stage</code> — close the stage output only</li>
+                  <li><code>/remote/companion/stage-message</code> — show a message on the stage display</li>
                 </ul>
               </article>
               <article className={styles.quickCard}>
@@ -301,7 +482,9 @@ export default function DocsIntroductionPage() {
             </div>
             <div className={styles.callout}>
               If Remote PIN protection is enabled, add <code>?pin=1234</code> to the URL or send an{" "}
-              <code>X-StageFlow-Pin</code> header from Companion. Keep the remote port on a trusted local
+              <code>X-StageFlow-Pin</code> header from Companion. <code>previous</code>, <code>back</code>,{" "}
+              <code>blank</code>, <code>blackout</code>, <code>go-live</code>, and <code>live</code> also work as
+              command names. Keep the remote port on a trusted local
               network unless you intentionally enable StageFlo&apos;s public remote link.
             </div>
           </section>
@@ -352,10 +535,22 @@ export default function DocsIntroductionPage() {
               <li><strong>Alignment</strong> — Horizontal text alignment for slide content.</li>
               <li><strong>Color</strong> — Default text color applied to new slides.</li>
             </ul>
+            <p>
+              <strong>Audience Standby</strong> sets what the audience screen shows when it is cleared: nothing,
+              a colour, or a picture or video. <strong>Language Font Mapping</strong> picks a font per language,
+              for example a Malayalam font for Malayalam lyrics.
+            </p>
             <div className={styles.callout}>
               Use the Reset button in Display Settings to restore factory defaults if slide layouts look
               incorrect after a font change.
             </div>
+            <Figure
+              src="/screenshots/docs/settings-display.png"
+              alt="Settings, Display: font size, style, colour, and language font mapping."
+              caption="Settings → Display."
+              width={1920}
+              height={1400}
+            />
           </section>
 
           {/* ── Stage Display ── */}
@@ -363,7 +558,7 @@ export default function DocsIntroductionPage() {
             <SectionHeading sectionId="settings-stage" title="Settings — Stage Display" />
             <p>
               Configures the confidence monitor shown to speakers and musicians on stage. Found in
-              Settings → Display → Stage Display.
+              Settings → Display, under Stage Display.
             </p>
             <ul>
               <li><strong>Template</strong> — Choose a layout preset: <em>Classic</em> (full detail), <em>Focus</em> (larger text), or <em>Compact</em> (current slide only).</li>
@@ -375,15 +570,23 @@ export default function DocsIntroductionPage() {
               <li><strong>Show Stage Timer</strong> — Display a running stage timer.</li>
               <li><strong>Show Info Panel</strong> — Show operator notes and additional context.</li>
               <li><strong>Show Chords</strong> — Show chord rows on stage and remote confidence views when songs contain chord markers.</li>
+              <li><strong>Show BPM Pulse</strong> — Pulse the song&apos;s beat on the stage display, stage link, phone remote, and music director page.</li>
             </ul>
+            <Figure
+              src="/screenshots/docs/stage-view.png"
+              alt="Stage view showing the live verse of Amazing Grace, the next verse, key, and BPM."
+              caption="The stage view: the live verse, the next one, key and BPM, clock, timer, and message."
+              width={2560}
+              height={1440}
+            />
           </section>
 
           {/* ── Lower Third ── */}
           <section className={docCardClassName} id="settings-lowerthird">
             <SectionHeading sectionId="settings-lowerthird" title="Settings — Lower Third" />
             <p>
-              Configures the lower-third overlay for live streaming. Found in Settings → Display →
-              Lower Third. Use the static URL in OBS as a browser source.
+              Configures the lower-third overlay for live streaming. Found in Settings → Lower
+              Third. Use the static URL in OBS as a browser source.
             </p>
             <ul>
               <li><strong>Style</strong> — Select a lower-third visual style. Each has its own description and URL.</li>
@@ -403,7 +606,10 @@ export default function DocsIntroductionPage() {
           {/* ── Screens & Outputs ── */}
           <section className={docCardClassName} id="settings-screens">
             <SectionHeading sectionId="settings-screens" title="Settings — Screens & Outputs" />
-            <p>Routes content to audience and stage displays. Found in Settings → Display → Screens.</p>
+            <p>
+              Routes content to the Audience, Stage, Lower Third, and Center Stage outputs. Found in
+              Settings → Screens.
+            </p>
             <div className={styles.quickGrid}>
               <article className={styles.quickCard}>
                 <h3>Screen Assignment</h3>
@@ -422,14 +628,21 @@ export default function DocsIntroductionPage() {
                 <p>Keystone / perspective correction. Drag the four corners of the output to correct for angled projection surfaces.</p>
               </article>
               <article className={styles.quickCard}>
-                <h3>Alpha Key</h3>
-                <p>Enable alpha keying for broadcast or video mixing workflows. Choose key type, key color, and fill color for transparency compositing.</p>
+                <h3>Alpha &amp; Chroma Key</h3>
+                <p>Key the output for broadcast or video mixing: alpha keying with key and fill colours, or a chroma key colour for switchers that expect one.</p>
               </article>
               <article className={styles.quickCard}>
                 <h3>NDI Output</h3>
                 <p>Send the output as an NDI stream on the local network. Set a source name and framerate. NDI receivers (e.g. OBS NDI plugin) can pick up the feed directly.</p>
               </article>
             </div>
+            <Figure
+              src="/screenshots/docs/settings-screens.png"
+              alt="Settings, Screens: audience output assigned to Screen 1, with NDI output below."
+              caption="Settings → Screens. The yellow note appears when two outputs share one screen."
+              width={1920}
+              height={1400}
+            />
           </section>
 
           {/* ── Bible ── */}
@@ -459,12 +672,21 @@ export default function DocsIntroductionPage() {
               <li><strong>Import Songs</strong> — Import individual songs or bulk XML files from your file system.</li>
               <li><strong>Export Songs</strong> — Export your entire library as an XML file for backup or sharing with another StageFlo installation.</li>
               <li><strong>Online Lyrics Search</strong> — Search online from the song library and import lyrics when a suitable source is found.</li>
+              <li><strong>Library Updates</strong> — StageFlo checks installed song packs and Bible editions every six hours (not while live) and updates songs you have not edited. Use <strong>Check now</strong> to run it straight away.</li>
+              <li><strong>Song Usage</strong> — see which songs went live in a period, with their CCLI / VerseVIEW numbers, and export a CSV for licence reporting.</li>
               <li><strong>Delete All Songs</strong> — Clears the entire database. Use before re-importing a clean pack.</li>
             </ul>
             <div className={styles.callout}>
               Imported online lyrics can preserve section labels such as Verse, Chorus, Bridge, and
               parenthesized labels like (Chorus) when the source text includes them.
             </div>
+            <Figure
+              src="/screenshots/docs/settings-songs.png"
+              alt="Settings, Songs: library updates, duplicate handling, and OpenLyrics import and export."
+              caption="Settings → Songs."
+              width={1920}
+              height={1400}
+            />
           </section>
 
           <section className={docCardClassName} id="song-editing">
@@ -533,68 +755,62 @@ export default function DocsIntroductionPage() {
             </div>
           </section>
 
-          {/* ── Keyboard Shortcuts ── */}
+          {/* ── Hotkeys ── */}
           <section className={docCardClassName} id="settings-shortcuts">
-            <SectionHeading sectionId="settings-shortcuts" title="Settings — Keyboard Shortcuts" />
+            <SectionHeading sectionId="settings-shortcuts" title="Settings — Hotkeys" />
             <p>
-              Customise key bindings for live control. Found in Settings → Keyboard Shortcuts. Click the
-              + icon on any action to capture a new key combo.
-            </p>
-            <ul>
-              <li><strong>Next / Previous Slide</strong> — Advance or step back through the playlist.</li>
-              <li><strong>Black Screen</strong> — Toggle a black output on all displays.</li>
-              <li><strong>Clear</strong> — Clear slide content, showing the background or standby image.</li>
-              <li><strong>Close Outputs</strong> — Close all output windows.</li>
-              <li>All shortcuts can be reset to factory defaults with the Reset button.</li>
-            </ul>
-            <div className={styles.callout}>
-              Toggle the Keyboard Shortcuts enable switch to temporarily disable all bindings — useful
-              when typing in text fields during a live service.
-            </div>
-          </section>
-
-          {/* ── Slide Transitions ── */}
-          <section className={docCardClassName} id="slide-transitions">
-            <SectionHeading sectionId="slide-transitions" title="Slide Transitions" />
-            <p>
-              Choose how text animates when advancing between slides. The transition picker is in the
-              workspace toolbar above the preview panel. The selected type applies globally and is visible
-              in the audience preview monitor as well as all live outputs.
+              Change the keys for live control in Settings → Hotkeys. Click + on any action to add a key, or
+              × to remove one. Reset restores the defaults.
             </p>
             <div className={styles.quickGrid}>
               <article className={styles.quickCard}>
-                <h3>Transition Types</h3>
+                <h3>Slides &amp; Outputs</h3>
                 <ul>
-                  <li><strong>Cut</strong> — instant change with no animation.</li>
-                  <li><strong>Fade</strong> — text fades out then fades in.</li>
-                  <li><strong>Slide Left / Right</strong> — text slides horizontally as slides advance.</li>
-                  <li><strong>Slide Up / Down</strong> — text slides vertically.</li>
-                  <li><strong>Zoom In</strong> — text scales up on entry and scales out on exit.</li>
-                  <li><strong>Blur</strong> — text blurs out and blurs in.</li>
+                  <li><strong>Next slide</strong> — Space, →, ↓, Page Down</li>
+                  <li><strong>Previous slide</strong> — ←, ↑, Page Up</li>
+                  <li><strong>Go live audience</strong> — G or Enter</li>
+                  <li><strong>Go live stage</strong> — S</li>
+                  <li><strong>Black screen</strong> — B or .</li>
+                  <li><strong>Clear screen</strong> — C or Escape</li>
+                  <li><strong>Lock outputs</strong> — Cmd/Ctrl+L</li>
+                  <li><strong>Restore outputs</strong> — Cmd/Ctrl+R</li>
+                  <li><strong>Close outputs</strong> — no key by default</li>
                 </ul>
               </article>
               <article className={styles.quickCard}>
-                <h3>How It Works</h3>
+                <h3>Layers &amp; Beat</h3>
                 <ul>
-                  <li>Transitions apply to the <strong>text layer only</strong> — backgrounds cross-fade or cut independently.</li>
-                  <li>The active transition is saved when you save a plan item, so each item can restore its own transition type when clicked.</li>
-                  <li>Select <strong>Cut</strong> for instant changes during fast-moving services, or <strong>Fade</strong> for a smooth congregational feel.</li>
+                  <li><strong>Background</strong> — Shift+B</li>
+                  <li><strong>Media</strong> — Shift+M</li>
+                  <li><strong>Text</strong> — Shift+T</li>
+                  <li><strong>Timer</strong> — Shift+K</li>
+                  <li><strong>Overlay</strong> — Shift+O</li>
+                  <li><strong>Dim background</strong> — Shift+D</li>
+                  <li><strong>Text backing</strong> — Shift+P</li>
+                  <li><strong>Tap beat</strong> — T</li>
                 </ul>
               </article>
             </div>
             <div className={styles.callout}>
-              The transition picker is a global setting — changing it mid-service affects all subsequent
-              slides until changed again or a saved plan item restores its own setting.
+              Hotkeys are ignored while you type in a text box. To turn all of them off, use the Hotkeys
+              button at the top of the main window or the switch in Settings → Hotkeys.
             </div>
+            <Figure
+              src="/screenshots/docs/settings-hotkeys.png"
+              alt="Settings, Hotkeys: next slide, previous slide, go live, black, and clear with their keys."
+              caption="Settings → Hotkeys."
+              width={1920}
+              height={1400}
+            />
           </section>
 
           {/* ── Service Safety Tools ── */}
           <section className={docCardClassName} id="service-safety-tools">
             <SectionHeading sectionId="service-safety-tools" title="Service Safety Tools" />
             <ul>
-              <li><strong>Live Text Edit</strong> — fix typos without leaving live mode.</li>
-              <li><strong>Template System</strong> — design once and reuse styling across slides and services.</li>
               <li><strong>Output Lock</strong> — lock output windows to avoid accidental screen changes during service.</li>
+              <li><strong>Standby</strong> — Black or Clear keeps the audience screen open; the Go Live button shows a blue Standby outline. Click it to go live again.</li>
+              <li><strong>Preview first</strong> — clicking a song or passage opens it in the preview; nothing reaches the audience until you go live.</li>
             </ul>
             <div className={styles.callout}>
               Output Lock quick keys: <strong>Cmd+L</strong> to lock, <strong>Cmd+R</strong> to restore.
@@ -621,10 +837,10 @@ export default function DocsIntroductionPage() {
               <li>In Settings → Songs, import a song pack or add songs manually.</li>
               <li>In Settings → Bible, download or import a translation.</li>
               <li>Build a service plan with 2–3 songs and one scripture passage.</li>
-              <li>Open Settings → Display → Screens and assign your projector and stage outputs.</li>
+              <li>Open Settings → Screens and assign your audience and stage outputs.</li>
               <li>Choose a library folder in Settings → Backup &amp; Restore if you want the same library available on another PC.</li>
               <li>Open Remote settings, copy the stage URL, and open it on a mobile device for the singer view.</li>
-              <li>Practice Next/Previous controls with keyboard shortcuts before going live.</li>
+              <li>Practice Next/Previous with the hotkeys or the phone remote before going live.</li>
             </ol>
           </section>
 

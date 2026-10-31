@@ -155,16 +155,16 @@ const screenshotCards = [
     alt: "StageFlo slide editor showing text and layout styling controls.",
   },
   {
-    title: "Projector & Stage",
-    body: "Congregation output and confidence monitor.",
+    title: "Audience Output",
+    body: "Lyrics over a moving visualizer background.",
     src: "/screenshots/projector-stage.png",
-    alt: "StageFlo projector and stage output displays during a live presentation.",
+    alt: "StageFlo audience output showing Amazing Grace over the Aurora visualizer.",
   },
   {
     title: "Stage Display",
     body: "Current and next slide for speakers and musicians.",
     src: "/screenshots/stage-display.png",
-    alt: "StageFlo stage display view showing current and next slide panels.",
+    alt: "StageFlo stage view showing the live verse, the next verse, key, and BPM.",
   },
 ];
 
