@@ -29,6 +29,7 @@ const docSections = [
   { id: "settings-bible", label: "Bible Settings" },
   { id: "settings-songs", label: "Song Settings" },
   { id: "song-editing", label: "Song Editing" },
+  { id: "slide-editor", label: "Custom Slides & Editor" },
   { id: "chords", label: "Chords" },
   { id: "media-web-links", label: "Media & Web Links" },
   { id: "settings-shortcuts", label: "Hotkeys" },
@@ -825,6 +826,34 @@ export default function DocsIntroductionPage() {
               there — useful for giving one impactful line its own slide without changing the
               lines-per-slide setting for the rest of the song.
             </div>
+          </section>
+
+          <section className={docCardClassName} id="slide-editor">
+            <SectionHeading sectionId="slide-editor" title="Custom Slides & Slide Editor" />
+            <p>
+              The <strong>Slides</strong> tab in the library holds your own slides and imported
+              presentations: announcements, sermon points, welcome screens. The slide editor designs those
+              and also fine-tunes any song or Bible slide.
+            </p>
+            <h3>Custom Slides</h3>
+            <ul>
+              <li><strong>New custom slide</strong> — start a blank slide and design it in the editor.</li>
+              <li><strong>Import a presentation</strong> — bring in PowerPoint <em>as editable text layers</em> to change the words in StageFlo, or PowerPoint or PDF <em>with visual fidelity</em> to keep each slide exactly as designed.</li>
+              <li><strong>Decks</strong> — load a whole imported deck into the preview, or add the whole deck or a single slide to the plan.</li>
+            </ul>
+            <h3>The Editor</h3>
+            <p>
+              Open it from <strong>Slide Editor</strong> above the slide preview, or <strong>Open in individual
+              slide editor</strong> on a custom slide.
+            </p>
+            <ul>
+              <li><strong>Add</strong> — text layers, shapes, pictures and videos (from the library or a file), an embedded web page, or a countdown timer.</li>
+              <li><strong>Arrange</strong> — drag to move and resize, rotate, bring forward or send back, and use the grid to line things up. The arrow buttons nudge a layer.</li>
+              <li><strong>Text</strong> — font, size, colour, bold and italic, for a whole layer or a selection.</li>
+              <li><strong>Every slide in the set</strong> — copy a layer&apos;s position, its text style, or a slide&apos;s media to every slide of the song, passage or deck in one click.</li>
+              <li><strong>Reset</strong> — put a song or Bible layer back where StageFlo first placed it.</li>
+              <li><strong>Plan items</strong> — pick a plan item to keep changes on that item only, so the song in the library stays as it was.</li>
+            </ul>
           </section>
 
           <section className={docCardClassName} id="chords">
