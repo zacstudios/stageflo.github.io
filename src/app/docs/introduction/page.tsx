@@ -110,10 +110,12 @@ export default function DocsIntroductionPage() {
             <p>
               StageFlo is a live worship presentation app for songs, scripture, media, and synchronized
               projector and stage outputs. Built for real service flow — fast prep, simple control,
-              shared libraries, and confidence on stage.
+              shared libraries, and confidence on stage. Songs and Bibles work in Malayalam, Hindi, Tamil,
+              Telugu and English side by side, word study opens the Greek and Hebrew behind a verse, and a
+              phone can run the whole service.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Version 2.1.72</span>
+              <span className="eyebrow">Version 2.1.78</span>
               <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
@@ -174,11 +176,12 @@ export default function DocsIntroductionPage() {
             <SectionHeading sectionId="core-workflow" title="Core Workflow" />
             <p>Most teams use this sequence every week:</p>
             <ol>
-              <li>Build a service plan with songs, scriptures, media, and custom slides.</li>
+              <li>Build a service plan with songs, scriptures, media, and custom slides. See <a href="#service-plans">Service Plans</a>.</li>
+              <li>Prepare the scripture: pick your version set, paste the sermon&apos;s references, and bookmark or word-study the key verses.</li>
               <li>Style text and backgrounds in the editor.</li>
               <li>Preview transitions and timing in operator view.</li>
               <li>Go live to projector and stage displays.</li>
-              <li>Control slides with hotkeys or the phone remote.</li>
+              <li>Control slides with hotkeys or the phone remote, send cues with the stage message, and keep time with timers.</li>
             </ol>
             <Figure
               src="/screenshots/docs/workspace.png"
@@ -1135,7 +1138,7 @@ export default function DocsIntroductionPage() {
               <li>Web link slide is blank — the website may block embedding. Use a different embeddable page or add the content as media.</li>
               <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
               <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
-              <li><strong>Reporting a problem</strong> — open Settings → Logs, set the level to <strong>Error</strong> or <strong>All levels</strong>, and use <strong>Export File</strong> or <strong>Copy Visible</strong> to send the log with your feedback. <strong>Open Folder</strong> shows where the log files are kept.</li>
+              <li>Reporting a problem — open Settings → Logs, set the level to <strong>Error</strong> or <strong>All levels</strong>, and use <strong>Export File</strong> or <strong>Copy Visible</strong> to send the log with your feedback. <strong>Open Folder</strong> shows where the log files are kept.</li>
             </ul>
 
             <div className={styles.linkRow}>
