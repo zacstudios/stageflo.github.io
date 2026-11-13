@@ -1135,6 +1135,7 @@ export default function DocsIntroductionPage() {
               <li>Web link slide is blank — the website may block embedding. Use a different embeddable page or add the content as media.</li>
               <li>Text too small on stage display — adjust font size in Display Settings and increase the base size.</li>
               <li>Bible not found after import — go to Settings → Bible, verify the translation shows in Installed, and restart the app if needed.</li>
+              <li><strong>Reporting a problem</strong> — open Settings → Logs, set the level to <strong>Error</strong> or <strong>All levels</strong>, and use <strong>Export File</strong> or <strong>Copy Visible</strong> to send the log with your feedback. <strong>Open Folder</strong> shows where the log files are kept.</li>
             </ul>
 
             <div className={styles.linkRow}>
