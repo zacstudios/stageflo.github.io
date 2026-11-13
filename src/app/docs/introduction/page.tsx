@@ -14,6 +14,7 @@ const docSections = [
   { id: "bible-browser", label: "Bible" },
   { id: "word-study", label: "Word Study" },
   { id: "backgrounds", label: "Backgrounds" },
+  { id: "overlays", label: "Overlays" },
   { id: "visualizer", label: "Visualizer" },
   { id: "slide-transitions", label: "Slide Transitions" },
   { id: "library-backups", label: "Library & Backups" },
@@ -318,6 +319,22 @@ export default function DocsIntroductionPage() {
               width={2880}
               height={1760}
             />
+          </section>
+
+          <section className={docCardClassName} id="overlays">
+            <SectionHeading sectionId="overlays" title="Overlays" />
+            <p>
+              Overlays are pictures that sit on top of every slide, such as your church logo, a watermark,
+              or a sermon series graphic. They live in the <strong>Overlay</strong> tab under the slides.
+            </p>
+            <ul>
+              <li><strong>Add</strong> — click <strong>Import</strong> to add pictures (PNG with a transparent background works best), then click one to put it on the screens.</li>
+              <li><strong>Place it</strong> — select an overlay to set its <strong>X</strong> and <strong>Y</strong> position, <strong>Size</strong> and <strong>Opacity</strong>.</li>
+              <li><strong>Which screens</strong> — tick <strong>Audience</strong>, <strong>Stage</strong>, or both.</li>
+              <li><strong>Hide, Lock and Remove</strong> — hide an overlay for a moment without losing its place, lock it so it can&apos;t be moved by accident, or click <strong>Remove from Live</strong>. The clear button takes every overlay off at once.</li>
+              <li><strong>Per item</strong> — overlays chosen while a plan item is open can be kept on that item with <strong>Update Plan Item</strong>. Exported plans bring their overlays along.</li>
+              <li><strong>Shift+O</strong> hides or shows the overlay layer during the service.</li>
+            </ul>
           </section>
 
           <section className={docCardClassName} id="visualizer">
