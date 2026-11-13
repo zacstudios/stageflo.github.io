@@ -26,6 +26,7 @@ const docSections = [
   { id: "settings-display", label: "Display Settings" },
   { id: "settings-stage", label: "Stage Display" },
   { id: "timers", label: "Timers" },
+  { id: "stage-message", label: "Stage Message" },
   { id: "settings-lowerthird", label: "Lower Third" },
   { id: "settings-screens", label: "Screens & Outputs" },
   { id: "settings-bible", label: "Bible Settings" },
@@ -726,6 +727,21 @@ export default function DocsIntroductionPage() {
               <li><strong>Run them</strong> — start, stop and reset each timer from its row. Open a row to rename it, set its time, and turn on <strong>Allows Overrun</strong> to keep counting past zero so you can see how far over you are.</li>
               <li><strong>On a slide</strong> — in the slide editor, add a countdown timer to a slide, such as a welcome screen that counts down to the start. Style it like text and place it anywhere; it shows on the audience screen with that slide. While that slide is open, its timer is listed under <strong>Custom Slide Timers</strong> in the preview panel, with the same controls.</li>
               <li><strong>Hide or show</strong> — press <strong>Shift+K</strong> to hide the timer layer on the outputs and again to bring it back.</li>
+            </ul>
+          </section>
+
+          {/* ── Stage Message ── */}
+          <section className={docCardClassName} id="stage-message">
+            <SectionHeading sectionId="stage-message" title="Stage Message" />
+            <p>
+              Send a short note to the people on stage without the congregation seeing it, such as
+              <em> Band ready in 30 seconds</em> or <em>Pastor, mic 2</em>.
+            </p>
+            <ul>
+              <li><strong>Send</strong> — click the speech bubble at the top of the preview panel, type the note (up to 400 characters), and click <strong>Send To Stage</strong>.</li>
+              <li><strong>How it shows</strong> — <strong>Inline</strong> puts it in the message box on the stage display, <strong>Popup</strong> shows it as a large yellow banner that is hard to miss, and <strong>Both</strong> does both.</li>
+              <li><strong>Clear</strong> — the bubble turns yellow while a message is up. Click <strong>Clear</strong>, or the small × on the bubble, to take it down.</li>
+              <li><strong>From a phone</strong> — the phone remote&apos;s speech bubble and the music director page can send and clear the message too.</li>
             </ul>
           </section>
 
