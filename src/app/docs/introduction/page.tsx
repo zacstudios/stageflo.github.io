@@ -275,8 +275,8 @@ export default function DocsIntroductionPage() {
             </ul>
             <Figure
               src="/screenshots/docs/bible.png"
-              alt="Psalm 23 open from the plan, with the audience preview and cross references."
-              caption="A Bible passage from the plan, with cross references under the preview."
+              alt="John 3 in the Bible panel with NKJV and MALTR side by side, and the chapter in the slide preview in three versions."
+              caption="A wide Bible panel shows your versions in columns. The slide preview holds the chapter, with cross references under the audience preview."
               width={2880}
               height={1760}
             />
@@ -300,6 +300,20 @@ export default function DocsIntroductionPage() {
               <li><strong>Add to plan</strong> — adds the verse to the plan with its words after it, shown as <strong>John 3:16 · ἀγαπάω</strong>, so words can be prepared before the service.</li>
               <li><strong>From the phone</strong> — tap <strong>⋯</strong> on a verse in the phone&apos;s Bible tab, then <strong>Word study</strong>. Tap a word, then <strong>Show</strong>, <strong>Stage</strong> or <strong>Back to verse</strong>.</li>
             </ul>
+            <Figure
+              src="/screenshots/docs/word-study.png"
+              alt="Word study for John 3:16 with loved selected: ἀγαπάω, agapáō, to love, with Preview, Show, Stage and Add to plan."
+              caption="Word study on John 3:16: the NKJV verse above the KJV&apos;s words, and ἀγαπάω with its meaning and the verses that use it."
+              width={2880}
+              height={1760}
+            />
+            <Figure
+              src="/screenshots/docs/stage-word-study.png"
+              alt="Stage display showing John 3:14 with a word study card for ἀγαπάω at the bottom."
+              caption="Stage sends the word to the stage display only, for the preacher."
+              width={1280}
+              height={720}
+            />
             <div className={styles.callout}>
               Sources: the KJV with Strong&apos;s numbers (public domain), Strong&apos;s Greek dictionary (CC0)
               and the Open Scriptures Hebrew lexicon (CC BY 4.0). A library backup remembers that word study
