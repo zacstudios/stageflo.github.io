@@ -16,6 +16,7 @@ const docSections = [
   { id: "backgrounds", label: "Backgrounds" },
   { id: "overlays", label: "Overlays" },
   { id: "visualizer", label: "Visualizer" },
+  { id: "live-inputs", label: "Live Inputs" },
   { id: "slide-transitions", label: "Slide Transitions" },
   { id: "library-backups", label: "Library & Backups" },
   { id: "ai-semantic-search", label: "AI Semantic Search" },
@@ -358,6 +359,23 @@ export default function DocsIntroductionPage() {
               width={2880}
               height={1760}
             />
+          </section>
+
+          <section className={docCardClassName} id="live-inputs">
+            <SectionHeading sectionId="live-inputs" title="Live Inputs" />
+            <p>
+              Put a camera or an NDI video source behind the lyrics, such as the worship leader on stage or
+              a feed from your video team. Open the <strong>Live</strong> tab under the slides.
+            </p>
+            <ul>
+              <li><strong>Sources</strong> — cameras connected to the computer and NDI sources on the network are listed. Click <strong>Refresh</strong> if one was connected after StageFlo opened. The first time, the computer asks for permission to use the camera.</li>
+              <li><strong>Background</strong> — click a source to show it behind the current song or passage; click it again to remove it.</li>
+              <li><strong>Preview</strong> — check a source on its tile before putting it on the screens.</li>
+              <li><strong>As a layer</strong> — with the slide editor open, clicking a source adds it to the slide as a layer you can move and size, such as a picture-in-picture box.</li>
+            </ul>
+            <div className={styles.callout}>
+              Live inputs can&apos;t be used behind a picture or video item, which already fills the screen.
+            </div>
           </section>
 
           <section className={docCardClassName} id="slide-transitions">
