@@ -528,6 +528,16 @@ export default function DocsIntroductionPage() {
               <li><strong>Media</strong> and <strong>Slides</strong> — tap a picture, video or slide deck to open it, ready to go live.</li>
               <li><strong>+ Plan</strong> — songs, verses, media and slides each have a <strong>+ Plan</strong> button that adds them to the open plan.</li>
             </ul>
+            <h3>Reading on a Phone</h3>
+            <p>These apply to the stage link (<code>/stage</code>), the remote and the music director page.</p>
+            <ul>
+              <li><strong>Hold the lyrics still</strong> — the auto-scroll button at the top right of the lyrics turns following off, so you can read ahead; only the live slide&apos;s number moves. Turn it on to jump back to the live slide. Each phone remembers its choice.</li>
+              <li><strong>Both scripts</strong> — songs show their own script (Malayalam, Hindi, Tamil…) followed by the English transliteration, at the same size, even when the projector shows only one of them.</li>
+              <li><strong>Chords</strong> — with chords on, each chord sits over the syllable where it changes, and long lines wrap word by word.</li>
+              <li><strong>Colours</strong> — the live slide&apos;s number is green when live, blue when not yet live, and red when the screen is black.</li>
+              <li><strong>Beat</strong> — when a song with a BPM is live, a dot by the key and BPM flashes on every beat, in step with every other screen.</li>
+              <li><strong>Home screen</strong> — add the stage link, remote or music director page to the phone&apos;s home screen to open it full screen, like an app.</li>
+            </ul>
             <div className={styles.callout}>
               The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
               automatic active-slide scrolling briefly, then resumes following the live slide.
@@ -569,6 +579,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Key and BPM</strong> — change the key or BPM for the live song or for songs later in the plan.</li>
               <li><strong>Tap</strong> — tap the beat so every screen&apos;s pulse lines up with the band.</li>
               <li><strong>Separate access</strong> — the music director PIN cannot control slides, and the operator&apos;s remote PIN does not open this page.</li>
+              <li><strong>Stage message</strong> — send a note to the stage display, such as a cue for the band. See <a href="#stage-message">Stage Message</a>.</li>
               <li>If the operator locks key and BPM, the music director&apos;s taps still line up the beat but leave the BPM alone.</li>
             </ul>
             <div className={styles.phoneRow}>
