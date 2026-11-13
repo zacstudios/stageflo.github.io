@@ -24,6 +24,7 @@ const docSections = [
   { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
   { id: "settings-display", label: "Display Settings" },
   { id: "settings-stage", label: "Stage Display" },
+  { id: "timers", label: "Timers" },
   { id: "settings-lowerthird", label: "Lower Third" },
   { id: "settings-screens", label: "Screens & Outputs" },
   { id: "settings-bible", label: "Bible Settings" },
@@ -694,6 +695,21 @@ export default function DocsIntroductionPage() {
               width={2560}
               height={1440}
             />
+          </section>
+
+          {/* ── Timers ── */}
+          <section className={docCardClassName} id="timers">
+            <SectionHeading sectionId="timers" title="Timers" />
+            <p>
+              Timers keep the service on time: a countdown for the preacher, a clock for the band, or a
+              countdown to the start of the service on the audience screen.
+            </p>
+            <ul>
+              <li><strong>Stage timers</strong> — click <strong>+</strong> under <strong>Timers</strong> in the preview panel and choose <strong>Countdown</strong> (a set length, such as 30 minutes), <strong>Countdown to Time</strong> (until a time of day, such as 10:30), <strong>Elapsed Time</strong> (counts up), or <strong>Clock</strong>. They show on the stage display.</li>
+              <li><strong>Run them</strong> — start, stop and reset each timer from its row. Open a row to rename it, set its time, and turn on <strong>Allows Overrun</strong> to keep counting past zero so you can see how far over you are.</li>
+              <li><strong>On a slide</strong> — in the slide editor, add a countdown timer to a slide, such as a welcome screen that counts down to the start. Style it like text and place it anywhere; it shows on the audience screen with that slide. These are listed under <strong>Audience Global Timers</strong> in the preview panel.</li>
+              <li><strong>Hide or show</strong> — press <strong>Shift+K</strong> to hide the timer layer on the outputs and again to bring it back.</li>
+            </ul>
           </section>
 
           {/* ── Lower Third ── */}
