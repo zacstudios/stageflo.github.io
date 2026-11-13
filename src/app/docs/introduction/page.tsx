@@ -520,10 +520,13 @@ export default function DocsIntroductionPage() {
             </div>
             <h3>On the Phone</h3>
             <ul>
-              <li><strong>Control</strong> — the live slide with previous, Live and next. The header shows the item, the slide count, and a song&apos;s number, key and BPM.</li>
+              <li><strong>Control</strong> — the slides of what is open, with previous, <strong>Live</strong> and next. Tap a slide to jump to it. The header shows the item, the slide count, and a song&apos;s number, key and BPM, with buttons to clear the screen, close the outputs, and send a stage message.</li>
+              <li><strong>Plan</strong> — pick a plan and tap an item to open it; the phone moves to Control, ready to go live.</li>
               <li><strong>Bible</strong> — search like the app (with <strong>Did you mean</strong>), or use <strong>Books</strong> to pick a book, chapter and verse and tap <strong>Show</strong>. Switch version sets from the drop-down.</li>
               <li><strong>⋯ on a verse</strong> — copy it, bookmark it, open it in Books, see its cross references, or open <strong>Word study</strong>.</li>
-              <li><strong>Songs</strong> — search by title, lyrics or number, search online and add songs to the library, or save a song from pasted lyrics with <strong>+ New</strong>.</li>
+              <li><strong>Songs</strong> — search by title, lyrics or number, search online and add songs to the library, or save a song from pasted lyrics with <strong>+ New</strong>. Open a song to tap any line live.</li>
+              <li><strong>Media</strong> and <strong>Slides</strong> — tap a picture, video or slide deck to open it, ready to go live.</li>
+              <li><strong>+ Plan</strong> — songs, verses, media and slides each have a <strong>+ Plan</strong> button that adds them to the open plan.</li>
             </ul>
             <div className={styles.callout}>
               The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
