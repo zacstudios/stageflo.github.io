@@ -9,6 +9,7 @@ const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
   { id: "whats-new", label: "What Is New" },
   { id: "core-workflow", label: "Core Workflow" },
+  { id: "service-plans", label: "Service Plans" },
   { id: "songs-key-bpm", label: "Songs, Key & BPM" },
   { id: "bible-browser", label: "Bible" },
   { id: "word-study", label: "Word Study" },
@@ -180,6 +181,33 @@ export default function DocsIntroductionPage() {
               width={2880}
               height={1760}
             />
+          </section>
+
+          <section className={docCardClassName} id="service-plans">
+            <SectionHeading sectionId="service-plans" title="Service Plans" />
+            <p>
+              A plan is the running order of a service. It sits in the <strong>Plan</strong> tab under the
+              slides, and every song, passage, picture and slide in it keeps its own look.
+            </p>
+            <h3>Build a Plan</h3>
+            <ul>
+              <li><strong>New plan</strong> — click <strong>+</strong> to name a plan and give it a date, or use the quick button to make a <strong>Sunday AM</strong> plan for the coming Sunday. Pick a plan from <strong>Select plan</strong>, which you can search.</li>
+              <li><strong>Add to it</strong> — use <strong>Add to Plan</strong> on a song, a verse or passage, a picture or video, or a custom slide. If no plan is open, StageFlo asks which plan to use or makes one. In the Bible tab you can also add a whole chapter, a range, a pasted list of references, or a verse with its word study words.</li>
+              <li><strong>Placeholders</strong> — add a slot such as <strong>Welcome</strong>, <strong>Announcements</strong>, <strong>Offering</strong>, <strong>Prayer</strong> or <strong>Closing</strong>, or one with your own label, to mark a part of the service that has no slides yet.</li>
+              <li><strong>Order</strong> — drag an item by its handle to move it, and use × to take it out.</li>
+            </ul>
+            <h3>During the Service</h3>
+            <ul>
+              <li><strong>Open an item</strong> — click it to put it in the preview. Nothing reaches the screens until you go live.</li>
+              <li><strong>Colours</strong> — the open item is outlined purple, blue while it is in the preview but not on the screens, green while it is on the screens, and red when the screen is black.</li>
+              <li><strong>Its own look</strong> — change the background, overlays, text position or key and BPM while an item is open, then click <strong>Update Plan Item</strong>. The change is kept on that item only; the song in the library stays as it was.</li>
+              <li><strong>From the phone</strong> — the remote&apos;s <strong>Plan</strong> tab picks the plan and opens any item.</li>
+            </ul>
+            <h3>Reuse and Share</h3>
+            <ul>
+              <li><strong>Duplicate</strong> a plan to start next week&apos;s from this week&apos;s.</li>
+              <li><strong>Export</strong> a plan as a <code>.sfplan</code> file with everything it uses (songs, media, overlays and the Bible look) and <strong>Import</strong> it on another computer. See <a href="#library-backups">Library &amp; Backups</a>.</li>
+            </ul>
           </section>
 
           <section className={docCardClassName} id="songs-key-bpm">
