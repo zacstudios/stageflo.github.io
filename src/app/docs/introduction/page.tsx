@@ -11,6 +11,7 @@ const docSections = [
   { id: "core-workflow", label: "Core Workflow" },
   { id: "songs-key-bpm", label: "Songs, Key & BPM" },
   { id: "bible-browser", label: "Bible" },
+  { id: "word-study", label: "Word Study" },
   { id: "backgrounds", label: "Backgrounds" },
   { id: "visualizer", label: "Visualizer" },
   { id: "slide-transitions", label: "Slide Transitions" },
@@ -121,6 +122,37 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
             <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.78</h3>
+            <ul>
+              <li><strong>Word study</strong> — right-click a verse and choose <strong>Word study</strong> to see the Greek or Hebrew word behind each KJV word, what it means, and every verse that uses it. Show it on the screens, send it to the stage screen only for the preacher, or add it to the plan with its verse. See <a href="#word-study">Word Study</a>.</li>
+              <li><strong>Find a word</strong> — right-click any word in a verse and choose <strong>Find</strong> to list every verse with it, in every version shown.</li>
+              <li><strong>Song numbers on stage</strong> — a song&apos;s VerseVIEW or CCLI number, such as <strong>#10001</strong>, shows on the stage screen, the stage link, the phone remote and the music director page.</li>
+              <li><strong>Verse menu in the slide preview</strong> — right-click a Bible slide for Word study, Find, Copy, Bookmark and Add verse to plan.</li>
+              <li><strong>Book names on the screen</strong> — with <strong>Book names in Malayalam</strong> (or Hindi or Telugu) on in Filters, the reference on screen uses that name, such as <strong>യോഹന്നാൻ 3:16</strong>.</li>
+              <li>Opening the Bible tab no longer replaces the song or plan item in the slide preview.</li>
+            </ul>
+            <h3>2.1.77</h3>
+            <ul>
+              <li><strong>Better Bible search</strong> — Malayalam, Hindi and Telugu words, references with local or romanised book names (<strong>yohannan 3:16</strong>), exact phrases in quotes, and <strong>Did you mean</strong> for misspellings.</li>
+              <li><strong>Reading straight through</strong> — at the end of a chapter, press → again to carry on into the next one.</li>
+              <li><strong>Verse previews</strong> — rest the pointer on a verse number to read it in your other versions with its top cross references.</li>
+              <li><strong>Books view on the phone</strong> — pick a book, chapter and verse on the phone and tap <strong>Show</strong>.</li>
+            </ul>
+            <h3>2.1.76</h3>
+            <ul>
+              <li><strong>More versions side by side</strong> — parallel versions show under each verse in the list, and in columns when the Bible panel is wide.</li>
+              <li><strong>Version sets</strong> — save the versions you use together, such as <strong>Malayalam Service</strong>, and switch in one click, from the app or the phone.</li>
+              <li><strong>Paste references</strong> and <strong>Bookmarks</strong> for quicker service prep.</li>
+              <li><strong>Show or hide each line</strong> — Settings → Display has a <strong>Show</strong> switch for each language, the reference and the version name.</li>
+              <li><strong>Songs from the phone</strong> — search online and add songs, or save one from pasted lyrics with <strong>+ New</strong>.</li>
+            </ul>
+            <h3>2.1.73 – 2.1.75</h3>
+            <ul>
+              <li><strong>Readability settings stay put</strong> — Dim and the text backing no longer reset when the background changes. Use <strong>Save for this background</strong> to give one background its own.</li>
+              <li><strong>Better PowerPoint imports</strong> — charts and SmartArt come in as pictures, 4:3 slides sit in the middle, and shadows and gradients come across.</li>
+              <li><strong>Plan files bring everything along</strong> — exported plans include their overlays, song media and Bible look.</li>
+              <li><strong>Free up space</strong> — unused media files are removed after a week, or straight away with <strong>Clean Up</strong> in Settings → Backup.</li>
+            </ul>
             <h3>2.1.72</h3>
             <ul>
               <li><strong>Drag a visualizer onto slides</strong> — drag a look from the Visualizer tab onto a slide, song, or Bible passage to use it as the background. It is saved with the song, passage, or plan item.</li>
@@ -128,13 +160,6 @@ export default function DocsIntroductionPage() {
               <li><strong>Better Tap</strong> — taps count when you press, three taps set the BPM, and <strong>T</strong> taps the beat from the keyboard.</li>
               <li><strong>Adjust pictures and videos</strong> — right-click a background and choose <strong>Adjust look…</strong> for brightness, saturation, and blur.</li>
               <li><strong>Song numbers on the phone remote</strong> — the remote finds a song by its CCLI or VerseVIEW number, just like the app.</li>
-            </ul>
-            <h3>2.1.71</h3>
-            <ul>
-              <li><strong>Tap the beat</strong> from the song&apos;s Key · BPM button or the music director page; three taps set the BPM.</li>
-              <li><strong>The visualizer keeps to the song&apos;s beat</strong> while a song with a BPM is live. Switch <strong>Follow song</strong> to <strong>Own BPM</strong> to keep it separate.</li>
-              <li><strong>Standby on the Go Live button</strong> — a blue outline while the audience screen is open but black or cleared. Click it to go live again.</li>
-              <li>StageFlo reopens maximized if it was maximized, and floating outputs reopen where you left them.</li>
             </ul>
           </section>
 
@@ -181,14 +206,35 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="bible-browser">
             <SectionHeading sectionId="bible-browser" title="Bible" />
             <p>
-              Open the Bible tab to browse books and chapters or search. Type a reference such as
+              Open the Bible tab to browse books and chapters or search. Type a reference such as{" "}
               <code>John 3:16-18</code> or <code>Mark 14 8</code> and press Enter to put it live; a chapter on
               its own or a word search opens in the preview instead.
             </p>
+            <h3>Search</h3>
             <ul>
-              <li><strong>Parallel translations</strong> — show up to two more translations alongside the primary one.</li>
-              <li><strong>Cross references</strong> — related verses for the open passage appear under the preview.</li>
-              <li><strong>Verse ranges in plans</strong> — add a whole passage to the plan; it remembers its translation and layout.</li>
+              <li><strong>Any language</strong> — search Malayalam, Hindi and Telugu words, and type references with a local or romanised book name, such as <code>യോഹന്നാൻ 3:16</code>, <code>यूहन्ना 3:16</code> or <code>yohannan 3:16</code>.</li>
+              <li><strong>Exact phrases</strong> — put words in quotes, such as <code>&quot;so loved the world&quot;</code>.</li>
+              <li><strong>Did you mean</strong> — a search that finds nothing suggests the right spelling.</li>
+              <li><strong>Other versions</strong> — when your main version has no match, StageFlo looks in your other versions and every installed Bible, and shows the verse in your main version.</li>
+              <li>Matched words are highlighted, results show the verses around them, and recent searches appear when you click into the empty search box.</li>
+            </ul>
+            <h3>Reading and the verse index</h3>
+            <ul>
+              <li><strong>Parallel versions</strong> — up to two versions go on the screens with your main one. In <strong>Filters</strong>, turn on more installed Bibles to read in the list; those never appear on the outputs. When the panel is wide, versions sit side by side in columns.</li>
+              <li><strong>Version sets</strong> — save the versions you use together from the <strong>Sets</strong> button above the search box, and switch between them in one click.</li>
+              <li><strong>Previews</strong> — rest the pointer on a verse number to read the verse, its other versions and its top cross references. Click a cross reference to open it.</li>
+              <li><strong>Next chapter</strong> — use the arrows beside the chapter name, or press → again at the end of a chapter to carry on into the next one. A plan passage carries on with its next verse first.</li>
+              <li><strong>Grid or list</strong> — one switch moves books, chapters and verses between a grid and a list. Recently used books and chapters are marked.</li>
+              <li><strong>Book names</strong> — in <strong>Filters</strong>, turn on <strong>Book names in Malayalam</strong> (or Hindi or Telugu) to show book names, and the reference on screen, in your main version&apos;s language.</li>
+            </ul>
+            <h3>Preparing a service</h3>
+            <ul>
+              <li><strong>Right-click a verse</strong> — <strong>Find</strong> the word you clicked in every version, open <strong>Word study</strong>, <strong>Copy</strong> the verse with or without its other versions, <strong>Bookmark</strong> it, or add it to the plan. This works in the chapter, the search results, Recent, and on Bible slides in the slide preview.</li>
+              <li><strong>Ranges</strong> — Shift-click a second verse to pick a range. The Start/End picker opens from the button beside <strong>Verses</strong>.</li>
+              <li><strong>Paste references</strong> — paste a sermon&apos;s list, such as <code>John 3:16; Rom 8:28-30; Ps 23</code>, and add every passage to the plan in order.</li>
+              <li><strong>Bookmarks</strong> — star verses while you prepare and find them in the Bookmarks list. <strong>Clear</strong> removes them after the service.</li>
+              <li><strong>Recent</strong> — verses you used, with a <strong>Clear</strong> button and <strong>Undo</strong> in case it was pressed by mistake.</li>
+              <li><strong>Verse ranges in plans</strong> — a passage added to the plan remembers its translation and layout.</li>
             </ul>
             <Figure
               src="/screenshots/docs/bible.png"
@@ -197,6 +243,31 @@ export default function DocsIntroductionPage() {
               width={2880}
               height={1760}
             />
+          </section>
+
+          <section className={docCardClassName} id="word-study">
+            <SectionHeading sectionId="word-study" title="Word Study" />
+            <p>
+              Word study shows the Greek or Hebrew word behind each word of the King James Version, using
+              Strong&apos;s numbers. Turn it on in Settings → Bible or from the Word study window; it adds
+              about 40&nbsp;MB to the library and works offline.
+            </p>
+            <ul>
+              <li><strong>Open it</strong> — right-click a verse (in the chapter, search results, Recent, or a Bible slide in the slide preview) and choose <strong>Word study</strong>. It opens on the word you clicked, or on the verse&apos;s rarest word.</li>
+              <li><strong>What it shows</strong> — the original word such as <strong>ἀγαπάω · agapáō</strong>, its meaning, how else the KJV translates it, and every verse that uses it, listed in your main version.</li>
+              <li><strong>Any version</strong> — your version&apos;s verse is shown above the KJV&apos;s words. Where your version numbers a chapter&apos;s verses differently from the KJV (such as Exodus 7 in the BSI), the window says so and ‹ › pick the KJV verse whose words match.</li>
+              <li><strong>Show</strong> — puts the word and its meaning on the screens in your Bible look, right after its verse in the chapter, so ← goes back to the verse and → carries on. <strong>Preview</strong> puts it in the preview first. It also appears in the lower third and on the phone.</li>
+              <li><strong>Back to the verse</strong> — the button at the top, Escape, or a click outside the window takes the words out and puts back what the preview held, whether that was the chapter, a song or a plan item.</li>
+              <li><strong>On the slides</strong> — words you&apos;ve shown are listed at the top of the window; press × on one to take just that word out.</li>
+              <li><strong>Stage</strong> — sends the word to the stage screen only, for the preacher. It stays while the slides move on, until you press <strong>On stage</strong> again or its chip beside the stage message button in the preview.</li>
+              <li><strong>Add to plan</strong> — adds the verse to the plan with its words after it, shown as <strong>John 3:16 · ἀγαπάω</strong>, so words can be prepared before the service.</li>
+              <li><strong>From the phone</strong> — tap <strong>⋯</strong> on a verse in the phone&apos;s Bible tab, then <strong>Word study</strong>. Tap a word, then <strong>Show</strong>, <strong>Stage</strong> or <strong>Back to verse</strong>.</li>
+            </ul>
+            <div className={styles.callout}>
+              Sources: the KJV with Strong&apos;s numbers (public domain), Strong&apos;s Greek dictionary (CC0)
+              and the Open Scriptures Hebrew lexicon (CC BY 4.0). A library backup remembers that word study
+              is on, and restoring it turns it on again.
+            </div>
           </section>
 
           <section className={docCardClassName} id="backgrounds">
@@ -208,7 +279,7 @@ export default function DocsIntroductionPage() {
             <ul>
               <li><strong>Adjust look…</strong> — right-click a background to change its brightness, saturation, and blur. The output follows as you drag, and the settings are kept in backups.</li>
               <li><strong>Clear BG</strong> — removes the background from the current item.</li>
-              <li><strong>Readability</strong> — use Dim and the Shadow, Panel, or Bars text backing in the preview panel to keep lyrics readable over busy pictures.</li>
+              <li><strong>Readability</strong> — use Dim and the Shadow, Panel, or Bars text backing in the preview panel to keep lyrics readable over busy pictures. The settings stay as you move between songs, verses and backgrounds; to give one background its own, such as more dim for a bright photo, show a slide that uses it and click <strong>Save for this background</strong>.</li>
             </ul>
             <Figure
               src="/screenshots/docs/backgrounds.png"
@@ -229,7 +300,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Use it</strong> — click a look to apply it, or drag it onto a slide, song, or Bible passage. <strong>Surprise</strong> picks a random look.</li>
               <li><strong>Beat</strong> — set a BPM, press <strong>Tap</strong> on the beat (or the <strong>T</strong> key), and the visual pulses in time. While a song with a BPM is live, the visualizer follows the song&apos;s beat; switch <strong>Follow song</strong> to <strong>Own BPM</strong> to keep it separate.</li>
               <li><strong>Pulse</strong> — switch the beat flashes off without losing the BPM or Autopilot.</li>
-              <li><strong>Mic</strong> — let the visual react to the sound in the room. With no BPM set, kicks and strong hits make it pulse; with a BPM, the pulse stays on the BPM and the mic drives the movement and glow.</li>
+              <li><strong>Mic</strong> — let the visual react to the sound in the room. With no BPM set, kicks and strong hits make it pulse; with a BPM, the pulse stays on the BPM and the mic drives the movement and glow. Choose the microphone once, next to the <strong>Mic</strong> switch or in Settings; every visualizer uses it.</li>
               <li><strong>Favourites</strong> — save a look with the star tab and export or import looks to share them.</li>
             </ul>
             <Figure
@@ -311,10 +382,11 @@ export default function DocsIntroductionPage() {
             </div>
             <h3>Export Types</h3>
             <ul>
-              <li><strong>Portable Plan Export (.sfplan)</strong> — exports the selected plan plus everything needed to open that plan on another PC, including songs, custom slides, and referenced media/assets.</li>
+              <li><strong>Portable Plan Export (.sfplan)</strong> — exports the selected plan plus everything needed to open that plan on another PC, including songs, custom slides, overlays, song media and the Bible verse look. On another computer, verses use an installed translation when the original one is missing.</li>
               <li><strong>Library Backup (.sfbackup)</strong> — plans, songs, Bible data, settings, custom slides, and media references. It does not include the media files themselves.</li>
               <li><strong>Portable Library Backup (.sfportable)</strong> — everything in a Library Backup plus local media, backgrounds, and overlays, for moving to another PC.</li>
               <li><strong>Consolidate Existing Media</strong> — copies old local file references into the selected library folder so another PC can use them from the shared library.</li>
+              <li><strong>Remove Unused Media Files</strong> — media, backgrounds and overlays you delete are removed from the library folder once nothing has used them for a week. Choose <strong>Clean Up</strong> to do it now; StageFlo shows how much space it will free first.</li>
             </ul>
             <div className={styles.callout}>
               Large media files can make backups slow and heavy. For large libraries, keep the active
@@ -380,6 +452,13 @@ export default function DocsIntroductionPage() {
               <strong>PIN Protection</strong> — Set a PIN in Remote → Security to restrict access to the
               controller. Leave blank for open access on trusted local networks.
             </div>
+            <h3>On the Phone</h3>
+            <ul>
+              <li><strong>Control</strong> — the live slide with previous, Live and next. The header shows the item, the slide count, and a song&apos;s number, key and BPM.</li>
+              <li><strong>Bible</strong> — search like the app (with <strong>Did you mean</strong>), or use <strong>Books</strong> to pick a book, chapter and verse and tap <strong>Show</strong>. Switch version sets from the drop-down.</li>
+              <li><strong>⋯ on a verse</strong> — copy it, bookmark it, open it in Books, see its cross references, or open <strong>Word study</strong>.</li>
+              <li><strong>Songs</strong> — search by title, lyrics or number, search online and add songs to the library, or save a song from pasted lyrics with <strong>+ New</strong>.</li>
+            </ul>
             <div className={styles.callout}>
               The Remote Slides tab supports manual scrolling. When you scroll by hand, StageFlo pauses
               automatic active-slide scrolling briefly, then resumes following the live slide.
@@ -417,6 +496,7 @@ export default function DocsIntroductionPage() {
               enter the music director PIN, set in Settings → Remote → Music Director.
             </p>
             <ul>
+              <li><strong>Song number</strong> — the live song&apos;s VerseVIEW or CCLI number shows before its title, such as <strong>#10001 · Aa Inba Illame</strong>.</li>
               <li><strong>Key and BPM</strong> — change the key or BPM for the live song or for songs later in the plan.</li>
               <li><strong>Tap</strong> — tap the beat so every screen&apos;s pulse lines up with the band.</li>
               <li><strong>Separate access</strong> — the music director PIN cannot control slides, and the operator&apos;s remote PIN does not open this page.</li>
@@ -534,6 +614,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Style</strong> — Weight and style variations (bold, regular, etc.).</li>
               <li><strong>Alignment</strong> — Horizontal text alignment for slide content.</li>
               <li><strong>Color</strong> — Default text color applied to new slides.</li>
+              <li><strong>Show</strong> — a switch for the main, second and third language, the reference and the version name. Turning one off hides it on every output straight away, and Bible verses spread out to fill the space.</li>
             </ul>
             <p>
               <strong>Audience Standby</strong> sets what the audience screen shows when it is cleared: nothing,
@@ -571,7 +652,12 @@ export default function DocsIntroductionPage() {
               <li><strong>Show Info Panel</strong> — Show operator notes and additional context.</li>
               <li><strong>Show Chords</strong> — Show chord rows on stage and remote confidence views when songs contain chord markers.</li>
               <li><strong>Show BPM Pulse</strong> — Pulse the song&apos;s beat on the stage display, stage link, phone remote, and music director page.</li>
+              <li><strong>Song Info</strong> — Show the live song&apos;s number, key and BPM, such as <strong>#10001 · G · 120 BPM</strong>, on the stage display and the stage link.</li>
             </ul>
+            <p>
+              A word sent from Word study with <strong>Stage</strong> shows as a card on the stage display only,
+              with the original word, its meaning and its verse. See <a href="#word-study">Word Study</a>.
+            </p>
             <Figure
               src="/screenshots/docs/stage-view.png"
               alt="Stage view showing the live verse of Amazing Grace, the next verse, key, and BPM."
@@ -597,6 +683,10 @@ export default function DocsIntroductionPage() {
               <li><strong>Panel Opacity</strong> — Transparency of the lower-third background panel.</li>
               <li><strong>Show Second Line</strong> — Toggle display of the subtitle/secondary text line.</li>
             </ul>
+            <p>
+              A word study word shown on the screens appears in the lower third too: the original word and its
+              meaning, with <strong>loved · John 3:16 · Strong&apos;s G25</strong> below.
+            </p>
             <div className={styles.callout}>
               In OBS, add a Browser Source and paste the static lower-third URL from Settings. It updates
               in real time as slides change — no re-linking needed between services.
@@ -656,6 +746,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Import XML</strong> — Import a Zefania-format or compatible Bible XML file. Useful for languages not available in the built-in library.</li>
               <li><strong>Installed Translations</strong> — View and delete installed translations to manage storage.</li>
               <li><strong>Verse Ranges</strong> — Add a full chapter, one verse such as John 1:1, or a range such as John 1:1-6.</li>
+              <li><strong>Word Study</strong> — Turn word study on or off. It loads the KJV with Strong&apos;s numbers and the Greek and Hebrew dictionaries, about 40&nbsp;MB. See <a href="#word-study">Word Study</a>.</li>
             </ul>
             <div className={styles.callout}>
               For multilingual services, install multiple translations. You can switch the active Bible
@@ -746,6 +837,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Managed Media</strong> — Media added to custom slides, backgrounds, and overlays is copied into the active library folder.</li>
               <li><strong>Portable Plans</strong> — Portable plan exports include referenced media and custom presentations needed by that plan.</li>
               <li><strong>Full Backups</strong> — Full library backups include managed media, backgrounds, overlays, plans, songs, and custom slides.</li>
+              <li><strong>PowerPoint Imports</strong> — Imported slides keep their text size, spacing and outline, 4:3 slides sit in the middle of the screen, and shadows, gradient backgrounds and <strong>Hide background graphics</strong> come across. Charts, SmartArt and other objects StageFlo cannot rebuild come in as pictures; this needs PowerPoint or LibreOffice on the computer.</li>
               <li><strong>Web Link Slides</strong> — Web slides can load normal embeddable webpages when the site allows framing.</li>
               <li><strong>YouTube Removed</strong> — YouTube-specific media integration was removed because embedded playback can be blocked by sign-in, bot checks, CSP restrictions, and unreliable controls.</li>
             </ul>
