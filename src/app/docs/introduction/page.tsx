@@ -40,6 +40,7 @@ const docSections = [
   { id: "service-safety-tools", label: "Service Safety Tools" },
   { id: "outputs", label: "Outputs and Displays" },
   { id: "first-service", label: "Run Your First Service" },
+  { id: "updates", label: "Updates" },
   { id: "installation-troubleshooting", label: "Installation Troubleshooting" },
   { id: "troubleshooting", label: "Troubleshooting" },
 ] as const;
@@ -1072,6 +1073,20 @@ export default function DocsIntroductionPage() {
               <li>Open Remote settings, copy the stage URL, and open it on a mobile device for the singer view.</li>
               <li>Practice Next/Previous with the hotkeys or the phone remote before going live.</li>
             </ol>
+          </section>
+
+          <section className={docCardClassName} id="updates">
+            <SectionHeading sectionId="updates" title="Updates" />
+            <p>
+              StageFlo checks for new versions on its own and shows what it finds in the status bar at the
+              bottom of the window. Click the status bar&apos;s update button, or use <strong>Check for
+              Updates…</strong> in the menu, to check straight away.
+            </p>
+            <ul>
+              <li><strong>Windows</strong> — updates download in the background without interrupting you. When one is ready, the status bar shows <strong>Restart to update</strong>: click it to restart into the new version, or carry on and it installs the next time you quit. If your outputs are open, StageFlo asks first, so a stray click can&apos;t stop a service.</li>
+              <li><strong>Mac</strong> — the status bar shows <strong>Download</strong> with the new version. Click it to download the installer, then drag StageFlo into Applications to replace the old one, as when you first installed it.</li>
+              <li><strong>What&apos;s new</strong> — after an update, StageFlo shows what changed. You can read it again from Help → What&apos;s New.</li>
+            </ul>
           </section>
 
           {/* ── Installation Troubleshooting ── */}
