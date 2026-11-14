@@ -115,7 +115,7 @@ export default function DocsIntroductionPage() {
               phone can run the whole service.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Version 2.1.78</span>
+              <span className="eyebrow">Version 2.1.79</span>
               <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
@@ -131,6 +131,14 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
             <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.79</h3>
+            <ul>
+              <li><strong>Next item from the phone</strong> — the phone&apos;s Control tab shows <strong>Next: Genesis 3:4</strong> above the Live button; tap it to open the next plan item, ready to go live.</li>
+              <li><strong>Timers from the phone</strong> — tap the Timer box at the top of the phone to start, pause or reset any timer.</li>
+              <li><strong>Bookmarks on the phone</strong> — the Bible tab has Bookmarks beside Books and Recent.</li>
+              <li><strong>A fuller verse card</strong> — a verse open in Books has Show and Word study, with + Plan, Copy and Bookmark underneath.</li>
+              <li><strong>A tidier Bible tab</strong> — a compact search box (Enter to search, × to clear) with version sets under <strong>⋯</strong>, styled like the app&apos;s Sets menu.</li>
+            </ul>
             <h3>2.1.78</h3>
             <ul>
               <li><strong>Word study</strong> — right-click a verse and choose <strong>Word study</strong> to see the Greek or Hebrew word behind each KJV word, what it means, and every verse that uses it. Show it on the screens, send it to the stage screen only for the preacher, or add it to the plan with its verse. See <a href="#word-study">Word Study</a>.</li>
@@ -210,7 +218,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Open an item</strong> — click it to put it in the preview. Nothing reaches the screens until you go live.</li>
               <li><strong>Colours</strong> — the open item is outlined purple, blue while it is in the preview but not on the screens, green while it is on the screens, and red when the screen is black.</li>
               <li><strong>Its own look</strong> — change the background, overlays, text position or key and BPM while an item is open, then click <strong>Update Plan Item</strong>. The change is kept on that item only; the song in the library stays as it was.</li>
-              <li><strong>From the phone</strong> — the remote&apos;s <strong>Plan</strong> tab picks the plan and opens any item.</li>
+              <li><strong>From the phone</strong> — the remote&apos;s <strong>Plan</strong> tab picks the plan and opens any item, and <strong>Next: …</strong> on its Control tab moves on to the next item.</li>
             </ul>
             <h3>Reuse and Share</h3>
             <ul>
@@ -298,7 +306,7 @@ export default function DocsIntroductionPage() {
               <li><strong>On the slides</strong> — words you&apos;ve shown are listed at the top of the window; press × on one to take just that word out.</li>
               <li><strong>Stage</strong> — sends the word to the stage screen only, for the preacher. It stays while the slides move on, until you press <strong>On stage</strong> again or its chip beside the stage message button in the preview.</li>
               <li><strong>Add to plan</strong> — adds the verse to the plan with its words after it, shown as <strong>John 3:16 · ἀγαπάω</strong>, so words can be prepared before the service.</li>
-              <li><strong>From the phone</strong> — tap <strong>⋯</strong> on a verse in the phone&apos;s Bible tab, then <strong>Word study</strong>. Tap a word, then <strong>Show</strong>, <strong>Stage</strong> or <strong>Back to verse</strong>.</li>
+              <li><strong>From the phone</strong> — open a verse in the phone&apos;s Bible tab (Books) and tap <strong>Word study</strong> beside Show, or tap <strong>⋯</strong> on a search result or Recent verse. Tap a word, then <strong>Show</strong>, <strong>Stage</strong> or <strong>Back to verse</strong>.</li>
             </ul>
             <Figure
               src="/screenshots/docs/word-study.png"
@@ -539,9 +547,12 @@ export default function DocsIntroductionPage() {
             <h3>On the Phone</h3>
             <ul>
               <li><strong>Control</strong> — the slides of what is open, with previous, <strong>Live</strong> and next. Tap a slide to jump to it. The header shows the item, the slide count, and a song&apos;s number, key and BPM, with buttons to clear the screen, close the outputs, and send a stage message.</li>
+              <li><strong>Next item</strong> — when a plan item is open, <strong>Next: …</strong> above the Live button opens the next item in the plan, ready to go live. It lights up on the item&apos;s last slide, so a whole service can run from the phone.</li>
+              <li><strong>Timers</strong> — tap the <strong>Timer</strong> box at the top to start, pause or reset any timer, such as the sermon countdown. Timers are created in StageFlo; see <a href="#timers">Timers</a>.</li>
               <li><strong>Plan</strong> — pick a plan and tap an item to open it; the phone moves to Control, ready to go live.</li>
-              <li><strong>Bible</strong> — search like the app (with <strong>Did you mean</strong>), or use <strong>Books</strong> to pick a book, chapter and verse and tap <strong>Show</strong>. Switch version sets from the drop-down.</li>
-              <li><strong>⋯ on a verse</strong> — copy it, bookmark it, open it in Books, see its cross references, or open <strong>Word study</strong>.</li>
+              <li><strong>Bible</strong> — search like the app (with <strong>Did you mean</strong>): press Enter to search and × to clear. Switch between <strong>Books</strong>, <strong>Recent</strong> and <strong>Bookmarks</strong> (the verses starred in StageFlo). Version sets open from the <strong>⋯</strong> beside the search box.</li>
+              <li><strong>The verse card</strong> — pick a book, chapter and verse in Books to read it, then tap <strong>Show</strong> or <strong>Word study</strong>, or use <strong>+ Plan</strong>, <strong>Copy</strong> and <strong>Bookmark</strong> underneath.</li>
+              <li><strong>⋯ on a verse</strong> — in the search results, Recent and Bookmarks: copy it, bookmark it, open it in Books, see its cross references, or open <strong>Word study</strong>.</li>
               <li><strong>Songs</strong> — search by title, lyrics or number, search online and add songs to the library, or save a song from pasted lyrics with <strong>+ New</strong>. Open a song to tap any line live.</li>
               <li><strong>Media</strong> and <strong>Slides</strong> — tap a picture, video or slide deck to open it, ready to go live.</li>
               <li><strong>+ Plan</strong> — songs, verses, media and slides each have a <strong>+ Plan</strong> button that adds them to the open plan.</li>
@@ -777,6 +788,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Run them</strong> — start, stop and reset each timer from its row. Open a row to rename it, set its time, and turn on <strong>Allows Overrun</strong> to keep counting past zero so you can see how far over you are.</li>
               <li><strong>On a slide</strong> — in the slide editor, add a countdown timer to a slide, such as a welcome screen that counts down to the start. Style it like text and place it anywhere; it shows on the audience screen with that slide. While that slide is open, its timer is listed under <strong>Custom Slide Timers</strong> in the preview panel, with the same controls.</li>
               <li><strong>Hide or show</strong> — press <strong>Shift+K</strong> to hide the timer layer on the outputs and again to bring it back.</li>
+              <li><strong>From the phone</strong> — tap the <strong>Timer</strong> box at the top of the phone remote to start, pause or reset any timer.</li>
             </ul>
           </section>
 
