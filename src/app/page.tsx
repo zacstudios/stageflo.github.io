@@ -38,7 +38,8 @@ const pillars = [
   {
     icon: "🖥️",
     title: "Multi-Screen Output",
-    desc: "Projector, stage display, OBS lower-thirds, and a mobile singer view — all from one place.",
+    desc: "Guide each audience, stage, lower-third, and Center Stage screen from one Outputs page, with its own look or layout.",
+    badge: "New workflow in 2.1.80",
   },
   {
     icon: "🌐",
@@ -80,31 +81,73 @@ const visualizerFeatures = [
   { icon: "🖥️", text: "Full resolution output to projector and stage display" },
 ];
 
+const workflow2180Features = [
+  {
+    icon: "🗂️",
+    text: "Plan sections organise the whole order of service — Worship, Bible Readings, Message, Offering, and more",
+  },
+  {
+    icon: "⏱️",
+    text: "Planned times, notes, colours, section clocks, Focus mode, and printable orders keep the team on time",
+  },
+  {
+    icon: "🎨",
+    text: "A different look on each output — bilingual in the room, main language only on the livestream",
+  },
+  {
+    icon: "🖥️",
+    text: "Add Screen asks what the screen is, what it shows, and how it should look; changes wait safely for Apply",
+  },
+  {
+    icon: "🎤",
+    text: "Stage layouts give the band and preacher the right confidence view, with chords, next slide, timers, and notes",
+  },
+  {
+    icon: "📱",
+    text: "One team address opens the Stage link, Music Director, and Phone remote, each with the right level of access",
+  },
+];
+
 const newFeatures = [
   {
-    label: "Live Visuals",
-    badge: "New",
-    desc: "10 audio-reactive visualizer presets with customisable colours, speed, glow, and intensity. Layer any background image or video underneath for unique mixed effects.",
+    label: "Plan Sections & Templates",
+    badge: "2.1.80",
+    desc: "Build the service as a clear tree, save the order as a reusable template, drag several items together, and print or export the finished plan.",
   },
   {
-    label: "Offline AI Search",
-    badge: "New",
-    desc: "Semantic search powered by multilingual-e5-small via ONNX — no cloud, no Ollama. Just type what you're looking for.",
+    label: "Section Timing",
+    badge: "2.1.80",
+    desc: "Give each section a planned time, colour, and team note. Follow its clock on Stage Display, the stage link, the remote, and the Timers panel.",
   },
   {
-    label: "Remote Stage View over Internet",
-    badge: "New",
-    desc: "One click generates a live public URL (via Cloudflare) for your stage view and remote controller — shareable anywhere, no account needed.",
+    label: "A Look for Every Output",
+    badge: "2.1.80",
+    desc: "Choose which languages, fonts, sizes, position, and background each audience screen, NDI stream, or Center Stage output uses.",
   },
   {
-    label: "Remote Controller",
-    desc: "Control slides from any phone or tablet on the same network — or from anywhere via the public link.",
+    label: "Simpler Screen Setup",
+    badge: "2.1.80",
+    desc: "Identify displays, add a screen in three questions, choose mirror or wide-picture arrangements, preview cleared output, then press Apply.",
   },
-  { label: "OBS Lower-Thirds", desc: "Push song titles and speaker names directly into your stream." },
-  { label: "Zefania XML Bible Import", desc: "Import any Zefania-format Bible XML directly in the app — no external tools." },
-  { label: "Live Text Edit", desc: "Fix a typo mid-service without leaving the live view." },
-  { label: "Template System", desc: "Design once, apply across every slide and service." },
-  { label: "Output Lock", desc: "Lock output windows to prevent accidental exposure. Press Cmd+L to lock, Cmd+R to restore." },
+  {
+    label: "Per-Screen Stage Layouts",
+    badge: "2.1.80",
+    desc: "Give a band monitor chords and timing while a pulpit screen shows a large current and next slide — both following the same service.",
+  },
+  {
+    label: "One Address for the Team",
+    badge: "2.1.80",
+    desc: "One QR code opens a team hub for the Stage link, Music Director, and Phone remote, with separate PIN choices for operators and readers.",
+  },
+  {
+    label: "Safer Plan Imports",
+    badge: "2.1.80",
+    desc: "Imported plans reuse matching songs and slides, but preserve the plan's copy when lyrics or visuals differ, with a clear import summary.",
+  },
+  {
+    label: "Live Visuals & Offline AI",
+    desc: "Audio-reactive backgrounds and multilingual meaning-based search remain fully built in and ready offline during a service.",
+  },
 ];
 
 const churchUseCases = [
@@ -267,6 +310,10 @@ export default async function Home() {
       "Multilingual worship slides",
       "Audio-reactive live visuals",
       "Visualizer background mixing",
+      "Order-of-service plan sections and templates",
+      "Per-output looks and per-screen stage layouts",
+      "Guided multi-screen output setup",
+      "Section timing, notes, and printable service plans",
     ],
     screenshot: screenshotCards.map((shot) => `https://stageflo.app${shot.src}`),
     offers: {
@@ -389,6 +436,7 @@ export default async function Home() {
         <section className="hero" id="home">
           <div className="hero-badges">
             <p className="eyebrow">StageFlo by Zac Studios · v{latestMac.version}</p>
+            <span className="eyebrow">🗂️ Plans &amp; Outputs — New in 2.1.80</span>
               <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
             <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
             <span className="eyebrow">✨ Live Visuals — New in 2.1</span>
@@ -442,6 +490,40 @@ export default async function Home() {
                 <p>{p.desc}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        {/* ── 2.1.80 Workflow Spotlight ── */}
+        <section className="ai-spotlight section-block" id="workflow-2180">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow">New in 2.1.80</span>
+              <h2>Plan the service. Route every screen. Keep everyone in step.</h2>
+              <p className="lead">
+                StageFlo now connects weekly planning and live output in one safer workflow: organise the order
+                of service into sections, give each screen the right presentation, then run the room from the
+                desktop or phone without the outputs drifting apart.
+              </p>
+            </div>
+            <ul className="ai-feature-list">
+              {workflow2180Features.map((feature) => (
+                <li key={feature.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{feature.icon}</span>
+                  <span>{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="cta-row">
+              <Link className="button button-primary" href="/docs/introduction/#plan-workflow">
+                Set up the plan workflow
+              </Link>
+              <Link className="button button-secondary" href="/docs/introduction/#set-up-screens">
+                Set up screens and outputs
+              </Link>
+              <Link className="button button-secondary" href="/docs/introduction/#whats-new">
+                See everything in 2.1.80
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -532,12 +614,12 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── What's New in 2.0 ── */}
+        {/* ── What's New in 2.1.80 ── */}
         <section className="new-features section-block" id="whats-new">
           <div className="section-head">
-            <p className="eyebrow">What&rsquo;s new</p>
-            <h2>More power, less complexity.</h2>
-            <p>From offline AI search to audio-reactive live visuals — powerful new capabilities shipped as free updates.</p>
+            <p className="eyebrow">What&rsquo;s new in 2.1.80</p>
+            <h2>A clearer workflow from planning to the final screen.</h2>
+            <p>Prepare the order of service, give every audience and stage output the right view, and keep the whole team following the same live item.</p>
           </div>
           <div className="new-features-grid">
             {newFeatures.map((f) => (

@@ -9,6 +9,8 @@ const docSections = [
   { id: "what-is-stageflo", label: "What Is StageFlo" },
   { id: "whats-new", label: "What Is New" },
   { id: "core-workflow", label: "Core Workflow" },
+  { id: "set-up-screens", label: "How to: Set Up Your Screens" },
+  { id: "plan-workflow", label: "How to: Plan a Service" },
   { id: "service-plans", label: "Service Plans" },
   { id: "songs-key-bpm", label: "Songs, Key & BPM" },
   { id: "bible-browser", label: "Bible" },
@@ -24,12 +26,12 @@ const docSections = [
   { id: "music-director", label: "Music Director Page" },
   { id: "bitfocus-presenter-remotes", label: "Bitfocus & Presenter Remotes" },
   { id: "remote-stage-view-over-internet", label: "Remote Stage View over Internet" },
-  { id: "settings-display", label: "Display Settings" },
-  { id: "settings-stage", label: "Stage Display" },
+  { id: "settings-display", label: "Looks" },
+  { id: "settings-stage", label: "Stage Layouts" },
   { id: "timers", label: "Timers" },
   { id: "stage-message", label: "Stage Message" },
   { id: "settings-lowerthird", label: "Lower Third" },
-  { id: "settings-screens", label: "Screens & Outputs" },
+  { id: "settings-screens", label: "Outputs" },
   { id: "settings-bible", label: "Bible Settings" },
   { id: "settings-songs", label: "Song Settings" },
   { id: "song-editing", label: "Song Editing" },
@@ -46,16 +48,16 @@ const docSections = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "StageFlo Docs | Introduction",
+  title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
   description:
-    "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+    "Set up StageFlo 2.1.80 plan sections, order-of-service templates, audience and stage screens, per-output looks, stage layouts, timers, and phone control.",
   alternates: {
     canonical: "/docs/introduction/",
   },
   openGraph: {
-    title: "StageFlo Docs | Introduction",
+    title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
     description:
-      "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+      "A practical guide to the StageFlo 2.1.80 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     url: "/docs/introduction/",
     type: "article",
     images: [
@@ -63,15 +65,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "StageFlo Docs | Introduction",
+        alt: "StageFlo 2.1.80 plan and screen setup guide",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo Docs | Introduction",
+    title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
     description:
-      "Introduction guide for StageFlo with workflow basics, outputs, mobile singer view, and first-service setup steps.",
+      "A practical guide to the StageFlo 2.1.80 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     images: ["/og-image.png"],
   },
 };
@@ -115,7 +117,7 @@ export default function DocsIntroductionPage() {
               phone can run the whole service.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Version 2.1.79</span>
+              <span className="eyebrow">Version 2.1.80</span>
               <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
@@ -131,6 +133,17 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
             <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.80</h3>
+            <ul>
+              <li><strong>A different look on each output</strong> — the hall can show Malayalam and English while the livestream shows only the main language, low on a transparent background. Make looks from templates in <strong>Settings → Looks</strong> and choose one on each output&apos;s page. See <a href="#settings-display">Looks</a>.</li>
+              <li><strong>Sections in the plan</strong> — organise a plan like folders (Worship, Bible Readings, Message…), with a planned time, colour and note for each, a section clock on every screen, and order-of-service templates. See <a href="#plan-workflow">How to: Plan a Service</a>.</li>
+              <li><strong>Settings → Outputs</strong> — every output on one page: its screens, its look, what shows when cleared, NDI and adjustments. <strong>Add Screen…</strong> sets up a new screen in three questions, and changes wait for <strong>Apply</strong>. See <a href="#set-up-screens">How to: Set Up Your Screens</a>.</li>
+              <li><strong>Stage layouts</strong> — each stage screen can have its own layout, such as a band monitor with chords and a pulpit screen with the next slide. See <a href="#settings-stage">Stage Layouts</a>.</li>
+              <li><strong>One address for the team</strong> — one QR code opens a page with the stage link, the music director page and the phone remote, and the stage link can have its own PIN or none. See <a href="#settings-remote">Remote Control</a>.</li>
+              <li><strong>The plan list shows the last week</strong> and what&apos;s coming, with <strong>Show older plans</strong> for the rest.</li>
+              <li><strong>Imported plans keep their own songs</strong> — a song or slide already on this computer is used only if it matches the plan; otherwise the plan&apos;s version is added beside yours, and the import message says so.</li>
+              <li><strong>Clearer default text sizes</strong>, and tidier, easier-to-read Settings pages.</li>
+            </ul>
             <h3>2.1.79</h3>
             <ul>
               <li><strong>Next item from the phone</strong> — the phone&apos;s Control tab shows <strong>Next: Genesis 3:4</strong> above the Live button; tap it to open the next plan item, ready to go live.</li>
@@ -184,46 +197,124 @@ export default function DocsIntroductionPage() {
             <SectionHeading sectionId="core-workflow" title="Core Workflow" />
             <p>Most teams use this sequence every week:</p>
             <ol>
-              <li>Build a service plan with songs, scriptures, media, and custom slides. See <a href="#service-plans">Service Plans</a>.</li>
+              <li>Set up your screens once in <strong>Settings → Outputs</strong>. See <a href="#set-up-screens">How to: Set Up Your Screens</a>.</li>
+              <li>Start the week&apos;s plan from your order-of-service template and fill each section with songs, scriptures, media, and custom slides. See <a href="#plan-workflow">How to: Plan a Service</a>.</li>
               <li>Prepare the scripture: pick your version set, paste the sermon&apos;s references, and bookmark or word-study the key verses.</li>
-              <li>Style text and backgrounds in the editor.</li>
+              <li>Style text and backgrounds in the editor, or give an output its own look.</li>
               <li>Preview transitions and timing in operator view.</li>
-              <li>Go live to projector and stage displays.</li>
+              <li>Go live to the audience and stage screens, and move through the plan section by section.</li>
               <li>Control slides with hotkeys or the phone remote, send cues with the stage message, and keep time with timers.</li>
             </ol>
             <Figure
               src="/screenshots/docs/workspace.png"
               alt="StageFlo workspace with the song library, slide grid, Sunday plan, and audience preview."
-              caption="The workspace: library on the left, slides in the middle, the service plan below, and the audience preview on the right."
+              caption="The workspace: library on the left, slides in the middle, the service plan below in its sections, and the audience preview on the right."
               width={2880}
               height={1760}
             />
+          </section>
+
+          <section className={docCardClassName} id="set-up-screens">
+            <SectionHeading sectionId="set-up-screens" title="How to: Set Up Your Screens" />
+            <p>
+              Do this once for your room, before the first service. Everything is in{" "}
+              <strong>Settings → Outputs</strong>. An <strong>output</strong> is what a group of people sees:
+            </p>
+            <ul>
+              <li><strong>Audience</strong> — the main screens for the congregation.</li>
+              <li><strong>Stage</strong> — the confidence monitor for the preacher, singers and band.</li>
+              <li><strong>Lower Third</strong> — the words along the bottom of a livestream, also as a link for OBS.</li>
+              <li><strong>Center Stage</strong> — a screen behind the team, with the text in a band.</li>
+            </ul>
+            <ol>
+              <li><strong>Connect the screens</strong> to the computer and set them up in your computer&apos;s display settings as separate displays, not mirrored. Click <strong>Refresh</strong> if one doesn&apos;t appear.</li>
+              <li><strong>Find out which is which.</strong> Click <strong>Identify screens</strong>, next to <strong>Your setup</strong>: every screen shows its number. Click it again to hide them.</li>
+              <li><strong>Add a screen to an output.</strong> Click <strong>Add Screen…</strong> and answer three questions: which screen, what it shows (Audience, Stage, Lower Third or Center Stage) and its look. For a second Audience screen it also asks whether both show the <strong>Same picture</strong> or <strong>One wide picture</strong> across them.</li>
+              <li><strong>Choose how the screens are used</strong> when an output has two or more: <strong>Only the selected screen</strong> (press <strong>Show here</strong> on the one to use; it then says <strong>Showing</strong>), <strong>Same picture</strong> on all of them, <strong>One wide picture</strong> across them, or <strong>Edge blend</strong> for overlapping projectors. With Same picture, One wide picture and Edge blend, the <strong>↑ ↓</strong> arrows on each screen&apos;s row set their order, left to right.</li>
+              <li><strong>Pick a look</strong> in the output&apos;s <strong>Look</strong> section (or <strong>Layout</strong> for Stage, <strong>Style</strong> for Lower Third), and what it shows <strong>When cleared</strong>, such as a picture or a moving visualizer.</li>
+              <li><strong>Fit the picture</strong> under <strong>Adjustments</strong>: <strong>Output Scale</strong>, overlap for edge blending, a <strong>Color</strong> overlay to match projectors, and <strong>Corner Pin</strong> for a projector at an angle. <strong>Test Pattern</strong>, under <strong>Tools</strong>, puts bars or a grid on every output to line them up.</li>
+              <li><strong>Press Apply.</strong> Changes on the Outputs page wait until you do; the top of the page says <strong>Changes not applied</strong> until then, so nothing jumps between screens while you set up.</li>
+            </ol>
+            <p>
+              The <strong>Your setup</strong> cards at the top show each output at a glance: on or off, its screens and
+              its look. Click a card to open that output&apos;s page. A yellow note warns when two outputs share a
+              screen, as one would cover the other.
+            </p>
+            <div className={styles.callout}>
+              <strong>A typical church:</strong> Audience on the projector (or two projectors with <strong>Same
+              picture</strong>), Stage on a monitor at the front of the stage, and the <strong>NDI Output</strong>{" "}
+              of Audience turned on with a <strong>Livestream</strong> look for the stream. Singers without a
+              monitor use the stage link on their phones; see <a href="#settings-remote">Remote Control</a>.
+            </div>
+          </section>
+
+          <section className={docCardClassName} id="plan-workflow">
+            <SectionHeading sectionId="plan-workflow" title="How to: Plan a Service" />
+            <p>A weekly routine that keeps the plan, the screens and the team in step.</p>
+            <h3>Once: make your order of service</h3>
+            <ol>
+              <li>Make a plan and add a section for each part of your service with <strong>+ Section</strong>: such as <strong>Welcome</strong>, <strong>Worship</strong>, <strong>Bible Readings</strong>, <strong>Message</strong>, <strong>Offering</strong> and <strong>Closing</strong>.</li>
+              <li>Right-click each section to give it a <strong>Planned time…</strong> (such as 20 minutes), a colour, and a note for the team (<em>Pastor John leads, keys only</em>). Choose <strong>Count down the planned time</strong> for a part that must finish on time, such as the message.</li>
+              <li>Add the items that are there every week, such as the countdown video, welcome slides and announcements, into their sections.</li>
+              <li>With the template button in the plan toolbar, choose <strong>Save sections and items as a template…</strong>.</li>
+            </ol>
+            <h3>Each week: fill the plan</h3>
+            <ol>
+              <li>Click <strong>+</strong> (or the quick button for the coming Sunday) and choose your template under <strong>Start with</strong>. The new plan opens with its sections and weekly items in place.</li>
+              <li>Click a section, then add songs, verses, media and slides: they go to the end of that section. You can also drag them from the library onto a section heading, or straight under an item.</li>
+              <li>Set each song&apos;s key and BPM, or let the music director do it from their phone ahead of time.</li>
+              <li>To rearrange, drag an item by its row; Cmd-click (Ctrl-click on Windows) or Shift-click to pick several and drag them together.</li>
+              <li>Print the order of service, or save it as a PDF, with the printer button for the team or the bulletin.</li>
+            </ol>
+            <h3>During the service</h3>
+            <ol>
+              <li>Double-click the first item to put it on the screens. Press <strong>→</strong> to move through the slides; on an item&apos;s last slide, → again moves on to the next item, into the next section when that&apos;s where it is.</li>
+              <li>Turn on <strong>Focus</strong> (the crosshair) to keep only the current section open as the service moves on.</li>
+              <li>The section&apos;s clock (<strong>WORSHIP 12:40 / 20:00</strong>) shows on the stage screen, the stage link and the phone remote, and turns red when the section runs over. Pause it or add a minute from the <strong>Timers</strong> panel.</li>
+              <li>Or run it all from a phone: <strong>Next: …</strong> on the remote opens the next item, ready to go live.</li>
+            </ol>
+            <h3>Sharing a plan with another computer</h3>
+            <p>
+              <strong>Export</strong> saves the plan as a <code>.sfplan</code> file with everything it uses; <strong>Import</strong>{" "}
+              it on the other computer. A song or slide that&apos;s already there under the same title is used only if
+              it matches; if your copy has corrected lyrics, the plan&apos;s version is added beside the one already
+              there, and the import message tells you. See <a href="#service-plans">Service Plans</a>.
+            </p>
           </section>
 
           <section className={docCardClassName} id="service-plans">
             <SectionHeading sectionId="service-plans" title="Service Plans" />
             <p>
               A plan is the running order of a service. It sits in the <strong>Plan</strong> tab under the
-              slides, and every song, passage, picture and slide in it keeps its own look.
+              slides as a tree: <strong>sections</strong> are headings with a coloured edge, and their items sit
+              under them. Every song, passage, picture and slide in a plan keeps its own look.
             </p>
             <h3>Build a Plan</h3>
             <ul>
-              <li><strong>New plan</strong> — click <strong>+</strong> to name a plan and give it a date, or use the quick button to make a <strong>Sunday AM</strong> plan for the coming Sunday. Pick a plan from <strong>Select plan</strong>, which you can search.</li>
-              <li><strong>Add to it</strong> — use <strong>Add to Plan</strong> on a song, a verse or passage, a picture or video, or a custom slide. If no plan is open, StageFlo asks which plan to use or makes one. In the Bible tab you can also add a whole chapter, a range, a pasted list of references, or a verse with its word study words.</li>
-              <li><strong>Placeholders</strong> — add a slot such as <strong>Welcome</strong>, <strong>Announcements</strong>, <strong>Offering</strong>, <strong>Prayer</strong> or <strong>Closing</strong>, or one with your own label, to mark a part of the service that has no slides yet.</li>
-              <li><strong>Order</strong> — drag an item by its handle to move it, and use × to take it out.</li>
+              <li><strong>New plan</strong> — click <strong>+</strong> to name a plan, give it a date and start it from a template, or use the quick button for the coming Sunday.</li>
+              <li><strong>Pick a plan</strong> — click the plan&apos;s name. The list shows plans from the last 7 days and any later ones; <strong>Show older plans</strong> shows the rest, and searching looks through all of them.</li>
+              <li><strong>Sections</strong> — <strong>+ Section</strong> adds one, such as Worship or Message, or with your own name. Right-click a section for <strong>Planned time…</strong>, <strong>Add note…</strong>, a colour, <strong>Rename…</strong>, <strong>Duplicate section</strong>, <strong>Duplicate with its items</strong> and <strong>Remove section</strong> (its items stay). <strong>▾</strong> closes a section while you work on the rest.</li>
+              <li><strong>Add to it</strong> — click a section, then use <strong>Add to Plan</strong> on a song, verse or passage, picture or video, or custom slide: it goes at the end of that section. Or drag from the library onto a section heading, or onto an item to put it just after. In the Bible tab you can add a whole chapter, a range, a pasted list of references, or a verse with its word study words.</li>
+              <li><strong>Order</strong> — drag an item to move it (the section it will land in lights up with <strong>Move here</strong>), or right-click → <strong>Move to section</strong>. Cmd-click (Ctrl-click) or Shift-click picks several to move together. Drag a section to move it with everything in it. Use × to take an item out.</li>
+              <li><strong>Templates</strong> — the template button saves a plan&apos;s sections (with their time, colour and note), or the sections and the items that are there every week, for new plans to start from. <strong>Sunday Service</strong> is ready to use.</li>
+              <li><strong>Keyboard</strong> — press Tab to get into the plan; ↑ ↓ move between rows, ← → close and open sections, and Enter opens an item.</li>
             </ul>
             <h3>During the Service</h3>
             <ul>
-              <li><strong>Open an item</strong> — click it to put it in the preview. Nothing reaches the screens until you go live.</li>
+              <li><strong>Open an item</strong> — click it to put it in the preview; nothing reaches the screens until you go live. Double-click to open it and go live in one step.</li>
+              <li><strong>Move on</strong> — on an item&apos;s last slide, → shows <strong>End · → again for …</strong>; press → again to open the next item, across sections.</li>
+              <li><strong>Where the service is</strong> — the current section shows <strong>● 2 of 3</strong>; sections already done are dimmed. The stage screen shows <strong>WORSHIP · 2 of 3 · Next: Bible Readings</strong> under its top bar. <strong>Focus</strong> (the crosshair) keeps only the current section open.</li>
+              <li><strong>Section clock</strong> — a section with a planned time shows its time so far against the plan, on the stage screen, the stage link and the phone remote, turning red when over. Its controls are at the top of the <strong>Timers</strong> panel.</li>
               <li><strong>Colours</strong> — the open item is outlined purple, blue while it is in the preview but not on the screens, green while it is on the screens, and red when the screen is black.</li>
               <li><strong>Its own look</strong> — change the background, overlays, text position or key and BPM while an item is open, then click <strong>Update Plan Item</strong>. The change is kept on that item only; the song in the library stays as it was.</li>
-              <li><strong>From the phone</strong> — the remote&apos;s <strong>Plan</strong> tab picks the plan and opens any item, and <strong>Next: …</strong> on its Control tab moves on to the next item.</li>
+              <li><strong>From the phone</strong> — the remote&apos;s <strong>Plan</strong> tab shows the sections; tap one to add from the phone into it, or tap an item to open it. <strong>Next: …</strong> on the Control tab opens the next item.</li>
             </ul>
             <h3>Reuse and Share</h3>
             <ul>
               <li><strong>Duplicate</strong> a plan to start next week&apos;s from this week&apos;s.</li>
+              <li><strong>Print</strong> — the printer button gives <strong>Save as PDF…</strong> or <strong>Print…</strong>: one page with each section, its time and note, and the items numbered.</li>
               <li><strong>Export</strong> a plan as a <code>.sfplan</code> file with everything it uses (songs, media, overlays and the Bible look) and <strong>Import</strong> it on another computer. See <a href="#library-backups">Library &amp; Backups</a>.</li>
+              <li><strong>What import keeps</strong> — a song or custom slide already there under the same title is used only if its lyrics (or what the slide shows) match; otherwise the plan&apos;s version is added beside it, so the screens show what was planned. A verse whose Bible version isn&apos;t installed uses one that is, and the import message says which.</li>
             </ul>
           </section>
 
@@ -525,9 +616,11 @@ export default function DocsIntroductionPage() {
               <article className={styles.quickCard}>
                 <h3>Local Network</h3>
                 <p>
-                  Opens a local web server on your machine. Connect any device on the same Wi-Fi to the
-                  shown URL or scan the QR code. Use <code>/remote</code> for the controller and{" "}
-                  <code>/stage</code> for the singer view.
+                  Opens a local web server on your machine. Any device on the same Wi-Fi can scan{" "}
+                  <strong>Scan to join</strong>: the address opens a page with the <strong>Stage link</strong>{" "}
+                  (<code>/stage</code>) for singers and band, the <strong>Music director</strong> page (<code>/md</code>)
+                  and the <strong>Phone remote</strong> (<code>/remote</code>). Each has its own copy button under{" "}
+                  <strong>Direct links</strong>.
                 </p>
               </article>
               <article className={styles.quickCard}>
@@ -541,8 +634,10 @@ export default function DocsIntroductionPage() {
               </article>
             </div>
             <div className={styles.callout}>
-              <strong>PIN Protection</strong> — Set a PIN in Remote → Security to restrict access to the
-              controller. Leave blank for open access on trusted local networks.
+              <strong>PINs</strong> — in Remote → Security, the <strong>Phone remote PIN</strong> is for the operator
+              (leave blank for open access on a trusted network). <strong>Stage link PIN</strong> is{" "}
+              <strong>Same as the remote</strong>, <strong>No PIN</strong>, or <strong>Its own PIN</strong> for the
+              singers and band. The stage link only ever reads: its PIN never opens the remote&apos;s controls.
             </div>
             <h3>On the Phone</h3>
             <ul>
@@ -573,8 +668,8 @@ export default function DocsIntroductionPage() {
             </div>
             <Figure
               src="/screenshots/docs/settings-remote.png"
-              alt="Settings, Remote: local server running with QR codes for the stage view and remote control."
-              caption="Settings → Remote. Scan a QR code to open the stage view or the remote on a phone."
+              alt="Settings, Remote: local server running with one Scan to join QR code and direct links for the stage link, music director and phone remote."
+              caption="Settings → Remote. One QR code for the whole team, with direct links under it."
               width={1920}
               height={1400}
             />
@@ -713,59 +808,62 @@ export default function DocsIntroductionPage() {
             </div>
           </section>
 
-          {/* ── Display Settings ── */}
+          {/* ── Looks ── */}
           <section className={docCardClassName} id="settings-display">
-            <SectionHeading sectionId="settings-display" title="Settings — Display" />
-            <p>Controls typography and slide layout for all outputs. Found in Settings → Display.</p>
+            <SectionHeading sectionId="settings-display" title="Settings — Looks" />
+            <p>
+              A <strong>look</strong> is how an output shows the slides: which lines, in which fonts, sizes and
+              colours, where on the screen, and over what background. Every output starts from{" "}
+              <strong>Standard</strong>; give one its own look when it needs to differ, such as a livestream that
+              shows only the main language over a transparent background. Found in Settings → Looks.
+            </p>
             <ul>
-              <li><strong>Font</strong> — Choose the typeface used across all slide text.</li>
-              <li><strong>Size</strong> — Base font size for slide text.</li>
-              <li><strong>Style</strong> — Weight and style variations (bold, regular, etc.).</li>
-              <li><strong>Alignment</strong> — Horizontal text alignment for slide content.</li>
-              <li><strong>Color</strong> — Default text color applied to new slides.</li>
-              <li><strong>Show</strong> — a switch for the main, second and third language, the reference and the version name. Turning one off hides it on every output straight away, and Bible verses spread out to fill the space.</li>
+              <li><strong>Standard and your looks</strong> — tabs along the top. <strong>+ New look</strong> opens templates shown with the slide on the screens: Livestream, Green screen, Side screens, Text at the top, Main language only, Confidence, High contrast and more.</li>
+              <li><strong>Lines</strong> — for the main, second and third language, the reference and the version name: <strong>Show</strong>, font, size, style and colour. In a look, each value reads <strong>Same as Standard</strong> until you change it.</li>
+              <li><strong>Layout</strong> — text position (top, middle, bottom, or a <strong>Custom</strong> band), alignment, text style (plain, bars, a panel or a frame), background, and whether pictures on slides show.</li>
+              <li><strong>Used on</strong> — which outputs use the look; click one to open that output&apos;s page. Looks are chosen on each output&apos;s page in <a href="#settings-screens">Outputs</a>.</li>
+              <li><strong>When cleared</strong> — a look with a colour or transparent background can keep it when the screen is cleared, so a keyed livestream doesn&apos;t suddenly show the standby picture.</li>
+              <li><strong>Compare with Standard</strong> shows a look beside Standard.</li>
             </ul>
             <p>
-              <strong>Audience Standby</strong> sets what the audience screen shows when it is cleared: nothing,
-              a colour, or a picture or video. <strong>Language Font Mapping</strong> picks a font per language,
-              for example a Malayalam font for Malayalam lyrics.
+              Default sizes are 84 for the main language, 72 and 60 for the second and third, 36 for the reference
+              and 28 for the version name, on a 1920×1080 slide; longer text shrinks to fit. A warning appears if the
+              reference is nearly as large as the main text. <strong>Save as Default</strong> keeps your Standard as the
+              one <strong>Reset</strong> returns to. Fonts for each language are in <strong>Settings → Language fonts</strong>.
             </p>
-            <div className={styles.callout}>
-              Use the Reset button in Display Settings to restore factory defaults if slide layouts look
-              incorrect after a font change.
-            </div>
             <Figure
               src="/screenshots/docs/settings-display.png"
-              alt="Settings, Display: font size, style, colour, and language font mapping."
-              caption="Settings → Display."
+              alt="Settings, Looks: Standard with a sample Malayalam and English slide, and where it is used."
+              caption="Settings → Looks: Standard, + New look, Stage layouts and Lower Third styles."
               width={1920}
               height={1400}
             />
           </section>
 
-          {/* ── Stage Display ── */}
+          {/* ── Stage Layouts ── */}
           <section className={docCardClassName} id="settings-stage">
-            <SectionHeading sectionId="settings-stage" title="Settings — Stage Display" />
+            <SectionHeading sectionId="settings-stage" title="Settings — Stage Layouts" />
             <p>
-              Configures the confidence monitor shown to speakers and musicians on stage. Found in
-              Settings → Display, under Stage Display.
+              The stage screen is the confidence monitor for the preacher, singers and band. Each stage screen can
+              have its own <strong>layout</strong>, such as a <strong>Band monitor</strong> with chords and a{" "}
+              <strong>Pulpit</strong> screen with the next slide. Layouts are made in Settings → Looks, under{" "}
+              <strong>Stage layouts</strong>, and chosen in <strong>Outputs → Stage → Layout</strong> (with Same
+              picture, for each stage screen).
             </p>
             <ul>
-              <li><strong>Template</strong> — Choose a layout preset: <em>Classic</em> (full detail), <em>Focus</em> (larger text), or <em>Compact</em> (current slide only).</li>
-              <li><strong>Accent Color</strong> — Highlight color for the active/current panel.</li>
-              <li><strong>Show Clock</strong> — Toggle a live clock on the stage display.</li>
-              <li><strong>Clock Format</strong> — 12-hour or 24-hour format.</li>
-              <li><strong>Show Status</strong> — Show current presentation status (live, clear, black).</li>
-              <li><strong>Show Next Slide</strong> — Preview the upcoming slide (disabled in Compact).</li>
-              <li><strong>Show Stage Timer</strong> — Display a running stage timer.</li>
-              <li><strong>Show Info Panel</strong> — Show operator notes and additional context.</li>
-              <li><strong>Show Chords</strong> — Show chord rows on stage and remote confidence views when songs contain chord markers.</li>
-              <li><strong>Show BPM Pulse</strong> — Pulse the song&apos;s beat on the stage display, stage link, phone remote, and music director page.</li>
-              <li><strong>Song Info</strong> — Show the live song&apos;s number, key and BPM, such as <strong>#10001 · G · 120 BPM</strong>, on the stage display and the stage link.</li>
+              <li><strong>Template</strong> — <em>Classic</em> (full detail), <em>Focus</em> (larger text), or <em>Compact</em> (current slide only).</li>
+              <li><strong>Accent Color</strong> — highlight colour for the current panel.</li>
+              <li><strong>Clock</strong> and <strong>Stage Timer</strong> — a live clock (12 or 24 hour) and the running timer. A section&apos;s clock takes the timer slot when no timer runs.</li>
+              <li><strong>Next Slide</strong> — preview the upcoming slide (not in Compact).</li>
+              <li><strong>Info Panel</strong> — operator notes and context.</li>
+              <li><strong>Chords</strong> — chord rows when songs have chords.</li>
+              <li><strong>Song Info</strong> and <strong>BPM Pulse</strong> — the song&apos;s number, key and BPM, such as <strong>#10001 · G · 120 BPM</strong>, and its beat.</li>
+              <li><strong>Plan Section</strong> — a strip under the top bar: <strong>WORSHIP · 2 of 3 · Next: Bible Readings</strong>, with the section&apos;s note.</li>
+              <li><strong>When cleared</strong> — black, or the clock and timers.</li>
             </ul>
             <p>
-              A word sent from Word study with <strong>Stage</strong> shows as a card on the stage display only,
-              with the original word, its meaning and its verse. See <a href="#word-study">Word Study</a>.
+              The stage link and the music director page use the <strong>Stage</strong> layout. A word sent from Word
+              study with <strong>Stage</strong> shows as a card on the stage screen only. See <a href="#word-study">Word Study</a>.
             </p>
             <Figure
               src="/screenshots/docs/stage-view.png"
@@ -787,6 +885,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Stage timers</strong> — click <strong>+</strong> under <strong>Timers</strong> in the preview panel and choose <strong>Countdown</strong> (a set length, such as 30 minutes), <strong>Countdown to Time</strong> (until a time of day, such as 10:30), <strong>Elapsed Time</strong> (counts up), or <strong>Clock</strong>. They show on the stage display.</li>
               <li><strong>Run them</strong> — start, stop and reset each timer from its row. Open a row to rename it, set its time, and turn on <strong>Allows Overrun</strong> to keep counting past zero so you can see how far over you are.</li>
               <li><strong>On a slide</strong> — in the slide editor, add a countdown timer to a slide, such as a welcome screen that counts down to the start. Style it like text and place it anywhere; it shows on the audience screen with that slide. While that slide is open, its timer is listed under <strong>Custom Slide Timers</strong> in the preview panel, with the same controls.</li>
+              <li><strong>Section timers</strong> — a plan section with a planned time has its own clock while the service is in it, at the top of the Timers panel with Pause, Restart and ±1 minute. <strong>Show on</strong> chooses Stage, Audience or both. See <a href="#plan-workflow">How to: Plan a Service</a>.</li>
               <li><strong>Hide or show</strong> — press <strong>Shift+K</strong> to hide the timer layer on the outputs and again to bring it back.</li>
               <li><strong>From the phone</strong> — tap the <strong>Timer</strong> box at the top of the phone remote to start, pause or reset any timer.</li>
             </ul>
@@ -809,67 +908,69 @@ export default function DocsIntroductionPage() {
 
           {/* ── Lower Third ── */}
           <section className={docCardClassName} id="settings-lowerthird">
-            <SectionHeading sectionId="settings-lowerthird" title="Settings — Lower Third" />
+            <SectionHeading sectionId="settings-lowerthird" title="Lower Third" />
             <p>
-              Configures the lower-third overlay for live streaming. Found in Settings → Lower
-              Third. Use the static URL in OBS as a browser source.
+              The lower third puts the words along the bottom of a livestream. Choose which style is live, and copy
+              the links for OBS, on <strong>Outputs → Lower Third</strong>. How each style looks is changed in{" "}
+              <strong>Settings → Looks → Lower Third styles</strong>.
             </p>
             <ul>
-              <li><strong>Style</strong> — Select a lower-third visual style. Each has its own description and URL.</li>
-              <li><strong>Font</strong> — Typeface used for lower-third text.</li>
-              <li><strong>Primary Color</strong> — Main text or accent color.</li>
-              <li><strong>Secondary Color</strong> — Supporting color for subtitle or background elements.</li>
-              <li><strong>Bottom Offset %</strong> — Vertical position from the bottom of the frame.</li>
-              <li><strong>Panel Opacity</strong> — Transparency of the lower-third background panel.</li>
-              <li><strong>Show Second Line</strong> — Toggle display of the subtitle/secondary text line.</li>
+              <li><strong>Style</strong> — such as Glass, Strip or Side Fade, each with its own look.</li>
+              <li><strong>Font and colours</strong> — typeface, primary and secondary colours, and panel opacity.</li>
+              <li><strong>Position</strong> — how far from the bottom of the frame, and whether the second line shows.</li>
+              <li><strong>Background for keying</strong> — Transparent, or a solid key colour for switchers that expect one.</li>
             </ul>
             <p>
               A word study word shown on the screens appears in the lower third too: the original word and its
               meaning, with <strong>loved · John 3:16 · Strong&apos;s G25</strong> below.
             </p>
             <div className={styles.callout}>
-              In OBS, add a Browser Source and paste the static lower-third URL from Settings. It updates
-              in real time as slides change — no re-linking needed between services.
+              In OBS, add a Browser Source and paste the <strong>Static</strong> link from Outputs → Lower Third. It
+              follows the style you choose and updates as slides change — no re-linking needed between services.
             </div>
           </section>
 
-          {/* ── Screens & Outputs ── */}
+          {/* ── Outputs ── */}
           <section className={docCardClassName} id="settings-screens">
-            <SectionHeading sectionId="settings-screens" title="Settings — Screens & Outputs" />
+            <SectionHeading sectionId="settings-screens" title="Settings — Outputs" />
             <p>
-              Routes content to the Audience, Stage, Lower Third, and Center Stage outputs. Found in
-              Settings → Screens.
+              Everything about where each output goes, on one page per output. Found in Settings → Outputs. For a
+              first setup, follow <a href="#set-up-screens">How to: Set Up Your Screens</a>.
             </p>
             <div className={styles.quickGrid}>
               <article className={styles.quickCard}>
-                <h3>Screen Assignment</h3>
-                <p>Assign each output (Projector, Stage, Lower Third) to a connected display. Use <strong>Identify Screens</strong> to show numbers on each monitor and <strong>Test Pattern</strong> to verify signal and alignment.</p>
+                <h3>Your setup</h3>
+                <p>A card for Audience, Stage, Lower Third and Center Stage: on or off, its screens and its look. Click one for its page. <strong>Identify screens</strong> shows each screen&apos;s number on the screen itself.</p>
               </article>
               <article className={styles.quickCard}>
-                <h3>Output Modes</h3>
-                <p><strong>Single</strong> — one display per output. <strong>Grouped / Edge Blend</strong> — span across multiple displays with column and overlap controls for multi-projector rigs.</p>
+                <h3>Screens</h3>
+                <p>The output&apos;s screens, each with its own switch. <strong>Add Screen…</strong> adds one. With <strong>Only the selected screen</strong>, <strong>Show here</strong> picks the one in use; with Same picture, One wide picture or Edge blend, <strong>↑ ↓</strong> set the order.</p>
               </article>
               <article className={styles.quickCard}>
-                <h3>Color Overlay</h3>
-                <p>Tint the output with a solid color. Useful for matching projector color temperature or applying a stage wash effect.</p>
+                <h3>Look, Layout or Style</h3>
+                <p>How the output shows the slides: a look for Audience and Center Stage, a layout for Stage, a style for Lower Third. <strong>+ New</strong> and <strong>Edit…</strong> open it in Looks.</p>
               </article>
               <article className={styles.quickCard}>
-                <h3>Corner Pin</h3>
-                <p>Keystone / perspective correction. Drag the four corners of the output to correct for angled projection surfaces.</p>
-              </article>
-              <article className={styles.quickCard}>
-                <h3>Alpha &amp; Chroma Key</h3>
-                <p>Key the output for broadcast or video mixing: alpha keying with key and fill colours, or a chroma key colour for switchers that expect one.</p>
+                <h3>When cleared</h3>
+                <p>The standby background for Audience (also used by NDI and Center Stage): none, a colour, pictures and videos that take turns, or a visualizer. The preview&apos;s <strong>Cleared</strong> shows it.</p>
               </article>
               <article className={styles.quickCard}>
                 <h3>NDI Output</h3>
-                <p>Send the output as an NDI stream on the local network. Set a source name and framerate. NDI receivers (e.g. OBS NDI plugin) can pick up the feed directly.</p>
+                <p>Send the output as an NDI stream on the local network, with a source name and framerate. On Audience, the stream can have its own look, such as Livestream.</p>
               </article>
+              <article className={styles.quickCard}>
+                <h3>Adjustments</h3>
+                <p><strong>Hardware</strong>: output scale, columns and edge-blend overlap. <strong>Color</strong>: a tint to match projectors. <strong>Corner Pin</strong>: correct a projector at an angle. <strong>Test Pattern</strong> is under Tools.</p>
+              </article>
+            </div>
+            <div className={styles.callout}>
+              Changes on the Outputs page wait for <strong>Apply</strong>; the top of the page says <strong>Changes not
+              applied</strong> until you press it. <strong>Refresh</strong> looks again for connected screens.
             </div>
             <Figure
               src="/screenshots/docs/settings-screens.png"
-              alt="Settings, Screens: audience output assigned to Screen 1, with NDI output below."
-              caption="Settings → Screens. The yellow note appears when two outputs share one screen."
+              alt="Settings, Outputs: Your setup cards for Audience, Stage, Lower Third and Center Stage, and the Audience output's screens."
+              caption="Settings → Outputs. The yellow note appears when two outputs share one screen."
               width={1920}
               height={1400}
             />
@@ -1081,10 +1182,12 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="outputs">
             <SectionHeading sectionId="outputs" title="Outputs and Displays" />
             <ul>
-              <li><strong>Projector</strong> — Full-screen congregation output for lyrics, scripture, and media.</li>
-              <li><strong>Stage Display</strong> — Confidence monitor for speakers and musicians with current + next slide context.</li>
-              <li><strong>Lower Third</strong> — Overlay stream for song titles and speaker names in OBS or broadcast tools.</li>
-              <li><strong>Mobile Stage View</strong> — Open <code>/stage</code> from the Remote URL on any phone — singers see live lyrics without a dedicated monitor.</li>
+              <li><strong>Audience</strong> — the congregation&apos;s screens for lyrics, scripture, and media, on one screen or several.</li>
+              <li><strong>Stage</strong> — the confidence monitor with the current and next slide, clock, timers and the plan section, in a layout per stage screen.</li>
+              <li><strong>Lower Third</strong> — the words along the bottom of a livestream, as a screen or a browser source for OBS.</li>
+              <li><strong>Center Stage</strong> — a screen behind the team with the text in a band.</li>
+              <li><strong>NDI</strong> — any output can also go out as an NDI stream, with its own look.</li>
+              <li><strong>Stage link</strong> — open the team address on any phone; singers see the live words without a monitor.</li>
               <li><strong>Layer Controls</strong> — Black, Clear, and Restore controls for instant live transitions.</li>
             </ul>
           </section>
@@ -1096,10 +1199,10 @@ export default function DocsIntroductionPage() {
               <li>Install StageFlo from the downloads page and launch the app.</li>
               <li>In Settings → Songs, import a song pack or add songs manually.</li>
               <li>In Settings → Bible, download or import a translation.</li>
-              <li>Build a service plan with 2–3 songs and one scripture passage.</li>
-              <li>Open Settings → Screens and assign your audience and stage outputs.</li>
+              <li>Open Settings → Outputs, click <strong>Identify screens</strong>, add your audience and stage screens with <strong>Add Screen…</strong>, and press <strong>Apply</strong>. See <a href="#set-up-screens">How to: Set Up Your Screens</a>.</li>
+              <li>Make a plan from the <strong>Sunday Service</strong> template and add 2–3 songs and one scripture passage to its sections.</li>
               <li>Choose a library folder in Settings → Backup &amp; Restore if you want the same library available on another PC.</li>
-              <li>Open Remote settings, copy the stage URL, and open it on a mobile device for the singer view.</li>
+              <li>Open Settings → Remote and scan <strong>Scan to join</strong> on a phone; pick the stage link for the singer view.</li>
               <li>Practice Next/Previous with the hotkeys or the phone remote before going live.</li>
             </ol>
           </section>
