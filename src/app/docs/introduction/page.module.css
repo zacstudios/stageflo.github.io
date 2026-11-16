@@ -263,6 +263,10 @@
   margin: 1rem 0 0;
 }
 
+.figureFrame {
+  position: relative;
+}
+
 .figure img {
   display: block;
   width: 100%;
@@ -277,6 +281,76 @@
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1.5;
+}
+
+.visualGuide {
+  margin: 0.85rem 0 1rem;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  border-radius: 0.85rem;
+  background: rgba(8, 12, 24, 0.72);
+  overflow: hidden;
+}
+
+.visualFrame {
+  position: relative;
+  background: #080c18;
+}
+
+.visualFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.screenshotBadge {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(8, 12, 24, 0.82);
+  padding: 0.28rem 0.55rem;
+  color: #f8fafc;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.visualMarker {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 3px solid #fff;
+  border-radius: 999px;
+  background: #f43f5e;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.28), 0 5px 18px rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
+.visualGuide figcaption {
+  padding: 0.75rem 0.85rem 0.85rem;
+  color: #cbd5e1;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.markerLegend {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0.55rem 0 0 1.35rem !important;
+}
+
+.markerLegend li {
+  color: var(--muted);
 }
 
 .phoneRow {
@@ -297,4 +371,13 @@
 
 .content code {
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+  .visualMarker {
+    width: 1.65rem;
+    height: 1.65rem;
+    border-width: 2px;
+    font-size: 0.72rem;
+  }
 }

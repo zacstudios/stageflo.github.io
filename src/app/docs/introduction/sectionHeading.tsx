@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import styles from "./page.module.css";
+import { sectionVisuals } from "./sectionVisuals";
+import VisualGuide from "./visualGuide";
 
 type SectionHeadingProps = {
   sectionId: string;
@@ -10,6 +12,7 @@ type SectionHeadingProps = {
 
 export default function SectionHeading({ sectionId, title }: SectionHeadingProps) {
   const [copied, setCopied] = useState(false);
+  const visual = sectionVisuals[sectionId];
 
   const handleCopy = async () => {
     if (typeof window === "undefined") return;
@@ -26,16 +29,19 @@ export default function SectionHeading({ sectionId, title }: SectionHeadingProps
   };
 
   return (
-    <div className={styles.sectionHeading}>
-      <h2>{title}</h2>
-      <button
-        type="button"
-        className={styles.copyLinkButton}
-        onClick={handleCopy}
-        aria-label={`Copy link to ${title}`}
-      >
-        {copied ? "Copied" : "Copy Link"}
-      </button>
-    </div>
+    <>
+      <div className={styles.sectionHeading}>
+        <h2>{title}</h2>
+        <button
+          type="button"
+          className={styles.copyLinkButton}
+          onClick={handleCopy}
+          aria-label={`Copy link to ${title}`}
+        >
+          {copied ? "Copied" : "Copy Link"}
+        </button>
+      </div>
+      {visual ? <VisualGuide {...visual} /> : null}
+    </>
   );
 }

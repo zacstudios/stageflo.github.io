@@ -14,7 +14,10 @@ type FigureProps = {
 export default function Figure({ src, alt, caption, width, height }: FigureProps) {
   return (
     <figure className={styles.figure}>
-      <Image src={src} alt={alt} width={width} height={height} loading="lazy" />
+      <div className={styles.figureFrame}>
+        <Image src={src} alt={alt} width={width} height={height} loading="lazy" />
+        <span className={styles.screenshotBadge}>In StageFlo</span>
+      </div>
       {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   );

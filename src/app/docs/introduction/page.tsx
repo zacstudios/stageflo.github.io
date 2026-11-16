@@ -128,6 +128,13 @@ export default function DocsIntroductionPage() {
                 Ask for Help
               </Link>
             </div>
+            <Figure
+              src="/screenshots/docs/workspace.png"
+              alt="StageFlo workspace with its content library, slides, service plan and audience preview."
+              caption="StageFlo keeps the content library, slide preparation, service plan and live preview in one workspace."
+              width={2880}
+              height={1760}
+            />
           </section>
 
           <section className={docCardClassName} id="whats-new">
