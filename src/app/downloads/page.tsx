@@ -69,13 +69,6 @@ export default async function DownloadsPage() {
     <div className="site-shell">
       <TopNav
         brandLabel="StageFlo"
-        links={[
-          { label: "Home", href: "/" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Guides", href: "/guides/" },
-          { label: "Desktop", href: "#desktop" },
-          { label: "Resources", href: "#resources" },
-        ]}
       />
 
       <main className="page-main">

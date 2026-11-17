@@ -42,13 +42,6 @@ export default function SupportersPage() {
     <div className="site-shell">
       <TopNav
         brandLabel="StageFlo"
-        links={[
-          { label: "Features", href: "/#features" },
-          { label: "Screenshots", href: "/#screenshots" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Feedback", href: "/feedback/" },
-          { label: "Home", href: "/" },
-        ]}
       />
 
       <main className="page-main">

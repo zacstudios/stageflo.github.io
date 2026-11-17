@@ -40,12 +40,6 @@ export default function Feedback() {
     <div className="site-shell feedback-page">
       <TopNav
         brandLabel="StageFlo"
-        links={[
-          { label: "Features", href: "/#features" },
-          { label: "Screenshots", href: "/#screenshots" },
-          { label: "Install", href: "/#install" },
-          { label: "Home", href: "/" },
-        ]}
       />
 
       <main className="feedback-main">

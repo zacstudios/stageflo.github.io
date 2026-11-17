@@ -34,12 +34,6 @@ export default function PrivacyPage() {
     <div className="site-shell page-main" style={{ gap: "1rem" }}>
       <TopNav
         brandLabel="StageFlo"
-        links={[
-          { label: "Home", href: "/" },
-          { label: "Downloads", href: "/downloads/" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Feedback", href: "/feedback/" },
-        ]}
       />
 
       <main>

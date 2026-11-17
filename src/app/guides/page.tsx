@@ -22,12 +22,6 @@ export default function GuidesPage() {
     <div className="site-shell">
       <TopNav
         brandLabel="StageFlo Guides"
-        links={[
-          { label: "Home", href: "/" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Downloads", href: "/downloads/" },
-          { label: "Feedback", href: "/feedback/" },
-        ]}
       />
       <main className={styles.main}>
         <header className={styles.header}>

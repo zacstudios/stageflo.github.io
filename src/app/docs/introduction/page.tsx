@@ -85,13 +85,6 @@ export default function DocsIntroductionPage() {
     <div className="site-shell">
       <TopNav
         brandLabel="StageFlo Docs"
-        links={[
-          { label: "Home", href: "/" },
-          { label: "Guides", href: "/guides/" },
-          { label: "Downloads", href: "/downloads/" },
-          { label: "Feedback", href: "/feedback/" },
-          { label: "GitHub", href: "https://github.com/zacstudios/Stageflo.app", external: true },
-        ]}
       />
 
       <main className={styles.docsMain}>

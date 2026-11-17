@@ -421,14 +421,6 @@ export default async function Home() {
       <TopNav
         brandLabel="StageFlo"
         brandHref="#home"
-        links={[
-          { label: "Features", href: "#features" },
-          { label: "Screenshots", href: "#screenshots" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Guides", href: "/guides/" },
-          { label: "Supporters", href: "/supporters/" },
-          { label: "Feedback", href: "/feedback/" },
-        ]}
       />
 
       <main className="page-main">

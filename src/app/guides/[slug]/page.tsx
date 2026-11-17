@@ -46,12 +46,6 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     <div className="site-shell">
       <TopNav
         brandLabel="StageFlo Guides"
-        links={[
-          { label: "Home", href: "/" },
-          { label: "Guides", href: "/guides/" },
-          { label: "Docs", href: "/docs/introduction/" },
-          { label: "Downloads", href: "/downloads/" },
-        ]}
       />
       <main className={styles.main}>
         <nav className={styles.crumbs} aria-label="Breadcrumb">
