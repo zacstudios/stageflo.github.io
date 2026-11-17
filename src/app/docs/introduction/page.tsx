@@ -97,6 +97,9 @@ export default function DocsIntroductionPage() {
       <main className={styles.docsMain}>
         <aside className={styles.sidebar}>
           <h2>Introduction</h2>
+          <Link className={styles.sidebarGuides} href="/guides/">
+            Step-by-step guides →
+          </Link>
           <nav aria-label="Documentation sections">
             {docSections.map((section) => (
               <a key={section.id} href={`#${section.id}`}>
@@ -125,6 +128,9 @@ export default function DocsIntroductionPage() {
               <a className={styles.ghostLink} href="https://github.com/zacstudios/Stageflo.app#readme" target="_blank" rel="noopener noreferrer">
                 Full README
               </a>
+              <Link className={styles.ghostLink} href="/guides/">
+                Step-by-step guides
+              </Link>
               <Link className={styles.ghostLink} href="/feedback/">
                 Ask for Help
               </Link>

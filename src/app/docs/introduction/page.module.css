@@ -381,3 +381,43 @@
     font-size: 0.72rem;
   }
 }
+
+/* Links from a docs topic to its step-by-step guides. */
+.guideLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin: 0.25rem 0 1rem;
+  font-size: 0.875rem;
+}
+
+.guideLinks span {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.guideLinks a {
+  color: var(--accent-light);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  background: rgba(124, 58, 237, 0.12);
+}
+
+.guideLinks a:hover {
+  border-color: var(--accent);
+}
+
+.sidebarGuides {
+  display: block;
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  background: rgba(124, 58, 237, 0.18);
+  color: var(--ink) !important;
+  font-weight: 600;
+  text-decoration: none;
+}

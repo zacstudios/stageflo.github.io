@@ -475,6 +475,10 @@ export default async function Home() {
               Get the Intel build
             </GatedDownloadLink>
           </p>
+          <p className="cta-mac-arch-note">
+            New to StageFlo? <Link href="/guides/">Follow the step-by-step guides</Link>, with a
+            picture of every step.
+          </p>
           <FreeSpotsCounter />
         </section>
 
@@ -515,11 +519,14 @@ export default async function Home() {
               ))}
             </ul>
             <div className="cta-row">
-              <Link className="button button-primary" href="/docs/introduction/#plan-workflow">
-                Set up the plan workflow
+              <Link className="button button-primary" href="/guides/">
+                Step-by-step guides
               </Link>
-              <Link className="button button-secondary" href="/docs/introduction/#set-up-screens">
-                Set up screens and outputs
+              <Link className="button button-secondary" href="/guides/set-up-screens/">
+                Set up your screens
+              </Link>
+              <Link className="button button-secondary" href="/guides/sunday-template/">
+                Save your Sunday template
               </Link>
               <Link className="button button-secondary" href="/docs/introduction/#whats-new">
                 See everything in 2.1.80
@@ -742,6 +749,8 @@ export default async function Home() {
           <a href="/feedback/">Feedback</a>
           {" · "}
           <Link href="/docs/introduction/">Docs</Link>
+          {" · "}
+          <Link href="/guides/">Guides</Link>
           {" · "}
           <Link href="/supporters/">Supporters</Link>
           {" · "}
