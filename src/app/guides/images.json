@@ -1,0 +1,234 @@
+{
+  "bible/1-search": {
+    "width": 2880,
+    "height": 1760
+  },
+  "bible/2-add-to-plan": {
+    "width": 750,
+    "height": 410
+  },
+  "bible/3-paste-list": {
+    "width": 614,
+    "height": 416
+  },
+  "bible/4-paste-dialog": {
+    "width": 976,
+    "height": 508
+  },
+  "livestream-look/1-new-look": {
+    "width": 371,
+    "height": 210
+  },
+  "livestream-look/2-templates": {
+    "width": 936,
+    "height": 778
+  },
+  "livestream-look/3-the-look": {
+    "width": 1180,
+    "height": 820
+  },
+  "livestream-look/4-ndi-settings": {
+    "width": 288,
+    "height": 204
+  },
+  "livestream-look/5-look-on-ndi": {
+    "width": 940,
+    "height": 140
+  },
+  "lower-third/1-style": {
+    "width": 974,
+    "height": 197
+  },
+  "lower-third/2-static-link": {
+    "width": 940,
+    "height": 87
+  },
+  "lower-third/3-keying": {
+    "width": 1004,
+    "height": 153
+  },
+  "music-director/1-pin": {
+    "width": 972,
+    "height": 123
+  },
+  "music-director/2-enter-pin": {
+    "width": 780,
+    "height": 1688
+  },
+  "music-director/3-chart": {
+    "width": 780,
+    "height": 1688
+  },
+  "run-service/1-double-click": {
+    "width": 1700,
+    "height": 196
+  },
+  "run-service/2-live": {
+    "width": 2880,
+    "height": 1760
+  },
+  "run-service/3-next-item": {
+    "width": 978,
+    "height": 352
+  },
+  "run-service/4-focus": {
+    "width": 1686,
+    "height": 148
+  },
+  "run-service/5-section-timer": {
+    "width": 670,
+    "height": 306
+  },
+  "run-service/6-stage-link": {
+    "width": 2560,
+    "height": 1440
+  },
+  "sections/1-add-section": {
+    "width": 1686,
+    "height": 148
+  },
+  "sections/2-section-menu": {
+    "width": 490,
+    "height": 512
+  },
+  "sections/3-planned-time": {
+    "width": 848,
+    "height": 456
+  },
+  "sections/4-add-to-plan": {
+    "width": 2880,
+    "height": 1760
+  },
+  "sections/5-result": {
+    "width": 1700,
+    "height": 516
+  },
+  "set-up-screens/1-identify": {
+    "width": 974,
+    "height": 162
+  },
+  "set-up-screens/2-add-screen": {
+    "width": 940,
+    "height": 177
+  },
+  "set-up-screens/3-add-screen-sheet": {
+    "width": 480,
+    "height": 346
+  },
+  "set-up-screens/4-apply": {
+    "width": 319,
+    "height": 68
+  },
+  "set-up-screens/5-your-setup": {
+    "width": 974,
+    "height": 162
+  },
+  "share-plan/1-export": {
+    "width": 1686,
+    "height": 148
+  },
+  "share-plan/2-import": {
+    "width": 1686,
+    "height": 148
+  },
+  "share-plan/3-message": {
+    "width": 1696,
+    "height": 208
+  },
+  "songs/1-add-song": {
+    "width": 624,
+    "height": 212
+  },
+  "songs/2-song-pack": {
+    "width": 972,
+    "height": 140
+  },
+  "songs/3-openlyrics": {
+    "width": 972,
+    "height": 105
+  },
+  "stage-layout/1-new-layout": {
+    "width": 344,
+    "height": 210
+  },
+  "stage-layout/2-name": {
+    "width": 973,
+    "height": 186
+  },
+  "stage-layout/3-chords": {
+    "width": 972,
+    "height": 697
+  },
+  "stage-layout/4-choose": {
+    "width": 966,
+    "height": 132
+  },
+  "standby/1-standby-background": {
+    "width": 972,
+    "height": 106
+  },
+  "standby/2-visualizer": {
+    "width": 972,
+    "height": 437
+  },
+  "standby/3-check-cleared": {
+    "width": 962,
+    "height": 399
+  },
+  "sunday-template/1-templates-button": {
+    "width": 1686,
+    "height": 148
+  },
+  "sunday-template/2-menu": {
+    "width": 592,
+    "height": 420
+  },
+  "sunday-template/3-name": {
+    "width": 848,
+    "height": 536
+  },
+  "sunday-template/4-new-plan": {
+    "width": 1686,
+    "height": 148
+  },
+  "sunday-template/5-start-with": {
+    "width": 720,
+    "height": 860
+  },
+  "sunday-template/6-result": {
+    "width": 1514,
+    "height": 602
+  },
+  "team-phones/1-scan-to-join": {
+    "width": 972,
+    "height": 449
+  },
+  "team-phones/2-stage-link-pin": {
+    "width": 972,
+    "height": 153
+  },
+  "team-phones/3-phone-home": {
+    "width": 780,
+    "height": 1688
+  },
+  "team-phones/4-stage-link": {
+    "width": 780,
+    "height": 1688
+  },
+  "timers/1-add-timer": {
+    "width": 714,
+    "height": 284
+  },
+  "timers/2-kind": {
+    "width": 440,
+    "height": 356
+  },
+  "timers/3-timer": {
+    "width": 648,
+    "height": 582
+  },
+  "timers/4-stage-message": {
+    "width": 768,
+    "height": 566
+  }
+}

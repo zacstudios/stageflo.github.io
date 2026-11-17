@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { guides } from "./guides/guides";
 
 const BASE_URL = "https://stageflo.app";
 
@@ -20,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/guides/`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...guides.map((guide) => ({
+      url: `${BASE_URL}/guides/${guide.slug}/`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${BASE_URL}/feedback/`,
       lastModified: now,

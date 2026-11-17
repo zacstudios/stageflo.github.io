@@ -1,0 +1,253 @@
+/* Step-by-step guides: one narrow column of numbered steps, each with a picture from StageFlo. */
+
+.main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.crumbs a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  text-decoration: underline;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.where {
+  color: var(--accent-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.lede {
+  color: var(--muted);
+  margin: 0;
+  max-width: 62ch;
+  line-height: 1.6;
+}
+
+.before {
+  border: 1px solid var(--line);
+  background: var(--panel-solid);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.before h2 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.before ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.before strong {
+  color: var(--ink);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  counter-reset: step;
+}
+
+.step {
+  counter-increment: step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.stepHead {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+}
+
+.stepHead::before {
+  content: counter(step);
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transform: translateY(-2px);
+}
+
+.stepHead h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.text {
+  margin: 0 0 0 44px;
+  color: var(--muted);
+  max-width: 62ch;
+  line-height: 1.6;
+}
+
+.text strong,
+.tip strong,
+.footer strong {
+  color: var(--ink);
+}
+
+.figure {
+  margin: 0 0 0 44px;
+}
+
+.figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.tip {
+  margin-left: 44px;
+  border-left: 3px solid var(--accent);
+  padding: 0.35rem 0 0.35rem 0.8rem;
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+.footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1.1rem;
+  line-height: 1.6;
+}
+
+.next {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.next a {
+  color: var(--accent-light);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.next a:hover {
+  text-decoration: underline;
+}
+
+/* The list of guides */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.group h2 {
+  font-size: 0.8rem;
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 0.85rem;
+}
+
+.card {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  background: var(--panel-solid);
+  border-radius: 12px;
+  padding: 0.85rem;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.card img {
+  flex: none;
+  width: 96px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+
+.card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .text,
+  .figure,
+  .tip {
+    margin-left: 0;
+  }
+}

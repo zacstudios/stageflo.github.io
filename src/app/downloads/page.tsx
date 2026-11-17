@@ -72,6 +72,7 @@ export default async function DownloadsPage() {
         links={[
           { label: "Home", href: "/" },
           { label: "Docs", href: "/docs/introduction/" },
+          { label: "Guides", href: "/guides/" },
           { label: "Desktop", href: "#desktop" },
           { label: "Resources", href: "#resources" },
         ]}

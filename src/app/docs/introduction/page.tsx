@@ -87,6 +87,7 @@ export default function DocsIntroductionPage() {
         brandLabel="StageFlo Docs"
         links={[
           { label: "Home", href: "/" },
+          { label: "Guides", href: "/guides/" },
           { label: "Downloads", href: "/downloads/" },
           { label: "Feedback", href: "/feedback/" },
           { label: "GitHub", href: "https://github.com/zacstudios/Stageflo.app", external: true },
@@ -223,6 +224,12 @@ export default function DocsIntroductionPage() {
 
           <section className={docCardClassName} id="set-up-screens">
             <SectionHeading sectionId="set-up-screens" title="How to: Set Up Your Screens" />
+            <div className={styles.callout}>
+              Prefer pictures? Follow the step-by-step guides:{" "}
+              <Link href="/guides/set-up-screens/">Set up your screens</Link>,{" "}
+              <Link href="/guides/livestream-look/">Give the livestream its own look</Link> and{" "}
+              <Link href="/guides/stage-layout/">Give the band its own stage screen</Link>.
+            </div>
             <p>
               Do this once for your room, before the first service. Everything is in{" "}
               <strong>Settings → Outputs</strong>. An <strong>output</strong> is what a group of people sees:
@@ -243,7 +250,7 @@ export default function DocsIntroductionPage() {
               <li><strong>Press Apply.</strong> Changes on the Outputs page wait until you do; the top of the page says <strong>Changes not applied</strong> until then, so nothing jumps between screens while you set up.</li>
             </ol>
             <p>
-              The <strong>Your setup</strong> cards at the top show each output at a glance: on or off, its screens and
+              The <strong>Your setup</strong>{" "}cards at the top show each output at a glance: on or off, its screens and
               its look. Click a card to open that output&apos;s page. A yellow note warns when two outputs share a
               screen, as one would cover the other.
             </p>
@@ -257,6 +264,13 @@ export default function DocsIntroductionPage() {
 
           <section className={docCardClassName} id="plan-workflow">
             <SectionHeading sectionId="plan-workflow" title="How to: Plan a Service" />
+            <div className={styles.callout}>
+              Step by step, with pictures:{" "}
+              <Link href="/guides/sections/">Organise a plan into sections</Link>,{" "}
+              <Link href="/guides/sunday-template/">Save your Sunday service as a template</Link> and{" "}
+              <Link href="/guides/run-service/">Run the service from the plan</Link>.{" "}
+              <Link href="/guides/">All guides →</Link>
+            </div>
             <p>A weekly routine that keeps the plan, the screens and the team in step.</p>
             <h3>Once: make your order of service</h3>
             <ol>
@@ -643,7 +657,7 @@ export default function DocsIntroductionPage() {
             <div className={styles.callout}>
               <strong>PINs</strong> — in Remote → Security, the <strong>Phone remote PIN</strong> is for the operator
               (leave blank for open access on a trusted network). <strong>Stage link PIN</strong> is{" "}
-              <strong>Same as the remote</strong>, <strong>No PIN</strong>, or <strong>Its own PIN</strong> for the
+              <strong>Same as the remote</strong>, <strong>No PIN</strong>, or <strong>Its own PIN</strong>{" "}for the
               singers and band. The stage link only ever reads: its PIN never opens the remote&apos;s controls.
             </div>
             <h3>On the Phone</h3>

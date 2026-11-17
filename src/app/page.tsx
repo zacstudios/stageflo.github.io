@@ -425,6 +425,7 @@ export default async function Home() {
           { label: "Features", href: "#features" },
           { label: "Screenshots", href: "#screenshots" },
           { label: "Docs", href: "/docs/introduction/" },
+          { label: "Guides", href: "/guides/" },
           { label: "Supporters", href: "/supporters/" },
           { label: "Feedback", href: "/feedback/" },
         ]}
