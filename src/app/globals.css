@@ -2009,7 +2009,7 @@ footer {
 
 .company-logo {
   width: auto;
-  height: 2.1rem;
+  height: 2.6rem;
   border-radius: 0.5rem;
   background: rgba(255, 255, 255, 0.9);
   padding: 0.2rem 0.3rem;
@@ -2596,4 +2596,23 @@ footer {
   .brand > span {
     display: none;
   }
+}
+
+/* Home: each 2.1.80 card links to its step-by-step guide. */
+.new-feature-guide {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--accent-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.new-feature-guide:hover {
+  text-decoration: underline;
+}
+
+/* The hero's single "what's new" badge is a link. */
+.hero-badges a.eyebrow:hover {
+  border-color: rgba(196, 181, 253, 0.6);
+  color: var(--ink);
 }

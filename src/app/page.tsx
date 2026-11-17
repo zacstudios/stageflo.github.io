@@ -17,136 +17,93 @@ import {
 
 const pillars = [
   {
-    icon: "✦",
-    accent: true,
-    title: "AI Semantic Search",
-    desc: "Search your Bible and song library by meaning, not just exact words. Works offline across English, Malayalam, Hindi, Tamil, Telugu and more.",
-    badge: "New in 2.0",
-  },
-  {
-    icon: "📡",
-    accentTeal: true,
-    title: "Remote Stage View",
-    desc: "One click generates a public internet link for your stage display and remote controller — share it with musicians anywhere, no account needed.",
-    badge: "New in 2.0",
-  },
-  {
     icon: "🎵",
-    title: "Songs & Scripture",
-    desc: "Instant search across your song library and Bible. Present lyrics and verses in seconds.",
+    title: "Songs & Scripture in Every Language",
+    desc: "Lyrics and Bible verses in English, Malayalam, Hindi, Tamil, Telugu and more, side by side, with transliteration and parallel versions. Find any song or verse in seconds.",
+  },
+  {
+    icon: "🗂️",
+    accent: true,
+    title: "Service Plans in Sections",
+    desc: "Build the order of service in sections with planned times and notes, start each week from a template, and move through it with one key or a clicker.",
+    badge: "New in 2.1.80",
   },
   {
     icon: "🖥️",
-    title: "Multi-Screen Output",
-    desc: "Guide each audience, stage, lower-third, and Center Stage screen from one Outputs page, with its own look or layout.",
-    badge: "New workflow in 2.1.80",
+    accent: true,
+    title: "Every Screen, Its Own Look",
+    desc: "Projector, stage monitor, lower third, Center Stage and NDI, each with the right look — both languages in the room, one line low on the livestream.",
+    badge: "New in 2.1.80",
   },
   {
-    icon: "🌐",
-    title: "Multi-Language Ready",
-    desc: "Run multilingual worship services with native-language, translated, and bilingual slide layouts for global congregations.",
+    icon: "📱",
+    accentTeal: true,
+    title: "The Team on Their Phones",
+    desc: "One QR code: singers read the words, the band leader sets keys and BPM, the operator runs slides — on the church Wi-Fi or over the internet.",
+  },
+  {
+    icon: "✦",
+    title: "AI Search, Offline",
+    desc: "Search the Bible and your songs by meaning — “women at the well” finds John 4 — in every language you use, without an internet connection.",
   },
   {
     icon: "✨",
     title: "Live Visuals",
-    desc: "Audio-reactive animated backgrounds that move with your music. Customise colours, speed, and intensity — or layer a photo or video underneath for unique effects.",
-    badge: "New in 2.1",
+    desc: "Audio-reactive backgrounds that move with the music, with your own colours, or blended with a photo or video.",
   },
 ];
 
 const aiFeatures = [
-  { icon: "🔍", text: "Search by meaning — \"women at the well\" finds John 4 without exact words" },
-  { icon: "🌏", text: "Multilingual support — English, Malayalam, Hindi, Tamil, Telugu, and more" },
-  { icon: "📴", text: "Fully offline — 117 MB model runs in-process, no Ollama or internet needed" },
-  { icon: "⚡", text: "~20 ms per query after warm-up, results cached locally for instant re-searches" },
-  { icon: "📖", text: "Bible and song library both indexed automatically in the background" },
-  { icon: "🤖", text: "AI tab auto-activates in Song Library when keyword search returns nothing" },
+  { icon: "🔍", text: "Search by meaning — “women at the well” finds John 4 without the exact words" },
+  { icon: "🌏", text: "Works across English, Malayalam, Hindi, Tamil, Telugu and more" },
+  { icon: "📴", text: "Runs on your computer — no internet needed during the service" },
+  { icon: "📖", text: "Your Bible and songs are ready to search as soon as they're added" },
 ];
 
 const remoteFeatures = [
-  { icon: "🔗", text: "One click — StageFlo generates a public URL via Cloudflare Tunnel instantly" },
-  { icon: "🌍", text: "Works over the internet — send the link to musicians or speakers anywhere" },
-  { icon: "📱", text: "Stage display shows current slide, next slide, and notes on any phone or tablet" },
-  { icon: "🎛️", text: "Remote controller lets anyone advance slides or mute output from their device" },
-  { icon: "🔒", text: "No account, no port-forwarding, no static IP — tunnel is created on demand" },
-  { icon: "⚡", text: "Low-latency sync — stage view updates within milliseconds of each slide change" },
+  { icon: "🔗", text: "One QR code opens the stage link, the music director page and the phone remote" },
+  { icon: "🌍", text: "On the church Wi-Fi, or over the internet with a stageflo.app link" },
+  { icon: "📱", text: "Singers see the live words, chords, next slide and timers on any phone" },
+  { icon: "🔒", text: "A PIN for the remote; the stage link can have its own PIN, or none — it only reads" },
 ];
 
 const visualizerFeatures = [
-  { icon: "🎵", text: "10 presets — Aurora, Nebula, Bloom, Heaven, Liquid, and more — all reacting to live audio" },
-  { icon: "🎨", text: "4-colour customisation with speed, brightness, glow, saturation, and hue controls" },
-  { icon: "🖼️", text: "Background Mix — layer any photo or video under the visualizer and blend them together" },
-  { icon: "🎤", text: "Selectable audio input — works with any microphone or audio interface" },
-  { icon: "💾", text: "Settings saved automatically per service item — ready every week without re-configuring" },
-  { icon: "🖥️", text: "Full resolution output to projector and stage display" },
-];
-
-const workflow2180Features = [
-  {
-    icon: "🗂️",
-    text: "Plan sections organise the whole order of service — Worship, Bible Readings, Message, Offering, and more",
-  },
-  {
-    icon: "⏱️",
-    text: "Planned times, notes, colours, section clocks, Focus mode, and printable orders keep the team on time",
-  },
-  {
-    icon: "🎨",
-    text: "A different look on each output — bilingual in the room, main language only on the livestream",
-  },
-  {
-    icon: "🖥️",
-    text: "Add Screen asks what the screen is, what it shows, and how it should look; changes wait safely for Apply",
-  },
-  {
-    icon: "🎤",
-    text: "Stage layouts give the band and preacher the right confidence view, with chords, next slide, timers, and notes",
-  },
-  {
-    icon: "📱",
-    text: "One team address opens the Stage link, Music Director, and Phone remote, each with the right level of access",
-  },
+  { icon: "🎵", text: "Presets such as Aurora, Nebula, Bloom and Liquid, all moving with live audio" },
+  { icon: "🎨", text: "Your own colours, speed, glow and brightness" },
+  { icon: "🖼️", text: "Blend a photo or video under the visuals" },
+  { icon: "💾", text: "Saved with each song or plan item, ready every week" },
 ];
 
 const newFeatures = [
   {
-    label: "Plan Sections & Templates",
-    badge: "2.1.80",
-    desc: "Build the service as a clear tree, save the order as a reusable template, drag several items together, and print or export the finished plan.",
-  },
-  {
-    label: "Section Timing",
-    badge: "2.1.80",
-    desc: "Give each section a planned time, colour, and team note. Follow its clock on Stage Display, the stage link, the remote, and the Timers panel.",
+    label: "Plan Sections, Times & Templates",
+    desc: "Build the service as a tree of sections with planned times, colours and team notes, save it as a template, and print the order of service.",
+    guide: "/guides/sections/",
   },
   {
     label: "A Look for Every Output",
-    badge: "2.1.80",
-    desc: "Choose which languages, fonts, sizes, position, and background each audience screen, NDI stream, or Center Stage output uses.",
+    desc: "Choose the languages, fonts, sizes, position and background for each screen, the NDI stream or Center Stage — such as one line low on the livestream.",
+    guide: "/guides/livestream-look/",
   },
   {
     label: "Simpler Screen Setup",
-    badge: "2.1.80",
-    desc: "Identify displays, add a screen in three questions, choose mirror or wide-picture arrangements, preview cleared output, then press Apply.",
+    desc: "Identify your screens, add one in three questions, check what shows when cleared, then press Apply — nothing moves until you do.",
+    guide: "/guides/set-up-screens/",
   },
   {
-    label: "Per-Screen Stage Layouts",
-    badge: "2.1.80",
-    desc: "Give a band monitor chords and timing while a pulpit screen shows a large current and next slide — both following the same service.",
+    label: "Stage Layouts per Screen",
+    desc: "Chords and timing on the band monitor, a large current and next slide at the pulpit — both following the same service.",
+    guide: "/guides/stage-layout/",
   },
   {
     label: "One Address for the Team",
-    badge: "2.1.80",
-    desc: "One QR code opens a team hub for the Stage link, Music Director, and Phone remote, with separate PIN choices for operators and readers.",
+    desc: "One QR code for the stage link, music director and phone remote, with separate PINs for the operator and the readers.",
+    guide: "/guides/team-phones/",
   },
   {
     label: "Safer Plan Imports",
-    badge: "2.1.80",
-    desc: "Imported plans reuse matching songs and slides, but preserve the plan's copy when lyrics or visuals differ, with a clear import summary.",
-  },
-  {
-    label: "Live Visuals & Offline AI",
-    desc: "Audio-reactive backgrounds and multilingual meaning-based search remain fully built in and ready offline during a service.",
+    desc: "A plan from another computer keeps its own lyrics and slides when yours differ, and the import tells you what it changed.",
+    guide: "/guides/share-plan/",
   },
 ];
 
@@ -382,7 +339,7 @@ export default async function Home() {
         name: "How does the remote stage view work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "With one click, StageFlo generates a public internet URL via Cloudflare Tunnel for your stage display and remote controller. Share it with musicians or speakers anywhere — no account, no port-forwarding, no static IP needed.",
+          text: "StageFlo shows one QR code for the whole team. It opens a page with the stage link (live words, chords and timers for singers and band), the music director page and the phone remote, each with its own PIN choice. It works on the church Wi-Fi, or anywhere over a secure stageflo.app link, with no account or router setup.",
         },
       },
       {
@@ -428,11 +385,9 @@ export default async function Home() {
         {/* ── Hero ── */}
         <section className="hero" id="home">
           <div className="hero-badges">
-            <p className="eyebrow">StageFlo by Zac Studios · v{latestMac.version}</p>
-            <span className="eyebrow">🗂️ Plans &amp; Outputs — New in 2.1.80</span>
-              <span className="eyebrow eyebrow-ai">✦ AI Search — New in 2.0</span>
-            <span className="eyebrow eyebrow-remote">📡 Remote Stage View — New in 2.0</span>
-            <span className="eyebrow">✨ Live Visuals — New in 2.1</span>
+            <Link className="eyebrow" href="#whats-new">
+              StageFlo {`v${latestMac.version}`} · New: plan sections and a look for every screen →
+            </Link>
           </div>
           <h1>Multilingual worship software for every church.</h1>
           <p className="lead">
@@ -468,8 +423,11 @@ export default async function Home() {
             </GatedDownloadLink>
           </p>
           <p className="cta-mac-arch-note">
-            New to StageFlo? <Link href="/guides/">Follow the step-by-step guides</Link>, with a
-            picture of every step.
+            New to StageFlo?{" "}
+            <Link className="download-gate-inline-link" href="/guides/">
+              Follow the step-by-step guides
+            </Link>
+            , with a picture of every step.
           </p>
           <FreeSpotsCounter />
         </section>
@@ -487,112 +445,6 @@ export default async function Home() {
                 <p>{p.desc}</p>
               </article>
             ))}
-          </div>
-        </section>
-
-        {/* ── 2.1.80 Workflow Spotlight ── */}
-        <section className="ai-spotlight section-block" id="workflow-2180">
-          <div className="ai-spotlight-inner">
-            <div className="ai-spotlight-header">
-              <span className="eyebrow">New in 2.1.80</span>
-              <h2>Plan the service. Route every screen. Keep everyone in step.</h2>
-              <p className="lead">
-                StageFlo now connects weekly planning and live output in one safer workflow: organise the order
-                of service into sections, give each screen the right presentation, then run the room from the
-                desktop or phone without the outputs drifting apart.
-              </p>
-            </div>
-            <ul className="ai-feature-list">
-              {workflow2180Features.map((feature) => (
-                <li key={feature.text}>
-                  <span className="ai-feature-icon" aria-hidden="true">{feature.icon}</span>
-                  <span>{feature.text}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="cta-row">
-              <Link className="button button-primary" href="/guides/">
-                Step-by-step guides
-              </Link>
-              <Link className="button button-secondary" href="/guides/set-up-screens/">
-                Set up your screens
-              </Link>
-              <Link className="button button-secondary" href="/guides/sunday-template/">
-                Save your Sunday template
-              </Link>
-              <Link className="button button-secondary" href="/docs/introduction/#whats-new">
-                See everything in 2.1.80
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ── AI Spotlight ── */}
-        <section className="ai-spotlight section-block" id="ai-search">
-          <div className="ai-spotlight-inner">
-            <div className="ai-spotlight-header">
-              <span className="eyebrow eyebrow-ai">New in 2.0</span>
-              <h2>Search by meaning, not just words.</h2>
-              <p className="lead">
-                Type a theme, story, or feeling — StageFlo finds the right passages and songs across every language you work in. No internet required.
-              </p>
-            </div>
-            <div className="ai-query-examples">
-              <div className="ai-query-chip">women at the well → <span>John 4:1–26</span></div>
-              <div className="ai-query-chip">prodigal son → <span>Luke 15:11–32</span></div>
-              <div className="ai-query-chip">ദൈവ സ്നേഹം → <span>Malayalam songs</span></div>
-              <div className="ai-query-chip">grace and mercy → <span>Songs + Psalms</span></div>
-            </div>
-            <ul className="ai-feature-list">
-              {aiFeatures.map((f) => (
-                <li key={f.text}>
-                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
-                  <span>{f.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* ── Remote Stage View Spotlight ── */}
-        <section className="remote-spotlight section-block" id="remote-stage">
-          <div className="ai-spotlight-inner">
-            <div className="ai-spotlight-header">
-              <span className="eyebrow eyebrow-remote">New in 2.0</span>
-              <h2>Your stage, anywhere in the world.</h2>
-              <p className="lead">
-                StageFlo generates a secure public internet link for your stage display and remote controller in one click — no account, no port-forwarding, no static IP. Send it to musicians before the service starts.
-              </p>
-            </div>
-            <ul className="remote-feature-list">
-              {remoteFeatures.map((f) => (
-                <li key={f.text}>
-                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
-                  <span>{f.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* ── Live Visuals Spotlight ── */}
-        <section className="ai-spotlight section-block" id="live-visuals">
-          <div className="ai-spotlight-inner">
-            <div className="ai-spotlight-header">
-              <span className="eyebrow">New in 2.1</span>
-              <h2>Bring your worship to life.</h2>
-              <p className="lead">
-                Transform your worship experience with built-in audio-reactive visuals. Choose from 10 stunning presets that move and breathe in sync with your music. Fine-tune colours, speed, glow, and intensity to match your atmosphere — or layer a photo or video underneath for something truly unique. Everything saves automatically, so your visuals are ready the moment you open your service.
-              </p>
-            </div>
-            <ul className="ai-feature-list">
-              {visualizerFeatures.map((f) => (
-                <li key={f.text}>
-                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
-                  <span>{f.text}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -618,19 +470,101 @@ export default async function Home() {
         <section className="new-features section-block" id="whats-new">
           <div className="section-head">
             <p className="eyebrow">What&rsquo;s new in 2.1.80</p>
-            <h2>A clearer workflow from planning to the final screen.</h2>
-            <p>Prepare the order of service, give every audience and stage output the right view, and keep the whole team following the same live item.</p>
+            <h2>Plan the service. Route every screen. Keep everyone in step.</h2>
+            <p>
+              Organise the order of service into sections, give every screen the right look, and run the room
+              from the desktop or a phone without the screens drifting apart.
+            </p>
           </div>
           <div className="new-features-grid">
             {newFeatures.map((f) => (
-              <article key={f.label} className={`new-feature-card reveal${f.badge ? " new-feature-card-highlight" : ""}`}>
+              <article key={f.label} className="new-feature-card new-feature-card-highlight reveal">
                 <div className="new-feature-card-top">
                   <h4>{f.label}</h4>
-                  {f.badge && <span className="new-feature-badge">{f.badge}</span>}
                 </div>
                 <p>{f.desc}</p>
+                <Link className="new-feature-guide" href={f.guide}>
+                  Step-by-step guide →
+                </Link>
               </article>
             ))}
+          </div>
+          <div className="cta-row">
+            <Link className="button button-primary" href="/guides/">
+              All step-by-step guides
+            </Link>
+            <Link className="button button-secondary" href="/docs/introduction/#whats-new">
+              Everything in 2.1.80
+            </Link>
+          </div>
+        </section>
+
+        {/* ── AI Spotlight ── */}
+        <section className="ai-spotlight section-block" id="ai-search">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow eyebrow-ai">AI search</span>
+              <h2>Search by meaning, not just words.</h2>
+              <p className="lead">
+                Type a theme, story or feeling, and StageFlo finds the passages and songs, in every language you use. No internet needed.
+              </p>
+            </div>
+            <div className="ai-query-examples">
+              <div className="ai-query-chip">women at the well → <span>John 4:1–26</span></div>
+              <div className="ai-query-chip">prodigal son → <span>Luke 15:11–32</span></div>
+              <div className="ai-query-chip">ദൈവ സ്നേഹം → <span>Malayalam songs</span></div>
+              <div className="ai-query-chip">grace and mercy → <span>Songs + Psalms</span></div>
+            </div>
+            <ul className="ai-feature-list">
+              {aiFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Remote Stage View Spotlight ── */}
+        <section className="remote-spotlight section-block" id="remote-stage">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow eyebrow-remote">The team on their phones</span>
+              <h2>Everyone on the same page, on their own phone.</h2>
+              <p className="lead">
+                One QR code gives singers the words, the band leader the keys and tempo, and the operator a phone remote. It works on the church Wi-Fi, or anywhere over a secure stageflo.app link — no account or router setup.
+              </p>
+            </div>
+            <ul className="remote-feature-list">
+              {remoteFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── Live Visuals Spotlight ── */}
+        <section className="ai-spotlight section-block" id="live-visuals">
+          <div className="ai-spotlight-inner">
+            <div className="ai-spotlight-header">
+              <span className="eyebrow">Live visuals</span>
+              <h2>Bring your worship to life.</h2>
+              <p className="lead">
+                Built-in visuals that move and breathe with the music. Pick a preset, make it yours, and it&apos;s ready every time you open the service.
+              </p>
+            </div>
+            <ul className="ai-feature-list">
+              {visualizerFeatures.map((f) => (
+                <li key={f.text}>
+                  <span className="ai-feature-icon" aria-hidden="true">{f.icon}</span>
+                  <span>{f.text}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -729,10 +663,10 @@ export default async function Home() {
       <footer>
         <div className="footer-company">
           <Image
-            src="/brand/zac-studios-logo.png"
+            src="/brand/zac-studios-logo-trim.png"
             alt="Zac Studios"
-            width={150}
-            height={46}
+            width={1037}
+            height={639}
             className="company-logo"
           />
           <p>StageFlo by Zac Studios.</p>
