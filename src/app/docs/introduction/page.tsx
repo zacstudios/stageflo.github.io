@@ -48,16 +48,16 @@ const docSections = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
+  title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
   description:
-    "Set up StageFlo 2.1.80 plan sections, order-of-service templates, audience and stage screens, per-output looks, stage layouts, timers, and phone control.",
+    "Set up StageFlo 2.1.81 plan sections, order-of-service templates, audience and stage screens, per-output looks, stage layouts, timers, and phone control.",
   alternates: {
     canonical: "/docs/introduction/",
   },
   openGraph: {
-    title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
+    title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
     description:
-      "A practical guide to the StageFlo 2.1.80 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
+      "A practical guide to the StageFlo 2.1.81 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     url: "/docs/introduction/",
     type: "article",
     images: [
@@ -65,15 +65,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "StageFlo 2.1.80 plan and screen setup guide",
+        alt: "StageFlo 2.1.81 plan and screen setup guide",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo 2.1.80 Guide | Plans, Screens & Outputs",
+    title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
     description:
-      "A practical guide to the StageFlo 2.1.80 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
+      "A practical guide to the StageFlo 2.1.81 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     images: ["/og-image.png"],
   },
 };
@@ -114,7 +114,7 @@ export default function DocsIntroductionPage() {
               phone can run the whole service.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Version 2.1.80</span>
+              <span className="eyebrow">Version 2.1.81</span>
               <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
@@ -140,6 +140,12 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
             <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.81</h3>
+            <ul>
+              <li><strong>Screens are remembered after a restart</strong> — Windows and macOS sometimes number the screens differently after a restart. StageFlo now knows each screen by its size, its name and its place in the display arrangement, so Audience and Stage come back on the screens you chose, with the names you gave them. See <a href="#set-up-screens">How to: Set Up Your Screens</a>.</li>
+              <li><strong>Swap screens</strong> — <strong>Settings → Outputs → Swap screens</strong> puts two outputs on each other&apos;s screens in one step, such as <strong>Audience ⇄ Stage</strong>.</li>
+              <li><strong>Step-by-step guides from the app</strong> — <strong>Help → Step-by-step Guides…</strong> opens the <Link href="/guides/">guides</Link>, with a picture of every step.</li>
+            </ul>
             <h3>2.1.80</h3>
             <ul>
               <li><strong>A different look on each output</strong> — the hall can show Malayalam and English while the livestream shows only the main language, low on a transparent background. Make looks from templates in <strong>Settings → Looks</strong> and choose one on each output&apos;s page. See <a href="#settings-display">Looks</a>.</li>
@@ -252,6 +258,12 @@ export default function DocsIntroductionPage() {
               The <strong>Your setup</strong>{" "}cards at the top show each output at a glance: on or off, its screens and
               its look. Click a card to open that output&apos;s page. A yellow note warns when two outputs share a
               screen, as one would cover the other.
+            </p>
+            <p>
+              StageFlo remembers each screen, even when the computer numbers it differently after a restart, so the
+              outputs come back where you put them. If two outputs ever come up on each other&apos;s screens, click{" "}
+              <strong>Swap screens</strong>, next to <strong>Identify screens</strong>, choose the pair, such as{" "}
+              <strong>Audience ⇄ Stage</strong>, and press <strong>Apply</strong>.
             </p>
             <div className={styles.callout}>
               <strong>A typical church:</strong> Audience on the projector (or two projectors with <strong>Same

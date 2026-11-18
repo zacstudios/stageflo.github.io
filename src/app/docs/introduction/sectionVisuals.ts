@@ -10,8 +10,8 @@ const stage = { width: 2560, height: 1440 } as const;
 export const sectionVisuals: Record<string, SectionVisual> = {
   "whats-new": {
     src: "/screenshots/docs/workspace.png",
-    alt: "StageFlo 2.1.80 workspace showing the plan, slides, library and output preview.",
-    caption: "The 2.1.80 workspace brings the plan, content and live output together.",
+    alt: "StageFlo 2.1.81 workspace showing the plan, slides, library and output preview.",
+    caption: "The 2.1.81 workspace brings the plan, content and live output together.",
     ...desktop,
     markers: [
       { x: 17, y: 27, label: "Find songs, Bibles and media in the library" },
