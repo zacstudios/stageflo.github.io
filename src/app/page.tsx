@@ -26,14 +26,14 @@ const pillars = [
     accent: true,
     title: "Service Plans in Sections",
     desc: "Build the order of service in sections with planned times and notes, start each week from a template, and move through it with one key or a clicker.",
-    badge: "New in 2.1.81",
+    badge: "New in 2.1.82",
   },
   {
     icon: "🖥️",
     accent: true,
     title: "Every Screen, Its Own Look",
     desc: "Projector, stage monitor, lower third, Center Stage and NDI, each with the right look — both languages in the room, one line low on the livestream.",
-    badge: "New in 2.1.81",
+    badge: "New in 2.1.82",
   },
   {
     icon: "📱",
@@ -466,10 +466,10 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* ── What's New in 2.1.81 ── */}
+        {/* ── What's New in 2.1.82 ── */}
         <section className="new-features section-block" id="whats-new">
           <div className="section-head">
-            <p className="eyebrow">What&rsquo;s new in 2.1.81</p>
+            <p className="eyebrow">What&rsquo;s new in 2.1.82</p>
             <h2>Plan the service. Route every screen. Keep everyone in step.</h2>
             <p>
               Organise the order of service into sections, give every screen the right look, and run the room
@@ -494,7 +494,7 @@ export default async function Home() {
               All step-by-step guides
             </Link>
             <Link className="button button-secondary" href="/docs/introduction/#whats-new">
-              Everything in 2.1.81
+              Everything in 2.1.82
             </Link>
           </div>
         </section>

@@ -48,16 +48,16 @@ const docSections = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
+  title: "StageFlo 2.1.82 Guide | Plans, Screens & Outputs",
   description:
-    "Set up StageFlo 2.1.81 plan sections, order-of-service templates, audience and stage screens, per-output looks, stage layouts, timers, and phone control.",
+    "Set up StageFlo 2.1.82 plan sections, order-of-service templates, audience and stage screens, per-output looks, stage layouts, timers, and phone control.",
   alternates: {
     canonical: "/docs/introduction/",
   },
   openGraph: {
-    title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
+    title: "StageFlo 2.1.82 Guide | Plans, Screens & Outputs",
     description:
-      "A practical guide to the StageFlo 2.1.81 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
+      "A practical guide to the StageFlo 2.1.82 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     url: "/docs/introduction/",
     type: "article",
     images: [
@@ -65,15 +65,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "StageFlo 2.1.81 plan and screen setup guide",
+        alt: "StageFlo 2.1.82 plan and screen setup guide",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "StageFlo 2.1.81 Guide | Plans, Screens & Outputs",
+    title: "StageFlo 2.1.82 Guide | Plans, Screens & Outputs",
     description:
-      "A practical guide to the StageFlo 2.1.81 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
+      "A practical guide to the StageFlo 2.1.82 plan workflow, screen setup, output looks, stage layouts, timers, and phone control.",
     images: ["/og-image.png"],
   },
 };
@@ -114,7 +114,7 @@ export default function DocsIntroductionPage() {
               phone can run the whole service.
             </p>
             <div className="hero-badges" aria-label="Docs highlights">
-              <span className="eyebrow">Version 2.1.81</span>
+              <span className="eyebrow">Version 2.1.82</span>
               <span className="eyebrow">macOS &amp; Windows</span>
             </div>
             <div className={styles.linkRow}>
@@ -140,6 +140,13 @@ export default function DocsIntroductionPage() {
           <section className={docCardClassName} id="whats-new">
             <SectionHeading sectionId="whats-new" title="What Is New" />
             <p>Highlights from the latest releases, newest first. StageFlo also shows these in Help → What&apos;s New after an update.</p>
+            <h3>2.1.82</h3>
+            <ul>
+              <li><strong>Stage messages fill the standby screen</strong> — when the screens are cleared, a stage message shows as a large yellow card across the whole stage screen, and a long message over the lyrics makes the top bar taller so it stays readable. See <a href="#stage-message">Stage Message</a>.</li>
+              <li><strong>A stage message brings the stage screen up</strong> — if the stage screen is off, sending a message opens it on standby, without turning on the audience screen.</li>
+              <li><strong>Go Live with nothing selected</strong> — opens the screens on standby, ready for the first song. The <strong>Stage</strong> button turns the stage screen on and off by itself.</li>
+              <li><strong>Smoother NDI cameras</strong> — NDI video stays smooth and in time on every screen, and you can preview a second camera in the <strong>Live</strong> tab while the first is on the screens. See <a href="#live-inputs">Live Inputs</a>.</li>
+            </ul>
             <h3>2.1.81</h3>
             <ul>
               <li><strong>Screens are remembered after a restart</strong> — Windows and macOS sometimes number the screens differently after a restart. StageFlo now knows each screen by its size, its name and its place in the display arrangement, so Audience and Stage come back on the screens you chose, with the names you gave them. See <a href="#set-up-screens">How to: Set Up Your Screens</a>.</li>
@@ -519,7 +526,7 @@ export default function DocsIntroductionPage() {
             <ul>
               <li><strong>Sources</strong> — cameras connected to the computer and NDI sources on the network are listed. Click <strong>Refresh</strong> if one was connected after StageFlo opened. The first time, the computer asks for permission to use the camera.</li>
               <li><strong>Background</strong> — click a source to show it behind the current song or passage; click it again to remove it.</li>
-              <li><strong>Preview</strong> — check a source on its tile before putting it on the screens.</li>
+              <li><strong>Preview</strong> — check a source on its tile before putting it on the screens. You can preview another NDI camera while one is live, without disturbing it.</li>
               <li><strong>As a layer</strong> — with the slide editor open, clicking a source adds it to the slide as a layer you can move and size, such as a picture-in-picture box.</li>
             </ul>
             <div className={styles.callout}>
@@ -932,7 +939,9 @@ export default function DocsIntroductionPage() {
             </p>
             <ul>
               <li><strong>Send</strong> — click the speech bubble at the top of the preview panel, type the note (up to 400 characters), and click <strong>Send To Stage</strong>.</li>
-              <li><strong>How it shows</strong> — <strong>Inline</strong> puts it in the message box on the stage display, <strong>Popup</strong> shows it as a large yellow banner that is hard to miss, and <strong>Both</strong> does both.</li>
+              <li><strong>How it shows</strong> — <strong>Inline</strong> puts it in the message box on the stage display, <strong>Popup</strong> shows it as a large yellow banner that is hard to miss, and <strong>Both</strong> does both. Over the lyrics, a long message makes the top bar taller so it stays readable.</li>
+              <li><strong>On standby</strong> — when the screens are cleared, the message fills the stage screen as a large yellow card, with the clock and timer above it.</li>
+              <li><strong>Stage screen off?</strong> — sending a message turns the stage screen on, on standby, without turning on the audience screen.</li>
               <li><strong>Clear</strong> — the bubble turns yellow while a message is up. Click <strong>Clear</strong>, or the small × on the bubble, to take it down.</li>
               <li><strong>From a phone</strong> — the phone remote&apos;s speech bubble and the music director page can send and clear the message too.</li>
             </ul>
@@ -1202,7 +1211,8 @@ export default function DocsIntroductionPage() {
             <SectionHeading sectionId="service-safety-tools" title="Service Safety Tools" />
             <ul>
               <li><strong>Output Lock</strong> — lock output windows to avoid accidental screen changes during service.</li>
-              <li><strong>Standby</strong> — Black or Clear keeps the audience screen open; the Go Live button shows a blue Standby outline. Click it to go live again.</li>
+              <li><strong>Standby</strong> — Black or Clear keeps the audience screen open; the Go Live button shows a blue Standby outline. Click it to go live again, or with nothing selected, to turn the screens off.</li>
+              <li><strong>Go Live with nothing selected</strong> — opens the audience, stage and center stage screens on standby, ready for the first item. The <strong>Stage</strong> button turns just the stage screen on or off.</li>
               <li><strong>Preview first</strong> — clicking a song or passage opens it in the preview; nothing reaches the audience until you go live.</li>
             </ul>
             <div className={styles.callout}>
